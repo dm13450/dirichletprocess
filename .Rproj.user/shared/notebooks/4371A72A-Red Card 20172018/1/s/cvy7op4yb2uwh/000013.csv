@@ -1,5 +1,0 @@
-"0","matchNum <- rep(c(1:(nrow(gamesCaret)/2)), each=2)"
-"0","sendOffVec <- factor(gamesCaret$SendOff[seq(1, nrow(gamesCaret), by=2)], labels=c(""No"", ""Yes""))"
-"0","gamesCaret %>%  mutate(SendOffPred = c(caretPredsTest$No, caretPredsTrain$No), MatchNum=matchNum) -> gamesMatch"
-"0","gamesMatch %>% group_by(MatchNum) %>% summarise(SendOffPredFull=prod(SendOffPred)) %>% mutate(SendOffRes=sendOffVec) %>% calibration(SendOffRes ~ SendOffPredFull, data=.) -> fullCalib"
-"0","plot(fullCalib)"

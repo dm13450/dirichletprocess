@@ -1,5 +1,0 @@
-"0","gamesRaw <- read.csv(""bulkOutput.csv"", head=T)"
-"0","oddColNames = read.csv(""odds_columns.csv"", head=F)"
-"0","oddColNames <- levels(oddColNames[,1])"
-"0","oddNums <- match(oddColNames, names(gamesRaw))"
-"0","gamesRaw$Date <- dmy(gamesRaw$Date)"

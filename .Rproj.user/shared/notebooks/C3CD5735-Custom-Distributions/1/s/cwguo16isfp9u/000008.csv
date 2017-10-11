@@ -1,7 +1,0 @@
-"0","yTrunc <- c(rtruncnorm(100, 0, 60*60*24, 60*60*6, 7500), rtruncnorm(100, 0, 60*60*24, 60*60*18, 7500)) "
-"0","mleGuess <- optim(c(10000,10000), function(x) -1*sum(log(dtruncnorm(yTrunc, 0, 60*60*24, x[1], x[2]))))$par"
-"0","truncMD <- MixingDistribution(""trunc"", priorParameters = c(2, 15000), ""nonconjugate"", mhStepSize = c(1, 1)*1000, hyperPriorParameters = c(1, 1/1000000))"
-"0","truncDP <- DirichletProcessCreate(yTrunc, truncMD)"
-"0","truncDP <- Initialise(truncDP, posterior = TRUE)"
-"1","Accept Ratio:  0.827 
-"

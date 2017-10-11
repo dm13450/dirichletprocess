@@ -1,2 +1,0 @@
-"0","plot(c(199*Likelihood(truncDP$mixingDistribution, yTrunc[1200], truncDP$clusterParameters),"
-"0","0.2*Likelihood(truncDP$mixingDistribution, yTrunc[1200], PriorDraw(truncDP$mixingDistribution,3))))"

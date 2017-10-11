@@ -1,5 +1,0 @@
-"0","gamesRaw %>% select(Date, Div, HomeTeam, AwayTeam, HR, AR, WHH, WHD, WHA, IWH, IWD, IWA) %>% filter(!is.na(HR)) %>% mutate(MatchNumber = seq_along(Date)) -> games"
-"0","games %>%  gather(Home, Team, -Date, -Div, -HR, -AR, -MatchNumber, -WHH, -WHD, -WHA, -IWH, -IWD, -IWA) -> games"
-"2","attributes are not identical across measure variables; they will be dropped"
-"0","games %>% mutate(SendOff = if_else(Home==""HomeTeam"", HR, AR), Home=if_else(Home==""HomeTeam"", TRUE, FALSE))  %>% mutate(SendOff = if_else(SendOff >0, TRUE, FALSE)) %>% select(-HR, -AR) -> games"
-"0","games %>% mutate(DayOfWeek=weekdays(Date), Month=as.factor(month(Date)), DayNum=day(Date), Year=year(Date), Week=week(Date)) %>% arrange(MatchNumber, Date) -> gamesAlt"

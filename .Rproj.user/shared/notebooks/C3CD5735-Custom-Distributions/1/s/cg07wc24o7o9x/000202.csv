@@ -1,1 +1,0 @@
-"0","lines(density(rtruncnorm(10000, a=0, b=60*60*24, PriorDraw(truncDP$mixingDistribution, 1)[[1]], PriorDraw(truncDP$mixingDistribution, 1)[[2]])), col=""red"")"

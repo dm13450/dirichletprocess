@@ -1,5 +1,0 @@
-"0","auc(roc(response=oddsCollect$Result, predictor = oddsCollect$Prob))"
-"1","Area under the curve: "
-"1","0.5815"
-"1","
-"
