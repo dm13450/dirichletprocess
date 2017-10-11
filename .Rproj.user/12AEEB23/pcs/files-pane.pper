@@ -1,0 +1,17 @@
+{
+    "path" : "~/Documents/PhD/Research/Dirichelet/dirichletprocess/R",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        },
+        {
+            "ascending" : false,
+            "columnIndex" : 4
+        },
+        {
+            "ascending" : false,
+            "columnIndex" : 3
+        }
+    ]
+}

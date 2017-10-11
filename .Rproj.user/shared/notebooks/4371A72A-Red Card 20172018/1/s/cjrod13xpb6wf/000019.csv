@@ -1,0 +1,4 @@
+"0","oddsCollect <- read.csv(""../oddsCollect/Sheet 1-1-Table 1.csv"")"
+"0","oddsCollect$Result <- factor(oddsCollect$Result, labels=c(""no"", ""yes""))"
+"0","oddsCollect %>% select(Odds, Result) %>% mutate(Prob =1- 1/Odds) -> oddsCollect"
+"0","plot(calibration(Result~Prob, data=oddsCollect))"

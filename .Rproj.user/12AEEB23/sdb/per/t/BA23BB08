@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "MetropolisHastings <- function(mixingDistribution, x, start_pos, no_draws=100){\n  UseMethod(\"MetropolisHastings\", mixingDistribution)\n}\n\nMetropolisHastings.default <- function(mixingDistribution, x, start_pos, no_draws = 100) {\n  parameter_samples <- list()\n  for (i in seq_along(start_pos)) {\n    parameter_samples[[i]] <- array(dim = c(dim(start_pos[[i]])[1:2], no_draws))\n    parameter_samples[[i]][, , 1] <- start_pos[[i]][, , 1]\n  }\n\n  accept_count <- 0\n  old_param <- start_pos\n\n  old_prior <- log(PriorDensity(mixingDistribution, old_param))\n  old_Likelihood <- sum(log(Likelihood(mixingDistribution, x, old_param)))\n\n  for (i in seq_len(no_draws - 1)) {\n\n    prop_param <- MhParameterProposal(mixingDistribution, old_param)\n\n    new_prior <- log(PriorDensity(mixingDistribution, prop_param))\n    new_Likelihood <- sum(log(Likelihood(mixingDistribution, x, prop_param)))\n\n    accept_prob <- exp(new_prior + new_Likelihood - old_prior - old_Likelihood)\n\n    if (is.na(accept_prob) | !length(accept_prob) ) {\n      accept_prob <- 0\n    }\n\n    if (runif(1) < accept_prob) {\n      accept_count <- accept_count + 1\n      sampled_param <- prop_param\n      old_Likelihood <- new_Likelihood\n      old_prior <- new_prior\n    } else {\n      sampled_param <- old_param\n    }\n\n    old_param <- sampled_param\n    for (j in seq_along(start_pos)) {\n      parameter_samples[[j]][, , i + 1] <- sampled_param[[j]]\n    }\n  }\n\n  accept_ratio <- accept_count/no_draws\n\n  return(list(parameter_samples = parameter_samples, accept_ratio = accept_ratio))\n}\n\nMetropolisHastings.weibull <- function(mixingDistribution, x, start_pos, no_draws=100){\n\n  lamSamp <- 1/rgamma(1, length(x)+mixingDistribution$priorParameters[2], sum(x^c(start_pos[[1]])) + mixingDistribution$priorParameters[3])\n  start_pos[[2]] <- array(lamSamp, dim=c(1,1,1))\n\n  parameter_samples <- list()\n  for (i in seq_along(start_pos)) {\n    parameter_samples[[i]] <- array(dim = c(dim(start_pos[[i]])[1:2], no_draws))\n    parameter_samples[[i]][, , 1] <- start_pos[[i]][, , 1]\n  }\n\n  accept_count <- 0\n  old_param <- start_pos\n\n  old_prior <- log(PriorDensity(mixingDistribution, old_param))\n  old_Likelihood <- sum(log(Likelihood(mixingDistribution, x, old_param)))\n\n  for(i in seq_len(no_draws-1)){\n\n    prop_param <- MhParameterProposal(mixingDistribution, old_param)\n    lamSamp <- 1/rgamma(1, length(x)+mixingDistribution$priorParameters[2], sum(x^c(prop_param[[1]])) + mixingDistribution$priorParameters[3])\n    prop_param[[2]] <- array(lamSamp, dim=c(1,1,1))\n\n    new_prior <- log(PriorDensity(mixingDistribution, prop_param))\n    new_Likelihood <- sum(log(Likelihood(mixingDistribution, x, prop_param)))\n\n    accept_prob <- exp(new_prior + new_Likelihood - old_prior - old_Likelihood)\n\n    if (is.na(accept_prob)) {\n      accept_prob <- 0\n    }\n\n    if (runif(1) < accept_prob) {\n      accept_count <- accept_count + 1\n      sampled_param <- prop_param\n      old_Likelihood <- new_Likelihood\n      old_prior <- new_prior\n    } else {\n      sampled_param <- old_param\n    }\n\n    old_param <- sampled_param\n    for (j in seq_along(start_pos)) {\n      parameter_samples[[j]][, , i + 1] <- sampled_param[[j]]\n    }\n\n  }\n  accept_ratio <- accept_count/no_draws\n\n  return(list(parameter_samples = parameter_samples, accept_ratio = accept_ratio))\n\n}\n",
+    "created" : 1507543788269.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2524705539",
+    "id" : "BA23BB08",
+    "lastKnownWriteTime" : 1507546533,
+    "last_content_update" : 1507546533677,
+    "path" : "~/Documents/PhD/Research/Dirichelet/dirichletprocess/R/metropolis_hastings.R",
+    "project_path" : "R/metropolis_hastings.R",
+    "properties" : {
+        "marks" : "<:11,18\n>:11,19"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

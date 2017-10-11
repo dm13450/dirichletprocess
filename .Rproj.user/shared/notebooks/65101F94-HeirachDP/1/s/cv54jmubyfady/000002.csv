@@ -1,0 +1,7 @@
+"0","alpha0 = 3"
+"0","dpobj1 <- dirichlet_process_create(y1, mdobject = hierdp_md1, c(2,1))"
+"0","dpobj2 <- dirichlet_process_create(y2, mdobject = hierdp_md2, c(2,1))"
+"0","dpobj1$alpha <- alpha0"
+"0","dpobj2$alpha <- alpha0"
+"0","dpobj1 <- initialise(dpobj1, FALSE)"
+"0","dpobj2 <- initialise(dpobj2, FALSE)"

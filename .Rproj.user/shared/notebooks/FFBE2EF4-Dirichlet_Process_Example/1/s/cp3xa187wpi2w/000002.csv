@@ -1,0 +1,5 @@
+"0","dpobjlist <- DirichletProcessHierarchicalBeta(list(y1,y2), maxY=maxT)"
+"0","dpobjlist <- Fit(dpobjlist, 100)"
+"2","Error in matrix(unlist(pts), ncol = 1) : 
+  'data' must be of a vector type, was 'NULL'
+"

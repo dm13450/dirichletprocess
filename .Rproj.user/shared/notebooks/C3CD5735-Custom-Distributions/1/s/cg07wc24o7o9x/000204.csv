@@ -1,0 +1,1 @@
+"0","lines(density(rtruncnorm(10000, a=0, b=60*60*24, mleGuess[1], mleGuess[2])), col='blue')"

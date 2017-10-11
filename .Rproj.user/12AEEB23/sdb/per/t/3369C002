@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#'Create a Dirichlet Mixture of Gaussians\n#'\n#' This is the constructor function to produce a \\code{dirichletprocess} object with a Gaussian mixture kernel with unknown mean and variance.\n#' The base measure is a Normal Inverse Gamma distribution that is conjugate to the posterior distribution.\n#'\n#' \\eqn{G_0(\\theta | \\gamma) =  N \\left(\\mu | \\mu_0, \\frac{\\sigma^2}{k_0} \\right) \\mathrm{Inv-Gamma} \\left(\\sigma^2 | \\alpha_0, \\beta_0 \\right)}\n#'\n#' We recommend scaling your data to zero mean and unit variance for quicker convergence.\n#'\n#'@param y Data\n#'@param g0Priors Base Distribution Priors \\eqn{\\gamma = (\\mu _0, k_0 , \\alpha _0 , \\beta _0)}\n#'@param alphaPriors Alpha prior parameters. See \\code{\\link{UpdateAlpha}}.\n#'@return Dirichlet process object\n#'@export\nDirichletProcessGaussian <- function(y, g0Priors = c(0, 1, 1, 1),\n                                     alphaPriors = c(2, 4)) {\n\n  mdobj <- GaussianMixtureCreate(g0Priors)\n  dpobj <- DirichletProcessCreate(y, mdobj, alphaPriors)\n  dpobj <- Initialise(dpobj)\n  return(dpobj)\n}\n",
+    "created" : 1507649523180.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2179516584",
+    "id" : "3369C002",
+    "lastKnownWriteTime" : 1501062637,
+    "last_content_update" : 1501062637,
+    "path" : "~/Documents/PhD/Research/Dirichelet/dirichletprocess/R/dirichlet_process_gaussian.R",
+    "project_path" : "R/dirichlet_process_gaussian.R",
+    "properties" : {
+        "marks" : "<:7,77\n>:7,77"
+    },
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

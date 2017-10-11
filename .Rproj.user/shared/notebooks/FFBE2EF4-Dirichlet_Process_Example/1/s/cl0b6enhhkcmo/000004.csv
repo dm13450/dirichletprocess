@@ -1,0 +1,3 @@
+"0","y <- c(rbeta(100, 1, 3), rbeta(100, 7, 3))"
+"0","beta_dpobj <- DirichletProcessBeta(y, 1, mhStep = c(0.06, 0.06))"
+"0","beta_dpobj <- Fit(beta_dpobj, its, TRUE)"

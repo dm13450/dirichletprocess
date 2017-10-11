@@ -1,0 +1,1 @@
+"0","mle <- optim(c(0.5, 0.5,0.5), function(x) -sum(dnorm(y, xMat %*% x, sigma)))"

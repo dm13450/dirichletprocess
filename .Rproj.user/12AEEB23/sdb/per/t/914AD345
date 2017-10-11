@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Create a Beta mixing distribution.\n#'\n#' See \\code{\\link{DirichletProcessBeta}} for the default prior and hyper prior distributions.\n#'\n#' @param priorParameters The prior parameters for the base measure.\n#' @param mhStepSize The Metropolis Hastings step size. A numeric vector of length 2.\n#' @param maxT The upper bound of the Beta distribution. Defaults to 1 for the standard Beta distribution.\n#' @param hyperPriorParameters The parameters for the hyper prior.\n#' @return A mixing distribution object.\n#' @export\nBetaMixtureCreate <- function(priorParameters = c(2, 8), mhStepSize = c(1, 1), maxT = 1,\n  hyperPriorParameters = c(1, 0.125)) {\n\n  mdObj <- MixingDistribution(\"beta\", priorParameters, \"nonconjugate\",\n                              mhStepSize, hyperPriorParameters)\n  mdObj$maxT <- maxT\n  return(mdObj)\n}\n\nLikelihood.beta <- function(mdobj, x, theta) {\n  maxT <- mdobj$maxT\n  x <- as.vector(x, \"numeric\")\n  mu <- theta[[1]][, , , drop = TRUE]\n  tau <- theta[[2]][, , , drop = TRUE]\n\n  a <- (mu * tau)/maxT\n  b <- (1 - mu/maxT) * tau\n\n  # numerator <- (a - 1) * log(x) + (b - 1) * log(maxT - x)\n  # numerator <- numerator - lbeta(a, b) - (tau - 1) * log(maxT)\n  # y <- exp(numerator)\n\n  y <- 1/maxT * dbeta(x/maxT, a, b)\n\n  return(as.numeric(y))\n}\n\nPriorDraw.beta <- function(mdobj, n = 1) {\n\n  priorParameters <- mdobj$priorParameters\n\n  mu <- runif(n, 0, mdobj$maxT)\n  nu <- 1/rgamma(n, priorParameters[1], priorParameters[2])\n  theta <- list(mu = array(mu, c(1, 1, n)), nu = array(nu, c(1, 1, n)))\n  return(theta)\n}\n\nPriorDensity.beta <- function(mdObj, theta) {\n\n  priorParameters <- mdObj$priorParameters\n  muDensity <- dunif(theta[[1]], 0, mdObj$maxT)\n  nuDensity <- dgamma(1/theta[[2]], priorParameters[1], priorParameters[2])\n  thetaDensity <- muDensity * nuDensity\n  return(as.numeric(thetaDensity))\n}\n\n# PosteriorDraw.beta <- function(mdobj, x, n=100, start_pos){\n# if(missing(start_pos)){ start_pos <- PriorDraw(mdobj) } mh_result <-\n# MetropolisHastings(x, start_pos, mdobj, no_draws=n) theta <-\n# list(mu=array(mh_result$parameter_samples[[1]], dim=c(1,1,n)),\n# nu=array(mh_result$parameter_samples[[2]], dim=c(1,1,n))) return(theta) }\n\nPriorParametersUpdate.beta <- function(mdObj, clusterParameters, n = 1) {\n\n  hyperPriorParameters <- mdObj$hyperPriorParameters\n  priorParameters <- mdObj$priorParameters\n\n  numClusters <- dim(clusterParameters[[1]])[3]\n\n  posteriorShape <- hyperPriorParameters[1] + priorParameters[1] * numClusters\n  posteriorRate <- hyperPriorParameters[2] + sum(1/clusterParameters[[2]])\n\n  newGamma <- rgamma(n, posteriorShape, posteriorRate)\n\n  newPriorParameters <- matrix(c(priorParameters[1], newGamma), ncol = 2)\n  mdObj$priorParameters <- newPriorParameters\n\n  return(mdObj)\n}\n\nMhParameterProposal.beta <- function(mdObj, old_params) {\n\n  mhStepSize <- mdObj$mhStepSize\n\n  new_params <- old_params\n\n  new_params[[1]] <- old_params[[1]] + mhStepSize[1] * rnorm(1, 0, 2.4)\n\n  if (new_params[[1]] > mdObj$maxT | new_params[[1]] < 0) {\n    new_params[[1]] <- old_params[[1]]\n  }\n\n  new_params[[2]] <- abs(old_params[[2]] + mhStepSize[2] * rnorm(1, 0, 2.4))\n\n  return(new_params)\n}\n",
+    "created" : 1507558690610.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2577104962",
+    "id" : "914AD345",
+    "lastKnownWriteTime" : 1502122646,
+    "last_content_update" : 1502122646,
+    "path" : "~/Documents/PhD/Research/Dirichelet/dirichletprocess/R/beta_uniform_gamma.R",
+    "project_path" : "R/beta_uniform_gamma.R",
+    "properties" : {
+        "marks" : "<:62,0\n>:78,0"
+    },
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

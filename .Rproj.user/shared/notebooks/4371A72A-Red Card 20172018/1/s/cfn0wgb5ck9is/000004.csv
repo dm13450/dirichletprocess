@@ -1,0 +1,8 @@
+"0","caretPredsTest <- predict(caretModel, gamesDunTest, type=""prob"")"
+"0","caretPredsTrain <- predict(caretModel, gamesDunTrain, type=""prob"")"
+"0","caretROCTrain <- roc(response=gamesDunTrain$SendOff, predictor=caretPredsTrain[,1])"
+"0","caretROCTest <- roc(response=gamesDunTest$SendOff, predictor=caretPredsTest[,1])"
+"0","calibDFTest <- data.frame(Class=gamesDunTest$SendOff, Model=caretPredsTest[,1])"
+"0","calibDFTrain <- data.frame(Class=gamesDunTrain$SendOff, Model=caretPredsTrain[,1])"
+"0","calibTest <- calibration(Class~Model, data=calibDFTest)"
+"0","calibTrain <- calibration(Class~Model, data=calibDFTrain)"

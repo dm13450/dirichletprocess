@@ -1,0 +1,25 @@
+Package: dirichletprocess
+Type: Package
+Title: Build Dirichlet Process Objects for Bayesian Modelling
+Version: 0.1.1
+Authors@R: c(
+            person("Dean", "Markwick", email="dean.markwick@talk21.com", role=c("aut", "cre")),
+            person("Gordon", "J. Ross", email="gordon@gordonjross.co.uk", role=c("aut"))
+          )
+Maintainer: Dean Markwick <dean.markwick@talk21.com>
+Description: Create Dirichlet Process Objects that can be used as infinite mixture models in a variety of ways. 
+    Some examples include; density estimation, Poisson process intensity inference, hierarchical modelling and clustering. 
+Depends: R (>= 2.10)
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Suggests: testthat,
+    knitr,
+    rmarkdown,
+    tidyr,
+    dplyr
+Imports: gtools,
+         ggplot2,
+         mvtnorm
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1

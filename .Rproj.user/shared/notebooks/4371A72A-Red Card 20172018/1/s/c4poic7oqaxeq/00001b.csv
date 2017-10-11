@@ -1,0 +1,5 @@
+"0","calibDF <- data.frame(Class=gamesDunTrain$SendOff, ModelTest=caretPreds[,1], ModelTrain=caretPreds2[,1])
+"
+"2","Error in data.frame(Class = gamesDunTrain$SendOff, ModelTest = caretPreds[,  : 
+  arguments imply differing number of rows: 44650, 3744
+"

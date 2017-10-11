@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Generate a weighted function.\n#'\n#' @param func Function that is used of the form func(x, params).\n#' @param weights Weighting of each cluster.\n#' @param params Cluster parameter list\n#' @return weighted function\n#'\n#' @export\nweighted_function_generator <- function(func, weights, params) {\n\n  weights <- weights/sum(weights)\n\n  weightedFunc <- function(y) {\n    out <- numeric(length(y))\n    cumWeight <- 0\n    for (i in seq_along(weights)) {\n      if (cumWeight > (1 - 1e-6)){\n        break\n      }\n      cl_params <- vector(\"list\", length = length(params))\n      for (j in seq_along(params)) {\n        cl_params[[j]] <- params[[j]][, , i, drop = FALSE]\n      }\n      out <- out + weights[i] * func(y, cl_params)\n      cumWeight <- cumWeight + weights[i]\n    }\n\n    return(out)\n  }\n  return(weightedFunc)\n}\n\ndpareto <- function(x, xm, alpha) ifelse(x > xm, alpha * xm^alpha/(x^(alpha + 1)),\n  0)\nppareto <- function(q, xm, alpha) ifelse(q > xm, 1 - (xm/q)^alpha, 0)\nqpareto <- function(p, xm, alpha) ifelse(p < 0 | p > 1, NaN, xm * (1 - p)^(-1/alpha))\nrpareto <- function(n, xm, alpha) qpareto(runif(n), xm, alpha)\n\n\n\n",
+    "created" : 1505746026568.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3287335629",
+    "id" : "987E80B3",
+    "lastKnownWriteTime" : 1504866307,
+    "last_content_update" : 1504866307,
+    "path" : "~/Documents/PhD/Research/Dirichelet/dirichletprocess/R/utilities.R",
+    "project_path" : "R/utilities.R",
+    "properties" : {
+        "marks" : "<:17,0\n>:17,0"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

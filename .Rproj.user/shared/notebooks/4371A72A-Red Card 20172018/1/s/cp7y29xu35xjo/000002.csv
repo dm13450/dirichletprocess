@@ -1,0 +1,7 @@
+"0","```r
+glm1 <- glm(SendOff ~ Team, family=binomial(\"probit\"), data=gamesAlt)
+glm2 <- glm(SendOff ~ Team + Home, family=binomial(\"probit\"), data=gamesAlt)
+glm3 <- glm(SendOff ~ Team + Home + DayOfWeek, family=binomial(\"probit\"), data=gamesAlt)
+glm4 <- glm(SendOff ~ Team + Home + DayOfWeek + Month, family=binomial(\"probit\"), data=gamesAlt)
+glm5 <- glm(SendOff ~ Team + Home + DayOfWeek + Month + DayNum, family=binomial(\"probit\"), data=gamesAlt)
+```"

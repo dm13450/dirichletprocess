@@ -1,0 +1,4 @@
+"0","for(i in 1:10){"
+"0","  dpobjlist <- global_table_update(dpobjlist)"
+"0","  dpobjlist <- global_parameter_update(dpobjlist)"
+"0","}"

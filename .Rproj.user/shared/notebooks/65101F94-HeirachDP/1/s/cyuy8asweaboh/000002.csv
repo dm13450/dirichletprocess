@@ -1,0 +1,4 @@
+"0","gam <- 5"
+"0","H <- function(n=1) rnorm(n, 0, 10)"
+"0","theta_k <- H(50)"
+"0","beta_k <- stick_breaking(gam, 50)"

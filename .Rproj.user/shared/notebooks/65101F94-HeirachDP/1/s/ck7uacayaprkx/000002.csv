@@ -1,0 +1,6 @@
+"0","draw_gj <- function(){"
+"0","  alpha0 = 3"
+"0","  pi_prime <- sapply(seq_along(beta_k), function(i) rbeta(1, alpha0*beta_k[i], alpha0*(1-sum(beta_k[1:i]))))"
+"0","  pi_k <- piDirichlet(pi_prime)"
+"0","  pi_k"
+"0","}"
