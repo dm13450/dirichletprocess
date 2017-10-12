@@ -27,5 +27,3 @@ dp <- DirichletProcessGaussian(y)
 dp <- Fit(dp, 100, progressBar = FALSE)
 plot(dp)
 ```
-
-![](README-example-1.png)

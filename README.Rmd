@@ -31,7 +31,7 @@ devtools::install_github("dm13450/dirichletprocess")
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example}
+```{r example, eval=FALSE}
 library(dirichletprocess)
 y <- rnorm(100)
 dp <- DirichletProcessGaussian(y)
