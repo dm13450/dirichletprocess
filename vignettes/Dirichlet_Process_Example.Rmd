@@ -27,79 +27,69 @@ kottas_weibull <- function(x, theta) {
 
 ```
 
-```{r}
-its <- 10
-```
 In this vignette we will be demonstrating the various uses that the dirichletprocess package provides. For speed purposes the variable `its` is set to a low number. Increase it to 250+ for the full results. 
+```{r}
+its <- 100
+```
 
 
-```{r, eval=FALSE}
+```{r echo=TRUE, fig.align='center'}
 y <- rt(200, 3) + 2
 dp <- DirichletProcessGaussian(y)
-dp <- Fit(dp, its)
+dp <- Fit(dp, its, FALSE, FALSE)
 plot(dp, single=TRUE)
 ```
-
-
 
 
 ### Old Faithful
 
 The Dirichlet Process can be used to fit non-parametric distributions to data. In this example we will show how the `oldfaithful` data can be modelled using Dirichlet process. 
-
 ```{r oldfaithful plot, fig.align='center'}
 ggplot(faithful, aes(x=waiting)) + geom_histogram(bins=20)
 ```
-
-We model this data using the default specifications of the Gaussian Dirichlet Process function. This is adequate for our transformed data. 
-
-```{r oldfaithful dp, fig.show='hold'}
+Here we can see that the waiting times appears to follow a multi-modal distribution that could be modelled using a mixture of Gaussians. We create a Dirichlet Process object using the default specifications of the Gaussian type. 
+```{r oldfaithful dp, fig.align='center'}
 faithfulTransformed = (faithful$waiting - mean(faithful$waiting))/sd(faithful$waiting)
 
 dpobj = DirichletProcessGaussian(faithfulTransformed)
-
-dpobj = Fit(dpobj, its)
-
-old_faithful_plot <- plot(dpobj)
-print(old_faithful_plot)
-qplot(seq_along(dpobj$alphaChain), dpobj$alphaChain, geom="line")
+dpobj = Fit(dpobj, its, progressBar = FALSE)
+plot(dpobj)
 ```
+After running the fitting algorithm, we can see that the correct shape of the data has been found. 
 
 
-### Density estimation on a bounded interval
-We also include the ability to estimate densities on a bounded interval using a Beta distribution mixture model. We simulate some test data from a known mixture of Beta distributions and fit our Beta DP to it. 
-```{r simulate data}
+### Density Estimation on a Bounded Interval
+We also include the ability to estimate densities on a bounded interval using a Beta distribution mixture model. We simulate some test data from a known mixture of Beta distributions.
+```{r simulate data, fig.show='hold', fig.align='center'}
 y <- c(rbeta(100, 1, 3), rbeta(100, 7, 3))
 
 beta_dpobj <- DirichletProcessBeta(y, 1, mhStep = c(0.06, 0.06))
-beta_dpobj <- Fit(beta_dpobj, its, TRUE)
+beta_dpobj <- Fit(beta_dpobj, its, TRUE, progressBar = FALSE)
 plot(beta_dpobj)
 ```
-
-```{r}
+Plotting the found posterior function against the data shows a good fit. 
+```{r echo=FALSE, fig.show='hold', fig.align='center'}
 xGrid <- seq(0, 1, by=0.01)
 
 betaRes <- data.frame(x=xGrid, Estimate=PosteriorFunction(beta_dpobj)(xGrid), Actual=0.5*dbeta(xGrid, 1, 3)+0.5*dbeta(xGrid, 7,3))
 
-betaRes %>% gather(Key, Value, -x) %>% ggplot(aes(x=x, y=Value, colour=Key)) + geom_line()
-
+betaRes %>% gather(Key, Value, -x) %>% ggplot(aes(x=x, y=Value, colour=Key)) + geom_line() + theme(legend.position = 'bottom')
 ```
+Comparing the posterior function to the true generating function shows that the Dirichlet Process model has found the correct shape. 
 
 
-### Non Conjugate Mixtures
+### Weibull Distribution Mixture Models
 Weibull Kottas example.
 
-```{r weibull fit}
+```{r weibull fit, fig.align='center'}
 burnin = its/2
 y1 <- rlnorm(160, 0, sqrt(0.25))
 y2 <- rlnorm(40, 1.2, sqrt(0.02))
 y <- c(y1, y2)
 
 weib_dpobj <- DirichletProcessWeibull(y/max(y), c(3, 2, 0.01), mhStepSize = 0.06, verbose=TRUE)
-weib_dpobj <- Fit(weib_dpobj, its, TRUE)
-
-plot(weib_dpobj, single = FALSE)
-plot(weib_dpobj, single = TRUE)
+weib_dpobj <- Fit(weib_dpobj, its, TRUE, progressBar =  FALSE)
+plot(weib_dpobj)
 ```
 
 
@@ -110,7 +100,6 @@ Dirichlet processes can be used to estimate the interesting function of an inhom
 
 ```{r sin mixture sim}
 y <- cumsum(runif(1000))
-
 pdf <- function(x) sin(x/50)^2
 accept_prob <- pdf(y)
 pts <- sample(y, 500, prob=accept_prob)
@@ -118,8 +107,7 @@ pts <- sample(y, 500, prob=accept_prob)
 
 ```{r sin dp, fig.align='center'}
 beta_dpobj <- DirichletProcessBeta(pts, max(pts)*1.01)
-beta_dpobj <- Fit(beta_dpobj, its)
-
+beta_dpobj <- Fit(beta_dpobj, its, FALSE, progressBar=FALSE)
 plot(beta_dpobj)  
 ```
 
@@ -184,8 +172,8 @@ treat_a_dpobj <- Initialise(treat_a_dpobj)
 treat_b_dpobj <- DirichletProcessCreate(data_b, mdobj, c(2, 0.9))
 treat_b_dpobj <- Initialise(treat_b_dpobj)
 
-treat_a_dpobj <- Fit(treat_a_dpobj, its, TRUE)
-treat_b_dpobj <- Fit(treat_b_dpobj, its, TRUE)
+treat_a_dpobj <- Fit(treat_a_dpobj, its, TRUE, FALSE)
+treat_b_dpobj <- Fit(treat_b_dpobj, its, TRUE, FALSE)
 ```
 
 ```{r, echo=FALSE}
@@ -231,7 +219,7 @@ treat_b_hazard <- treat_b_mean_density / (1-treat_b_mean_survival)
 ```
 
 
-```{r, fig.align='center'}
+```{r echo=FALSE, fig.align='center'}
 x_grid_a <- (x_grid -1)*49
 x_grid_b <- (x_grid -1)*44
 
@@ -261,24 +249,20 @@ dpobj <- DirichletProcessMvnormal(y)
 
 dt <- data.frame(x=y[,1], y=y[,2], label=as.factor(dpobj$clusterLabels), fit="N")
 
-dpobj <- Fit(dpobj, its)
+dpobj <- Fit(dpobj, its, FALSE, FALSE)
 ```
 
 
 ```{r, echo=FALSE,  fig.show='hold'}
 dt <- rbind(dt, data.frame(x=y[,1], y=y[,2], label=as.factor(dpobj$clusterLabels), fit="Y"))
 
-clustering_initial_plot <- ggplot(filter(dt, fit=="N"), aes(x=x, y=y, colour=label)) + geom_point() + guides(colour=FALSE)
-clustering_fit_plot <- ggplot(filter(dt, fit=="Y"), aes(x=x, y=y, colour=label)) + geom_point() + guides(colour=FALSE)
+clustering_initial_plot <- ggplot(filter(dt, fit=="N"), aes(x=x, y=y, colour=label)) + geom_point() + guides(colour=FALSE) + ggtitle("Initial")
+clustering_fit_plot <- ggplot(filter(dt, fit=="Y"), aes(x=x, y=y, colour=label)) + geom_point() + guides(colour=FALSE) + ggtitle('Final')
 print(clustering_initial_plot)
 print(clustering_fit_plot)
 ```
 
 Here we can see that starting initially with random clusters the data separates itself into the correct generating clusters. 
-
-
-
-
 
 ### Hierarchical Dirichlet Process
 
@@ -288,86 +272,26 @@ Lets consider two intensity functions that have a common component.
 mu <- c(0.25, 0.75, 0.4)
 tau <- c(5, 6, 10)
 
-a <- mu*tau
-b <- (1-mu)*tau
+a <- mu * tau
+b <- (1 - mu) * tau
 
 y1 <- c(rbeta(100, a[1], b[1]), rbeta(100, a[2], b[2]))
 y2 <- c(rbeta(100, a[1], b[1]), rbeta(100, a[3], b[3]))
-
-
 ```
 
 
-```{r}
-dpobjlist <- DirichletProcessHierarchicalBeta(list(y1,y2), maxY=1, hyperPriorParameters = c(1, 0.01), mhStepSize = c(0.1, 0.1), gammaPriors = c(2, 4), alphaPriors = c(2, 4))
+```{r, fig.show='hold'}
+dpobjlist <- DirichletProcessHierarchicalBeta(list(y1, y2), maxY=1, hyperPriorParameters = c(1, 0.01), mhStepSize = c(0.1, 0.1), gammaPriors = c(2, 4), alphaPriors = c(2, 4))
 
-dpobjlist <- Fit(dpobjlist, its, TRUE)
-
+dpobjlist <- Fit(dpobjlist, its, TRUE, FALSE)
 
 plot(dpobjlist$indDP[[1]])
 plot(dpobjlist$indDP[[2]])
-
-xGrid <- seq(0, 1, by=0.01) 
-
-plot(xGrid, 0.5*dbeta(xGrid, a[1], b[1]) + 0.5*dbeta(xGrid, a[2], b[2]), type="l")
-lines(xGrid, PosteriorFunction(dpobjlist$indDP[[1]])(xGrid), col="red")
-plot(xGrid, 0.5*dbeta(xGrid, a[1], b[1]) + 0.5*dbeta(xGrid, a[3], b[3]), type="l")
-lines(xGrid, PosteriorFunction(dpobjlist$indDP[[2]])(xGrid), col="red")
-
-
-```
-
-
-### Normal Fixed Effects
-
-For our model we have $y_i \sim N(\mu _i , \sigma ^2)$ where there is a basic regression structure on $\mu_i = \sum _j \beta _j x_{ji}$. Our prior on $\beta$ is a DP $\beta \sim G, G \sim \text{DP} (\alpha, G_0)$. 
-
-Lets simulate some data. An intercept and two other components.
-
-```{r}
-nIndvs <- 1000
-
-beta0 <- rnorm(nIndvs, 3, 0)
-beta1 <- rnorm(nIndvs, 1, 0)
-beta2 <- rnorm(nIndvs, -2, 0)
-
-betaMat <- cbind(beta0[1], beta1[1], beta2[1])
-xMat <- cbind(rep_len(1, nIndvs), rnorm(nIndvs, 5), rnorm(nIndvs, -5))
-
-mu <- xMat %*% t(betaMat)
-
-sigma <- 3
-y <- rnorm(nIndvs, mu, sigma)
-
-plot(density(y))
-plot(density(mu))
-
-mle <- optim(c(0.5, 0.5,0.5), function(x) -sum(dnorm(y, xMat %*% x, sigma)))
-
-```
-
-To infer what the parameters are in a non-DP case we would do the following with uninformative priors. 
-
-If we pool all the data togehter.
-```{r}
-beatHat <- solve(t(xMat) %*% xMat)%*%t(xMat)%*%y
-lambda0 <- diag(1, nrow = 3, ncol=3)
-mu0 <- c(0,0,0)
-
-mu_n <- solve(t(xMat) %*% xMat + lambda0) %*% (lambda0 %*% mu0 + t(xMat)%*%y)
-lambda_n <- t(xMat) %*% xMat + lambda0
-covMat <- solve(lambda_n)
-
-smps <- replicate(1000, rnorm(3, mu_n, diag(covMat)*3))
-rowMeans(smps)
 ```
 
 ```{r}
-
-
-
-
-
+c(dpobjlist$indDP[[1]]$clusterParameters[[1]])
+c(dpobjlist$indDP[[2]]$clusterParameters[[1]])
 ```
 
-
+Here we can see that a common cluster has been found and that it is close to the true shared parameter. 

@@ -31,6 +31,9 @@ plot.dirichletprocess <- function(x, likelihood = FALSE, single = TRUE, y=NULL,.
     graph <- graph + ggplot2::stat_function(fun = function(z) LikelihoodFunction(x)(z),
                                             n = 1000, ggplot2::aes(colour = "Likelihood"))
   }
+  else {
+    graph <- graph + ggplot2::guides(colour=FALSE)
+  }
 
   return(graph)
 }
