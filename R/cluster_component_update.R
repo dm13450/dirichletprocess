@@ -80,7 +80,7 @@ ClusterComponentUpdate.nonconjugate <- function(dpObj) {
 
   pointsPerCluster <- dpObj$pointsPerCluster
 
-  aux <- list()
+  aux <- vector("list", length(clusterParams))
 
   for (i in seq_len(n)) {
 
@@ -92,11 +92,11 @@ ClusterComponentUpdate.nonconjugate <- function(dpObj) {
 
     if (pointsPerCluster[currentLabel] == 0) {
 
-      PriorDraws <- PriorDraw(mdObj, m - 1)
+      priorDraws <- PriorDraw(mdObj, m - 1)
 
-      for (j in seq_along(PriorDraws)) {
-        aux[[j]] <- array(c(clusterParams[[j]][, , currentLabel], PriorDraws[[j]]),
-          dim = c(dim(PriorDraws[[j]])[1:2], m))
+      for (j in seq_along(priorDraws)) {
+        aux[[j]] <- array(c(clusterParams[[j]][, , currentLabel], priorDraws[[j]]),
+          dim = c(dim(priorDraws[[j]])[1:2], m))
       }
     } else {
         aux <- PriorDraw(mdObj, m)

@@ -35,3 +35,35 @@ test_that("Posterior Function", {
   expect_is(post_function(0), "numeric")
 
 })
+
+test_that("Posterior Clusters: MvNormal", {
+
+  y <- mvtnorm::rmvnorm(10, c(0,0), diag(2))
+
+  dp <- DirichletProcessMvnormal(y)
+  dp <- Fit(dp, 1, FALSE, FALSE)
+
+  postClusters <- PosteriorClusters(dp)
+
+  expect_equal(length(postClusters), 2)
+
+})
+
+test_that("Posterior Function: MvNormal", {
+
+  y <- mvtnorm::rmvnorm(10, c(0,0), diag(2))
+
+  dp <- DirichletProcessMvnormal(y)
+  dp <- Fit(dp, 1, FALSE, FALSE)
+
+  postFunc <- PosteriorFunction(dp)
+  postFuncEval <- postFunc(matrix(c(0,0), ncol=2))
+
+  expect_is(postFunc, "function")
+  expect_is(postFuncEval, "numeric")
+  expect_equal(length(postFuncEval), 1)
+
+})
+
+
+

@@ -8,12 +8,11 @@ PriorDraw <- function(mdObj, n) UseMethod("PriorDraw", mdObj)
 
 PriorDraw.hierarchical <- function(mdObj, n = 1) {
 
-  if(anyNA(mdObj$pi_k)){
-    print(mdObj$pi_k)
-  }
+  ##ind <- sample.int(length(mdObj$pi_k), n, prob = mdObj$pi_k, replace = TRUE)
 
+  probs <- mdObj$pi_k
 
-  ind <- sample.int(length(mdObj$pi_k), n, prob = mdObj$pi_k, replace = TRUE)
+  ind <- sample(which(probs > 0), n, prob = probs[probs > 0], replace=TRUE)
 
   return(lapply(mdObj$theta_k, function(x) x[, , ind, drop = FALSE]))
 }

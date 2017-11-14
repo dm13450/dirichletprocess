@@ -241,11 +241,15 @@ print(weibull_censor_graph)
 ### Clustering with Multivariate Normal
 Dirichlet Process also have clustering applications. Here we demonstrate this by simulating from a two dimensional Gaussian distribution and fitting a Dirichlet process. Using the component labels we can assign the data into appropriate clusters. 
 
+For this purpose we can use an improper-prior for $G_0$ as we are not drawing from the posterior distribution of the Dirichlet process. 
 
 ```{r clustering}
-y <- rbind(rmvnorm(30, c(7,10), diag(2)-0.1), rmvnorm(30, c(1,2), diag(2)+0.1)) 
+y <- rbind(rmvnorm(30, c(-1.75,-1.75), diag(2)-0.1), rmvnorm(30, c(1.75, 1.75), diag(2)+0.1)) 
 
-dpobj <- DirichletProcessMvnormal(y)
+dpobj <- DirichletProcessMvnormal(y, g0Priors = 
+                                    list(mu0 = rep_len(0, length.out = ncol(y)),
+                                        Lambda = diag(ncol(y)),
+                                        kappa0 = 0, nu = 1))
 
 dt <- data.frame(x=y[,1], y=y[,2], label=as.factor(dpobj$clusterLabels), fit="N")
 

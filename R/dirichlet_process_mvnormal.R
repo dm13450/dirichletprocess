@@ -17,7 +17,7 @@ DirichletProcessMvnormal <- function(y,
   if(missing(g0Priors)){
     g0Priors <- list(mu0 = rep_len(0, length.out = ncol(y)),
                      Lambda = diag(ncol(y)),
-                     kappa0 = 0, nu = 1)
+                     kappa0 = ncol(y), nu = ncol(y))
   }
 
 

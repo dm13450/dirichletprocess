@@ -11,7 +11,13 @@ weighted_function_generator <- function(func, weights, params) {
   weights <- weights/sum(weights)
 
   weightedFunc <- function(y) {
-    out <- numeric(length(y))
+
+    if (class(y) == "matrix"){
+      out <- numeric(nrow(y))
+    }
+    else{
+      out <- numeric(length(y))
+    }
     cumWeight <- 0
     for (i in seq_along(weights)) {
       if (cumWeight > (1 - 1e-6)){

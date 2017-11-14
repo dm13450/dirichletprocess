@@ -11,8 +11,8 @@ MvnormalCreate <- function(priorParameters) {
 
 Likelihood.mvnormal <- function(mdobj, x, theta) {
 
-  y <- sapply(seq_len(dim(theta$mu)[3]), function(i) mvtnorm::dmvnorm(x, theta$mu[,
-    , i], theta$sig[, , i]))
+  y <- sapply(seq_len(dim(theta[[1]])[3]),
+            function(i) mvtnorm::dmvnorm(x, theta[[1]][,, i], theta[[2]][, , i]))
 
   return(y)
 }

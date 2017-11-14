@@ -29,7 +29,7 @@ Likelihood.weibull <- function(mdObj, x, theta) {
 
   y <- as.numeric(lambda^(-1) * alpha * x^(alpha - 1) * exp(-lambda^(-1) * x^alpha))
   y[is.infinite(lambda)] <- 0
-
+  y[x < 0] <- 0
   return(y)
 }
 PriorDraw.weibull <- function(mdObj, n = 1) {
@@ -37,8 +37,8 @@ PriorDraw.weibull <- function(mdObj, n = 1) {
   priorParameters <- mdObj$priorParameters
 
   lambdas <- 1/rgamma(n, priorParameters[2], priorParameters[3])
-  theta <- list(array(runif(n, 0, priorParameters[1]), dim = c(1, 1, n)), array(lambdas,
-    dim = c(1, 1, n)))
+  theta <- list(array(runif(n, 0, priorParameters[1]), dim = c(1, 1, n)),
+                array(lambdas, dim = c(1, 1, n)))
   return(theta)
 }
 
