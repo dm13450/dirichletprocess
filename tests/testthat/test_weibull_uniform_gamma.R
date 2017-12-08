@@ -20,6 +20,18 @@ test_that("Weibull Likelihood", {
 
 })
 
+test_that("Weibull Likelihood: Negative x", {
+
+  weibull_test_params_1 <- list(array(1, dim=c(1,1,1)), array(1, dim=c(1,1,1)))
+  weibull_test_params_2 <- list(array(.1, dim=c(1,1,1)), array(.1, dim=c(1,1,1)))
+  testEval <- sapply(seq(-10, -0.1, by=0.1), function(x) Likelihood(test_mdobj, x, weibull_test_params_1))
+  testEval2 <- sapply(seq(-10, -0.1, by=0.1), function(x) Likelihood(test_mdobj, x, weibull_test_params_2))
+
+  expect_true(all(testEval==0))
+  expect_true(all(testEval2==0))
+})
+
+
 test_that("Weibull Prior Density", {
 
   expect_equal(PriorDensity(test_mdobj, matrix(c(1,1),ncol=2)), dunif(1, 0,1))

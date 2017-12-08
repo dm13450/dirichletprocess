@@ -47,6 +47,7 @@ Fit.default <- function(dpObj, its, updatePrior = FALSE, progressBar=TRUE) {
     }
   }
 
+  dpObj$weights <- dpObj$pointsPerCluster / dpObj$n
   dpObj$alphaChain <- alphaChain
   dpObj$weightsChain <- weightsChain
   dpObj$clusterParametersChain <- clusterParametersChain
