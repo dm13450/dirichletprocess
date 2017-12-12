@@ -104,8 +104,8 @@ test_that("Multivariate Normal Dirichlet Create and Initialise", {
   expect_is(dpobj, c("list", "dirichletprocess", "mvnormal", "conjugate"))
 
   expect_equal(length(dpobj$clusterParameters), 2)
-  expect_equal(dim(dpobj$clusterParameters$mu), c(1,2,10))
-  expect_equal(dim(dpobj$clusterParameters$sig), c(2,2,10))
+  expect_equal(dim(dpobj$clusterParameters$mu), c(1,2,1))
+  expect_equal(dim(dpobj$clusterParameters$sig), c(2,2,1))
 })
 
 test_that("Multivariate Normal Componenet Update", {
@@ -149,8 +149,8 @@ test_that("Multivariate Normal Cluster Parameter Update", {
 
   dpobj <- ClusterParameterUpdate(dpobj)
 
-  expect_equal(dim(dpobj$clusterParameters$mu), c(1,2,10))
-  expect_equal(dim(dpobj$clusterParameters$sig), c(2,2,10))
+  expect_equal(dim(dpobj$clusterParameters$mu), c(1,2,1))
+  expect_equal(dim(dpobj$clusterParameters$sig), c(2,2,1))
 
 })
 
@@ -169,4 +169,15 @@ test_that("Multivariate Normal Fit", {
 
 })
 
+test_that("Multivariate Normal Cluster Predict", {
+
+  test_data <- as.matrix(mvtnorm::rmvnorm(10, c(0,0), diag(2)))
+  dp <- DirichletProcessMvnormal(test_data)
+  dp <- Fit(dp, 10, progressBar=FALSE)
+
+  pred <- ClusterLabelPredict(dp, mvtnorm::rmvnorm(1, c(0,0), diag(2)))
+
+  expect_length(pred$componentIndexes, 1)
+
+})
 

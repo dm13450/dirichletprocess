@@ -35,9 +35,9 @@ ClusterLabelPredict.conjugate <- function(dpobj, newData) {
 
   Predictive_newData <- Predictive(mdobj, newData)
 
-  componentIndexes <- numeric(length(newData))
+  componentIndexes <- numeric(nrow(newData))
 
-  for (i in seq_along(newData)) {
+  for (i in seq_len(nrow(newData))) {
 
     dataVal <- newData[i, , drop = FALSE]
     weights <- numeric(numLabels + 1)

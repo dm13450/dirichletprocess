@@ -1,6 +1,6 @@
 #'Update the Dirichlet process concentration parameter.
 #'
-#'Using the procedure outlined in West (1992) we sampled the concentration parameter of the Dirichlet process. See reference for further details.
+#'Using the procedure outlined in West (1992) we sample the concentration parameter of the Dirichlet process. See reference for further details.
 #'
 #'@param dpobj Dirichlet process object.
 #'

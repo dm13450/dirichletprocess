@@ -18,9 +18,9 @@ test_that("Dirichlet Conjugate Initialise", {
   dpobj = DirichletProcessCreate(data_test, normal_object_test)
   dpobj = Initialise(dpobj)
 
-  expect_equal(dpobj$numberClusters, num_test_points)
-  expect_equal(dpobj$clusterLabels, 1:num_test_points)
-  expect_equal(dpobj$pointsPerCluster, rep(1, num_test_points))
+  expect_equal(dpobj$numberClusters, 1)
+  expect_equal(dpobj$clusterLabels, rep(1, dpobj$n))
+  expect_equal(dpobj$pointsPerCluster, dpobj$n)
 
   expect_length((dpobj$clusterParameters), 2)
   expect_length((dpobj$predictiveArray), num_test_points)
@@ -45,11 +45,11 @@ test_that("Dirichlet Conjugate Cluster Parameter Update", {
   dpobj = Initialise(dpobj)
   dpobj = ClusterParameterUpdate(dpobj)
 
-  expect_length((dpobj$clusterLabels), num_test_points)
+  expect_length(dpobj$clusterLabels, num_test_points)
   expect_equal(sum(dpobj$pointsPerCluster), num_test_points)
   expect_length(dpobj$clusterParameters, 2)
-  expect_length(dpobj$clusterParameters[[1]], num_test_points)
-  expect_length(dpobj$clusterParameters[[2]], num_test_points)
+  expect_length(dpobj$clusterParameters[[1]], 1)
+  expect_length(dpobj$clusterParameters[[2]], 1)
 
 })
 

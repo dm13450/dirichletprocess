@@ -1,4 +1,4 @@
-\begin{thebibliography}{17}
+\begin{thebibliography}{18}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
@@ -73,6 +73,13 @@ Hastings WK (1970).
 \newblock ISSN 0006-3444.
 \newblock \doi{10.2307/2334940}.
 \newblock \urlprefix\url{http://www.jstor.org/stable/2334940}.
+
+\bibitem[{Kim \emph{et~al.}(2006)Kim, Tadesse, and
+  Vannucci}]{kim_variable_2006}
+Kim S, Tadesse MG, Vannucci M (2006).
+\newblock \enquote{Variable selection in clustering via {Dirichlet} process
+  mixture models.}
+\newblock \emph{Biometrika}, \textbf{93}(4), 877--893.
 
 \bibitem[{Kottas(2006{\natexlab{a}})}]{kottas_dirichlet_2006}
 Kottas A (2006{\natexlab{a}}).

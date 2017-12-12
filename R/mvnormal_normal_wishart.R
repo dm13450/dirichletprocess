@@ -74,14 +74,15 @@ Predictive.mvnormal <- function(mdobj, x) {
 
   for (i in seq_along(pred)) {
 
-    post_params <- PosteriorParameters(mdobj, x[i, ])
+    post_params <- PosteriorParameters(mdobj, x[i, ,drop=FALSE])
 
-    pred[i] <- (pi^(-nrow(x) * d/2)) * (priorParameters$kappa0/post_params$kappa_n)^(d/2) *
-      (det(priorParameters$Lambda)^(priorParameters$nu/2))/(det(post_params$t_n)^(post_params$nu_n))
+    pred[i] <- (pi^(-nrow(x[i,,drop=FALSE]) * d/2))
+    pred[i] <- pred[i] * (priorParameters$kappa0/post_params$kappa_n)^(d/2)
+    pred[i] <- pred[i] * (det(priorParameters$Lambda)^(priorParameters$nu/2))/(det(post_params$t_n)^(post_params$nu_n/2))
 
     if (pred[i] > 0) {
       gamma_contrib <- prod(sapply(seq_along(d),
-                            function(j) gamma(priorParameters$nu/2 + nrow(x)/2 + (1 - j)/2)))/prod(sapply(seq_along(d),
+                            function(j) gamma(priorParameters$nu/2 + nrow(x[i,,drop=FALSE])/2 + (1 - j)/2)))/prod(sapply(seq_along(d),
                             function(j) gamma(priorParameters$nu/2 + (1 - j)/2)))
       pred[i] <- pred[i] * gamma_contrib
     }

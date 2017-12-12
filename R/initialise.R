@@ -15,15 +15,14 @@ Initialise <- function(dpObj, posterior = TRUE, m=3, verbose=TRUE){
 #' @export
 Initialise.conjugate <- function(dpObj, posterior = TRUE, m=NULL, verbose=NULL) {
 
-  dpObj$clusterLabels <- 1:dpObj$n
-  dpObj$numberClusters <- dpObj$n
-  dpObj$pointsPerCluster <- rep(1, dpObj$n)
+  dpObj$clusterLabels <- rep_len(1, dpObj$n)
+  dpObj$numberClusters <- 1
+  dpObj$pointsPerCluster <- dpObj$n
 
   if (posterior) {
-    dpObj$clusterParameters <- PosteriorDraw(dpObj$mixingDistribution, dpObj$data,
-      dpObj$n)
+    dpObj$clusterParameters <- PosteriorDraw(dpObj$mixingDistribution, dpObj$data, 1)
   } else {
-    dpObj$clusterParameters <- PriorDraw(dpObj$mixingDistribution, dpObj$n)
+    dpObj$clusterParameters <- PriorDraw(dpObj$mixingDistribution, 1)
   }
   dpObj <- InitialisePredictive(dpObj)
 

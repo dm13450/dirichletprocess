@@ -48,7 +48,8 @@ Dean Markwick\\Department of Statistical Science\\University College London\\\hr
 
 %% - \Abstract{} almost as usual
 \Abstract{
-  The \pkg{dirichletprocess} package implements a software framework for creating \proglang{R} objects that represent Dirichlet processes. Such processes are used in non-parametric statistics and can be applied to density estimation, cluster analysis and hierarchical prior specification. Our package provides the necessary tooling to achieve such tasks but with the flexibility to allow the user to move beyond the default implementations and extend the software using their own mixture kernels or alternative sampling algorithms. As such the user can perform their statistical task using our Dirichlet process objects as non-parametric building blocks.
+The \pkg{dirichletprocess} package provides software for creating flexible Dirichlet processes objects in \proglang{R}. Users can perform non-parametric Bayesian analysis using Dirichlet processes without the need to program their own inference algorithms. Instead, the user can use our pre-built models or specify their own models whilst allowing the \pkg{dirichletprocess} package to handle the Markov chain Monte Carlo inference. The Dirichlet processes objects constructed using \pkg{dirichletprocess} can act as building blocks for a variety of statistical models such as: density estimation, clustering and as prior distributions in hierarchical models. In as little as four lines of code a user can create, fit and plot a Dirichlet process model of their data.
+
 }
 
 %% - \Keywords{} with LaTeX markup, at least one required
@@ -206,7 +207,7 @@ $$w_k = z_k \prod_{i=1}^{k-1} (1-z_i),\quad z_i \sim \text{Beta}(1,\alpha+n).$$
 %\textbf{Key Property 4:}
 
 
-\subsection{Dirichlet process Mixtures} \label{subsec:dpm}
+\subsection{Dirichlet Process Mixtures} \label{subsec:dpm}
 The stick breaking representation in Key Property 2 above shows that  probability distributions sampled from a DP are discrete with probability 1. As such, the DP is not an appropriate prior for $F$ when $F$ is continuous. As such, it is usual to adopt the following mixture specification instead, which we will call the Dirichlet process mixture model (DPMM):
 \begin{align}
 \begin{split}
@@ -243,7 +244,12 @@ Based on this result, Gibbs sampling is used to repeatedly draw each value of $\
 
 In the non-conjugate case things are slightly more difficult, and the integral Key Property 4 cannot be evaluated. As such, numerical techniques must be used instead, which will typically result in slower computation. The \pkg{dirichletprocess} package handles the non-conjugate case by using ``Algorithm 8'' from \citep{neal_markov_2000}, which is one of the most widely used techniques for performing this sampling.
 
-In both the conjugate and non-conjugate cases, the Gibbs sampling is conceptually similar, with the new values of $\theta_i$ being proposed sequentially from their respective posterior distributions. However in practice, this can result in poor mixing of the Gibbs sampler. One approach to speed up convergence is to add in additional update of the $\theta_i$ values at the end of the sampling. For each cluster and its associated data points we  update the cluster parameter using the posterior distribution.
+In both the conjugate and non-conjugate cases, the Gibbs sampling is conceptually similar, with the new values of $\theta_i$ being proposed sequentially from their respective posterior distributions. However in practice, this can result in poor mixing of the Gibbs sampler. One approach to speed up convergence is to add in additional update of the $\theta_i$ values at the end of the sampling. For each cluster and its associated data points we update the cluster parameter using the posterior distribution
+\begin{equation}
+p (\theta _i \mid y_{j}) = \prod _{j=i} k(y_j \mid \theta) G_0,
+\label{eq:clusterpost}
+\end{equation}
+for a conjugate base measure, this posterior distribution is tractable and thus can be sampled directly. For a non-conjugate $G_0$, a posterior sample is achieved using the Metropolis-Hastings algorithm \citep{hastings_monte_1970}.
 
 For simple density estimation and non-hierarchical predictive tasks, having a posterior sample of $\theta_{1:n}$ will be sufficient for inference, and the distribution $F$ is not of any intrinsic interest. However when the DP is used as part of a hierarchical model such as in the regression and point process examples we discuss later, it is also necessary to have samples from the posterior distribution of $F$. These can be obtained using the following property:
 
@@ -254,13 +260,11 @@ $$F = \sum_{i=1}^N w_i \delta_{\theta_i}, \quad w_i \sim \text{Beta}(\alpha+n,1)
 \end{tcolorbox}
 
 
-
-
 \subsection{Hyperparameter Inference} \label{subsec:hyperparam}
 
 In the above discussion, we assumed that the concentration parameter $\alpha$ and base measure $G_0$ were constant. However in practice, better results can often be obtained if they are also learned from the data.
 
-\subsubsection{Inferring the Concentration Parameter}
+\subsubsection{Inferring the Concentration Parameter}\label{subsubsec:concentration}
 Following \cite{west_hyperparameter_1992} we use a $\text{Gamma} (a, b)$ prior for $\alpha$. The corresponding posterior distribution depends only on the number of unique values of $\theta_{1:n}$. More specifically, given the model in Equation \eqref{eqn:dpmm} let $\theta_1,\ldots,\theta_n$ denote a sample from the posterior $p(\theta_{1:n} \mid y_{i:n} , \alpha, G_0 )$. Suppose that there are $k$ unique values in this sample. Then a sample from $p(\alpha \mid \theta{1:n}, y_{1:n} , G_0)$ can be obtained as follows:
 
 \begin{itemize}
@@ -269,8 +273,6 @@ Following \cite{west_hyperparameter_1992} we use a $\text{Gamma} (a, b)$ prior f
 \item With probability $\pi$, draw a value of $\alpha$ from a $\text{Gamma} (a + k, b - \log(z))$ distribution, and with probability $(1 - \pi)$ draw it from a $\text{Gamma}(a + k - 1, b - \log(z))$ distribution instead.
 \end{itemize}
 When fitting a DP the value of $\alpha$ can be easily inferred and sampled by default in the \pkg{dirichletprocess} package.
-
-
 
 \subsubsection{Inferring the Base Measure}
 
@@ -388,7 +390,7 @@ with $\alpha$ fixed by the user and $ \alpha _0 = 1, \beta _0 = 0.5$ by default.
 
 The \pkg{dirichletprocess} package contains implementations of a variety of Dirichlet process mixture models for nonparametric Bayesian analysis. Unlike several other \proglang{R} packages, the emphasis is less on providing a set of functions which completely automate routine tasks (e.g. density estimation or linear regression) and more on providing an abstract data type representation of Dirichlet process objects which allow them to be used as building blocks within hierarchical models.
 
-To illustrate how the package is meant to be used, and how it differs from other \proglang{R} packages, consider the task of density estimation. We wish to estimate the density of data generated from the Student-t distribution but with a mixture of Gaussian distributions.
+To illustrate how the package is meant to be used, and how it differs from other \proglang{R} packages, consider the task of density estimation. We wish to estimate the density of some data stored in the variable \code{y} using a Dirichlet process mixture of Gaussian distributions.
 
 <<student-t>>=
 y <- rt(200, 3) + 2 #generate sample data
@@ -396,13 +398,13 @@ dp <- DirichletProcessGaussian(y)
 dp <- Fit(dp, 1000, progressBar = FALSE)
 @
 
-The function \code{DirichletProcessGaussian} is the creator function for a mixture model of one dimensional Gaussians. Which leads to the creation of the object \code{dp}. We use the function \code{Fit} to infer the cluster parameters by performing a Chinese Restaurant Sample for 1000 iterations. This returns the object \code{dp} updated with the MCMC samples of the cluster parameters, \code{dp$clusterParameterChains}, the weights associated with cluster parameters, \code{dp$weights} and the samples of the concentration parameter $\alpha$, \code{dp$alphaChain}. Using the \code{Fit} function the details of the sampling are removed from the user and this provides an `out-of-the-box' method to easily fit a Dirichlet process to data. Only a specification of the type of mixture model is needed.
+The function \code{DirichletProcessGaussian} is the creator function for a mixture model of univariate Gaussians. This creates the object \code{dp}. We then use the function \code{Fit} on this object to infer the cluster parameters by performing a Chinese Restaurant Sample from Section \ref{subsec:dpm}. With each iteration, the assigned cluster label to each datapoint is updated, then the resulting cluster parameters are updated before finally updating the concentration parameter $\alpha$. Using the \code{Fit} function the details of the sampling are removed from the user and this provides an `out-of-the-box' method to easily fit a Dirichlet process to data. Only a specification of the type of mixture model is needed - in this case a Gaussian mixture. The returned object \code{dp} from the \code{Fit} function contains the MCMC samples of the cluster parameters, \code{dp$clusterParameterChains}, the weights associated with cluster parameters, \code{dp$weightsChain} and the samples of the concentration parameter $\alpha$, \code{dp$alphaChain}. These posterior samples can then be used how the user sees fit.
 
 The \pkg{dirichletprocess} package currently provides the following features:
 
 \begin{itemize}
 \item Implementations of Dirichlet process mixture models using Gaussian, Beta, and Weibull mixture kernels.
-\item Implementation of various schemes for re-sampling
+\item Implementation of various schemes for re-sampling.
 \item Access to samples from the Dirichlet process in both marginal form, as well as in (truncated) stick-breaking form
 \item A flexible way for the user to add new Dirichlet process models which are not currently implemented in the package, and yet still use the re-sampling functions from the package. To illustrate this, Section \ref{sec:NewMDobj} shows how simple it is to create a Dirichlet process mixture model with Poisson and Gamma distribution kernels, even though this is not implemented in the package.
 \item An ability to plot the likelihood, posterior and credible intervals of a Dirichlet process using \code{plot}.
@@ -412,9 +414,10 @@ All of the above features will be demonstrated in the following examples.
 
 \subsubsection{Nonparametric Density Estimation}
 The most simple application of DPMs is to estimate the distribution of independent and identically distributed observations $y_1,\ldots,y_n$, where:
-
-$$y_i \sim F$$
-$$F = \sum _{i=1} ^n \pi _i k(y_i \mid \theta _i)$$
+\begin{align*}
+y_i & \sim F \\
+F & = \sum _{i=1} ^n \pi _i k(y_i \mid \theta _i)
+\end{align*}
 where $k$ is some density function parameterised by $\theta _i$ and $n$ is some unknown amount of clusters. The most widely used specification is the Gaussian mixture kernel with a Normal-Inverse Gamma base measure $G_0$, which is described more fully in Section \ref{sec:package}.
 
 As an example we use the waiting times between eruptions of the Old Faithful volcano. This dataset is available within \proglang{R} and called \code{faithful}. We transform the waiting times to be be zero mean and and unit standard deviation and proceed to fit a DPMM with the default settings. We then model the waiting times as a mixture of normal distributions
@@ -423,7 +426,7 @@ As an example we use the waiting times between eruptions of the Old Faithful vol
 y_i & \sim F, \\
 F & = \sum _{i=1} ^n \pi _i k(y_i \mid \theta _i) \quad \theta _i = \left\lbrace \mu _i , \sigma ^2 _i \right\rbrace , \\
 \theta _i & \sim G \\
-G & \sim DP(\alpha , G_0),
+G & \sim \text{DP}(\alpha , G_0),
 \end{align*}
 where $k(y _i \mid \theta )$ is the standard normal probability density and $G_0$ is the base measure as in Section \ref{subsec:implemented}.
 
@@ -444,13 +447,13 @@ plot(dp)
 \end{figure}
 The resulting fit from the model is show in Figure \ref{fig:oldfaithful}. The multi-modal nature has been successfully captured a property that a singular distribution would not find.
 
-After running the \code{Fit} function, the DP object contains 3 MCMC parameter chains by default:
-\begin{itemize}
-\item A list containing the samples of the cluster parameters $\phi _i$.
-\item A list containing the weights associated with each cluster parameter $w_i$.
-\item A numeric vector of the samples of $\alpha$.
-\end{itemize}
-Using these quantities, the user can then perform the appropriate analysis.
+% After running the \code{Fit} function, the DP object contains 3 MCMC parameter chains by default:
+% \begin{itemize}
+% \item A list containing the samples of the cluster parameters $\phi _i$.
+% \item A list containing the weights associated with each cluster parameter $w_i$.
+% \item A numeric vector of the samples of $\alpha$.
+% \end{itemize}
+% Using these quantities, the user can then perform the appropriate analysis.
 
 For most users the \code{Fit} function is sufficient for practical purposes. However, for the more advanced users who wish to alter how they fit the dirichletprocess object there are a number of functions available to help.
 
@@ -472,11 +475,13 @@ for(s in seq_len(1000)){
 }
 @
 
-By manually calling \code{ClusterComponentUpdate}, \code{ClusterParameterUpdate} and \code{UpdateAlpha} the user has control over the MCMC routine. The function \code{ClusterComponentUpdate} updates the allocation of all data points $y_i$ to a cluster parameter $\theta _i$ using the Chinese Restaurant Process sampler. The function \code{ClusterParameterUpdate} updates each $\theta _i$ by drawing from the posterior distribution of the parameter using all the data associated to that cluster parameter. Finally, \code{UpdateAlpha} samples a new value of $\alpha$ from its posterior distribution using the method outlined in Section \ref{subsec:hyperparam}
+The function \code{ClusterComponentUpdate} iterates through all the data points, $y_j, j=1,\ldots,n$, updating its cluster assignment sequentially using Key Property 4 in Section \ref{subsec:dpm}. For each data point, it can either be assigned to an existing cluster, or form a new cluster. The probability it is assigned to an existing cluster is proportional to $n_i k(y _j \mid \theta _{i})$, where $n_i$ is the number of points already assigned to the cluster $\theta _i$ and $k$ is the likelihood of the data point point evaluated with the cluster parameter $\theta _i$. The probability is forms a new cluster is proportional to $\alpha$, the concentration parameter. If the datapoint is selected to form a new cluster, then this new cluster parameter $\theta _{\text{new}}$ is drawn from $G_0$ and added to the cluster pool. Subsequent points can now also be added to this cluster.
+
+After each data point has its cluster allocation updated the function \code{ClusterParameterUpdate} is called and updates each $\theta _i$. The new values of $\theta_i$ are sampled from the posterior distribution of the parameter using all the data associated to that cluster parameter as per Equation \eqref{eq:clusterpost}.
+
+Finally, \code{UpdateAlpha} samples a new value of $\alpha$ from its posterior distribution using the method outlined in Section \ref{subsec:hyperparam}. By manually calling these functions the user has control over the MCMC routine without having to have specific knowledge of the required algorithms.
 
 The key point of the  \pkg{dirichletprocess} package which the above code highlights is that a) the user controls when to re-sample the DP parameters, and b) the current sample is contained in the DP object and ready for inspection at any point in the code. This allows DP objects to be used as building blocks within hierarchical models.
-
-
 
 \subsection{Density Estimation on Bounded Intervals}
 In some situations it will be necessary to estimate densities on bounded intervals. For example, it might be known that the observations $y_i$ are restricted to lie within the interval $[0,1]$. In this case, a mixture of Gaussian distributions is inappropriate, since this will assign positive probability to the whole real line. An alternative specification is a mixture of Beta distributions, since the Beta distribution only has positive mass in $[0,1]$. The full model is the same as in the previous example but replacing $k$ with the Beta distribution.
@@ -495,49 +500,50 @@ dp <- Fit(dp, 1000)
 \end{figure}
 Figure \ref{fig:densitybounded} shows the resulting likelihood and posterior draws of the fit to the simulated data.
 
-\subsubsection{Estimation of an Inhomogeneous Poisson Process Intensity Function} \label{subsubsec:poisson}
-One practical application of Beta mixture models is the estimation of an inhomogeneous Poisson process intensity function. A Poisson process is a collection of points in space distributed with rate $\lambda$. In the inhomogeneous case, the intensity is dependent on time and as such the number of events in some window $\left[0 , T\right]$ can be written as
-\begin{equation}
-N \sim \text{Poisson} (\lambda (t) ).
-\end{equation}
-In parametric estimation, a functional form of $\lambda (t)$ would be constructed i.e. $\alpha _0 + \alpha t$ and the parameters $\{\alpha _0, \alpha \}$ would be estimated. However, the accuracy of such a method would be dependent on correctly identifying the parametric form of $\lambda (t)$. With the non-parametric methods that a DPMM provides, such assumptions can be ignored and an intensity function can be built without the need to specify a parametric form. Firstly, we assume that $\lambda (t) = \lambda _0 h(t)$ where $\int _0 ^T h(t) \mathrm{d} t = 1$, i.e. the intensity rate can be decomposed into an amplitude $\lambda _0$ controlling the number of events and a density $h(t)$ controlling the distribution of the events over $\left[0 , T\right]$. To infer the value of $\lambda _0$ a conjugate Gamma prior can be used and thus the posterior distribution can be directly sampled.
+% \subsubsection{Estimation of an Inhomogeneous Poisson Process Intensity Function} \label{subsubsec:poisson}
+% One practical application of Beta mixture models is the estimation of an inhomogeneous Poisson process intensity function. A Poisson process is a collection of points in space distributed with rate $\lambda$. In the inhomogeneous case, the intensity is dependent on time and as such the number of events in some window $\left[0 , T\right]$ can be written as
+% \begin{equation}
+% N \sim \text{Poisson} (\lambda (t) ).
+% \end{equation}
+% In parametric estimation, a functional form of $\lambda (t)$ would be constructed i.e. $\alpha _0 + \alpha t$ and the parameters $\{\alpha _0, \alpha \}$ would be estimated. However, the accuracy of such a method would be dependent on correctly identifying the parametric form of $\lambda (t)$. With the non-parametric methods that a DPMM provides, such assumptions can be ignored and an intensity function can be built without the need to specify a parametric form. Firstly, we assume that $\lambda (t) = \lambda _0 h(t)$ where $\int _0 ^T h(t) \mathrm{d} t = 1$, i.e. the intensity rate can be decomposed into an amplitude $\lambda _0$ controlling the number of events and a density $h(t)$ controlling the distribution of the events over $\left[0 , T\right]$. To infer the value of $\lambda _0$ a conjugate Gamma prior can be used and thus the posterior distribution can be directly sampled.
+%
+% The model for estimating $h (t)$ can be written as
+% \begin{align*}
+% \lambda (t) & = \sum _{i=1} ^N w _i k(t \mid \theta _i ), \\
+% \theta _i & \sim G, \\
+% G & \sim \text{DP} ( \alpha , G_0),
+% \end{align*}
+% where $k(t \mid \theta )$ and $G_0$ are the default implementation of the Beta mixture model shown in Section \ref{subsec:implemented}.
+%
+% In this toy example we simulate a Poisson process with $\lambda (t) = \sin ^2 \left( \frac{t}{50} \right)$.
+%
+% <<point-process-intensity-gen, eval=FALSE>>=
+% y <- cumsum(runif(1000))
+% pdf <- function(x) sin(x/50)^2
+% accept_prob <- pdf(y)
+% pts <- sample(y, 500, prob=accept_prob)
+% @
+%
+% We then estimate this intensity function using a mixture of Beta distributions that span the full length of the time elapsed.
+%
+% <<<point-process-intensity, eval=FALSE>>=
+% dpBeta <- DirichletProcessBeta(pts, max(pts)*1.01)
+% dpBeta <- Fit(dpBeta, 1000)
+% @
+%
+% \begin{figure}[tb]
+% \centering
+% 	\includegraphics[height=60mm, width=80mm]{img/poisson_intensity_plot.pdf}
+% \caption{Estimated intensity function using a DPMM of generalised Beta distribution}
+% \label{fig:poissonintensity}
+% \end{figure}
+% From Figure \ref{fig:poissonintensity} we can see that the true intensity function has been recovered using the mixture of Beta distributions.
 
-The model for estimating $h (t)$ can be written as
-\begin{align*}
-\lambda (t) & = \sum _{i=1} ^N w _i k(t \mid \theta _i ), \\
-\theta _i & \sim G, \\
-G & \sim \text{DP} ( \alpha , G_0),
-\end{align*}
-where $k(t \mid \theta )$ and $G_0$ are the default implementation of the Beta mixture model shown in Section \ref{subsec:implemented}.
 
-In this toy example we simulate a Poisson process with $\lambda (t) = \sin ^2 \left( \frac{t}{50} \right)$.
+\subsection{Cluster Analysis} \label{subsec:clusteranalysis}
+For any Dirichlet model, each data point $y_i$ is assigned a cluster parameter $\theta _i$. The collection of unique values of cluster parameters $\theta _i ^*$ allows for a natural way of grouping the data and hence the Dirichlet process is an effective way of performing cluster analysis. For multidimensional data it is most common to use a mixture of multivariate normal distributions to cluster the observations into appropriate groups. In the \pkg{dirichletprocess} package, the clustering labels is available at each fitting iteration and available to the user as \code{dp$clusterLabels}. Examples of the use of Dirichlet processes in clustering can be found in \cite{teh_sharing_2005} and \cite{kim_variable_2006}.
 
-<<point-process-intensity-gen, eval=FALSE>>=
-y <- cumsum(runif(1000))
-pdf <- function(x) sin(x/50)^2
-accept_prob <- pdf(y)
-pts <- sample(y, 500, prob=accept_prob)
-@
-
-We then estimate this intensity function using a mixture of Beta distributions that span the full length of the time elapsed.
-
-<<<point-process-intensity, eval=FALSE>>=
-dpBeta <- DirichletProcessBeta(pts, max(pts)*1.01)
-dpBeta <- Fit(dpBeta, 1000)
-@
-
-\begin{figure}[tb]
-\centering
-	\includegraphics[height=60mm, width=80mm]{img/poisson_intensity_plot.pdf}
-\caption{Estimated intensity function using a DPMM of generalised Beta distribution}
-\label{fig:poissonintensity}
-\end{figure}
-From Figure \ref{fig:poissonintensity} we can see that the true intensity function has been recovered using the mixture of Beta distributions.
-
-\subsection{Cluster Analysis}
-For any Dirichlet model, each data point $y_i$ is assigned a cluster parameter $\theta _i$. The collection of unique values of cluster parameters $\theta _i ^*$ allows for a natural way of grouping the data and hence the Dirichlet process is an effective way of performing cluster analysis. For multidimensional data it is most common to use a mixture of multivariate normal distributions to cluster the observations into appropriate groups. In the \pkg{dirichletprocess} package, the clustering labels is available at each fitting iteration and available to the user as \code{dp$clusterLabels}.
-
-To demonstrate this we simulate some test data from two multivariate Gaussian distributions and fit a Dirichlet mixture with default parameterisation. The full model can be written as
+To demonstrate this we return to the \code{faithful} dataset. In this example we also consider the length of the eruption as well as the amount of time between eruptions. The full model can be written as
 \begin{align*}
 y _i & \sim N (\boldsymbol{\mu}_i, \Sigma _i ), \\
 \theta_i & =  \left\lbrace \boldsymbol{\mu}_i, \Sigma _i \right\rbrace , \\
@@ -546,46 +552,29 @@ G & \sim \text{DP} ( \alpha, G_0 ),
 \end{align*}
 where the prior parameters of $G_0$ take on their default value as shown in Section \ref{subsec:implemented}. We will be using the cluster labels to indicate which group each data point belongs to.
 
-We simulate data from two different Gaussian distributions.
+We transform the data so that each variable is zero mean and unit standard deviation.
 <<clustering, eval=FALSE>>=
-y <- rmvnorm(30, c(7, 10), diag(2)  -0.1)
-y <- rbind(y, rmvnorm(30, c(1, 2), diag(2) + 0.1))
+faithfulTrans <- as.matrix(apply(faithful, 2, function(x) (x-mean(x))/sd(x)))
 @
-We form the dirichletprocess object and extract the initial cluster labels to a separate dataframe for plotting purposes.
+We form the dirichletprocess object and perform 1000 MCMC samples.
 <<clustering-fit, eval=FALSE>>=
-dp <- DirichletProcessMvnormal(y)
-initialDF <- data.frame(x=y[, 1], y=y[, 2],
-                        label = dp$clusterLabels,
-                        fit = "Initial")
-dp <- Fit(dpobj, 250)
-finalDF <- data.frame(x=y[, 1], y=y[, 2],
-                      label = dp$clusterLabels,
-                      fit = "Final")
+dp <-  DirichletProcessMvnormal(faithfulTrans)
+dp <- Fit(dp, 1000)
 @
-When analysing the results of the fit we are interested in the final Gibbs sample of the cluster labels and how it has changed from the initial labelling. Using the cluster label to assign a colour to each datapoint we can easily see the distinct clusters that form.
+When analysing the results of the fit we are interested in the final Gibbs sample of the cluster labels. Using the cluster label to assign a colour to each datapoint we can easily see the distinct clusters that form.
 
 <<clustering-print, eval=FALSE, echo=FALSE>>=
-clusteringInitialPlot <- ggplot(filter(clusterDF, fit=="Initial"),
-aes(x=x, y=y, colour=label)) + geom_point()
-clusteringFitPlot <- ggplot(filter(clusterDF, fit=="Final"),
-aes(x=x, y=y, colour=label)) + geom_point()
+faithRes <- cbind(faithful, Labels = mvDPFaith$clusterLabels)
+ggplot(faithRes, aes(x=eruptions, y=waiting, colour=as.factor(Labels))) + geom_point()
 @
 
 \begin{figure}[tb]
-	\begin{subfigure}[t]{0.5\textwidth}
-	\includegraphics[height=60mm, width=60mm]{img/clustering_initial_plot.pdf}
-	\caption{Initial random clustering.}
-	\label{fig:clusteringA}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.5\textwidth}
-	\includegraphics[height=60mm, width=60mm]{img/clustering_fit_plot.pdf}
-	\caption{Final clusters.}
-		\label{fig:clusteringB}
-	\end{subfigure}
-	\caption{The starting clusters compared to the final clusters showing that the two groups have been identified.}
+  \centering
+	\includegraphics[height=60mm, width=60mm]{img/faithful_multi_plot.pdf}
+	\caption{The colours of the points indicates that there are groups in the \code{faithful} dataset.}
 	\label{fig:clustering}
 \end{figure}
-Figure \ref{fig:clustering} shows how the data points have successfully found their true clusters. After initially being assigned random cluster allocations, colourised in Figure \ref{fig:clusteringA} the data is separated into the correct clusters as shown in Figure \ref{fig:clusteringB}. Whilst this example only shows two dimensions, the code is generalised to work with as many dimensions as necessary.
+Whilst this example only shows two dimensions, the code is generalised to work with as many dimensions as necessary.
 
 
 \subsection{Modifying the Observations}
@@ -662,37 +651,41 @@ for(i in seq_len(numSamples)){
 Plotting the resulting estimation in Figure \ref{fig:rats_dirichlet_model} reveals a more suitable prior. This confirms what we saw from the empirical distribution that the data is bi-modal.
 
 \subsection{Hierarchical Dirichlet process}
-A hierarchical Dirichlet process can be used for grouped data. Each dataset is modelled using Dirichlet process but where the base measure itself is also a Dirichlet process. Mathematically this can be expressed as
+A hierarchical Dirichlet process can be used for grouped data. Each individual dataset is modeled using a separate Dirichlet process but where the base measure itself is also a Dirichlet process. Mathematically this can be expressed as
 \begin{align*}
-x_{ij}  \sim & F(\theta _{ij}), \\
+y_{ij}  \sim & F(\theta _{ij}), \\
 \theta _{ij} \sim & G_j, \\
-G_j \sim & \text{DP} (\alpha , G_0 ), \\
+G_j \sim & \text{DP} (\alpha _j, G_0 ), \\
 G_0 \sim & \text{DP} (\gamma, H),
 \end{align*}
-for each dataset $j=1, \dots,n$ with data $x_{1j}, \ldots x_{Nj}$ there is a separate Dirichlet process generating the required parameters $\theta _{ij}$. Using the stick breaking construction, we can express $G_0$ as an infinite sum (Key Property 2), the same procedure can be applied to the $G_j$ measures
-\begin{align*}
+for each dataset $j=1, \dots,n$ with data $y_{1j}, \ldots y_{Nj}$ there is a separate Dirichlet process generating the required parameters $\theta _{ij}$. Using the stick breaking construction, we can express $G_0$ as an infinite sum (Key Property 2), the same procedure can be applied to the $G_j$ measures
+\begin{align}
+\begin{split}
 G_j & = \sum _{i=1} ^\infty \pi _{jk} \delta _{\phi _k}, \quad \phi _k  \sim H, \\
-\pi ' _{jk} & = \text{Beta}  \left( \alpha \beta _k , \alpha \left( 1 - \sum _{l=1} ^k \beta _l \right) \right), \quad
+\pi ' _{jk} & = \text{Beta}  \left( \alpha _j \beta _k , \alpha \left( 1 - \sum _{l=1} ^k \beta _l \right) \right), \quad
 \pi _{jk}  = \pi ' _{jk} \prod _{l=1} ^{k-1} ( 1- \pi ' _{jl} ), \\
 \beta _k ' &  \sim  \text{Beta} \left(1, \gamma \right), \quad
 \beta _k  = \beta _k ' \prod_ {l=1} ^{k-1} (1 - \beta _l '),
-\end{align*}
-we call $H$ the global distribution and each $G_j$ the local distribution for further details see \cite{teh_sharing_2005}.
+\end{split}
+\label{eq:hierbase}
+\end{align}
+we call $H$ the global distribution and each $G_j$ the local distribution. For further details see \cite{teh_sharing_2005}.
 
-To fit a hierarchical Dirichlet process, Algorithm 8 from Neal is used as detailed in Section \ref{subsec:dpm}. Each datapoint $x_{ij}$ is further assigned as label $k_{ij}$ which indicates which global parameter $\phi _k$ it is assigned. Then for each global parameter, we can update its value by drawing from its posterior distribution, using all the data available across the data sets
+To fit a hierarchical Dirichlet process, Algorithm 8 from Neal is used as detailed in Section \ref{subsec:dpm}. Each datapoint $y_{ij}$ is further assigned as label $k_{ij}$ which indicates which global parameter $\phi _k$ it is assigned. Then for each global parameter, we can update its value by drawing from its posterior distribution, using all the data available across the data sets
 \begin{equation}
 \phi _k \mid x_{ij} = h(\phi _k) \prod _{k_{ij} = k} f(x_{ij} \mid \phi _k ) ,
+\label{eq:hierposterior}
 \end{equation}
 where $h$ is the density of the global distribution $H$ and $f$ is the density of the mixing distribution $F$. From these updated parameters a new $G_j$ can be drawn using for each $j$ using Key Property 5.
 
-For a hierarchical DP model each individual concentration parameter $\alpha$ can be inferred using the above algorithm without modification for each individual dataset.  For the top level concentration parameter $\gamma$, the number of unique cluster parameters across all the individual $G_j$'s is used for $n$ in the sampling of $\gamma$.
+For a hierarchical DP model each individual concentration parameter $\alpha _j$ can be inferred using the usual algorithm as per Section \ref{subsubsec:concentration} without modification for each individual dataset. For the top level concentration parameter $\gamma$, the number of unique cluster parameters across all the individual $G_j$'s is used for $n$ in the sampling of $\gamma$.
 
-In this example we create two synthetic data sets and fit a Hierarchical Dirichlet process to demonstrate the use of such a tool. In this case we are fitting a Beta Dirichlet mixture model and therefore simulate from a Beta distribution
+In this example we create two synthetic data sets and fit a Hierarchical Dirichlet process to demonstrate the use of such a tool. In this case we are fitting a Beta Dirichlet mixture model and therefore simulate from two Beta distributions
 \begin{align*}
 y_1 \sim & \text{Beta}(0.25, 5) + \text{Beta}(0.75, 6), \\
 y_2 \sim & \text{Beta}(0.25, 5) + \text{Beta}(0.4, 10),
 \end{align*}
-as we can see, there is a common group of parameters between the two datasets. First we simulate the two data sets.
+where there is a common group of parameters between the two datasets. First we simulate the two data sets.
 <<hierarachical-gen, eval=FALSE>>=
 mu <- c(0.25, 0.75, 0.4)
 tau <- c(5, 6, 10)
@@ -708,7 +701,10 @@ hyperPriorParameters = c(1, 0.01), mhStepSize = c(0.1, 0.1),
 gammaPriors = c(2, 4), alphaPriors = c(2, 4))
 dpobjlist <- Fit(dpobjlist, 5000, TRUE)
 @
-The resulting $G_j$'s are plotted in Figure \ref{fig:hierBeta}. When we look at the final sample of the cluster parameters we find that they share a common cluster as expected.
+
+The creator function \code{DirichletProcessHierarchicalBeta} returns a list of \code{dirichletprocess} objects for each dataset (in this case two objects), a vector containing the global stick breaking weights, a list of the global parameters and the variable containing the global concentration parameter $\gamma$. The function \code{Fit} updates the cluster allocations locally of each \code{dirichletprocess} object using Algorithm 8 from \cite{neal_markov_2000}, then the local concentration parameter $\alpha _j$ is updated. The global cluster parameters are then updated using all the data pooled from the individual datasets by drawing from Eq. \eqref{eq:hierposterior}. Using these parameters, a new sample of $G_0$ is taken from which the individual $G_j$'s are also drawn using the above procedure in Equation \ref{eq:hierbase}.
+
+The resulting $G_j$'s from the above example are plotted in Figure \ref{fig:hierBeta}.
 \begin{figure}
 \centering
 \includegraphics[height=60mm, width=100mm]{img/hierBetaGraph.pdf}
@@ -760,7 +756,7 @@ Suppose we have a particular scenario that requires a Dirichlet process mixture 
 
 Firstly, we start with the likelihood of the Poisson distribution
 \begin{equation*}
-k(x \mid \theta) = \frac{\theta ^k \exp(-\theta)}{k!},
+k(x \mid \theta) = \frac{\theta ^x \exp(-\theta)}{x!},
 \end{equation*}
 as there is only one free parameter for the Poisson distribution the parameter list $\theta$ if of length 1.
 \begin{CodeInput}
@@ -916,7 +912,7 @@ When calling the \code{Fit} function on a DP object the component indexes and pa
 
 In a conjugate DPMM new component indexes and new cluster parameters are drawn directly from the predictive and posterior distributions making the algorithm very efficient. In such case, the only option available to users is to change the prior parameters of the base distribution $G_0$. Ensuring that the base distribution is correctly parameterised with sensible values for the underlying data will provide optimal performance for the fitting algorithm.
 
-However, in a non-conjugate case new cluster components are proposed from the chosen prior distribution and new cluster parameters are sampled using the Metropolis Hastings algorithm to obtain a posterior sample. By using the Metropolis Hastings algorithm, the parameters in question are proposed using a random walk but constrained to the particular support of the parameter. For example, the parameters in a Weibull distribution are strictly positive, therefore the random walk is restricted to fall on the positive real line. An ill proposed prior distribution can severely effect the convergence of the fitting process. The parameter \code{mhStepSize} in the constructor function for a non-conjugate mixture controls the scale of new parameter proposals for the random walk. When creating a new DP object, the constructor function has a flag \code{verbose} that outputs an estimated acceptance ratio, for optimal performance of the Metropolis Hastings algorithm this value should be around $0.234$ \citep{gelman_efficient_1996}. Therefore the user should adjust \code{mhStepSize} to reach this value. As with the conjugate case, care must be taken to ensure that the base measure is well suited for the data.
+However, in a non-conjugate case new cluster components are proposed from the chosen prior distribution and new cluster parameters are sampled using the Metropolis-Hastings algorithm to obtain a posterior sample. By using the Metropolis Hastings algorithm, the parameters in question are proposed using a random walk but constrained to the particular support of the parameter. For example, the parameters in a Weibull distribution are strictly positive, therefore the random walk is restricted to fall on the positive real line. An ill proposed prior distribution can severely effect the convergence of the fitting process. The parameter \code{mhStepSize} in the constructor function for a non-conjugate mixture controls the scale of new parameter proposals for the random walk. When creating a new DP object, the constructor function has a flag \code{verbose} that outputs an estimated acceptance ratio, for optimal performance of the Metropolis-Hastings algorithm this value should be around $0.234$ \citep{gelman_efficient_1996}. Therefore the user should adjust \code{mhStepSize} to reach this value. As with the conjugate case, care must be taken to ensure that the base measure is well suited for the data.
 
 \subsubsection{Overriding Default Behaviour}
 For both conjugate and non-conjugate mixture models, the user can write their own \\ \code{ClusterComponentUpdate} and \code{ClusterParameterUpdate} functions to override the default behaviour. The user can still benefit from the other S3 methods and structures implemented in \pkg{dirichletprocess} but with their custom sampling schemes.
@@ -924,7 +920,7 @@ For both conjugate and non-conjugate mixture models, the user can write their ow
 For the non-conjugate mixture models there is a further option available to change the component index and parameter re-sampling. In Algorithm 8 of \cite{neal_markov_2000} each datapoint can form a new cluster with parameter drawn from the base measure, these proposals are called `auxiliary' variables and $m$ are drawn for each data point. By default $m=3$. However this can be changed in the \code{Initialise(dp, ...,m=m)} function. Using more auxiliary variables can lead to more changes in the component indexes and greater exploration of the base measure but at the cost of computational time.
 
 \subsection{Resampling the Base Measure, $G_0$}
-It is desirable that the user knows how to best set the parameters of the base measure to correctly represent the underlying data. However, whilst desirable this is not always practical. In which case \pkg{dirichletprocess} offers functionality to use hyper-prior parameters on $G_0$ and update them with each iteration.
+It is helpful that the user knows how to best set the parameters of the base measure to correctly represent the underlying data. However, whilst desirable this is not always practical. In which case \pkg{dirichletprocess} offers functionality to use hyper-prior parameters on $G_0$ and update them with each iteration.
 
 For the mixing distributions that allow for re-sampling of the base measure, it is simple to include the flag \code{Fit(dp,...,updatePrior=TRUE)}. At each fitting iteration the base measure with variable parameters will be updated based on the current cluster parameters. For details on the exact specification of the hyper-prior distributions for each implemented mixture kernel see Section \ref{subsec:implemented}.  If a user wishes to change the default prior on the hyper parameters then it is as simple as changing the \code{PriorParametersUpdate} function for the mixing distribution object.
 
@@ -937,6 +933,40 @@ For the mixing distributions that allow for re-sampling of the base measure, it 
 \subsection{Component Prediction}
 Given a fitted DP object and some new data $\hat{y}$ to predict the cluster labels of the new data we use the command \code{ClusterLabelPredict}. Using the appropriate algorithm for a conjugate or non-conjugate mixture model the cluster label probabilities are calculated from the new data $\hat{y}$, these probabilities are then sampled once to obtain a cluster label. It is these cluster labels that are returned with the appropriate cluster parameters.
 
+We refer back to our example in Section \ref{subsec:clusteranalysis} where we used a Dirichlet process to cluster the \code{faithful} dataset. In this example, we will withhold the last five entries of the data as the prediction set and use \code{ClusterLabelPredict} to estimate their cluster allocation.
+
+<<cluster-prediciton, eval=FALSE>>=
+faithfulTrans <- as.matrix(apply(faithful, 2, function(x) (x-mean(x))/sd(x)))
+trainIndex <- 1:(nrow(faithfulTrans)-5)
+
+dp <-  DirichletProcessMvnormal(faithfulTrans[trainIndex, ])
+dp <- Fit(dp, 1000)
+
+labelPred <- ClusterLabelPredict(mvDPFaith, faithfulTrans[-trainIndex, ])
+@
+
+The function \code{ClusterLabelPredict} works by calculating and sampling the clustering label from the probability that each test point $\hat{y} _j$ belongs to each cluster $\theta _i$ or should form its own cluster proportional to $\alpha$
+\begin{align*}
+p(i) & \propto n_i k(\hat{y} _j \mid \theta _i), \\
+p(i=\text{new}) & \propto \alpha \int k(\hat{y} _j , \theta _i) \mathrm{d} G_0.
+\end{align*}
+The function returns a list with multiple entries:
+\begin{itemize}
+\item The predicted cluster labels for the data under \code{labelPred$componentIndexes}.
+\item The cluster parameters assigned to the predicted data points in case a new cluster is predicted \code{labelPred$clusterParameters}.
+\item The new number of data points per cluster \code{labelPred$pointsPerCluster}.
+\item The total number of clusters are also returned \code{labelPred$numLabels} as this can change with each prediction.
+\end{itemize}
+
+\begin{figure}[tb]
+\centering
+	\includegraphics[height=60mm, width=80mm]{img/faithful_pred_plot.pdf}
+\caption{The predicted labels of the last 5 entries of the \code{faithful} dataset against the training data. The predicted values are indicated by a solid colour and triangle shapes.}
+\label{fig:faithfulpred}
+\end{figure}
+Figure \ref{fig:faithfulpred} shows the test data being correctly identified with the appropriate cluster.
+
+
 \subsection{Stick Breaking Representation}
 The stick breaking representation of a Dirichlet process allows for easy posterior inference using Key Property 3 and 5 (Section \ref{sec:background}). In the \pkg{dirichletprocess} package drawing from the posterior is easily achieved using both \code{PosteriorClusters} and \code{PosteriorFunction} depending on users need.
 \begin{itemize}
@@ -945,9 +975,13 @@ The stick breaking representation of a Dirichlet process allows for easy posteri
 \end{itemize}
 
 \subsubsection{Example: Point Process Intensity Estimation}
-We refer back to the example in Section \ref{subsubsec:poisson} where we estimated the intensity function of an inhomogeneous Poisson process and now demonstrate an alternate method.
+One practical application of Beta mixture models is the estimation of an inhomogeneous Poisson process intensity function. A Poisson process is a collection of points in space distributed with rate $\lambda$. In the inhomogeneous case, the intensity is dependent on time and as such the number of events in some window $\left[0 , T\right]$ can be written as
+\begin{equation}
+N \sim \text{Poisson} (\lambda (t) ).
+\end{equation}
+In parametric estimation, a functional form of $\lambda (t)$ would be constructed i.e. $\alpha _0 + \alpha t$ and the parameters $\{\alpha _0, \alpha \}$ would be estimated. However, the accuracy of such a method would be dependent on correctly identifying the parametric form of $\lambda (t)$. With the non-parametric methods that a DPMM provides, such assumptions can be ignored and an intensity function can be built without the need to specify a parametric form. Firstly, we assume that $\lambda (t) = \lambda _0 h(t)$ where $\int _0 ^T h(t) \mathrm{d} t = 1$, i.e. the intensity rate can be decomposed into an amplitude $\lambda _0$ controlling the number of events and a density $h(t)$ controlling the distribution of the events over the window of observation $\left[0 , T\right]$. To infer the value of $\lambda _0$ a conjugate Gamma prior can be used and thus the posterior distribution can be directly sampled.
 
-In the previous method, we resampled the cluster assignments and parameters with each iteration before plotting the final sample as our estimate for $\lambda (t)$. In this example, we will instead be estimating $\lambda (t)$ with each iteration and using it to update the data.  The full model can be written as
+In this example, we will instead be estimating an intensity rate $\lambda (t)$ with each iteration and using it to update the data. The full model can be written as
 \begin{align*}
 N & \sim \text{Poisson} ( \lambda (t) ), \\
 \lambda (t) & = \int k(t \mid \theta) \mathrm{d}F, \\
@@ -955,7 +989,7 @@ F & \sim \text{DP} (\alpha , G_0),
 \end{align*}
 where $k$ and $G_0$ are as per Section \ref{subsec:implemented} for the Beta distribution mixture models. We sample the posterior distribution of $G$ using Key Property 5 (Section \ref{sec:background}) which states that a sample of $G$ can be drawn independently of the data using the stick breaking representation of the data and the model parameters $\theta$.
 
-In this toy model we simulate 500 event times using the same intensity function as in Section \ref{subsubsec:poisson}. But instead of passing the full data set into the Dirichlet process object, we just use a random sample of 100 of these event times.
+In this toy model we simulate 500 event times using the intensity function $\lambda (t) = \sin ^2 \frac{t}{50}$. Instead of passing the full data set into the Dirichlet process object, we just use a random sample of 100 of these event times.
 
 <<stickbreaking-gen, eval=FALSE>>=
 y <- cumsum(runif(1000))

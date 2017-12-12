@@ -20,7 +20,7 @@ test_that("Cluster Label Change Conjugate", {
 
   dpobj = ClusterLabelChange(dpobj, 1, 2, currentLabel)
 
-  expect_equal(dpobj$numberClusters, num_test_points-1)
+  expect_equal(dpobj$numberClusters, 2)
 
 })
 
