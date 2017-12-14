@@ -13,7 +13,7 @@ UpdateAlpha(dpobj)
 A Dirichlet process object with updated concentration parameter.
 }
 \description{
-Using the procedure outlined in West (1992) we sampled the concentration parameter of the Dirichlet process. See reference for further details.
+Using the procedure outlined in West (1992) we sample the concentration parameter of the Dirichlet process. See reference for further details.
 }
 \references{
 West, M. (1992). Hyperparameter estimation in Dirichlet process mixture models. ISDS Discussion Paper# 92-A03: Duke University.

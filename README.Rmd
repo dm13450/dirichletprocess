@@ -13,10 +13,9 @@ knitr::opts_chunk$set(
 ```
 
 
-
 # dirichletprocess
 
-The dirichletprocess package provides tools for you to build custom Dirichlet Process mixture models. You can use the prebuilt Normal/Weibull/Beta distribtuions or create your own following the instructions in the Custom Distribtuions vignettes. 
+The dirichletprocess package provides tools for you to build custom Dirichlet Process mixture models. You can use the prebuilt Normal/Weibull/Beta distribtuions or create your own following the instructions in the vignette. 
 
 ## Installation
 
@@ -27,14 +26,33 @@ You can install dirichletprocess from github with:
 devtools::install_github("dm13450/dirichletprocess")
 ```
 
+For a full guide to the package and its capabilites please consult the vignette:
+
+```{r vignette, eval=FALSE}
+browseVignettes(package = "dirichletprocess")
+```
+
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+### Density Estimation
 
 ```{r example, eval=FALSE}
-library(dirichletprocess)
-y <- rnorm(100)
-dp <- DirichletProcessGaussian(y)
+faithfulTransformed <- faithful$waiting - mean(faithful$waiting)
+faithfulTransformed <- faithfulTransformed/sd(faithful$waiting)
+dp <- DirichletProcessGaussian(faithfulTransformed)
 dp <- Fit(dp, 100, progressBar = FALSE)
 plot(dp)
 ```
+
+
+### Clustering
+
+```{r clustering, eval=FALSE}
+faithfulTrans <- as.matrix(apply(faithful, 2, function(x) (x-mean(x))/sd(x)))
+dp <-  DirichletProcessMvnormal(faithfulTrans)
+dp <- Fit(dp, 100, progressBar = FALSE)
+```
+
+
+
+

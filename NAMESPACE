@@ -3,6 +3,7 @@
 S3method(ChangeObservations,default)
 S3method(ChangeObservations,hierarchical)
 S3method(ClusterComponentUpdate,conjugate)
+S3method(ClusterComponentUpdate,hierarchical)
 S3method(ClusterComponentUpdate,nonconjugate)
 S3method(ClusterLabelPredict,conjugate)
 S3method(ClusterLabelPredict,nonconjugate)

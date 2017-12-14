@@ -141,14 +141,14 @@ ClusterComponentUpdate.nonconjugate <- function(dpObj) {
   dpObj$numberClusters <- numLabels
   return(dpObj)
 }
+#'@export
+ClusterComponentUpdate.hierarchical <- function(dpObj){
 
-ClusterComponentUpdate.hierarchical <- function(dpobj){
-
-  for(i in seq_along(dpobj$indDP)){
-    dpobj$indDP[[i]] <- ClusterComponentUpdate(dpobj$indDP[[i]])
-    dpobj$indDP[[i]] <- DuplicateClusterRemove(dpobj$indDP[[i]])
+  for(i in seq_along(dpObj$indDP)){
+    dpObj$indDP[[i]] <- ClusterComponentUpdate(dpObj$indDP[[i]])
+    dpObj$indDP[[i]] <- DuplicateClusterRemove(dpObj$indDP[[i]])
   }
-  return(dpobj)
+  return(dpObj)
 }
 
 

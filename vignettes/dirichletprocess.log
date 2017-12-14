@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.7.21)  12 DEC 2017 10:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.7.21)  14 DEC 2017 14:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -932,7 +932,7 @@ Package xcolor Warning: Incompatible color definition on input line 100.
 Package xcolor Warning: Incompatible color definition on input line 100.
 
 
-Underfull \vbox (badness 2418) has occurred while \output is active []
+Underfull \vbox (badness 1394) has occurred while \output is active []
 
  [1
 
@@ -1126,7 +1126,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 Package xcolor Warning: Incompatible color definition on input line 429.
 
-<img/old_faithful_plot.pdf, id=300, 289.08pt x 216.81pt>
+<img/old_faithful_plot.pdf, id=302, 289.08pt x 216.81pt>
 File: img/old_faithful_plot.pdf Graphic file (type pdf)
 
 <use img/old_faithful_plot.pdf>
@@ -1157,7 +1157,7 @@ ed the func-tion \T1/lmtt/m/n/10.95 ClusterParameterUpdate
 
 Package xcolor Warning: Incompatible color definition on input line 483.
 
-<img/density_bounded_plot.pdf, id=322, 289.08pt x 216.81pt>
+<img/density_bounded_plot.pdf, id=324, 289.08pt x 216.81pt>
 File: img/density_bounded_plot.pdf Graphic file (type pdf)
 
 <use img/density_bounded_plot.pdf>
@@ -1188,7 +1188,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 Package xcolor Warning: Incompatible color definition on input line 556.
 
-<img/faithful_multi_plot.pdf, id=337, 216.81pt x 216.81pt>
+<img/faithful_multi_plot.pdf, id=339, 216.81pt x 216.81pt>
 File: img/faithful_multi_plot.pdf Graphic file (type pdf)
 
 <use img/faithful_multi_plot.pdf>
@@ -1206,7 +1206,7 @@ Package xcolor Warning: Incompatible color definition on input line 589.
 
 Package xcolor Warning: Incompatible color definition on input line 589.
 
-<img/ratsImpericalDistribution.pdf, id=350, 216.81pt x 216.81pt>
+<img/ratsImpericalDistribution.pdf, id=352, 216.81pt x 216.81pt>
 File: img/ratsImpericalDistribution.pdf Graphic file (type pdf)
 
 <use img/ratsImpericalDistribution.pdf>
@@ -1220,7 +1220,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 601.
 
-<img/ratsDirichletPrior.pdf, id=351, 216.81pt x 216.81pt>
+<img/ratsDirichletPrior.pdf, id=353, 216.81pt x 216.81pt>
 File: img/ratsDirichletPrior.pdf Graphic file (type pdf)
 
 <use img/ratsDirichletPrior.pdf>
@@ -1299,7 +1299,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 Package xcolor Warning: Incompatible color definition on input line 712.
 
-<img/hierBetaGraph.pdf, id=405, 361.35pt x 216.81pt>
+<img/hierBetaGraph.pdf, id=407, 361.35pt x 216.81pt>
 File: img/hierBetaGraph.pdf Graphic file (type pdf)
 
 <use img/hierBetaGraph.pdf>
@@ -1357,60 +1357,59 @@ Overfull \hbox (48.8786pt too wide) in paragraph at lines 814--815
 del we now need to use the \T1/lmtt/m/n/10.95 MixingDistribution
  []
 
-<img/poisson_mixture_plot.pdf, id=434, 289.08pt x 216.81pt>
-File: img/poisson_mixture_plot.pdf Graphic file (type pdf)
-
-<use img/poisson_mixture_plot.pdf>
-Package pdftex.def Info: img/poisson_mixture_plot.pdf used on input line 831.
-(pdftex.def)             Requested size: 227.62082pt x 170.72554pt.
-
-
-Package xcolor Warning: Incompatible color definition on input line 835.
-
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/lmr/m/n/10.95 23
  []
 
-[23]
+[23] <img/poisson_mixture_plot.pdf, id=440, 289.08pt x 216.81pt>
+File: img/poisson_mixture_plot.pdf Graphic file (type pdf)
+
+<use img/poisson_mixture_plot.pdf>
+Package pdftex.def Info: img/poisson_mixture_plot.pdf used on input line 833.
+(pdftex.def)             Requested size: 227.62082pt x 170.72554pt.
+
+
+Package xcolor Warning: Incompatible color definition on input line 837.
+
+
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10.95 24 []
  []
 
 [24 <./img/poisson_mixture_plot.pdf>]
-Overfull \hbox (55.72273pt too wide) in paragraph at lines 896--897
+Overfull \hbox (55.72273pt too wide) in paragraph at lines 898--899
 []\T1/lmr/m/n/10.95 We can now con-struct our mix-ing dis-tri-bu-tion ob-ject u
 s-ing the con-struc-tor func-tion \T1/lmtt/m/n/10.95 MixingDistribution\T1/lmr/
 m/n/10.95 .
  []
-
-<img/gamma_mixture_plot.pdf, id=450, 289.08pt x 216.81pt>
-File: img/gamma_mixture_plot.pdf Graphic file (type pdf)
-
-<use img/gamma_mixture_plot.pdf>
-Package pdftex.def Info: img/gamma_mixture_plot.pdf used on input line 913.
-(pdftex.def)             Requested size: 227.62082pt x 170.72554pt.
-
-
-Package xcolor Warning: Incompatible color definition on input line 917.
-
-
-Package xcolor Warning: Incompatible color definition on input line 920.
-
-
-Package xcolor Warning: Incompatible color definition on input line 920.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/lmr/m/n/10.95 25
  []
 
-[25]
+[25] <img/gamma_mixture_plot.pdf, id=457, 289.08pt x 216.81pt>
+File: img/gamma_mixture_plot.pdf Graphic file (type pdf)
 
-Package xcolor Warning: Incompatible color definition on input line 924.
+<use img/gamma_mixture_plot.pdf>
+Package pdftex.def Info: img/gamma_mixture_plot.pdf used on input line 915.
+(pdftex.def)             Requested size: 227.62082pt x 170.72554pt.
 
 
-Package xcolor Warning: Incompatible color definition on input line 924.
+Package xcolor Warning: Incompatible color definition on input line 919.
+
+
+Package xcolor Warning: Incompatible color definition on input line 922.
+
+
+Package xcolor Warning: Incompatible color definition on input line 922.
+
+
+Package xcolor Warning: Incompatible color definition on input line 926.
+
+
+Package xcolor Warning: Incompatible color definition on input line 926.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1419,54 +1418,51 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [26 <./img/gamma_mixture_plot.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 929.
+Package xcolor Warning: Incompatible color definition on input line 931.
 
 
-Package xcolor Warning: Incompatible color definition on input line 929.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 931.
+Package xcolor Warning: Incompatible color definition on input line 931.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 931.
+(hyperref)                removing `math shift' on input line 933.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 931.
+(hyperref)                removing `subscript' on input line 933.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 933.
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 931.
+(Font)              <12> on input line 933.
 
-Package xcolor Warning: Incompatible color definition on input line 934.
-
-
-Package xcolor Warning: Incompatible color definition on input line 945.
+Package xcolor Warning: Incompatible color definition on input line 936.
 
 
-Underfull \vbox (badness 1320) has occurred while \output is active []
+Package xcolor Warning: Incompatible color definition on input line 947.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/lmr/m/n/10.95 27
  []
 
-[27] <img/faithful_pred_plot.pdf, id=484, 216.81pt x 216.81pt>
+[27] <img/faithful_pred_plot.pdf, id=486, 216.81pt x 216.81pt>
 File: img/faithful_pred_plot.pdf Graphic file (type pdf)
 
 <use img/faithful_pred_plot.pdf>
-Package pdftex.def Info: img/faithful_pred_plot.pdf used on input line 972.
+Package pdftex.def Info: img/faithful_pred_plot.pdf used on input line 974.
 (pdftex.def)             Requested size: 227.63405pt x 170.72554pt.
 
 
-Package xcolor Warning: Incompatible color definition on input line 976.
+Package xcolor Warning: Incompatible color definition on input line 978.
 
 
-Package xcolor Warning: Incompatible color definition on input line 980.
+Package xcolor Warning: Incompatible color definition on input line 982.
 
 
-Package xcolor Warning: Incompatible color definition on input line 983.
+Package xcolor Warning: Incompatible color definition on input line 985.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1475,25 +1471,25 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [28 <./img/faithful_pred_plot.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 999.
+Package xcolor Warning: Incompatible color definition on input line 1002.
 
 
-Package xcolor Warning: Incompatible color definition on input line 999.
+Package xcolor Warning: Incompatible color definition on input line 1002.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/lmr/m/n/10.95 29
  []
 
-[29] <img/poissonStickBreaking.pdf, id=506, 289.08pt x 216.81pt>
+[29] <img/poissonStickBreaking.pdf, id=508, 289.08pt x 216.81pt>
 File: img/poissonStickBreaking.pdf Graphic file (type pdf)
 
 <use img/poissonStickBreaking.pdf>
-Package pdftex.def Info: img/poissonStickBreaking.pdf used on input line 1032.
+Package pdftex.def Info: img/poissonStickBreaking.pdf used on input line 1035.
 (pdftex.def)             Requested size: 227.62082pt x 170.72554pt.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1036.
+Package xcolor Warning: Incompatible color definition on input line 1039.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1502,50 +1498,51 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [30 <./img/poissonStickBreaking.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 1049.
+Package xcolor Warning: Incompatible color definition on input line 1052.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1049.
+Package xcolor Warning: Incompatible color definition on input line 1052.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1049.
+Package xcolor Warning: Incompatible color definition on input line 1052.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1049.
+Package xcolor Warning: Incompatible color definition on input line 1052.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1055.
+Package xcolor Warning: Incompatible color definition on input line 1058.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/lmr/m/n/10.95 31
  []
 
-[31] <img/weibull_censor_graph.pdf, id=532, 361.35pt x 216.81pt>
+[31] <img/weibull_censor_graph.pdf, id=534, 361.35pt x 216.81pt>
 File: img/weibull_censor_graph.pdf Graphic file (type pdf)
 
 <use img/weibull_censor_graph.pdf>
-Package pdftex.def Info: img/weibull_censor_graph.pdf used on input line 1112.
+Package pdftex.def Info: img/weibull_censor_graph.pdf used on input line 1115.
 (pdftex.def)             Requested size: 341.43344pt x 170.72554pt.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1116.
+Package xcolor Warning: Incompatible color definition on input line 1119.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1116.
+Package xcolor Warning: Incompatible color definition on input line 1119.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1116.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1134.
+Package xcolor Warning: Incompatible color definition on input line 1119.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10.95 32 []
  []
 
-[32 <./img/weibull_censor_graph.pdf>] (./dirichletprocess.bbl
+[32 <./img/weibull_censor_graph.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 1137.
+
+(./dirichletprocess.bbl
 
 Package xcolor Warning: Incompatible color definition on input line 18.
 
@@ -1574,17 +1571,17 @@ Package xcolor Warning: Incompatible color definition on input line 74.
 Package xcolor Warning: Incompatible color definition on input line 75.
 
 
-Package xcolor Warning: Incompatible color definition on input line 99.
-
-
-Package xcolor Warning: Incompatible color definition on input line 101.
-
-
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/lmr/m/n/10.95 33
  []
 
 [33]
+
+Package xcolor Warning: Incompatible color definition on input line 99.
+
+
+Package xcolor Warning: Incompatible color definition on input line 101.
+
 
 Package xcolor Warning: Incompatible color definition on input line 114.
 
@@ -1599,13 +1596,13 @@ Package xcolor Warning: Incompatible color definition on input line 127.
 
 )
 
-Package xcolor Warning: Incompatible color definition on input line 1211.
+Package xcolor Warning: Incompatible color definition on input line 1214.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1211.
+Package xcolor Warning: Incompatible color definition on input line 1214.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1211.
+Package xcolor Warning: Incompatible color definition on input line 1214.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1613,22 +1610,27 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [34]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1211.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1211.
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/lmr/m/n/10.95 35
+ []
+
+[35]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1214.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1214.
  (./dirichletprocess.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1211.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1211.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1214.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1214.
 
 Package rerunfilecheck Info: File `dirichletprocess.out' has not changed.
-(rerunfilecheck)             Checksum: 64471CA3BBA206832608DF74CDFA6995;4252.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1211.
+(rerunfilecheck)             Checksum: 4CF7DD5F15B1D421666D294A36D26EE5;4254.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1214.
  ) 
 Here is how much of TeX's memory you used:
- 19952 strings out of 493089
- 359264 string characters out of 6134842
- 425023 words of memory out of 7000000
- 22885 multiletter control sequences out of 15000+600000
- 119135 words of font info for 88 fonts, out of 8000000 for 9000
+ 19955 strings out of 493089
+ 359299 string characters out of 6134842
+ 424878 words of memory out of 7000000
+ 22886 multiletter control sequences out of 15000+600000
+ 122167 words of font info for 89 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  54i,16n,73p,1260b,528s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/lo
@@ -1638,31 +1640,32 @@ fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/
 dvips/lm/lm-ts1.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-m
 athex.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 r10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmb10.pfb></u
-sr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/t
-exlive/2015/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/201
-5/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></usr/local/texlive/2015/texmf-dis
-t/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
-pe1/public/lm/lmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public
-/lm/lmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi6.
-pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></usr/l
-ocal/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texliv
-e/2015/texmf-dist/fonts/type1/public/lm/lmmib10.pfb></usr/local/texlive/2015/te
-xmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2015/texmf-dist/fo
-nts/type1/public/lm/lmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pu
-blic/lm/lmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmri
-10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmri12.pfb></u
-sr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmro10.pfb></usr/local/t
-exlive/2015/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/201
-5/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2015/texmf-
-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts
-/type1/public/lm/lmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publ
-ic/lm/lmtt10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmtt
-o10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols
-/msbm10.pfb>
-Output written on dirichletprocess.pdf (34 pages, 673359 bytes).
+sr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmbo10.pfb></usr/local/t
+exlive/2015/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/201
+5/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2015/texmf-di
+st/fonts/type1/public/lm/lmbx8.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
+pe1/public/lm/lmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public
+/lm/lmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi12
+.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/
+local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></usr/local/texli
+ve/2015/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2015/tex
+mf-dist/fonts/type1/public/lm/lmmib10.pfb></usr/local/texlive/2015/texmf-dist/f
+onts/type1/public/lm/lmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/
+public/lm/lmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lm
+r8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmri10.pfb></u
+sr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/t
+exlive/2015/texmf-dist/fonts/type1/public/lm/lmro10.pfb></usr/local/texlive/201
+5/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2015/texmf-di
+st/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts
+/type1/public/lm/lmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pub
+lic/lm/lmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmtt
+10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmtto10.pfb></
+usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pf
+b>
+Output written on dirichletprocess.pdf (35 pages, 699814 bytes).
 PDF statistics:
- 704 PDF objects out of 1000 (max. 8388607)
- 621 compressed objects within 7 object streams
- 147 named destinations out of 1000 (max. 500000)
+ 713 PDF objects out of 1000 (max. 8388607)
+ 628 compressed objects within 7 object streams
+ 148 named destinations out of 1000 (max. 500000)
  324 words of extra memory for PDF output out of 10000 (max. 10000000)
 
