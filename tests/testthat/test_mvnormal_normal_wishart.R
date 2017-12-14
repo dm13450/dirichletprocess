@@ -52,9 +52,18 @@ test_that("Multivariate Normal Posterior Parameters", {
 
   expect_is(post_params_test, "list")
   expect_equal(length(post_params_test), 4)
+})
+
+test_that("Multivariate Normal Posterior Parameters 1 Data Point", {
+
+  test_data <- mvtnorm::rmvnorm(10, c(0,0), diag(2))
+
+  priorParameters <- list(mu0=c(0,0), Lambda=diag(2), kappa0=2, nu=2)
+  mdobj <- MvnormalCreate(priorParameters)
 
   post_params_test2 <- PosteriorParameters(mdobj, test_data[1, ])
-
+  expect_is(post_params_test2, "list")
+  expect_equal(length(post_params_test2), 4)
 })
 
 test_that("Multivariate Normal Posterior Draw", {
@@ -171,7 +180,7 @@ test_that("Multivariate Normal Fit", {
 
 test_that("Multivariate Normal Cluster Predict", {
 
-  test_data <- as.matrix(mvtnorm::rmvnorm(10, c(0,0), diag(2)))
+  test_data <- as.matrix(mvtnorm::rmvnorm(1, c(0,0), diag(2)))
   dp <- DirichletProcessMvnormal(test_data)
   dp <- Fit(dp, 10, progressBar=FALSE)
 

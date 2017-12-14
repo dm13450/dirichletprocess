@@ -5,6 +5,9 @@ output: github_document
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, echo = FALSE}
+set.seed(2020)
+require(dirichletprocess)
+require(ggplot2)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -36,21 +39,28 @@ browseVignettes(package = "dirichletprocess")
 
 ### Density Estimation
 
-```{r example, eval=FALSE}
+```{r density, eval=TRUE}
 faithfulTransformed <- faithful$waiting - mean(faithful$waiting)
 faithfulTransformed <- faithfulTransformed/sd(faithful$waiting)
 dp <- DirichletProcessGaussian(faithfulTransformed)
-dp <- Fit(dp, 100, progressBar = FALSE)
+dp <- Fit(dp, 1000, progressBar = FALSE)
 plot(dp)
 ```
 
 
 ### Clustering
 
-```{r clustering, eval=FALSE}
+```{r clustering, eval=TRUE}
 faithfulTrans <- as.matrix(apply(faithful, 2, function(x) (x-mean(x))/sd(x)))
-dp <-  DirichletProcessMvnormal(faithfulTrans)
-dp <- Fit(dp, 100, progressBar = FALSE)
+dpCluster <-  DirichletProcessMvnormal(faithfulTrans)
+dpCluster <- Fit(dpCluster, 1000, progressBar = FALSE)
+```
+
+Then to plot, we take the cluster labels contained in the `dp` object and assing them a colour
+
+```{r clusteringplot, echo=FALSE}
+faithRes <- cbind(faithful, Labels = dpCluster$clusterLabels)
+ggplot(faithRes, aes(x=eruptions, y=waiting, colour=as.factor(Labels))) + geom_point() + guides(colour=FALSE)
 ```
 
 

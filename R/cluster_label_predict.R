@@ -54,7 +54,7 @@ ClusterLabelPredict.conjugate <- function(dpobj, newData) {
       componentIndexes[i] <- component
       numLabels <- numLabels + 1
       pointsPerCluster <- c(pointsPerCluster, 1)
-      post_draw <- PosteriorDraw(mdobj, newData[i])
+      post_draw <- PosteriorDraw(mdobj, newData[i, ,drop=FALSE])
 
       for (j in seq_along(clusterParams)) {
         clusterParams[[j]] <- array(c(clusterParams[[j]], post_draw[[j]]),
