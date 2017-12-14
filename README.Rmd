@@ -4,21 +4,21 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, echo = FALSE}
+```{r echo=FALSE, message=FALSE}
 set.seed(2020)
 require(dirichletprocess)
 require(ggplot2)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "vignettes/img/"
 )
 ```
 
 
 # dirichletprocess
 
-The dirichletprocess package provides tools for you to build custom Dirichlet Process mixture models. You can use the prebuilt Normal/Weibull/Beta distribtuions or create your own following the instructions in the vignette. 
+The dirichletprocess package provides tools for you to build custom Dirichlet process mixture models. You can use the pre-built Normal/Weibull/Beta distributions or create your own following the instructions in the vignette. In as little as four lines of code you can be modelling your data non-parametrically.
 
 ## Installation
 
@@ -29,26 +29,34 @@ You can install dirichletprocess from github with:
 devtools::install_github("dm13450/dirichletprocess")
 ```
 
-For a full guide to the package and its capabilites please consult the vignette:
+For a full guide to the package and its capabilities please consult the vignette:
 
 ```{r vignette, eval=FALSE}
 browseVignettes(package = "dirichletprocess")
 ```
 
-## Example
+## Examples
 
 ### Density Estimation
+
+Dirichlet processes can be used for non-parametric density estimation. 
 
 ```{r density, eval=TRUE}
 faithfulTransformed <- faithful$waiting - mean(faithful$waiting)
 faithfulTransformed <- faithfulTransformed/sd(faithful$waiting)
 dp <- DirichletProcessGaussian(faithfulTransformed)
-dp <- Fit(dp, 1000, progressBar = FALSE)
+dp <- Fit(dp, 100, progressBar = FALSE)
 plot(dp)
+```
+
+```{r}
+data.frame(Weight=dp$weights, Mean=c(dp$clusterParameters[[1]]), SD=c(dp$clusterParameters[[1]]))
 ```
 
 
 ### Clustering
+
+Dirichlet processes can also be used to cluster data based on their common distribution parameters. 
 
 ```{r clustering, eval=TRUE}
 faithfulTrans <- as.matrix(apply(faithful, 2, function(x) (x-mean(x))/sd(x)))
@@ -56,13 +64,13 @@ dpCluster <-  DirichletProcessMvnormal(faithfulTrans)
 dpCluster <- Fit(dpCluster, 1000, progressBar = FALSE)
 ```
 
-Then to plot, we take the cluster labels contained in the `dp` object and assing them a colour
+To plot the results we take the cluster labels contained in the `dp` object and assign them a colour
 
 ```{r clusteringplot, echo=FALSE}
 faithRes <- cbind(faithful, Labels = dpCluster$clusterLabels)
 ggplot(faithRes, aes(x=eruptions, y=waiting, colour=as.factor(Labels))) + geom_point() + guides(colour=FALSE)
 ```
 
-
+For more detailed explanations and examples see the vignette.
 
 
