@@ -3,7 +3,7 @@
 #' @param n Number of data sets
 #' @param priorParameters The prior parameters for the top level base distribution.
 #' @param hyperPriorParameters Hyper prior parameters for the top level base distribution.
-#' @param gammaParam Concerntration parameter for the top level.
+#' @param gammaParam Concentration parameter for the top level.
 #' @param alpha0 Individual level concentration parameter.
 #' @param maxT Bounding value of the data.
 #' @param mhStepSize Metropolis Hastings step size for the posterior drawing.

@@ -3,7 +3,7 @@
 #' @param dataList List of data for each separate Dirichlet mixture object
 #' @param maxY Maximum value for the Beta distribution.
 #' @param priorParameters Prior Parameters for the top level base distribution.
-#' @param hyperPriorParameters Hyper prior parameters for the top level base distribtuion.
+#' @param hyperPriorParameters Hyper prior parameters for the top level base distribution.
 #' @param gammaPriors Prior parameters for the top level concentration parameter.
 #' @param alphaPriors Prior parameters for the individual parameters.
 #' @param mhStepSize Metropolis Hastings jump size.

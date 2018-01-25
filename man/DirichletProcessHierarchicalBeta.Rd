@@ -15,7 +15,7 @@ DirichletProcessHierarchicalBeta(dataList, maxY, priorParameters = c(2, 8),
 
 \item{priorParameters}{Prior Parameters for the top level base distribution.}
 
-\item{hyperPriorParameters}{Hyper prior parameters for the top level base distribtuion.}
+\item{hyperPriorParameters}{Hyper prior parameters for the top level base distribution.}
 
 \item{gammaPriors}{Prior parameters for the top level concentration parameter.}
 

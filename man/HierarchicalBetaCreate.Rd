@@ -18,7 +18,7 @@ HierarchicalBetaCreate(n, priorParameters, hyperPriorParameters, alpha0, maxT,
 
 \item{maxT}{Bounding value of the data.}
 
-\item{gammaParam}{Concerntration parameter for the top level.}
+\item{gammaParam}{Concentration parameter for the top level.}
 
 \item{mhStepSize}{Metropolis Hastings step size for the posterior drawing.}
 
