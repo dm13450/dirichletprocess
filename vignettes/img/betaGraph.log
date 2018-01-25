@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.7.21)  25 JAN 2018 21:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.7.21)  25 JAN 2018 19:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**old_faithful_plot.tex
-(./old_faithful_plot.tex
+**betaGraph.tex
+(./betaGraph.tex
 LaTeX2e <2015/01/01>
 Babel <3.9l> and hyphenation patterns for 79 languages loaded.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls
@@ -354,8 +354,8 @@ Package: preview 2010/02/14 11.88 (AUCTeX/preview-latex)
 \pr@box=\box38
 \pr@output=\toks27
 )
-(./old_faithful_plot.aux)
-\openout1 = `old_faithful_plot.aux'.
+(./betaGraph.aux)
+\openout1 = `betaGraph.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
@@ -436,18 +436,18 @@ Preview: PDFoutput 1
 Preview: Tightpage 0 0 0 0
 [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 Non-PDF special ignored!
-Non-PDF special ignored!] (./old_faithful_plot.aux) ) 
+Non-PDF special ignored!] (./betaGraph.aux) ) 
 Here is how much of TeX's memory you used:
- 12704 strings out of 493089
- 258742 string characters out of 6134842
- 347491 words of memory out of 7000000
- 15995 multiletter control sequences out of 15000+600000
+ 11895 strings out of 493089
+ 242659 string characters out of 6134842
+ 272664 words of memory out of 7000000
+ 15186 multiletter control sequences out of 15000+600000
  3640 words of font info for 14 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,7n,54p,398b,620s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-Output written on old_faithful_plot.pdf (1 page, 23823 bytes).
+ 55i,7n,54p,390b,620s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+Output written on betaGraph.pdf (1 page, 18401 bytes).
 PDF statistics:
  15 PDF objects out of 1000 (max. 8388607)
  10 compressed objects within 1 object stream

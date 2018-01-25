@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.7.21)  28 JUL 2017 12:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.7.21)  25 JAN 2018 19:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -447,7 +447,7 @@ Here is how much of TeX's memory you used:
  55i,7n,54p,406b,620s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texliv
 e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-Output written on ratsImpericalDistribution.pdf (1 page, 20268 bytes).
+Output written on ratsImpericalDistribution.pdf (1 page, 20186 bytes).
 PDF statistics:
  15 PDF objects out of 1000 (max. 8388607)
  10 compressed objects within 1 object stream

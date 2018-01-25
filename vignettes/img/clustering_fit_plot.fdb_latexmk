@@ -79,10 +79,10 @@
   "clustering_fit_plot.aux" 1493723624 8 a94a2480d3289e625eea47cd1b285758 ""
   "clustering_fit_plot.tex" 1493377870 13170 46a34ad11d5d4e3b35ed9fe245190caa ""
   (generated)
-  "clustering_fit_plot.aux"
   "clustering_fit_plot.log"
   "clustering_fit_plot.dvi"
-["pdflatex"] 1501240594 "clustering_fit_plot.tex" "clustering_fit_plot.pdf" "clustering_fit_plot" 1504289846
+  "clustering_fit_plot.aux"
+["pdflatex"] 1501240594 "clustering_fit_plot.tex" "clustering_fit_plot.pdf" "clustering_fit_plot" 1516917085
   "/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
@@ -177,6 +177,6 @@
   "clustering_fit_plot.aux" 1501240595 8 a94a2480d3289e625eea47cd1b285758 ""
   "clustering_fit_plot.tex" 1501239283 11418 895c58193e9b8eaf2e9e53639ce78c44 ""
   (generated)
+  "clustering_fit_plot.aux"
   "clustering_fit_plot.pdf"
   "clustering_fit_plot.log"
-  "clustering_fit_plot.aux"

@@ -82,7 +82,7 @@
   "gamma_mixture_plot.dvi"
   "gamma_mixture_plot.log"
   "gamma_mixture_plot.aux"
-["pdflatex"] 1501236055 "gamma_mixture_plot.tex" "gamma_mixture_plot.pdf" "gamma_mixture_plot" 1504289846
+["pdflatex"] 1501236055 "gamma_mixture_plot.tex" "gamma_mixture_plot.pdf" "gamma_mixture_plot" 1516917085
   "/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
@@ -177,6 +177,6 @@
   "gamma_mixture_plot.aux" 1501236055 8 a94a2480d3289e625eea47cd1b285758 ""
   "gamma_mixture_plot.tex" 1501236035 9532 8d3818e554fb0f0736dcbe7364f68a43 ""
   (generated)
-  "gamma_mixture_plot.aux"
   "gamma_mixture_plot.log"
+  "gamma_mixture_plot.aux"
   "gamma_mixture_plot.pdf"

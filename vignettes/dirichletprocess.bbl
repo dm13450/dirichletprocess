@@ -1,0 +1,126 @@
+\begin{thebibliography}{18}
+\newcommand{\enquote}[1]{``#1''}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem[{Antoniak(1974)}]{antoniak_mixtures_1974}
+Antoniak CE (1974).
+\newblock \enquote{{Mixtures} of {Dirichlet} {Processes} with {Applications} to
+  {Bayesian} {Nonparametric} {Problems}.}
+\newblock \emph{The Annals of Statistics}, \textbf{2}(6), 1152--1174.
+
+\bibitem[{Coles(2001)}]{coles_introduction_2001}
+Coles S (2001).
+\newblock \emph{An {Introduction} to {Statistical} {Modeling} of {Extreme}
+  {Values}}.
+\newblock Springer {Series} in {Statistics}. Springer London, London.
+
+\bibitem[{Escobar and West(1995)}]{escobar_bayesian_1995}
+Escobar MD, West M (1995).
+\newblock \enquote{Bayesian {Density} {Estimation} and {Inference} {Using}
+  {Mixtures}.}
+\newblock \emph{Journal of the American Statistical Association},
+  \textbf{90}(430), 577--588.
+
+\bibitem[{Ferguson(1973)}]{ferguson_bayesian_1973}
+Ferguson TS (1973).
+\newblock \enquote{A {Bayesian} {Analysis} of {Some} {Nonparametric}
+  {Problems}.}
+\newblock \emph{The Annals of Statistics}, \textbf{1}(2), 209--230.
+
+\bibitem[{Gelman \emph{et~al.}(2014)Gelman, Carlin, Stern, and
+  Rubin}]{gelman_bayesian_2014}
+Gelman A, Carlin JB, Stern HS, Rubin DB (2014).
+\newblock \emph{Bayesian {Data} {Analysis}}, volume~2.
+\newblock Chapman \& Hall/CRC Boca Raton, FL, USA.
+
+\bibitem[{Gelman \emph{et~al.}(1996)Gelman, Roberts, and
+  Gilks}]{gelman_efficient_1996}
+Gelman A, Roberts GO, Gilks WRea (1996).
+\newblock \enquote{Efficient {Metropolis} {Jumping} {Rules}.}
+
+\bibitem[{Geman and Geman(1984)}]{geman_stochastic_1984}
+Geman S, Geman D (1984).
+\newblock \enquote{Stochastic {Relaxation}, {Gibbs} {Distributions}, and the
+  {Bayesian} {Restoration} of {Images}.}
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}, \textbf{PAMI-6}(6), 721--741.
+
+\bibitem[{Hastings(1970)}]{hastings_monte_1970}
+Hastings WK (1970).
+\newblock \enquote{Monte {Carlo} {Sampling} {Methods} {Using} {Markov} {Chains}
+  and {Their} {Applications}.}
+\newblock \emph{Biometrika}, \textbf{57}(1), 97--109.
+
+\bibitem[{Kim \emph{et~al.}(2006)Kim, Tadesse, and
+  Vannucci}]{kim_variable_2006}
+Kim S, Tadesse MG, Vannucci M (2006).
+\newblock \enquote{Variable {Selection} in {Clustering} via {Dirichlet}
+  {Process} {Mixture} {Models}.}
+\newblock \emph{Biometrika}, \textbf{93}(4), 877--893.
+
+\bibitem[{Kottas(2006{\natexlab{a}})}]{kottas_dirichlet_2006}
+Kottas A (2006{\natexlab{a}}).
+\newblock \enquote{Dirichlet {Process} {Mixtures} of {Beta} {Distributions},
+  with {Applications} to {Density} and {Intensity} {Estimation}.}
+\newblock In \emph{Workshop on {Learning} with {Nonparametric} {Bayesian}
+  {Methods}, 23rd {International} {Conference} on {Machine} {Learning}
+  ({ICML})}.
+
+\bibitem[{Kottas(2006{\natexlab{b}})}]{kottas_nonparametric_2006}
+Kottas A (2006{\natexlab{b}}).
+\newblock \enquote{{Nonparametric} {Bayesian} {Survival} {Analysis} {Using}
+  {Mixtures} of {Weibull} {Distributions}.}
+\newblock \emph{Journal of Statistical Planning and Inference},
+  \textbf{136}(3), 578--596.
+
+\bibitem[{Lawless(2011)}]{lawless_statistical_2011}
+Lawless JF (2011).
+\newblock \emph{Statistical {Models} and {Methods} for {Lifetime} {Data}},
+  volume 362.
+\newblock John Wiley \& Sons.
+
+\bibitem[{Maceachern and Muller(1998)}]{maceachern_estimating_1998}
+Maceachern SN, Muller P (1998).
+\newblock \enquote{Estimating {Mixture} of {Dirichlet} {Process} {Models}.}
+\newblock \emph{Journal of Computational and Graphical Statistics},
+  \textbf{7}(2), 223--238.
+
+\bibitem[{Neal(2000)}]{neal_markov_2000}
+Neal RM (2000).
+\newblock \enquote{Markov {Chain} {Sampling} {Methods} for {Dirichlet}
+  {Process} {Mixture} {Models}.}
+\newblock \emph{Journal of Computational and Graphical Statistics},
+  \textbf{9}(2), 249--265.
+
+\bibitem[{Sethuraman(1994)}]{sethuraman_constructive_1994}
+Sethuraman J (1994).
+\newblock \enquote{A {Constructive} {Definition} of {Dirichlet} {Priors}.}
+\newblock \emph{Statistica sinica}, pp. 639--650.
+
+\bibitem[{Teh \emph{et~al.}(2005)Teh, Jordan, Beal, and
+  Blei}]{teh_sharing_2005}
+Teh YW, Jordan MI, Beal MJ, Blei DM (2005).
+\newblock \enquote{Sharing {Clusters} {Among} {Related} {Groups}:
+  {Hierarchical} {Dirichlet} {Rrocesses}.}
+\newblock In \emph{Advances in neural information processing systems}, pp.
+  1385--1392.
+
+\bibitem[{West(1992)}]{west_hyperparameter_1992}
+West M (1992).
+\newblock \emph{Hyperparameter {Estimation} in {Dirichlet} {Process} {Mixture}
+  {Models}}.
+\newblock Duke University ISDS Discussion Paper 92-A03.
+
+\bibitem[{Wickham(2014)}]{wickham_advanced_2014}
+Wickham H (2014).
+\newblock \emph{Advanced \proglang{R}}.
+\newblock CRC Press.
+
+\end{thebibliography}

@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1501236055 "poisson_mixture_plot.tex" "poisson_mixture_plot.pdf" "poisson_mixture_plot" 1504289847
+["pdflatex"] 1501236055 "poisson_mixture_plot.tex" "poisson_mixture_plot.pdf" "poisson_mixture_plot" 1516917086
   "/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
@@ -95,5 +95,5 @@
   "poisson_mixture_plot.tex" 1501235891 6860 3162856006d6dbe4cce928506b691c7d ""
   (generated)
   "poisson_mixture_plot.aux"
-  "poisson_mixture_plot.log"
   "poisson_mixture_plot.pdf"
+  "poisson_mixture_plot.log"

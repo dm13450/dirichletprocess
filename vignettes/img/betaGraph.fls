@@ -2,8 +2,8 @@ PWD /Users/deanmarkwick/Documents/PhD/Research/Dirichelet/dirichletprocess/vigne
 INPUT /usr/local/texlive/2015/texmf.cnf
 INPUT /usr/local/texlive/2015/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2015/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT old_faithful_plot.tex
-OUTPUT old_faithful_plot.log
+INPUT betaGraph.tex
+OUTPUT betaGraph.log
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/base/size10.clo
@@ -119,9 +119,9 @@ INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/preview/preview.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/preview/preview.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/preview/prtightpage.def
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/preview/prtightpage.def
-INPUT old_faithful_plot.aux
-INPUT old_faithful_plot.aux
-OUTPUT old_faithful_plot.aux
+INPUT betaGraph.aux
+INPUT betaGraph.aux
+OUTPUT betaGraph.aux
 INPUT /usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 INPUT /usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 INPUT /usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
@@ -144,7 +144,7 @@ INPUT /usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-OUTPUT old_faithful_plot.pdf
+OUTPUT betaGraph.pdf
 INPUT /usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map
-INPUT old_faithful_plot.aux
+INPUT betaGraph.aux
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb

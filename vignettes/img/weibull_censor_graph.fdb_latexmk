@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1501250770 "weibull_censor_graph.tex" "weibull_censor_graph.pdf" "weibull_censor_graph" 1504289848
+["pdflatex"] 1501250770 "weibull_censor_graph.tex" "weibull_censor_graph.pdf" "weibull_censor_graph" 1516917086
   "/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
@@ -95,5 +95,5 @@
   "weibull_censor_graph.tex" 1501250762 68890 4e8f479f0c7df8a3d29cc18927cbee8c ""
   (generated)
   "weibull_censor_graph.aux"
-  "weibull_censor_graph.log"
   "weibull_censor_graph.pdf"
+  "weibull_censor_graph.log"

@@ -79,10 +79,10 @@
   "density_bounded_plot.aux" 1493723632 8 a94a2480d3289e625eea47cd1b285758 ""
   "density_bounded_plot.tex" 1493376292 133421 f7357e2c6dfb1a698084775126893bc2 ""
   (generated)
+  "density_bounded_plot.aux"
   "density_bounded_plot.dvi"
   "density_bounded_plot.log"
-  "density_bounded_plot.aux"
-["pdflatex"] 1501240596 "density_bounded_plot.tex" "density_bounded_plot.pdf" "density_bounded_plot" 1504289846
+["pdflatex"] 1501240596 "density_bounded_plot.tex" "density_bounded_plot.pdf" "density_bounded_plot" 1516917085
   "/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
@@ -177,6 +177,6 @@
   "density_bounded_plot.aux" 1501240596 8 a94a2480d3289e625eea47cd1b285758 ""
   "density_bounded_plot.tex" 1501237239 10150 9e4c6de2e4c42b08ce764f9847f8982f ""
   (generated)
-  "density_bounded_plot.log"
   "density_bounded_plot.aux"
+  "density_bounded_plot.log"
   "density_bounded_plot.pdf"

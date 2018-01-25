@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1501580896 "poissonStickBreaking.tex" "poissonStickBreaking.pdf" "poissonStickBreaking" 1504289847
+["pdflatex"] 1501580896 "poissonStickBreaking.tex" "poissonStickBreaking.pdf" "poissonStickBreaking" 1516917086
   "/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
@@ -95,5 +95,5 @@
   "poissonStickBreaking.tex" 1501580229 203703 067fad03707e5617e5c74148e886225f ""
   (generated)
   "poissonStickBreaking.pdf"
-  "poissonStickBreaking.log"
   "poissonStickBreaking.aux"
+  "poissonStickBreaking.log"

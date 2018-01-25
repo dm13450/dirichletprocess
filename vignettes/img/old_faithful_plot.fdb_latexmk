@@ -79,10 +79,10 @@
   "old_faithful_plot.aux" 1493723659 8 a94a2480d3289e625eea47cd1b285758 ""
   "old_faithful_plot.tex" 1493375579 416070 92a7678705b230f1dedef3e950680aad ""
   (generated)
-  "old_faithful_plot.log"
-  "old_faithful_plot.aux"
   "old_faithful_plot.dvi"
-["pdflatex"] 1501240596 "old_faithful_plot.tex" "old_faithful_plot.pdf" "old_faithful_plot" 1504289847
+  "old_faithful_plot.aux"
+  "old_faithful_plot.log"
+["pdflatex"] 1516917085 "old_faithful_plot.tex" "old_faithful_plot.pdf" "old_faithful_plot" 1516917086
   "/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
@@ -174,9 +174,9 @@
   "/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1432479641 1764542 91654ba72bdb667e84ea24f076ae16d8 ""
   "/usr/local/texlive/2015/texmf-var/web2c/pdftex/pdflatex.fmt" 1469115027 3849859 5d10175f1c83b73f6bd87d5e9d52c185 ""
   "/usr/local/texlive/2015/texmf.cnf" 1432479636 577 0d611272082f3cdb8e80e09a3c69cf07 ""
-  "old_faithful_plot.aux" 1501240598 8 a94a2480d3289e625eea47cd1b285758 ""
-  "old_faithful_plot.tex" 1501236238 31071 b3c3de81be7610f216d4eafcc4ec8575 ""
+  "old_faithful_plot.aux" 1516917086 8 a94a2480d3289e625eea47cd1b285758 ""
+  "old_faithful_plot.tex" 1516917080 31076 66ca27c833bb3c44325d6db55d686289 ""
   (generated)
-  "old_faithful_plot.log"
-  "old_faithful_plot.aux"
   "old_faithful_plot.pdf"
+  "old_faithful_plot.aux"
+  "old_faithful_plot.log"
