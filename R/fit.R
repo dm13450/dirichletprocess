@@ -26,6 +26,7 @@ Fit.default <- function(dpObj, its, updatePrior = FALSE, progressBar=TRUE) {
   weightsChain <- vector("list", length = its)
   clusterParametersChain <- vector("list", length = its)
   priorParametersChain <- vector("list", length = its)
+  labelsChain <- vector("list", length = its)
 
   for (i in seq_len(its)) {
 
@@ -33,6 +34,7 @@ Fit.default <- function(dpObj, its, updatePrior = FALSE, progressBar=TRUE) {
     weightsChain[[i]] <- dpObj$pointsPerCluster / dpObj$n
     clusterParametersChain[[i]] <- dpObj$clusterParameters
     priorParametersChain[[i]] <- dpObj$mixingDistribution$priorParameters
+    labelsChain[[i]] <- dpObj$clusterLabels
 
     dpObj <- ClusterComponentUpdate(dpObj)
     dpObj <- ClusterParameterUpdate(dpObj)
@@ -52,6 +54,7 @@ Fit.default <- function(dpObj, its, updatePrior = FALSE, progressBar=TRUE) {
   dpObj$weightsChain <- weightsChain
   dpObj$clusterParametersChain <- clusterParametersChain
   dpObj$priorParametersChain <- priorParametersChain
+  dpObj$labelsChain <- labelsChain
 
   if (progressBar) {
     close(pb)

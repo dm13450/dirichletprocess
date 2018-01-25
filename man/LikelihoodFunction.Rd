@@ -4,16 +4,18 @@
 \alias{LikelihoodFunction}
 \title{The Likelihood of a Dirichlet process object.}
 \usage{
-LikelihoodFunction(dpobj)
+LikelihoodFunction(dpobj, ind)
 }
 \arguments{
 \item{dpobj}{Dirichlet process object.}
+
+\item{ind}{The iteration number. Defaults to the last iteration.}
 }
 \value{
 A function f(x) that represents the Likelihood of the dpobj.
 }
 \description{
-Collecting the fitted cluster parameters and number of datapoints associated with each parameter a Likelihood can be calculated.
+Collecting the fitted cluster parameters and number of datapoints associated with each parameter a likelihood can be calculated.
 Each cluster is weighted by the number of datapoints assigned.
 }
 \examples{

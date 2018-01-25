@@ -1,9 +1,10 @@
 #' The Likelihood of a Dirichlet process object.
 #'
-#' Collecting the fitted cluster parameters and number of datapoints associated with each parameter a Likelihood can be calculated.
+#' Collecting the fitted cluster parameters and number of datapoints associated with each parameter a likelihood can be calculated.
 #' Each cluster is weighted by the number of datapoints assigned.
 #'
 #' @param dpobj Dirichlet process object.
+#' @param ind The iteration number. Defaults to the last iteration.
 #' @return A function f(x) that represents the Likelihood of the dpobj.
 #'
 #' @examples
@@ -14,15 +15,21 @@
 #' plot(f(-2:2))
 #'
 #' @export
-LikelihoodFunction <- function(dpobj) UseMethod("LikelihoodFunction", dpobj)
+LikelihoodFunction <- function(dpobj, ind) UseMethod("LikelihoodFunction", dpobj)
 
 #' @export
-LikelihoodFunction.dirichletprocess <- function(dpobj) {
+LikelihoodFunction.dirichletprocess <- function(dpobj, ind) {
 
   base_function <- function(x, theta) Likelihood(dpobj$mixingDistribution, x, theta)
 
-  Likelihood_function <- weighted_function_generator(base_function, dpobj$pointsPerCluster,
-    dpobj$clusterParameters)
+  if (missing(ind)){
+    likelihood_function <- weighted_function_generator(base_function, dpobj$pointsPerCluster,
+      dpobj$clusterParameters)
+  } else {
+    likelihood_function <- weighted_function_generator(base_function,
+                                                       dpobj$weightsChain[[ind]]*dpobj$n,
+                                                       dpobj$clusterParametersChain[[ind]])
+  }
 
-  return(Likelihood_function)
+  return(likelihood_function)
 }
