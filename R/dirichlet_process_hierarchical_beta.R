@@ -1,14 +1,14 @@
 #' Create a Hierarchical Dirichlet Mixture of Beta Distributions
 #'
-#' @param dataList List of data for each seperate Dirichlet mixture object
+#' @param dataList List of data for each separate Dirichlet mixture object
 #' @param maxY Maximum value for the Beta distribution.
 #' @param priorParameters Prior Parameters for the top level base distribution.
 #' @param hyperPriorParameters Hyper prior parameters for the top level base distribtuion.
 #' @param gammaPriors Prior parameters for the top level concentration parameter.
-#' @param alphaPriors Prior parameters for the individula concentration parameters.
+#' @param alphaPriors Prior parameters for the individual parameters.
 #' @param mhStepSize Metropolis Hastings jump size.
 #' @param numSticks Truncation level for the Stick Breaking formulation.
-#' @return dpobjlist A Hierarchical Dirichlet Processe object that can be fitted, plotted etc.
+#' @return dpobjlist A Hierarchical Dirichlet Process object that can be fitted, plotted etc.
 #' @export
 DirichletProcessHierarchicalBeta <- function(dataList, maxY,
                                              priorParameters = c(2,8),

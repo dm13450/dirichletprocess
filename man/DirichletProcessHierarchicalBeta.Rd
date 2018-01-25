@@ -9,7 +9,7 @@ DirichletProcessHierarchicalBeta(dataList, maxY, priorParameters = c(2, 8),
   alphaPriors = c(2, 4), mhStepSize = c(0.1, 0.1), numSticks = 50)
 }
 \arguments{
-\item{dataList}{List of data for each seperate Dirichlet mixture object}
+\item{dataList}{List of data for each separate Dirichlet mixture object}
 
 \item{maxY}{Maximum value for the Beta distribution.}
 
@@ -19,14 +19,14 @@ DirichletProcessHierarchicalBeta(dataList, maxY, priorParameters = c(2, 8),
 
 \item{gammaPriors}{Prior parameters for the top level concentration parameter.}
 
-\item{alphaPriors}{Prior parameters for the individula concentration parameters.}
+\item{alphaPriors}{Prior parameters for the individual parameters.}
 
 \item{mhStepSize}{Metropolis Hastings jump size.}
 
 \item{numSticks}{Truncation level for the Stick Breaking formulation.}
 }
 \value{
-dpobjlist A Hierarchical Dirichlet Processe object that can be fitted, plotted etc.
+dpobjlist A Hierarchical Dirichlet Process object that can be fitted, plotted etc.
 }
 \description{
 Create a Hierarchical Dirichlet Mixture of Beta Distributions
