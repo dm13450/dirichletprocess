@@ -7,8 +7,9 @@ Authors@R: c(
             person("Gordon", "J. Ross", email="gordon@gordonjross.co.uk", role=c("aut"))
           )
 Maintainer: Dean Markwick <dean.markwick@talk21.com>
-Description: Create Dirichlet Process Objects that can be used as infinite mixture models in a variety of ways. 
+Description: Create Dirichlet process objects that can be used as infinite mixture models in a variety of ways.
     Some examples include; density estimation, Poisson process intensity inference, hierarchical modelling and clustering. 
+    See Teh, Y. W. (2011)<https://www.stats.ox.ac.uk/~teh/research/npbayes/Teh2010a.pdf>, among many other sources.
 Depends: R (>= 2.10)
 License: GPL-3
 Encoding: UTF-8

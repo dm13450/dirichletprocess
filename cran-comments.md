@@ -1,3 +1,9 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Removed capitalisation of "Process Objects" in the DESCRIPTION.
+* Added Dirichlet process reference in DESCRIPTION. 
+
 ## Test environments
 * local OS X install, R 3.4.3
 * ubuntu 14.04 (on travis-ci), R 3.4.2
