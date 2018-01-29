@@ -1,8 +1,7 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Removed capitalisation of "Process Objects" in the DESCRIPTION.
-* Added Dirichlet process reference in DESCRIPTION. 
+* Added a blank between year and URL.
 
 ## Test environments
 * local OS X install, R 3.4.3
