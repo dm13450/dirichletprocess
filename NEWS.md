@@ -1,3 +1,6 @@
+# dirichletprocess 0.2.0.9000
+
+
 # dirichletprocess 0.2.0
 
 * First public release.
