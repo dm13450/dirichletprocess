@@ -1,16 +1,22 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Build Status](https://travis-ci.org/dm13450/dirichletprocess.svg?branch=master)](https://travis-ci.org/dm13450/dirichletprocess)
-
 dirichletprocess
 ================
 
-The dirichletprocess package provides tools for you to build custom Dirichlet process mixture models. You can use the pre-built Normal/Weibull/Beta distributions or create your own following the instructions in the vignette. In as little as four lines of code you can be modelling your data non-parametrically.
+[![Travis-CI Build Status](https://travis-ci.org/dm13450/dirichletprocess.svg?branch=master)](https://travis-ci.org/dm13450/dirichletprocess) [![Coverage Status](https://codecov.io/gh/dm13450/dirichletprocess/branch/master/graph/badge.svg)](https://codecov.io/gh/dm13450/dirichletprocess)
+
+The dirichletprocess package provides tools for you to build custom Dirichlet process mixture models. You can use the pre-built Normal/Weibull/Beta distributions or create your own following the instructions in the vignette. In as little as four lines of code you can be modelling your data nonparametrically.
 
 Installation
 ------------
 
-You can install dirichletprocess from github with:
+You can install the stable release of dirichletprocess from CRAN:
+
+``` r
+install.packages("dirichletprocess")
+```
+
+You can also install the development build of dirichletprocess from github with:
 
 ``` r
 # install.packages("devtools")
@@ -28,7 +34,7 @@ Examples
 
 ### Density Estimation
 
-Dirichlet processes can be used for non-parametric density estimation.
+Dirichlet processes can be used for nonparametric density estimation.
 
 ``` r
 faithfulTransformed <- faithful$waiting - mean(faithful$waiting)
