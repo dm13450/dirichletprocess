@@ -42,5 +42,15 @@ ppareto <- function(q, xm, alpha) ifelse(q > xm, 1 - (xm/q)^alpha, 0)
 qpareto <- function(p, xm, alpha) ifelse(p < 0 | p > 1, NaN, xm * (1 - p)^(-1/alpha))
 rpareto <- function(n, xm, alpha) qpareto(runif(n), xm, alpha)
 
+VectorToArray <- function(paramVector){
+
+  paramList <- vector("list", length(paramVector))
+
+  paramList <- lapply(seq_along(paramList), function(i) array(paramVector[i], dim = c(1,1,1)))
+
+  return(paramList)
+}
+
+
 
 

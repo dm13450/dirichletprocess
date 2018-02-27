@@ -1,6 +1,9 @@
 # dirichletprocess 0.2.0.9000
 
 * Added Travis-CI and codecov badges.
+* Added penalised log-likelihood step for posterior cluster parameter inference.
+* Added exponential mixture model. 
+* Added Gordon Ross as a Creator. 
 
 # dirichletprocess 0.2.0
 

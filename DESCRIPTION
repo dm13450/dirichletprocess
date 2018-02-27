@@ -3,8 +3,8 @@ Type: Package
 Title: Build Dirichlet Process Objects for Bayesian Modelling
 Version: 0.2.0.9000
 Authors@R: c(
-            person("Dean", "Markwick", email="dean.markwick@talk21.com", role=c("aut", "cre")),
-            person("Gordon", "J. Ross", email="gordon@gordonjross.co.uk", role=c("aut"))
+            person("Gordon", "J. Ross", email="gordon@gordonjross.co.uk", role=c("aut", "cre")),
+            person("Dean", "Markwick", email="dean.markwick@talk21.com", role=c("aut", "cre"))
           )
 Maintainer: Dean Markwick <dean.markwick@talk21.com>
 Description: Create Dirichlet process objects that can be used as infinite mixture models in a variety of ways.

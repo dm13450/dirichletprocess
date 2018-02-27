@@ -23,9 +23,10 @@ Likelihood.beta <- function(mdobj, x, theta) {
   mu <- theta[[1]][, , , drop = TRUE]
   tau <- theta[[2]][, , , drop = TRUE]
 
+
   a <- (mu * tau)/maxT
   b <- (1 - mu/maxT) * tau
-
+  #cat(c(mu, tau, a, b), '\n')
   # numerator <- (a - 1) * log(x) + (b - 1) * log(maxT - x)
   # numerator <- numerator - lbeta(a, b) - (tau - 1) * log(maxT)
   # y <- exp(numerator)
@@ -94,3 +95,26 @@ MhParameterProposal.beta <- function(mdObj, old_params) {
 
   return(new_params)
 }
+
+PenalisedLikelihood.beta <- function(mdObj, x){
+
+  optimStartParams <- PriorDraw(mdObj, 1)
+
+  optimParams <- optim(unlist(optimStartParams), function(params){
+
+    ll <- sum(log(Likelihood(mdObj, x, VectorToArray(params))))
+    ll <- ll + log(PriorDensity(mdObj, VectorToArray(params)))
+
+    if(is.infinite(ll)) ll <- -1e30
+
+    return(-ll)
+  }, method="L-BFGS-B", lower=c(0,0), upper=c(mdObj$maxT, Inf))
+
+
+  optimParamsRet <- VectorToArray(optimParams$par)
+
+  return(optimParamsRet)
+}
+
+
+

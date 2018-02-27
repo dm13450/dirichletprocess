@@ -280,6 +280,28 @@ test_that("Beta Posterior Function", {
 
 })
 
+test_that("Beta Penelised Likelihodd", {
+  maxT <- 1
+  mu <- 0.5
+  tau <- 4
 
+  a <- (mu * tau)/maxT
+  b <- (1 - mu/maxT) * tau
+
+  pts <- rbeta(10, a, b)
+  beta_md_obj <- BetaMixtureCreate(c(2,8), c(1, 1), 1, hyperPriorParameters=c(1, 0.125))
+
+  testParams <- PenalisedLikelihood(beta_md_obj, pts)
+
+  expect_is(testParams, "list")
+  expect_length(testParams, 2)
+
+  expect_is(testParams[[1]], "array")
+  expect_is(testParams[[2]], "array")
+
+  expect_length(testParams[[1]], 1)
+  expect_length(testParams[[2]], 1)
+
+})
 
 
