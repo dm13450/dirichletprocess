@@ -32,19 +32,21 @@ ClusterComponentUpdate.conjugate <- function(dpObj) {
 
   for (i in seq_len(n)) {
 
-    probs <- numeric(numLabels + 1)
 
     currentLabel <- clusterLabels[i]
 
     pointsPerCluster[currentLabel] <- pointsPerCluster[currentLabel] - 1
 
-    probs[1:numLabels] <- pointsPerCluster * Likelihood(mdObj, y[i, , drop = FALSE],
-      clusterParams)
-    probs[numLabels + 1] <- alpha * predictiveArray[i]
+    probs <- c(
+      pointsPerCluster * Likelihood(mdObj, y[i, , drop = FALSE], clusterParams),
+      alpha * predictiveArray[i])
 
-    if(all(probs==0)){
-      probs[1:(numLabels+1)] <- 1
+    probs[is.na(probs)] <- 0
+
+    if (all(probs == 0)) {
+      probs <- rep_len(1, length(probs))
     }
+
     newLabel <- sample.int(numLabels + 1, 1, prob = probs)
 
     dpObj$pointsPerCluster <- pointsPerCluster
@@ -84,8 +86,6 @@ ClusterComponentUpdate.nonconjugate <- function(dpObj) {
 
   for (i in seq_len(n)) {
 
-    probs <- numeric(numLabels + 1)
-
     currentLabel <- clusterLabels[i]
 
     pointsPerCluster[currentLabel] <- pointsPerCluster[currentLabel] - 1
@@ -102,17 +102,17 @@ ClusterComponentUpdate.nonconjugate <- function(dpObj) {
         aux <- PriorDraw(mdObj, m)
     }
 
-    probs[1:numLabels] <- pointsPerCluster * Likelihood(mdObj, y[i, , drop = FALSE],
-      clusterParams)
-    probs[(numLabels + 1):(numLabels + m)] <- (alpha/m) * Likelihood(mdObj, y[i, , drop = FALSE], aux)
+    probs <- c(
+      pointsPerCluster * Likelihood(mdObj, y[i, , drop = FALSE],clusterParams),
+      (alpha/m) * Likelihood(mdObj, y[i, , drop = FALSE], aux))
 
     if (any(is.nan(probs))) {
       probs[is.nan(probs)] <- 0
     }
 
-    if (anyNA(probs)) {
-      probs[is.na(probs)] <- 0
-    }
+
+    probs[is.na(probs)] <- 0
+
 
     if (any(is.infinite(probs))) {
       probs[is.infinite(probs)] <- 1

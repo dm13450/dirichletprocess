@@ -7,9 +7,17 @@ Authors@R: c(
             person("Dean", "Markwick", email="dean.markwick@talk21.com", role=c("aut", "cre"))
           )
 Maintainer: Dean Markwick <dean.markwick@talk21.com>
-Description: Create Dirichlet process objects that can be used as infinite mixture models in a variety of ways.
-    Some examples include; density estimation, Poisson process intensity inference, hierarchical modelling and clustering. 
-    See Teh, Y. W. (2011) <https://www.stats.ox.ac.uk/~teh/research/npbayes/Teh2010a.pdf>, among many other sources.
+Description: Perform nonparametric Bayesian analysis using Dirichlet 
+    processes without the need to program the inference algorithms. 
+    Utilise included pre-built models or specify custom 
+    models and allow the \pkg{dirichletprocess} package to handle the 
+    Markov chain Monte Carlo sampling. 
+    Our Dirichlet process objects can act as building blocks for a variety 
+    of statistical models including and not limited to: density estimation, 
+    clustering and prior distributions in hierarchical models.
+    See Teh, Y. W. (2011) 
+    <https://www.stats.ox.ac.uk/~teh/research/npbayes/Teh2010a.pdf>, 
+    among many other sources.
 Depends: R (>= 2.10)
 License: GPL-3
 Encoding: UTF-8

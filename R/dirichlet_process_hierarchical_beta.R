@@ -16,12 +16,9 @@ DirichletProcessHierarchicalBeta <- function(dataList, maxY,
                                              gammaPriors = c(2,4), alphaPriors = c(2, 4),
                                              mhStepSize = c(0.1,0.1), numSticks = 50) {
 
-  gammaParam <- rgamma(1, gammaPriors[1], gammaPriors[2])
-  alphaParams <- rgamma(length(dataList), alphaPriors[1], alphaPriors[2])
-
   mdobj_list <- HierarchicalBetaCreate(n=length(dataList), priorParameters=priorParameters,
-                                       hyperPriorParameters=hyperPriorParameters, gammaParam=gammaParam,
-                                      alpha0 = alphaParams, maxT=maxY, mhStepSize=mhStepSize, num_sticks=numSticks)
+                                       hyperPriorParameters=hyperPriorParameters, gammaPrior=gammaPriors,
+                                      alphaPrior = alphaPriors, maxT=maxY, mhStepSize=mhStepSize, num_sticks=numSticks)
 
   dpobjlist <- list()
   dpobjlist$indDP <- lapply(seq_along(dataList), function(x) DirichletProcessCreate(dataList[[x]],
@@ -30,13 +27,13 @@ DirichletProcessHierarchicalBeta <- function(dataList, maxY,
   dpobjlist$indDP <- lapply(dpobjlist$indDP, Initialise, posterior=FALSE)
 
   for(i in seq_along(dpobjlist$indDP)){
-    dpobjlist$indDP[[i]]$alpha <- alphaParams[i]
+    dpobjlist$indDP[[i]]$alpha <- dpobjlist$indDP[[i]]$mixingDistribution$alpha
   }
 
   dpobjlist$globalParameters <- mdobj_list[[1]]$theta_k
   dpobjlist$globalStick <- mdobj_list[[1]]$beta_k
-  dpobjlist$gamma <- gammaParam
-
+  dpobjlist$gamma <- mdobj_list[[1]]$gamma
+  dpobjlist$gammaPriors <- gammaPriors
   class(dpobjlist) <- c("list", "dirichletprocess", "hierarchical")
 
   return(dpobjlist)

@@ -50,7 +50,8 @@ MetropolisHastings.default <- function(mixingDistribution, x, start_pos, no_draw
 
 MetropolisHastings.weibull <- function(mixingDistribution, x, start_pos, no_draws=100){
 
-  lamSamp <- 1/rgamma(1, length(x)+mixingDistribution$priorParameters[2], sum(x^c(start_pos[[1]])) + mixingDistribution$priorParameters[3])
+  lamSamp <- 1/rgamma(1, length(x)+mixingDistribution$priorParameters[2],
+                      sum(x^c(start_pos[[1]])) + mixingDistribution$priorParameters[3])
   start_pos[[2]] <- array(lamSamp, dim=c(1,1,1))
 
   parameter_samples <- list()
@@ -68,7 +69,8 @@ MetropolisHastings.weibull <- function(mixingDistribution, x, start_pos, no_draw
   for(i in seq_len(no_draws-1)){
 
     prop_param <- MhParameterProposal(mixingDistribution, old_param)
-    lamSamp <- 1/rgamma(1, length(x)+mixingDistribution$priorParameters[2], sum(x^c(prop_param[[1]])) + mixingDistribution$priorParameters[3])
+    lamSamp <- 1/rgamma(1, length(x)+mixingDistribution$priorParameters[2],
+                        sum(x^c(prop_param[[1]])) + mixingDistribution$priorParameters[3])
     prop_param[[2]] <- array(lamSamp, dim=c(1,1,1))
 
     new_prior <- log(PriorDensity(mixingDistribution, prop_param))

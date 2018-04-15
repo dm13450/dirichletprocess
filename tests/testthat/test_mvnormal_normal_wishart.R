@@ -6,7 +6,6 @@ test_that("Multivariate Mixture Object Create", {
   mdobj <- MvnormalCreate(c(1,1))
 
   expect_is(mdobj, c("list", "MixingDistribution", "mvnormal", "conjugate"))
-
 })
 
 test_that("Multivariate Normal Likelihood", {
@@ -14,6 +13,7 @@ test_that("Multivariate Normal Likelihood", {
   mdobj <- MvnormalCreate(priorParameters)
   test_theta <- list(mu=array(c(0,0), c(1,2,1)), sig=array(diag(2), c(2,2,1)))
   lik_test <- Likelihood(mdobj, c(0,0), test_theta)
+
   expect_equal(lik_test, 1/sqrt(4*pi^2))
 
   test_theta_multi <- list(mu=array(c(0,0), c(1,2,2)), sig=array(diag(2), c(2,2,2)))
@@ -181,6 +181,7 @@ test_that("Multivariate Normal Fit", {
 test_that("Multivariate Normal Cluster Predict", {
 
   test_data <- as.matrix(mvtnorm::rmvnorm(1, c(0,0), diag(2)))
+
   dp <- DirichletProcessMvnormal(test_data)
   dp <- Fit(dp, 10, progressBar=FALSE)
 
@@ -189,4 +190,3 @@ test_that("Multivariate Normal Cluster Predict", {
   expect_length(pred$componentIndexes, 1)
 
 })
-

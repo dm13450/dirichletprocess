@@ -15,7 +15,7 @@ update_concentration <- function(oldParam, n, nParams, priorParameters){
     new_alpha <- g2
   }
 
-  new_alpha
+  #new_alpha
   return(new_alpha)
 }
 
@@ -29,7 +29,7 @@ UpdateGamma <- function(dpobjlist){
   numParams <- nrow(globalParamTable)
   numTables <- sum(globalParamTable$Freq)
 
-  newGamma <- update_concentration(dpobjlist$gamma, numTables, numParams, c(2,4))
+  newGamma <- update_concentration(dpobjlist$gamma, numTables, numParams, dpobjlist$gammaPriors)
 
   for(i in seq_along(dpobjlist)){
     dpobjlist$gamma <- newGamma

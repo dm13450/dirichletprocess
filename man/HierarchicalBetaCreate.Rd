@@ -4,8 +4,8 @@
 \alias{HierarchicalBetaCreate}
 \title{Create a Mixing Object for a hierarchical Beta Dirichlet process object.}
 \usage{
-HierarchicalBetaCreate(n, priorParameters, hyperPriorParameters, alpha0, maxT,
-  gammaParam, mhStepSize, num_sticks)
+HierarchicalBetaCreate(n, priorParameters, hyperPriorParameters, alphaPrior,
+  maxT, gammaPrior, mhStepSize, num_sticks)
 }
 \arguments{
 \item{n}{Number of data sets}
@@ -14,11 +14,11 @@ HierarchicalBetaCreate(n, priorParameters, hyperPriorParameters, alpha0, maxT,
 
 \item{hyperPriorParameters}{Hyper prior parameters for the top level base distribution.}
 
-\item{alpha0}{Individual level concentration parameter.}
+\item{alphaPrior}{Individual level concentration parameter priors.}
 
 \item{maxT}{Bounding value of the data.}
 
-\item{gammaParam}{Concentration parameter for the top level.}
+\item{gammaPrior}{Concentration parameter for the top level priors.}
 
 \item{mhStepSize}{Metropolis Hastings step size for the posterior drawing.}
 
