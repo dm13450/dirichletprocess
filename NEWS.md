@@ -1,7 +1,8 @@
 # dirichletprocess 0.2.0.9000
 
 * Added Travis-CI and codecov badges.
-* Added Travis-CI devel, oldrel and osx testing. 
+* Added Travis-CI devel, oldrel testing. 
+* Added Appveyor. 
 * Added penalised log-likelihood step for posterior cluster parameter inference.
 * Added exponential mixture model. 
 * Added Gordon Ross as a Creator. 
