@@ -7,6 +7,7 @@
 * Added Gordon Ross as a Creator. 
 * NA in Cluster Label bug fix.
 * Updated description.
+* Reworked plotting 
 
 # dirichletprocess 0.2.0
 

@@ -1,22 +1,76 @@
 context("Plot")
 
-num_test_points <- 10
-data_test <- rnorm(num_test_points)
-priorParameters_test <- matrix(c(1,1,1,1), ncol=4)
 
-normal_object_test <- MixingDistribution("normal", priorParameters_test, "conjugate")
-dpobj <- DirichletProcessCreate(data_test, normal_object_test)
-dpobj <- Initialise(dpobj)
-
-test_that("Basic Plot", {
-
+graphTest <- function(dpobj){
   graph <- plot(dpobj)
+  graph2 <- plot(dpobj, likelihood=TRUE)
+  graph3 <- plot(dpobj, likelihood=TRUE, single=TRUE)
+  return(list(graph, graph2, graph3))
+}
 
-  expect_is(graph, c("gg", "ggplot"))
+test_that("Normal Plotting", {
+
+  dp <- DirichletProcessGaussian(rnorm(10))
+
+  graphs <- graphTest(dp)
+
+  for(i in seq_along(graphs)){
+    expect_is(graphs[[i]], c("gg", "ggplot"))
+  }
+
+
 })
 
-test_that("Basic Plot with Posterior", {
+test_that("Exp Plotting", {
 
-  graph <- plot(dpobj, posterior=TRUE)
-  expect_is(graph, c("gg", "ggplot"))
+  dp <- DirichletProcessExponential(rexp(10))
+
+  graphs <- graphTest(dp)
+
+  for(i in seq_along(graphs)){
+    expect_is(graphs[[i]], c("gg", "ggplot"))
+  }
+
 })
+
+test_that("Beta Plotting", {
+
+  dp <- DirichletProcessBeta(rbeta(10, 2, 3), 1)
+
+  graphs <- graphTest(dp)
+
+  for(i in seq_along(graphs)){
+    expect_is(graphs[[i]], c("gg", "ggplot"))
+  }
+
+})
+
+test_that("Weibull Plotting", {
+
+  dp <- DirichletProcessWeibull(rweibull(10, 2, 3), c(10, 2, 4))
+
+  graphs <- graphTest(dp)
+
+  for(i in seq_along(graphs)){
+    expect_is(graphs[[i]], c("gg", "ggplot"))
+  }
+
+})
+
+test_that("MvNormal Plotting", {
+  testData <- matrix(c(rnorm(10), rnorm(10)), ncol=2)
+  dp <- DirichletProcessMvnormal(testData)
+
+  graphs <- graphTest(dp)
+
+  for(i in seq_along(graphs)){
+    expect_is(graphs[[i]], c("gg", "ggplot"))
+  }
+
+})
+
+
+
+
+
+
