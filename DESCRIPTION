@@ -10,7 +10,7 @@ Maintainer: Dean Markwick <dean.markwick@talk21.com>
 Description: Perform nonparametric Bayesian analysis using Dirichlet 
     processes without the need to program the inference algorithms. 
     Utilise included pre-built models or specify custom 
-    models and allow the \pkg{dirichletprocess} package to handle the 
+    models and allow the dirichletprocess package to handle the 
     Markov chain Monte Carlo sampling. 
     Our Dirichlet process objects can act as building blocks for a variety 
     of statistical models including and not limited to: density estimation, 
