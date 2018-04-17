@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.R
 \name{plot.dirichletprocess}
 \alias{plot.dirichletprocess}
-\title{Plot the Dirichlet Process}
+\title{Plot the Dirichlet process object}
 \usage{
 \method{plot}{dirichletprocess}(x, likelihood = FALSE, single = TRUE,
   y = NULL, ...)
@@ -18,6 +18,12 @@
 
 \item{...}{Graphical arguments}
 }
+\value{
+A ggplot object
+}
 \description{
-Plot the Dirichlet Process
+For a univariate Dirichlet process plot the density of the data with the
+posterior distribution and credible intervals overlayed. For multivariate data
+the first two columns of the data are plotted with the data points coloured by their
+cluster labels.
 }
