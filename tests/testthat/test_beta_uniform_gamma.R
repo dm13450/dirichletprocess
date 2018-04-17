@@ -101,8 +101,7 @@ test_that("Beta Prior Parameters Update", {
 test_that("Beta Dirichlet Process Create", {
 
   pts <- rbeta(10, 2,2)
-  beta_md_obj <- BetaMixtureCreate(c(2,8), c(1, 1), 1, hyperPriorParameters=c(1, 0.125))
-  beta_dpobj <- DirichletProcessCreate(pts, beta_md_obj, c(2,4))
+  beta_dpobj <- DirichletProcessBeta(pts, 1, verbose = FALSE)
 
   expect_is(beta_dpobj, c("list", "dirichletprocess", "beta", "nonconjugate"))
   expect_equal(beta_dpobj$data, as.matrix(pts))
@@ -129,9 +128,7 @@ test_that("Beta Dirichlet Process Initialise", {
 test_that("Beta Component Update", {
 
   pts <- rbeta(10, 2,2)
-  beta_md_obj <- BetaMixtureCreate(c(2,8), c(1, 1), 1, hyperPriorParameters=c(1, 0.125))
-  beta_dpobj <- DirichletProcessCreate(pts, beta_md_obj, c(2,4))
-  beta_dpobj <- Initialise(beta_dpobj, verbose=FALSE)
+  beta_dpobj <- DirichletProcessBeta(pts, 1, verbose = FALSE)
   beta_dpobj <- ClusterComponentUpdate(beta_dpobj)
 
   expect_length(beta_dpobj$clusterParameters, 2)
@@ -292,7 +289,7 @@ test_that("Beta Penelised Likelihodd", {
   a <- (mu * tau)/maxT
   b <- (1 - mu/maxT) * tau
 
-  pts <- rbeta(10, a, b)
+  pts <- rbeta(100, a, b)
   beta_md_obj <- BetaMixtureCreate(c(2,8), c(1, 1), 1, hyperPriorParameters=c(1, 0.125))
 
   testParams <- PenalisedLikelihood(beta_md_obj, pts)

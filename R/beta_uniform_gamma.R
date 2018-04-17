@@ -98,17 +98,17 @@ MhParameterProposal.beta <- function(mdObj, old_params) {
 
 PenalisedLikelihood.beta <- function(mdObj, x){
 
-  optimStartParams <- PriorDraw(mdObj, 1)
+  optimStartParams <- c(mdObj$maxT/2, 2)
 
-  optimParams <- optim(unlist(optimStartParams), function(params){
+  optimParams <- tryCatch(optim(optimStartParams, function(params){
 
     ll <- sum(log(Likelihood(mdObj, x, VectorToArray(params))))
     ll <- ll + log(PriorDensity(mdObj, VectorToArray(params)))
 
-    if(is.infinite(ll)) ll <- -1e30
+    if (is.infinite(ll)) ll <- -1e30
 
     return(-ll)
-  }, method="L-BFGS-B", lower=c(0,0), upper=c(mdObj$maxT, Inf))
+  }, method="L-BFGS-B", lower=c(0,0), upper=c(mdObj$maxT, Inf)), error = function(e) list(par=optimStartParams))
 
 
   optimParamsRet <- VectorToArray(optimParams$par)
