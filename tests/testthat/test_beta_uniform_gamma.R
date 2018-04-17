@@ -59,10 +59,10 @@ test_that("Beta Posterior Draw", {
 
   post_draws <- PosteriorDraw(test_mdobj, x=matrix(rbeta(10, 1,1),ncol=1), n=10)
 
-  expect_is(PosteriorDraw(md=test_mdobj, x=rbeta(10, 1,1), n=10), "list")
-  expect_equal(length(PosteriorDraw(test_mdobj, rbeta(10, 1,1), 10)), 2)
-  expect_equal(dim(PosteriorDraw(test_mdobj, rbeta(10, 1,1), 10)[[1]]), c(1,1,10))
-  expect_equal(dim(PosteriorDraw(test_mdobj, rbeta(10, 1,1), 10)[[2]]), c(1,1,10))
+  expect_is(post_draws, "list")
+  expect_length(post_draws, 2)
+  expect_equal(dim(post_draws[[1]]), c(1,1,10))
+  expect_equal(dim(post_draws[[2]]), c(1,1,10))
 
 })
 

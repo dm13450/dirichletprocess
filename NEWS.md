@@ -1,14 +1,12 @@
-# dirichletprocess 0.2.0.9000
+# dirichletprocess 0.2.1
 
-* Added Travis-CI and codecov badges.
-* Added Travis-CI devel, oldrel testing. 
-* Added Appveyor. 
+* Added AppVeyor, Travis-CI and codecov.io badges.
 * Added penalised log-likelihood step for posterior cluster parameter inference.
-* Added exponential mixture model. 
-* Added Gordon Ross as a Creator. 
-* NA in Cluster Label bug fix.
+* Added exponential mixture model `DirichletProcessExponential`. 
+* Updated `plot`. Multivariate Gaussian models can now be plotted.
+* Various bug fixes.
 * Updated description.
-* Reworked plotting 
+ 
 
 # dirichletprocess 0.2.0
 
