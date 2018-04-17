@@ -256,27 +256,31 @@ test_that("Beta Cluster Label Change B", {
   expect_length(beta_dpobj$clusterParameters[[2]], 1)
 })
 
-test_that("Beta Posterior Clusters", {
+test_that("Beta DP Posterior Clusters", {
 
   pts <- rbeta(10, 2,2)
-  beta_md_obj <- BetaMixtureCreate(c(2,8), c(1, 1), 1, hyperPriorParameters=c(1, 0.125))
-  beta_dpobj <- DirichletProcessCreate(pts, beta_md_obj, c(2,4))
-  beta_dpobj <- Initialise(beta_dpobj, verbose=FALSE)
+  beta_dpobj <- DirichletProcessBeta(pts, 1)
   beta_dpobj <- Fit(beta_dpobj, 5, FALSE, FALSE)
 
-  pst_cl_test <- PosteriorClusters(beta_dpobj)
+  post_cl_test <- PosteriorClusters(beta_dpobj)
+
+  expect_is(post_cl_test, "list")
+  expect_is(post_cl_test[[1]], "numeric")
+
+  expect_length(post_cl_test, 2)
+  expect_length(post_cl_test[[2]], 2)
 
 })
 
-test_that("Beta Posterior Function", {
+test_that("Beta DP Posterior Function", {
 
   pts <- rbeta(10, 2,2)
-  beta_md_obj <- BetaMixtureCreate(c(2,8), c(1, 1), 1, hyperPriorParameters=c(1, 0.125))
-  beta_dpobj <- DirichletProcessCreate(pts, beta_md_obj, c(2,4))
-  beta_dpobj <- Initialise(beta_dpobj, verbose=FALSE)
+  beta_dpobj <- DirichletProcessBeta(pts, 1)
   beta_dpobj <- Fit(beta_dpobj, 5, FALSE, FALSE)
 
   post_func <- PosteriorFunction(beta_dpobj)
+
+  expect_is(post_func, "function")
 
 })
 
