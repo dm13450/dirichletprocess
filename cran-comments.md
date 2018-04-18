@@ -1,6 +1,13 @@
 -dirichletprocess 0.2.1
 -----------------------
 
+## Resubmission
+
+This is a resubmission. In this version I have:
+
+* Fixed a failing test.
+
+
 This is a minor update to the previous submission. 
 
 ## Changes
