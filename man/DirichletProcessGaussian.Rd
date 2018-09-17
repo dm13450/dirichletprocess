@@ -4,7 +4,8 @@
 \alias{DirichletProcessGaussian}
 \title{Create a Dirichlet Mixture of Gaussians}
 \usage{
-DirichletProcessGaussian(y, g0Priors = c(0, 1, 1, 1), alphaPriors = c(2, 4))
+DirichletProcessGaussian(y, g0Priors = c(0, 1, 1, 1),
+  alphaPriors = c(2, 4))
 }
 \arguments{
 \item{y}{Data}

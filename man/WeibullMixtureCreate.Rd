@@ -4,8 +4,8 @@
 \alias{WeibullMixtureCreate}
 \title{Create a Weibull mixing distribution.}
 \usage{
-WeibullMixtureCreate(priorParameters, mhStepSize, hyperPriorParameters = c(6,
-  2, 1, 0.5))
+WeibullMixtureCreate(priorParameters, mhStepSize,
+  hyperPriorParameters = c(6, 2, 1, 0.5))
 }
 \arguments{
 \item{priorParameters}{Prior parameters for the Weibull parameters}

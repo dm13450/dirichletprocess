@@ -4,8 +4,8 @@
 \alias{HierarchicalBetaCreate}
 \title{Create a Mixing Object for a hierarchical Beta Dirichlet process object.}
 \usage{
-HierarchicalBetaCreate(n, priorParameters, hyperPriorParameters, alphaPrior,
-  maxT, gammaPrior, mhStepSize, num_sticks)
+HierarchicalBetaCreate(n, priorParameters, hyperPriorParameters,
+  alphaPrior, maxT, gammaPrior, mhStepSize, num_sticks)
 }
 \arguments{
 \item{n}{Number of data sets}

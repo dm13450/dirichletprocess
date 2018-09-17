@@ -4,8 +4,8 @@
 \alias{DirichletProcessHierarchicalBeta}
 \title{Create a Hierarchical Dirichlet Mixture of Beta Distributions}
 \usage{
-DirichletProcessHierarchicalBeta(dataList, maxY, priorParameters = c(2, 8),
-  hyperPriorParameters = c(1, 0.125), gammaPriors = c(2, 4),
+DirichletProcessHierarchicalBeta(dataList, maxY, priorParameters = c(2,
+  8), hyperPriorParameters = c(1, 0.125), gammaPriors = c(2, 4),
   alphaPriors = c(2, 4), mhStepSize = c(0.1, 0.1), numSticks = 50)
 }
 \arguments{
