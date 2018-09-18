@@ -1,7 +1,7 @@
 Package: dirichletprocess
 Type: Package
 Title: Build Dirichlet Process Objects for Bayesian Modelling
-Version: 0.2.1
+Version: 0.2.1.900
 Authors@R: c(
             person("Gordon", "J. Ross", email="gordon@gordonjross.co.uk", role=c("aut")),
             person("Dean", "Markwick", email="dean.markwick@talk21.com", role=c("aut", "cre"))
@@ -10,7 +10,7 @@ Maintainer: Dean Markwick <dean.markwick@talk21.com>
 Description: Perform nonparametric Bayesian analysis using Dirichlet 
     processes without the need to program the inference algorithms. 
     Utilise included pre-built models or specify custom 
-    models and allow the dirichletprocess package to handle the 
+    models and allow the 'dirichletprocess' package to handle the 
     Markov chain Monte Carlo sampling. 
     Our Dirichlet process objects can act as building blocks for a variety 
     of statistical models including and not limited to: density estimation, 

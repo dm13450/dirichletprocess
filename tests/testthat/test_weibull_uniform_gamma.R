@@ -11,13 +11,13 @@ test_that("Weibull Creation", {
 test_that("Weibull Likelihood", {
 
   weibull_test_params_1 <- list(array(1, dim=c(1,1,1)), array(1, dim=c(1,1,1)))
-
-  expect_equal(Likelihood(test_mdobj, 0,weibull_test_params_1), dweibull(0, 1, 1))
+  expect_equal(Likelihood(test_mdobj, 0, weibull_test_params_1), dweibull(0, 1, 1))
 
   weibull_test_params_2 <- list(array(c(1,2), dim=c(1,1,2)), array(c(1,2), dim=c(1,1,2)))
-
   expect_equal(Likelihood(test_mdobj, 0, weibull_test_params_2), dweibull(0, c(1,2), c(1,2)))
 
+  expect_equal(Likelihood(test_mdobj, c(0, 0), weibull_test_params_2),
+               dweibull(c(0,0), c(1,2), c(1,2)))
 })
 
 test_that("Weibull Likelihood: Negative x", {
@@ -69,20 +69,19 @@ test_that("Prior Parameter Update", {
 
 test_that("Cluster Parameter Update", {
 
-  # test_data <- c(rlnorm(100, 0.4,0.25), rlnorm(100, 1.4, 0.6))
-  #
-  # dpobj <- dirichlet_process_weibull(test_data, c(10, 2, 0.01), mh_step_size=c(0.1, 0.1))
-  # dpobj <- ClusterComponentUpdate(dpobj)
-  #
-  # dpobj <- ClusterParameterUpdate(dpobj)
+  test_data <- c(rlnorm(100, 0.4,0.25), rlnorm(100, 1.4, 0.6))
 
+  dpobj <- DirichletProcessWeibull(test_data, c(10, 2, 0.01))
+  dpobj <- ClusterComponentUpdate(dpobj)
+  dpobj <- ClusterParameterUpdate(dpobj)
+
+  expect_is(dpobj, c("list", "dirichletprocess", "weibull", "nonconjugate"))
 
 })
 
 test_that("Parameter Proposal", {
 
   old_param <- PriorDraw(test_mdobj, 1)
-
   new_param <- MhParameterProposal(test_mdobj, old_param)
 })
 

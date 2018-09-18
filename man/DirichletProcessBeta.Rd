@@ -5,7 +5,8 @@
 \title{Dirichlet process mixture of the Beta distribution.}
 \usage{
 DirichletProcessBeta(y, maxY, g0Priors = c(2, 8), alphaPrior = c(2, 4),
-  mhStep = c(1, 1), hyperPriorParameters = c(1, 0.125), verbose = TRUE)
+  mhStep = c(1, 1), hyperPriorParameters = c(1, 0.125), verbose = TRUE,
+  mhDraws = 250)
 }
 \arguments{
 \item{y}{Data for which to be modelled.}
@@ -21,6 +22,8 @@ DirichletProcessBeta(y, maxY, g0Priors = c(2, 8), alphaPrior = c(2, 4),
 \item{hyperPriorParameters}{Hyper-prior parameters for the prior distributions of the base measure parameters \eqn{(a, b)}.}
 
 \item{verbose}{Logical, control the level of on screen output.}
+
+\item{mhDraws}{Number of Metropolis-Hastings samples to perform for each cluster update.}
 }
 \value{
 Dirichlet process object

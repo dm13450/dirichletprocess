@@ -6,11 +6,14 @@
 #' @param ... For a non-conjugate distribution the starting parameters. Defaults to a draw from the prior distribution.
 #' @return A sample from the posterior distribution
 #' @export
-PosteriorDraw <- function(mdObj, x, n = 1, ...) UseMethod("PosteriorDraw", mdObj)
+PosteriorDraw <- function(mdObj, x, n = 1, ...){
+  UseMethod("PosteriorDraw", mdObj)
+}
 
 PosteriorDraw.nonconjugate <- function(mdObj, x, n = 1, start_pos, ...) {
 
   if (missing(start_pos)) {
+    ### This might need a try catch for models that don't have a penalised likelihood.
     start_pos <- PenalisedLikelihood(mdObj, x)
   }
 

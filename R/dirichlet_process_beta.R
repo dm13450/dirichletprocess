@@ -13,14 +13,15 @@
 #' @param mhStep Step size for Metropolis Hastings sampling algorithm.
 #' @param hyperPriorParameters Hyper-prior parameters for the prior distributions of the base measure parameters \eqn{(a, b)}.
 #' @param verbose Logical, control the level of on screen output.
+#' @param mhDraws Number of Metropolis-Hastings samples to perform for each cluster update.
 #' @return Dirichlet process object
 #' @export
 DirichletProcessBeta <- function(y, maxY, g0Priors = c(2, 8), alphaPrior = c(2, 4),
-  mhStep = c(1, 1), hyperPriorParameters = c(1, 0.125), verbose=TRUE) {
+  mhStep = c(1, 1), hyperPriorParameters = c(1, 0.125), verbose=TRUE, mhDraws=250) {
 
   mdObj <- BetaMixtureCreate(priorParameters = g0Priors, mhStepSize = mhStep, maxT = maxY,
     hyperPriorParameters)
-  dpObj <- DirichletProcessCreate(y, mdObj, alphaPrior)
+  dpObj <- DirichletProcessCreate(y, mdObj, alphaPrior, mhDraws)
   dpObj <- Initialise(dpObj, verbose=verbose)
   return(dpObj)
 }

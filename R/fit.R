@@ -23,6 +23,7 @@ Fit.default <- function(dpObj, its, updatePrior = FALSE, progressBar=TRUE) {
   }
 
   alphaChain <- numeric(its)
+  likelihoodChain <- numeric(its)
   weightsChain <- vector("list", length = its)
   clusterParametersChain <- vector("list", length = its)
   priorParametersChain <- vector("list", length = its)
@@ -35,6 +36,9 @@ Fit.default <- function(dpObj, its, updatePrior = FALSE, progressBar=TRUE) {
     clusterParametersChain[[i]] <- dpObj$clusterParameters
     priorParametersChain[[i]] <- dpObj$mixingDistribution$priorParameters
     labelsChain[[i]] <- dpObj$clusterLabels
+
+
+    likelihoodChain[i] <- sum(log(LikelihoodDP(dpObj)))
 
     dpObj <- ClusterComponentUpdate(dpObj)
     dpObj <- ClusterParameterUpdate(dpObj)
@@ -51,6 +55,7 @@ Fit.default <- function(dpObj, its, updatePrior = FALSE, progressBar=TRUE) {
 
   dpObj$weights <- dpObj$pointsPerCluster / dpObj$n
   dpObj$alphaChain <- alphaChain
+  dpObj$likelihoodChain <- likelihoodChain
   dpObj$weightsChain <- weightsChain
   dpObj$clusterParametersChain <- clusterParametersChain
   dpObj$priorParametersChain <- priorParametersChain
