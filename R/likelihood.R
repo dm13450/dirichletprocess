@@ -2,6 +2,7 @@
 #'
 #' Calculate the likelihood of each data point with its parameter.
 #'
+#' @param dpobj The dirichletprocess object on which to calculate the likelihood.
 #'
 #' @export
 LikelihoodDP <- function(dpobj){

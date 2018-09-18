@@ -6,6 +6,9 @@
 \usage{
 LikelihoodDP(dpobj)
 }
+\arguments{
+\item{dpobj}{The dirichletprocess object on which to calculate the likelihood.}
+}
 \description{
 Calculate the likelihood of each data point with its parameter.
 }
