@@ -12,9 +12,9 @@
 #' @param ... Graphical arguments
 #' @return A ggplot object
 #' @export
-plot.dirichletprocess <- function(x, likelihood = FALSE, single = TRUE, y=NULL,...) {
+plot.dirichletprocess <- function(x, ...) {
 
-  plot_dirichletprocess(x, likelihood, single)
+  plot_dirichletprocess(x, ...)
 
 }
 

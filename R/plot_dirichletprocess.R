@@ -1,4 +1,4 @@
-plot_dirichletprocess <- function(dpobj, likelihood = FALSE, single = TRUE) {
+plot_dirichletprocess <- function(dpobj, ...) {
   mdobj <- dpobj$mixingDistribution
   UseMethod("plot_dirichletprocess", mdobj)
 }
