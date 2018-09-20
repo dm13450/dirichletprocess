@@ -29,15 +29,17 @@ plot_dirichletprocess.mvnormal <- function(dpobj, ...) {
   plot_dirichletprocess_multivariate(dpobj)
 }
 
-plot_dirichletprocess_univariate <- function(dpobj, likelihood = FALSE, single = TRUE) {
+plot_dirichletprocess_univariate <- function(dpobj,
+                                             likelihood = FALSE, single = TRUE,
+                                             n_pts = 100) {
 
   graph <- ggplot2::ggplot(data.frame(dt = dpobj$data), ggplot2::aes_(x = ~dt)) +
     ggplot2::geom_density(fill = "black") +
     ggplot2::theme(axis.title = ggplot2::element_blank())
 
-  x_grid <- pretty(dpobj$data, n=100)
+  x_grid <- pretty(dpobj$data, n = 100)
 
-  if (single){
+  if (single) {
     posteriorFit <- replicate(100, PosteriorFunction(dpobj)(x_grid))
   } else {
     its <- length(dpobj$alphaChain)
@@ -54,8 +56,7 @@ plot_dirichletprocess_univariate <- function(dpobj, likelihood = FALSE, single =
   if (likelihood) {
     graph <- graph + ggplot2::stat_function(fun = function(z) LikelihoodFunction(dpobj)(z),
                                             n = 1000, ggplot2::aes(colour = "Likelihood"))
-  }
-  else {
+  } else {
     graph <- graph + ggplot2::guides(colour=FALSE)
   }
 
