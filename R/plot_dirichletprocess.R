@@ -62,7 +62,7 @@ plot_dirichletprocess_univariate <- function(dpobj, likelihood = FALSE, single =
   return(graph)
 }
 
-plot_dirichletprocess_multivariate <- function(dpobj, likelihood = FALSE, single = TRUE) {
+plot_dirichletprocess_multivariate <- function(dpobj) {
 
   plotFrame <- data.frame(x1=dpobj$data[,1], x2=dpobj$data[,2], Cluster=as.factor(dpobj$clusterLabel))
 

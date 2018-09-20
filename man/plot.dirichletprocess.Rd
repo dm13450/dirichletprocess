@@ -4,19 +4,18 @@
 \alias{plot.dirichletprocess}
 \title{Plot the Dirichlet process object}
 \usage{
-\method{plot}{dirichletprocess}(x, likelihood = FALSE, single = TRUE,
-  y = NULL, ...)
+\method{plot}{dirichletprocess}(x, ...)
 }
 \arguments{
 \item{x}{Dirichlet Process Object to plot}
+
+\item{...}{Graphical arguments}
 
 \item{likelihood}{Logical, indicating whether to plot the likelihood from the dpobj.}
 
 \item{single}{Logical, indicating whether to draw the posterior from the last iteration or use the full cluster sequence.}
 
 \item{y}{Consistency for generic.}
-
-\item{...}{Graphical arguments}
 }
 \value{
 A ggplot object
