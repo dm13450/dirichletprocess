@@ -25,8 +25,8 @@ plot_dirichletprocess.weibull <- function(dpobj, likelihood = FALSE, single = TR
   plot_dirichletprocess_univariate(dpobj, likelihood = FALSE, single = TRUE)
 }
 
-plot_dirichletprocess.mvnormal <- function(dpobj, likelihood = FALSE, single = TRUE) {
-  plot_dirichletprocess_multivariate(dpobj, likelihood = FALSE, single = TRUE)
+plot_dirichletprocess.mvnormal <- function(dpobj, ...) {
+  plot_dirichletprocess_multivariate(dpobj)
 }
 
 plot_dirichletprocess_univariate <- function(dpobj, likelihood = FALSE, single = TRUE) {
