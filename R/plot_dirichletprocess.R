@@ -30,34 +30,36 @@ plot_dirichletprocess.mvnormal <- function(dpobj, ...) {
 }
 
 plot_dirichletprocess_univariate <- function(dpobj,
-                                             likelihood = FALSE, single = TRUE,                                             n_pts = 100,
+                                             likelihood  = FALSE,
+                                             single      = TRUE,                                             n_pts = 100,
                                              data_fill   = "black",
                                              data_method = "density",
-                                             bw = NULL) {
+                                             data_bw     = NULL,
+                                             xgrid_pts   = 100,
+                                             quant_pts   = 100) {
 
   graph <- ggplot2::ggplot(data.frame(dt = dpobj$data), ggplot2::aes_(x = ~dt)) +
     ggplot2::theme(axis.title = ggplot2::element_blank())
 
   if (data_method == "density") {
     graph <- graph + ggplot2::geom_density(fill = data_fill,
-                                           bw = ifelse(is.null(bw), "nrd0", bw))
+                                           bw = ifelse(is.null(data_bw), "nrd0", data_bw))
   } else if (data_method == "hist" | data_method == "histogram") {
     graph <- graph + ggplot2::geom_histogram(ggplot2::aes_(x = ~dt,
                                                            y = ~..density..),
                                              fill = data_fill,
-                                             binwidth = bw)
+                                             binwidth = data_bw)
   } else if (data_method != "none") {
     stop("Unknown `data_method`.")
   }
 
-
-  x_grid <- pretty(dpobj$data, n = 100)
+  x_grid <- pretty(dpobj$data, n = xgrid_pts)
 
   if (single) {
-    posteriorFit <- replicate(100, PosteriorFunction(dpobj)(x_grid))
+    posteriorFit <- replicate(quant_pts, PosteriorFunction(dpobj)(x_grid))
   } else {
     its <- length(dpobj$alphaChain)
-    inds <- round(seq(its/2, 2, length.out = 100))
+    inds <- round(seq(its/2, 2, length.out = quant_pts))
     posteriorFit <- sapply(inds, function(i) PosteriorFunction(dpobj, i)(x_grid))
   }
 
@@ -69,7 +71,7 @@ plot_dirichletprocess_univariate <- function(dpobj,
 
   if (likelihood) {
     graph <- graph + ggplot2::stat_function(fun = function(z) LikelihoodFunction(dpobj)(z),
-                                            n = 1000, ggplot2::aes(colour = "Likelihood"))
+                                            n = xgrid_pts * 10, ggplot2::aes(colour = "Likelihood"))
   } else {
     graph <- graph + ggplot2::guides(colour=FALSE)
   }

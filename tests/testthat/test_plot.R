@@ -83,9 +83,19 @@ test_that("Plotting options", {
   plot(dp)
 
   plot(dp, data_fill = "grey")
-  plot(dp, data_fill = "grey", bw = 100)
+  plot(dp, data_fill = "grey", data_bw = .1)
   plot(dp, data_fill = "grey", data_method = "hist", bw = .2)
 
-  plot(dp, data_fill = "grey", data_method = "hist")
+  plot(dp, data_fill = "grey", data_method = "hist", likelihood = FALSE)
+  plot(dp, data_fill = "grey", data_method = "hist", likelihood = TRUE)
+
+  plot(dp, data_fill = "grey", data_method = "hist", single = FALSE)
+  plot(dp, data_fill = "grey", data_method = "hist", single = FALSE, likelihood = TRUE)
+  plot(dp, data_fill = "grey", data_method = "hist", single = TRUE)
+
+
+  plot(dp, x_pts = 4, data_fill = "grey80", single = TRUE)
+  plot(dp, x_pts = 1000, data_bw = .2, data_fill = "grey80", single = TRUE)
+
 })
 
