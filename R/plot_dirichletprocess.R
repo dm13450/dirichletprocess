@@ -40,7 +40,7 @@ plot_dirichletprocess_univariate <- function(dpobj,
 
   if (data_method == "density") {
     graph <- graph + ggplot2::geom_density(fill = data_fill,
-                                           bw = "nrd0")
+                                           bw = ifelse(is.null(bw), "nrd0", bw))
   } else if (data_method == "hist" | data_method == "histogram") {
     graph <- graph + ggplot2::geom_histogram(ggplot2::aes_(x = ~dt,
                                                            y = ~..density..),
