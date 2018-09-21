@@ -30,12 +30,26 @@ plot_dirichletprocess.mvnormal <- function(dpobj, ...) {
 }
 
 plot_dirichletprocess_univariate <- function(dpobj,
-                                             likelihood = FALSE, single = TRUE,
-                                             n_pts = 100) {
+                                             likelihood = FALSE, single = TRUE,                                             n_pts = 100,
+                                             data_fill   = "black",
+                                             data_method = "density",
+                                             bw = NULL) {
 
   graph <- ggplot2::ggplot(data.frame(dt = dpobj$data), ggplot2::aes_(x = ~dt)) +
-    ggplot2::geom_density(fill = "black") +
     ggplot2::theme(axis.title = ggplot2::element_blank())
+
+  if (data_method == "density") {
+    graph <- graph + ggplot2::geom_density(fill = data_fill,
+                                           bw = "nrd0")
+  } else if (data_method == "hist" | data_method == "histogram") {
+    graph <- graph + ggplot2::geom_histogram(ggplot2::aes_(x = ~dt,
+                                                           y = ~..density..),
+                                             fill = data_fill,
+                                             binwidth = bw)
+  } else if (data_method != "none") {
+    stop("Unknown `data_method`.")
+  }
+
 
   x_grid <- pretty(dpobj$data, n = 100)
 

@@ -74,3 +74,15 @@ test_that("MvNormal Plotting", {
 
 
 
+test_that("Plotting options", {
+
+  dp <- DirichletProcessGaussian(rnorm(10))
+  dp <- Fit(dp, 10)
+
+  # No options
+  plot(dp)
+
+  plot(dp, data_fill = "grey")
+
+})
+
