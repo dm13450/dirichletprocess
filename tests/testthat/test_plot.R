@@ -77,14 +77,14 @@ test_that("MvNormal Plotting", {
 test_that("Plotting options", {
 
   dp <- DirichletProcessGaussian(c(rnorm(500, 2, .2), rnorm(1000)))
-  dp <- Fit(dp, 100)
+  dp <- Fit(dp, 1000)
 
   # No options
   plot(dp)
 
   plot(dp, data_fill = "grey")
   plot(dp, data_fill = "grey", data_bw = .1)
-  plot(dp, data_fill = "grey", data_method = "hist", bw = .2)
+  plot(dp, data_fill = "grey", data_method = "hist", data_bw = .2)
 
   plot(dp, data_fill = "grey", data_method = "hist", likelihood = FALSE)
   plot(dp, data_fill = "grey", data_method = "hist", likelihood = TRUE)
@@ -94,8 +94,12 @@ test_that("Plotting options", {
   plot(dp, data_fill = "grey", data_method = "hist", single = TRUE)
 
 
-  plot(dp, x_pts = 4, data_fill = "grey80", single = TRUE)
-  plot(dp, x_pts = 1000, data_bw = .2, data_fill = "grey80", single = TRUE)
+  plot(dp, xgrid_pts = 4, data_fill = "grey80")
+  plot(dp, xgrid_pts = 1000, data_bw = .2, data_fill = "grey80")
+
+  plot(dp, quant_pts = 4, data_fill = "grey80")
+  plot(dp, quant_pts = 1000, data_bw = .2, data_fill = "grey80")
+
 
 })
 
