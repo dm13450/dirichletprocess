@@ -3,12 +3,12 @@ plot_dirichletprocess <- function(dpobj, ...) {
   UseMethod("plot_dirichletprocess", mdobj)
 }
 
-plot_dirichletprocess.default <- function(dpobj, likelihood = FALSE, single = TRUE){
+plot_dirichletprocess.default <- function(dpobj, ...){
 
   if(ncol(dpobj$data) == 1){
-    return(plot_dirichletprocess_univariate(dpobj, likelihood = FALSE, single = TRUE))
+    return(plot_dirichletprocess_univariate(dpobj, ...))
   } else {
-    return(plot_dirichletprocess_multivariate(dpobj))
+    return(plot_dirichletprocess_multivariate(dpobj, ...))
   }
 
 }
