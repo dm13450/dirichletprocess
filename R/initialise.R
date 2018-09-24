@@ -24,6 +24,7 @@ Initialise.conjugate <- function(dpObj, posterior = TRUE, m=NULL, verbose=NULL) 
   } else {
     dpObj$clusterParameters <- PriorDraw(dpObj$mixingDistribution, 1)
   }
+
   dpObj <- InitialisePredictive(dpObj)
 
   return(dpObj)

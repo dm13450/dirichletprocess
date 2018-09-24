@@ -24,6 +24,8 @@ DirichletProcessHierarchicalBeta(dataList, maxY, priorParameters = c(2,
 \item{mhStepSize}{Metropolis Hastings jump size.}
 
 \item{numSticks}{Truncation level for the Stick Breaking formulation.}
+
+\item{mhDraws}{Number of Metropolis-Hastings samples to perform for each cluster update.}
 }
 \value{
 dpobjlist A Hierarchical Dirichlet Process object that can be fitted, plotted etc.

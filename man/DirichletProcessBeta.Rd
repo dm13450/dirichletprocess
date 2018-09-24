@@ -22,6 +22,8 @@ DirichletProcessBeta(y, maxY, g0Priors = c(2, 8), alphaPrior = c(2, 4),
 \item{hyperPriorParameters}{Hyper-prior parameters for the prior distributions of the base measure parameters \eqn{(a, b)}.}
 
 \item{verbose}{Logical, control the level of on screen output.}
+
+\item{mhDraws}{Number of Metropolis-Hastings samples to perform for each cluster update.}
 }
 \value{
 Dirichlet process object

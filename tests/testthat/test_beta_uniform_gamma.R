@@ -305,4 +305,16 @@ test_that("Beta Penelised Likelihodd", {
 
 })
 
+test_that("Dirichlet Process Likelihood", {
+
+  pts <- rbeta(10, 2,2)
+  beta_dpobj <- DirichletProcessBeta(pts, 1, verbose = FALSE)
+  beta_dpobj <- Fit(beta_dpobj, 5, FALSE, FALSE)
+
+  lik <- LikelihoodDP(beta_dpobj)
+
+
+})
+
+
 

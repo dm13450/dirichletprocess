@@ -6,7 +6,7 @@
 \usage{
 DirichletProcessWeibull(y, g0Priors, alphaPriors = c(2, 4),
   mhStepSize = c(1, 1), hyperPriorParameters = c(6, 2, 1, 0.5),
-  verbose = FALSE)
+  verbose = FALSE, mhDraws = 250)
 }
 \arguments{
 \item{y}{Data.}
@@ -20,6 +20,8 @@ DirichletProcessWeibull(y, g0Priors, alphaPriors = c(2, 4),
 \item{hyperPriorParameters}{Hyper prior parameters.}
 
 \item{verbose}{Set the level of screen output.}
+
+\item{mhDraws}{Number of Metropolis-Hastings samples to perform for each cluster update.}
 }
 \value{
 Dirichlet process object
