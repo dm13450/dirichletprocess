@@ -1,3 +1,4 @@
+
 plot_dirichletprocess <- function(dpobj, ...) {
   mdobj <- dpobj$mixingDistribution
   UseMethod("plot_dirichletprocess", mdobj)
@@ -5,7 +6,7 @@ plot_dirichletprocess <- function(dpobj, ...) {
 
 plot_dirichletprocess.default <- function(dpobj, ...){
 
-  if(ncol(dpobj$data) == 1){
+  if (ncol(dpobj$data) == 1){
     return(plot_dirichletprocess_univariate(dpobj, ...))
   } else {
     return(plot_dirichletprocess_multivariate(dpobj, ...))
@@ -29,6 +30,8 @@ plot_dirichletprocess.mvnormal <- function(dpobj, ...) {
   plot_dirichletprocess_multivariate(dpobj)
 }
 
+#' @export
+#' @rdname plot.dirichletprocess
 plot_dirichletprocess_univariate <- function(dpobj,
                                              likelihood  = FALSE,
                                              single      = TRUE,
@@ -82,6 +85,8 @@ plot_dirichletprocess_univariate <- function(dpobj,
   return(graph)
 }
 
+#' @export
+#' @rdname plot.dirichletprocess
 plot_dirichletprocess_multivariate <- function(dpobj) {
 
   plotFrame <- data.frame(x1=dpobj$data[,1], x2=dpobj$data[,2], Cluster=as.factor(dpobj$clusterLabel))
