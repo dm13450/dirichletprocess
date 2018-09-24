@@ -4,7 +4,8 @@
 \alias{DirichletProcessCreate}
 \title{Create a Dirichlet Process object}
 \usage{
-DirichletProcessCreate(x, mdObject, alphaPriorParameters = c(1, 1))
+DirichletProcessCreate(x, mdObject, alphaPriorParameters = c(1, 1),
+  mhDraws = 250)
 }
 \arguments{
 \item{x}{Data}
@@ -12,6 +13,8 @@ DirichletProcessCreate(x, mdObject, alphaPriorParameters = c(1, 1))
 \item{mdObject}{Mixing Distribution Object}
 
 \item{alphaPriorParameters}{Prior parameters for the concentration parameter of the Dirichlet Process}
+
+\item{mhDraws}{Number of posterior samples to take in the nonconjugate case}
 }
 \description{
 Using a  previously created Mixing Distribution Object (\code{mdObject}) create a Dirichlet process object.

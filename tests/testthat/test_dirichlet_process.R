@@ -76,6 +76,18 @@ test_that("Dirichlet Nonconjugate Procees Fit Prior Parameter Update", {
 
 })
 
+test_that("Dirichlet Process Vary mhDraws", {
+
+  num_test_points = 10
+  data_test = rweibull(num_test_points, 1,1)
+  priorParameters_test = matrix(c(1,1,1), ncol=3)
+
+  dpobj <- DirichletProcessWeibull(data_test, priorParameters_test, verbose = FALSE, mhDraws = 300)
+
+  expect_equal(dpobj$mhDraws, 300)
+
+
+})
 
 
 

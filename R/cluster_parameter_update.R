@@ -47,6 +47,7 @@ ClusterParameterUpdate.nonconjugate <- function(dpObj) {
   clusterParams <- dpObj$clusterParameters
 
   mdobj <- dpObj$mixingDistribution
+  mhDraws <- dpObj$mhDraws
 
   accept_ratio <- numeric(numLabels)
 
@@ -59,14 +60,14 @@ ClusterParameterUpdate.nonconjugate <- function(dpObj) {
       start_pos[[j]] <- clusterParams[[j]][, , i, drop = FALSE]
     }
 
-    parameter_samples <- PosteriorDraw(mdobj, pts, 250, start_pos = start_pos)
+    parameter_samples <- PosteriorDraw(mdobj, pts, mhDraws, start_pos = start_pos)
 
     for (j in seq_along(clusterParams)) {
-      clusterParams[[j]][, , i] <- parameter_samples[[j]][, , 250]
+      clusterParams[[j]][, , i] <- parameter_samples[[j]][, , mhDraws]
     }
 
 
-    accept_ratio[i] <- length(unique(parameter_samples[[1]]))/250
+    accept_ratio[i] <- length(unique(parameter_samples[[1]]))/mhDraws
   }
   dpObj$clusterParameters <- clusterParams
   return(dpObj)
