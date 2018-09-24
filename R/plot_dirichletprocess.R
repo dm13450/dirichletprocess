@@ -58,7 +58,7 @@ plot_dirichletprocess_univariate <- function(dpobj,
     stop("Unknown `data_method`.")
   }
 
-  if (is.na(xlim)) {
+  if (is.na(xlim[1])) {
     x_grid <- pretty(dpobj$data, n = xgrid_pts)
   } else {
     x_grid <- seq(xlim[1], xlim[2], length.out = xgrid_pts)
