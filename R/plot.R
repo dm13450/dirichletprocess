@@ -21,13 +21,17 @@
 #' @param xgrid_pts Integer, the number of points on the x-axis to evaluate.
 #' @param quant_pts Integer, the number of posterior functions to use to obtain
 #'   the posterior and its interval.
-#' @param ... Further arguments.
+#' @param ... Further arguments, currently ignored.
 #' @return A ggplot object.
 #' @export
 #'
 #' @examples
-#' dp <- DirichletProcessGaussian(c(rnorm(50, 2, .2), rnorm(60))) dp <-
-#' Fit(dp, 100) plot(dp)
+#' dp <- DirichletProcessGaussian(c(rnorm(50, 2, .2), rnorm(60)))
+#' dp <- Fit(dp, 100)
+#' plot(dp)
+#'
+#' plot(dp, likelihood = TRUE, data_method = "hist",
+#'      data_fill = rgb(.5, .5, .8, .6), data_bw = .3)
 #'
 plot.dirichletprocess <- function(x, ...) {
 

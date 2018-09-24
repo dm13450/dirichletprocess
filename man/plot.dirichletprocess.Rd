@@ -17,7 +17,7 @@ plot_dirichletprocess_multivariate(dpobj)
 \arguments{
 \item{x}{Dirichlet Process Object to plot}
 
-\item{...}{Further arguments.}
+\item{...}{Further arguments, currently ignored.}
 
 \item{likelihood}{Logical, indicating whether to plot the likelihood from the
 dpobj.}
@@ -52,7 +52,11 @@ coloured by their cluster labels. The additional arguments are not used for
 multivariate data.
 }
 \examples{
-dp <- DirichletProcessGaussian(c(rnorm(50, 2, .2), rnorm(60))) dp <-
-Fit(dp, 100) plot(dp)
+dp <- DirichletProcessGaussian(c(rnorm(50, 2, .2), rnorm(60)))
+dp <- Fit(dp, 100)
+plot(dp)
+
+plot(dp, likelihood = TRUE, data_method = "hist",
+     data_fill = rgb(.5, .5, .8, .6), data_bw = .3)
 
 }
