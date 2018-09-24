@@ -40,7 +40,8 @@ plot_dirichletprocess_univariate <- function(dpobj,
                                              data_bw     = NULL,
                                              ci_size     = .05,
                                              xgrid_pts   = 100,
-                                             quant_pts   = 100) {
+                                             quant_pts   = 100,
+                                             xlim        = NA) {
 
   graph <- ggplot2::ggplot(data.frame(dt = dpobj$data), ggplot2::aes_(x = ~dt)) +
     ggplot2::theme(axis.title = ggplot2::element_blank())
@@ -57,7 +58,11 @@ plot_dirichletprocess_univariate <- function(dpobj,
     stop("Unknown `data_method`.")
   }
 
-  x_grid <- pretty(dpobj$data, n = xgrid_pts)
+  if (is.na(xlim)) {
+    x_grid <- pretty(dpobj$data, n = xgrid_pts)
+  } else {
+    x_grid <- seq(xlim[1], xlim[2], length.out = xgrid_pts)
+  }
 
   if (single) {
     posteriorFit <- replicate(quant_pts, PosteriorFunction(dpobj)(x_grid))
