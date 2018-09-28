@@ -126,6 +126,7 @@ The ultimate purpose of this package is to represent Dirichlet process mixture m
 \item Ease-of-use. A key feature of this package is that users can themselves specify new DP mixture types if the package does not implement the precise specification they desire.  The object systems S4 and RC are geared towards intermediary/advanced \proglang{R} programmers and can be intimidating to novices. The design philosophy of this package allows  users to override the behaviour of DP objects and create new mixture types without needing to learn the intricacies of any particular object system.  The chosen representation where DP objects are simple S3 structures does not require the user to learn anything about the more obscure intricacies of \proglang{R} objects, and instead they can focus purely on writing the \proglang{R} functions to implement the DP models.
 \end{enumerate}
 
+Current alternatives for nonparamteric inference include Stan, PyMC3 and Edward. However, whilst all three packages are much more general than the dirichletprocess offerings, they do not offer ease of customisation that \pkg{dirichletprocess} does. Firstly, Stan CITE, does not allow you to specify discrete parameters in models. As Dirichlet process models require cluster labels which are inherently discrete parameters you are unable to build Dirichlet process models directly in Stan. For both the Python libraries Edward and PyMC3, examples exist of building Dirichlet process models. However, these are built on top of TensorFlow CITE and Theano, therefore, being able to build Dirichlet process objects into statistical work flows would require learning these external libraries. Instead our package \pkg{dirichletprocess} is written natively in R and abstracts the difficulties away, allowing users to write Dirichlet process models in R code and not worry about computational details.
 
 \section{Background information}
 \label{sec:background}
@@ -431,7 +432,7 @@ where $k(y _i \mid \theta )$ is the standard normal probability density and $G_0
 
 \begin{figure}[tb]
 \centering
-	\includegraphics[height=60mm, width=80mm]{img/old_faithful_plot.pdf}
+	\includegraphics[width=0.5\textwidth]{img/old_faithful_plot.pdf}
 	\caption{Old Faithful waiting times density estimation with a DPMM of Gaussians. }
 	\label{fig:oldfaithful}
 \end{figure}
@@ -487,7 +488,7 @@ In some situations it will be necessary to estimate densities on bounded interva
 
 \begin{figure}[tb]
 	\centering
-	\includegraphics[height=60mm, width=80mm]{img/betaGraph.pdf}
+	\includegraphics[width=0.5\textwidth]{img/betaGraph.pdf}
 	\caption{Estimated generating density using a Beta Dirichlet process mixture model.}
 	\label{fig:densitybounded}
 \end{figure}
@@ -548,7 +549,7 @@ where the prior parameters of $G_0$ take on their default value as shown in Sect
 We transform the data so that each variable is zero mean and unit standard deviation.
 \begin{Schunk}
 \begin{Sinput}
-> faithfulTrans <- as.matrix(apply(faithful, 2, function(x) (x-mean(x))/sd(x)))
+> faithfulTrans <- scale(faithful)
 \end{Sinput}
 \end{Schunk}
 We form the dirichletprocess object and perform 1000 MCMC samples.
@@ -563,7 +564,7 @@ When analysing the results of the fit we are interested in the final Gibbs sampl
 
 \begin{figure}[tb]
   \centering
-	\includegraphics[height=60mm, width=60mm]{img/faithful_multi_plot.pdf}
+	\includegraphics[width=0.5\textwidth]{img/faithful_multi_plot.pdf}
 	\caption{The colours of the points indicates that there are groups in the \code{faithful} dataset.}
 	\label{fig:clustering}
 \end{figure}
@@ -572,12 +573,12 @@ Here Figure \ref{fig:clustering} shows the last iteration of the cluster labels 
 
 
 \subsection{Modifying the Observations}
-In some applications of Dirichlet processes the data being used can change from iteration to iteration of the sampling algorithm. This could be because the values of the data change, or because for a full data set $\mathbf{y} = y_1 , \ldots , y_n$, only subsets of the data are used at each itertion. When fitting a DP object we provide the appropriate function \code{ChangeObservations} to change the observations between iterations.
+In some applications of Dirichlet processes the data being used can change from iteration to iteration of the sampling algorithm. This could be because the values of the data change, or because for a full data set $\mathbf{y} = y_1 , \ldots , y_n$, only subsets of the data are used at each iteration. When fitting a DP object we provide the appropriate function \code{ChangeObservations} to change the observations between iterations.
 
 This function takes the new data, predicts what clusters from the previous fitting the new data belongs to and updates the clustering labels and parameters accordingly. A modified object with the new data associated to clusters and the function \code{Fit} is ready to be used to sample the cluster parameters and weights again.
 
 \subsubsection{Example: Priors in Hierarchical Models}
-One application of observations changing with each iteration is using a Dirichlet process as a prior for a parameter in a hierarchical model. An example of hierarchical modelling comes from \cite{gelman_bayesian_2014} involving tumour risk in rats. In this example, there are 71 different experiments, and during each experiment a number of rats are inspected for tumours, with the number of tumours in each experiment being the observed data. This data is included in our packges in the \textbf{rats} variable, with the first column being the number of tumours in each experiment, and the second being the number of rats.
+One application of observations changing with each iteration is using a Dirichlet process as a prior for a parameter in a hierarchical model. An example of hierarchical modelling comes from \cite{gelman_bayesian_2014} involving tumour risk in rats. In this example, there are 71 different experiments, and during each experiment a number of rats are inspected for tumours, with the number of tumours in each experiment being the observed data. This data is included in our packages in the \textbf{rats} variable, with the first column being the number of tumours in each experiment, and the second being the number of rats.
 
 A naive approach would model each experiment as a Binomial draw with unknown $\theta _i$ and known $N_i$. A Beta distribution is the conjugate prior for the Binomial distribution and would be used as the prior on $\theta$:
 \begin{align*}
@@ -588,13 +589,13 @@ y_i \mid \theta_i, N_i \sim & \text{Binomial}(N_i,\theta_i), \\
 \begin{figure}[tb]
 \begin{subfigure}[b]{0.5\textwidth}
 	\centering
-	\includegraphics[height=60mm, width=60mm]{img/ratsImpericalDistribution.pdf}
+	\includegraphics[width=0.9\textwidth]{img/ratsImpericalDistribution.pdf}
 	\caption{Empirical distribution of $\hat{\theta}_i$.}
 	\label{fig:ratsImperical}
 \end{subfigure}
 \begin{subfigure}[b]{0.5\textwidth}
 	\centering
-	\includegraphics[height=60mm, width=60mm]{img/ratsDirichletPrior.pdf}
+	\includegraphics[width=0.9\textwidth]{img/ratsDirichletPrior.pdf}
 	\caption{Dirichlet prior model for $p(\theta _i)$.}
 	\label{fig:rats_dirichlet_model}
 \end{subfigure}
@@ -630,7 +631,7 @@ where $\alpha$ and $G_0$ follow the default implementations of the \pkg{dirichle
 +   posteriorB <- b[dpobj$clusterLabels] + rats$N - rats$y
 +   thetaDirichlet[i, ] <- rbeta(nrow(rats), posteriorA, posteriorB)
 + 
-+   dpobj <- ChangeObservations(dpobj, theta_dir[i, ])
++   dpobj <- ChangeObservations(dpobj, thetaDirichlet[i, ])
 +   dpobj <- Fit(dpobj, 5)
 +   clusters <- dpobj$clusterParameters
 + 
@@ -705,7 +706,7 @@ The creator function \code{DirichletProcessHierarchicalBeta} returns a list of \
 The resulting $G_j$'s from the above example are plotted in Figure \ref{fig:hierBeta}.
 \begin{figure}
 \centering
-\includegraphics[height=60mm, width=100mm]{img/hierBetaGraph.pdf}
+\includegraphics[width=0.8\textwidth]{img/hierBetaGraph.pdf}
 \caption{Hierarchical Beta Dirichlet process mixture results.}
 \label{fig:hierBeta}
 \end{figure}
@@ -765,7 +766,7 @@ We then fit the Dirichlet process, draw a posterior sample of the intensity func
 
 \begin{figure}[tb]
 \centering
-\includegraphics[height=60mm, width=80mm]{img/poissonStickBreaking.pdf}
+\includegraphics[width=0.5\textwidth]{img/poissonStickBreaking.pdf}
 \caption{Estimation of the inhomogeneous Poisson process using stick breaking.}
 \label{fig:poissonStick}
 \end{figure}
@@ -792,7 +793,7 @@ For a conjugate mixing distribution the posterior distribution of $\theta$ is tr
 \item \code{Predictive(...)}: a function that returns the value of the marginal distribution of the data $f(y) = \int k(y , \theta) \mathrm{d} G(\theta)$.
 \end{itemize}
 
-With these specified, the \textbf{Fit} function can be used to fit the DP, which carries out the Chinese Restaurant Sampling can be performed using `Algorithm 8` \citep{neal_markov_2000}..
+With these specified, the \textbf{Fit} function can be used to fit the DP, which carries out the Chinese Restaurant Sampling can be performed using `Algorithm 8' \citep{neal_markov_2000}.
 
 For a non-conjugate mixing distribution we can no longer directly sample from the posterior distribution $p(\theta \mid y)$ or calculate the marginal distribution of the data. Instead the Metropolis-Hastings algorithm is used to sample from the distribution $p(\theta \mid y)$ \cite{hastings_monte_1970}. The Metropolis-Hastings algorithm works by generating a candidate parameter $\theta ^{i+1}$ and accepting this candidate value as a sample from the posterior with probability proportional to $\frac{k(y \mid \theta ^{i+1}) p(\theta ^{i+1})}{k(y \mid \theta^i) p(\theta^i)}$. Typically, the candidate parameter is distributed as $\theta _{i+1} \sim N(\theta _i, h^2)$. From this, the non-conjugate mixture model requires 2 additional functions and an extra parameter to be defined.
 \begin{itemize}
@@ -891,7 +892,7 @@ This object is now ready to be used in a \pkg{dirichletprocess} object and the a
 
 \begin{figure}[tb]
 \centering
-	\includegraphics[height=60mm, width=80mm]{img/poisson_mixture_plot.pdf}
+	\includegraphics[width=0.5\textwidth]{img/poisson_mixture_plot.pdf}
 \caption{The true and estimated distributions from the Poisson mixture model.}
 \label{fig:poissonmixture}
 \end{figure}
@@ -958,8 +959,10 @@ MhParameterProposal.gamma <- function(mdobj, oldParams){
 
 We can now construct our mixing distribution object using the constructor function \code{MixingDistribution}. The arguments of this function specify the prior parameters $\alpha _0, \beta _0$ and set the scale $h$ at which the new parameter proposals are made using the parameter \code{mhStepSize}.
 \begin{CodeInput}
-gammaMd<- MixingDistribution("gamma", priorParameters = c(0.1, 0.1),
-"nonconjugate", mhStepSize=c(0.1, 0.1))
+gammaMd <- MixingDistribution(distribution = "gamma",
+                              priorParameters = c(0.1, 0.1),
+                              conjugate = "nonconjugate",
+                              mhStepSize = c(0.1, 0.1))
 \end{CodeInput}
 
 The dirichletprocess object can now be created and fit to some test data. As it is a new type of mixture, it must be initialised.
@@ -973,7 +976,7 @@ The dirichletprocess object can now be created and fit to some test data. As it 
 \end{Schunk}
 \begin{figure}[tb]
 \centering
-	\includegraphics[height=60mm, width=80mm]{img/gamma_mixture_plot.pdf}
+	\includegraphics[width=0.5\textwidth]{img/gamma_mixture_plot.pdf}
 \caption{The results of implementing the new Gamma mixture model.}
 \label{fig:gammamixture}
 \end{figure}
@@ -1032,7 +1035,7 @@ The function returns a list with multiple entries:
 
 \begin{figure}[tb]
 \centering
-	\includegraphics[height=60mm, width=80mm]{img/faithful_pred_plot.pdf}
+	\includegraphics[width=0.5\textwidth]{img/faithful_pred_plot.pdf}
 \caption{The predicted labels of the last 5 entries of the \code{faithful} dataset against the training data. The predicted values are indicated by a solid colour and triangle shapes.}
 \label{fig:faithfulpred}
 \end{figure}
@@ -1114,7 +1117,7 @@ We can easily use this modified mixture model for our censored data. The samplin
 Using the fitted values we can easily extract the estimate density of the survival times using the weights and cluster parameters. The survival function is calculated as $S(y) = 1 - \exp(- \frac{y ^a}{b})$.
 \begin{figure}
 \centering
-\includegraphics[height=60mm, width=120mm]{img/weibull_censor_graph.pdf}
+\includegraphics[width=0.8\textwidth]{img/weibull_censor_graph.pdf}
 \caption{Point estimates for the survival and density functions of the two treatments.}
 \label{fig:weibull_cens}
 \end{figure}
@@ -1125,8 +1128,8 @@ To fully understand what has happened here, it is vital to understand that the D
 \section*{Computational details}
 
 The results in this paper were obtained using
-\proglang{R}~3.4.3 with the
-\pkg{dirichletprocess}~0.2.0 package. \proglang{R} itself
+\proglang{R}~3.5.0 with the
+\pkg{dirichletprocess}~0.2.1.900 package. \proglang{R} itself
 and all packages used are available from the Comprehensive
 \proglang{R} Archive Network (CRAN) at
 \url{https://CRAN.R-project.org/}.

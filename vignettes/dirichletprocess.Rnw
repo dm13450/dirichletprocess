@@ -432,7 +432,7 @@ plot(dp)
 
 \begin{figure}[tb]
 \centering
-	\includegraphics[height=60mm, width=80mm]{img/old_faithful_plot.pdf}
+	\includegraphics[width=0.5\textwidth]{img/old_faithful_plot.pdf}
 	\caption{Old Faithful waiting times density estimation with a DPMM of Gaussians. }
 	\label{fig:oldfaithful}
 \end{figure}
@@ -485,7 +485,7 @@ dp <- Fit(dp, 1000)
 
 \begin{figure}[tb]
 	\centering
-	\includegraphics[height=60mm, width=80mm]{img/betaGraph.pdf}
+	\includegraphics[width=0.5\textwidth]{img/betaGraph.pdf}
 	\caption{Estimated generating density using a Beta Dirichlet process mixture model.}
 	\label{fig:densitybounded}
 \end{figure}
@@ -545,7 +545,7 @@ where the prior parameters of $G_0$ take on their default value as shown in Sect
 
 We transform the data so that each variable is zero mean and unit standard deviation.
 <<clustering, eval=FALSE>>=
-faithfulTrans <- as.matrix(apply(faithful, 2, function(x) (x-mean(x))/sd(x)))
+faithfulTrans <- scale(faithful)
 @
 We form the dirichletprocess object and perform 1000 MCMC samples.
 <<clustering-fit, eval=FALSE>>=
@@ -561,7 +561,7 @@ ggplot(faithRes, aes(x=eruptions, y=waiting, colour=as.factor(Labels))) + geom_p
 
 \begin{figure}[tb]
   \centering
-	\includegraphics[height=60mm, width=60mm]{img/faithful_multi_plot.pdf}
+	\includegraphics[width=0.5\textwidth]{img/faithful_multi_plot.pdf}
 	\caption{The colours of the points indicates that there are groups in the \code{faithful} dataset.}
 	\label{fig:clustering}
 \end{figure}
@@ -586,13 +586,13 @@ y_i \mid \theta_i, N_i \sim & \text{Binomial}(N_i,\theta_i), \\
 \begin{figure}[tb]
 \begin{subfigure}[b]{0.5\textwidth}
 	\centering
-	\includegraphics[height=60mm, width=60mm]{img/ratsImpericalDistribution.pdf}
+	\includegraphics[width=0.9\textwidth]{img/ratsImpericalDistribution.pdf}
 	\caption{Empirical distribution of $\hat{\theta}_i$.}
 	\label{fig:ratsImperical}
 \end{subfigure}
 \begin{subfigure}[b]{0.5\textwidth}
 	\centering
-	\includegraphics[height=60mm, width=60mm]{img/ratsDirichletPrior.pdf}
+	\includegraphics[width=0.9\textwidth]{img/ratsDirichletPrior.pdf}
 	\caption{Dirichlet prior model for $p(\theta _i)$.}
 	\label{fig:rats_dirichlet_model}
 \end{subfigure}
@@ -701,7 +701,7 @@ The creator function \code{DirichletProcessHierarchicalBeta} returns a list of \
 The resulting $G_j$'s from the above example are plotted in Figure \ref{fig:hierBeta}.
 \begin{figure}
 \centering
-\includegraphics[height=60mm, width=100mm]{img/hierBetaGraph.pdf}
+\includegraphics[width=0.8\textwidth]{img/hierBetaGraph.pdf}
 \caption{Hierarchical Beta Dirichlet process mixture results.}
 \label{fig:hierBeta}
 \end{figure}
@@ -758,7 +758,7 @@ for(i in seq_len(2000)){
 
 \begin{figure}[tb]
 \centering
-\includegraphics[height=60mm, width=80mm]{img/poissonStickBreaking.pdf}
+\includegraphics[width=0.5\textwidth]{img/poissonStickBreaking.pdf}
 \caption{Estimation of the inhomogeneous Poisson process using stick breaking.}
 \label{fig:poissonStick}
 \end{figure}
@@ -785,7 +785,7 @@ For a conjugate mixing distribution the posterior distribution of $\theta$ is tr
 \item \code{Predictive(...)}: a function that returns the value of the marginal distribution of the data $f(y) = \int k(y , \theta) \mathrm{d} G(\theta)$.
 \end{itemize}
 
-With these specified, the \textbf{Fit} function can be used to fit the DP, which carries out the Chinese Restaurant Sampling can be performed using `Algorithm 8` \citep{neal_markov_2000}..
+With these specified, the \textbf{Fit} function can be used to fit the DP, which carries out the Chinese Restaurant Sampling can be performed using `Algorithm 8' \citep{neal_markov_2000}.
 
 For a non-conjugate mixing distribution we can no longer directly sample from the posterior distribution $p(\theta \mid y)$ or calculate the marginal distribution of the data. Instead the Metropolis-Hastings algorithm is used to sample from the distribution $p(\theta \mid y)$ \cite{hastings_monte_1970}. The Metropolis-Hastings algorithm works by generating a candidate parameter $\theta ^{i+1}$ and accepting this candidate value as a sample from the posterior with probability proportional to $\frac{k(y \mid \theta ^{i+1}) p(\theta ^{i+1})}{k(y \mid \theta^i) p(\theta^i)}$. Typically, the candidate parameter is distributed as $\theta _{i+1} \sim N(\theta _i, h^2)$. From this, the non-conjugate mixture model requires 2 additional functions and an extra parameter to be defined.
 \begin{itemize}
@@ -882,7 +882,7 @@ dp <- Fit(dp, 1000)
 
 \begin{figure}[tb]
 \centering
-	\includegraphics[height=60mm, width=80mm]{img/poisson_mixture_plot.pdf}
+	\includegraphics[width=0.5\textwidth]{img/poisson_mixture_plot.pdf}
 \caption{The true and estimated distributions from the Poisson mixture model.}
 \label{fig:poissonmixture}
 \end{figure}
@@ -949,8 +949,10 @@ MhParameterProposal.gamma <- function(mdobj, oldParams){
 
 We can now construct our mixing distribution object using the constructor function \code{MixingDistribution}. The arguments of this function specify the prior parameters $\alpha _0, \beta _0$ and set the scale $h$ at which the new parameter proposals are made using the parameter \code{mhStepSize}.
 \begin{CodeInput}
-gammaMd<- MixingDistribution("gamma", priorParameters = c(0.1, 0.1),
-"nonconjugate", mhStepSize=c(0.1, 0.1))
+gammaMd <- MixingDistribution(distribution = "gamma",
+                              priorParameters = c(0.1, 0.1),
+                              conjugate = "nonconjugate",
+                              mhStepSize = c(0.1, 0.1))
 \end{CodeInput}
 
 The dirichletprocess object can now be created and fit to some test data. As it is a new type of mixture, it must be initialised.
@@ -962,7 +964,7 @@ dp <- Fit(dp, 1000)
 @
 \begin{figure}[tb]
 \centering
-	\includegraphics[height=60mm, width=80mm]{img/gamma_mixture_plot.pdf}
+	\includegraphics[width=0.5\textwidth]{img/gamma_mixture_plot.pdf}
 \caption{The results of implementing the new Gamma mixture model.}
 \label{fig:gammamixture}
 \end{figure}
@@ -1021,7 +1023,7 @@ The function returns a list with multiple entries:
 
 \begin{figure}[tb]
 \centering
-	\includegraphics[height=60mm, width=80mm]{img/faithful_pred_plot.pdf}
+	\includegraphics[width=0.5\textwidth]{img/faithful_pred_plot.pdf}
 \caption{The predicted labels of the last 5 entries of the \code{faithful} dataset against the training data. The predicted values are indicated by a solid colour and triangle shapes.}
 \label{fig:faithfulpred}
 \end{figure}
@@ -1103,7 +1105,7 @@ dpB <- Fit(dpB, 500, TRUE)
 Using the fitted values we can easily extract the estimate density of the survival times using the weights and cluster parameters. The survival function is calculated as $S(y) = 1 - \exp(- \frac{y ^a}{b})$.
 \begin{figure}
 \centering
-\includegraphics[height=60mm, width=120mm]{img/weibull_censor_graph.pdf}
+\includegraphics[width=0.8\textwidth]{img/weibull_censor_graph.pdf}
 \caption{Point estimates for the survival and density functions of the two treatments.}
 \label{fig:weibull_cens}
 \end{figure}
