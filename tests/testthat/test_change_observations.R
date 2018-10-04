@@ -5,10 +5,7 @@ num_test_points = 10
 test_that("Conjugate Change Observations", {
 
   data_test = rnorm(num_test_points)
-  priorParameters_test <- matrix(c(1,1,1,1), ncol=4)
-  normal_object_test <- MixingDistribution("normal", priorParameters_test, "conjugate")
-  dpobj <- DirichletProcessCreate(data_test, normal_object_test)
-  dpobj <- Initialise(dpobj, verbose=FALSE)
+  dpobj <- DirichletProcessGaussian(data_test)
   dpobj <- Fit(dpobj, 10, FALSE, FALSE)
 
   new_data_test <- rnorm(20)
@@ -24,10 +21,7 @@ test_that("Conjugate Change Observations", {
 test_that("Non Conjugate Change Observations", {
 
   data_test <- rweibull(num_test_points, 1, 1)
-  priorParameters_test <- matrix(c(1,1,1), ncol=3)
-  weibull_object_test <- WeibullMixtureCreate(priorParameters_test, 1)
-  dpobj <- DirichletProcessCreate(data_test, weibull_object_test)
-  dpobj <- Initialise(dpobj, verbose=FALSE)
+  dpobj <- DirichletProcessWeibull(data_test, c(10, 2, 4))
   dpobj <- Fit(dpobj, 10, FALSE, FALSE)
 
   new_data_test <- rweibull(20, 1, 1)

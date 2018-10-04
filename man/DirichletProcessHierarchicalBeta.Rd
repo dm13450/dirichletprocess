@@ -4,9 +4,10 @@
 \alias{DirichletProcessHierarchicalBeta}
 \title{Create a Hierarchical Dirichlet Mixture of Beta Distributions}
 \usage{
-DirichletProcessHierarchicalBeta(dataList, maxY, priorParameters = c(2,
-  8), hyperPriorParameters = c(1, 0.125), gammaPriors = c(2, 4),
-  alphaPriors = c(2, 4), mhStepSize = c(0.1, 0.1), numSticks = 50)
+DirichletProcessHierarchicalBeta(dataList, maxY, priorParameters = c(2, 8),
+  hyperPriorParameters = c(1, 0.125), gammaPriors = c(2, 4),
+  alphaPriors = c(2, 4), mhStepSize = c(0.1, 0.1), numSticks = 50,
+  mhDraws = 250)
 }
 \arguments{
 \item{dataList}{List of data for each separate Dirichlet mixture object}
@@ -24,6 +25,8 @@ DirichletProcessHierarchicalBeta(dataList, maxY, priorParameters = c(2,
 \item{mhStepSize}{Metropolis Hastings jump size.}
 
 \item{numSticks}{Truncation level for the Stick Breaking formulation.}
+
+\item{mhDraws}{Number of Metropolis-Hastings samples to perform for each cluster update.}
 }
 \value{
 dpobjlist A Hierarchical Dirichlet Process object that can be fitted, plotted etc.
