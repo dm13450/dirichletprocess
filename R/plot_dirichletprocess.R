@@ -1,38 +1,38 @@
 
-plot_dirichletprocess <- function(dpobj, ...) {
-  mdobj <- dpobj$mixingDistribution
+plot_dirichletprocess <- function(x, ...) {
+  mdobj <- x$mixingDistribution
   UseMethod("plot_dirichletprocess", mdobj)
 }
 
-plot_dirichletprocess.default <- function(dpobj, ...){
+plot_dirichletprocess.default <- function(x, ...){
 
-  if (ncol(dpobj$data) == 1){
-    return(plot_dirichletprocess_univariate(dpobj, ...))
+  if (ncol(x$data) == 1){
+    return(plot_dirichletprocess_univariate(x, ...))
   } else {
-    return(plot_dirichletprocess_multivariate(dpobj, ...))
+    return(plot_dirichletprocess_multivariate(x, ...))
   }
 
 }
 
-plot_dirichletprocess.gaussian <- function(dpobj, likelihood = FALSE, single = TRUE){
-  plot_dirichletprocess_univariate(dpobj, likelihood = FALSE, single = TRUE)
+plot_dirichletprocess.gaussian <- function(x, likelihood = FALSE, single = TRUE){
+  plot_dirichletprocess_univariate(x, likelihood = FALSE, single = TRUE)
 }
 
-plot_dirichletprocess.beta <- function(dpobj, likelihood = FALSE, single = TRUE) {
-  plot_dirichletprocess_univariate(dpobj, likelihood = FALSE, single = TRUE)
+plot_dirichletprocess.beta <- function(x, likelihood = FALSE, single = TRUE) {
+  plot_dirichletprocess_univariate(x, likelihood = FALSE, single = TRUE)
 }
 
-plot_dirichletprocess.weibull <- function(dpobj, likelihood = FALSE, single = TRUE) {
-  plot_dirichletprocess_univariate(dpobj, likelihood = FALSE, single = TRUE)
+plot_dirichletprocess.weibull <- function(x, likelihood = FALSE, single = TRUE) {
+  plot_dirichletprocess_univariate(x, likelihood = FALSE, single = TRUE)
 }
 
-plot_dirichletprocess.mvnormal <- function(dpobj, ...) {
-  plot_dirichletprocess_multivariate(dpobj)
+plot_dirichletprocess.mvnormal <- function(x, ...) {
+  plot_dirichletprocess_multivariate(x)
 }
 
 #' @export
 #' @rdname plot.dirichletprocess
-plot_dirichletprocess_univariate <- function(dpobj,
+plot_dirichletprocess_univariate <- function(x,
                                              likelihood  = FALSE,
                                              single      = TRUE,
                                              data_fill   = "black",
@@ -43,7 +43,7 @@ plot_dirichletprocess_univariate <- function(dpobj,
                                              quant_pts   = 100,
                                              xlim        = NA) {
 
-  graph <- ggplot2::ggplot(data.frame(dt = dpobj$data), ggplot2::aes_(x = ~dt)) +
+  graph <- ggplot2::ggplot(data.frame(dt = x$data), ggplot2::aes_(x = ~dt)) +
     ggplot2::theme(axis.title = ggplot2::element_blank())
 
   if (data_method == "density") {
@@ -59,17 +59,17 @@ plot_dirichletprocess_univariate <- function(dpobj,
   }
 
   if (is.na(xlim[1])) {
-    x_grid <- pretty(dpobj$data, n = xgrid_pts)
+    x_grid <- pretty(x$data, n = xgrid_pts)
   } else {
     x_grid <- seq(xlim[1], xlim[2], length.out = xgrid_pts)
   }
 
   if (single) {
-    posteriorFit <- replicate(quant_pts, PosteriorFunction(dpobj)(x_grid))
+    posteriorFit <- replicate(quant_pts, PosteriorFunction(x)(x_grid))
   } else {
-    its <- length(dpobj$alphaChain)
+    its <- length(x$alphaChain)
     inds <- round(seq(its/2, 2, length.out = quant_pts))
-    posteriorFit <- sapply(inds, function(i) PosteriorFunction(dpobj, i)(x_grid))
+    posteriorFit <- sapply(inds, function(i) PosteriorFunction(x, i)(x_grid))
   }
 
   posteriorCI <- apply(posteriorFit, 1,
@@ -81,7 +81,7 @@ plot_dirichletprocess_univariate <- function(dpobj,
   graph <- graph + ggplot2::geom_line(data=data.frame(x=x_grid, y=posteriorCI[3,]), ggplot2::aes_(x=~x,y=~y, colour="Posterior"), linetype=2)
 
   if (likelihood) {
-    graph <- graph + ggplot2::stat_function(fun = function(z) LikelihoodFunction(dpobj)(z),
+    graph <- graph + ggplot2::stat_function(fun = function(z) LikelihoodFunction(x)(z),
                                             n = xgrid_pts * 10, ggplot2::aes(colour = "Likelihood"))
   } else {
     graph <- graph + ggplot2::guides(colour=FALSE)
@@ -92,9 +92,9 @@ plot_dirichletprocess_univariate <- function(dpobj,
 
 #' @export
 #' @rdname plot.dirichletprocess
-plot_dirichletprocess_multivariate <- function(dpobj) {
+plot_dirichletprocess_multivariate <- function(x) {
 
-  plotFrame <- data.frame(x1=dpobj$data[,1], x2=dpobj$data[,2], Cluster=as.factor(dpobj$clusterLabel))
+  plotFrame <- data.frame(x1=x$data[,1], x2=x$data[,2], Cluster=as.factor(x$clusterLabel))
 
   graph <- ggplot2::ggplot(plotFrame, ggplot2::aes_(x=~x1, y=~x2, colour=~Cluster)) + ggplot2::geom_point()
   return(graph)

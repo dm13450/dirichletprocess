@@ -6,17 +6,16 @@
 \alias{plot_dirichletprocess_multivariate}
 \title{Plot the Dirichlet process object}
 \usage{
-\method{plot}{dirichletprocess}(dpobj, ...)
+\method{plot}{dirichletprocess}(x, ...)
 
-plot_dirichletprocess_univariate(dpobj, likelihood = FALSE,
-  single = TRUE, data_fill = "black", data_method = "density",
-  data_bw = NULL, ci_size = 0.05, xgrid_pts = 100, quant_pts = 100,
-  xlim = NA)
+plot_dirichletprocess_univariate(x, likelihood = FALSE, single = TRUE,
+  data_fill = "black", data_method = "density", data_bw = NULL,
+  ci_size = 0.05, xgrid_pts = 100, quant_pts = 100, xlim = NA)
 
-plot_dirichletprocess_multivariate(dpobj)
+plot_dirichletprocess_multivariate(x)
 }
 \arguments{
-\item{dpobj}{Dirichlet Process Object to plot}
+\item{x}{Dirichlet Process Object to plot}
 
 \item{...}{Further arguments, currently ignored.}
 

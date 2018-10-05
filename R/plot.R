@@ -6,7 +6,7 @@
 #' coloured by their cluster labels. The additional arguments are not used for
 #' multivariate data.
 #'
-#' @param dpobj Dirichlet Process Object to plot
+#' @param x Dirichlet Process Object to plot
 #' @param likelihood Logical, indicating whether to plot the likelihood from the
 #'   dpobj.
 #' @param single Logical, indicating whether to draw the posterior from the last
@@ -36,9 +36,9 @@
 #' plot(dp, likelihood = TRUE, data_method = "hist",
 #'      data_fill = rgb(.5, .5, .8, .6), data_bw = .3)
 #'
-plot.dirichletprocess <- function(dpobj, ...) {
+plot.dirichletprocess <- function(x, ...) {
 
-  plot_dirichletprocess(dpobj, ...)
+  plot_dirichletprocess(x, ...)
 
 }
 
