@@ -4,8 +4,8 @@
 \alias{DirichletProcessExponential}
 \title{Create a Dirichlet Mixture of Exponentials}
 \usage{
-DirichletProcessExponential(y, g0Priors = c(0.01, 0.01), alphaPriors = c(2,
-  4))
+DirichletProcessExponential(y, g0Priors = c(0.01, 0.01),
+  alphaPriors = c(2, 4))
 }
 \arguments{
 \item{y}{Data}
