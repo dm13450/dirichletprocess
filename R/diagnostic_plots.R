@@ -1,3 +1,36 @@
+
+#' Diagnostic plots for dirichletprocess objects
+#'
+#' Plot several diagnostic plots for dirichletprocess objects. Because the
+#' dimension of the dirichletprocess mixture is constantly changing, it is not
+#' simple to create meaningful plots of the sampled parameters. Therefore, the
+#' plots focus on the likelihood, alpha, and the number of clusters.
+#'
+#' @param dpobj A dirichletprocess object that was fit.
+#' @param gg Logical; whether to create a ggplot or base R plot (if \code{gg =
+#'   FALSE}). For \code{DiagnosticPlots}, this means that the plots will be
+#'   given one-by-one, while base plots can be arranged in a grid.
+#'
+#' @return If \code{gg = TRUE}, a ggplot2 object. Otherwise, nothing is returned
+#'   and a base plot is plotted.
+#' @export
+DiagnosticPlots <- function(dpobj, gg = FALSE) {
+  oldpar <- par()
+  par(mfrow = c(2, 2))
+
+  if ("alphaChain"  %in% names(dpobj)) AlphaTraceplot(dpobj, gg =  )
+  if ("alphaChain"  %in% names(dpobj)) AlphaPriorPosteriorPlot(dpobj, gg = FALSE)
+  if ("labelsChain" %in% names(dpobj)) ClusterTraceplot(dpobj, gg = FALSE)
+  if ("likelihoodChain" %in% names(dpobj)) LikelihoodTraceplot(dpobj, gg = FALSE)
+
+  suppressWarnings(par(oldpar))
+
+}
+
+
+
+#' @export
+#' @describeIn  DiagnosticPlots Trace plot of alpha.
 AlphaTraceplot <- function(dpobj, gg = TRUE) {
 
   if (gg) {
@@ -12,6 +45,9 @@ AlphaTraceplot <- function(dpobj, gg = TRUE) {
   }
 }
 
+
+#' @export
+#' @describeIn  DiagnosticPlots Plot of the prior and posterior of alpha.
 AlphaPriorPosteriorPlot <- function(dpobj, prior_color = "#2c7fb8", post_color = "#d95f02", gg = TRUE) {
 
   dap <- dpobj$alphaPriorParameters
@@ -40,6 +76,9 @@ AlphaPriorPosteriorPlot <- function(dpobj, prior_color = "#2c7fb8", post_color =
   }
 }
 
+
+#' @export
+#' @describeIn  DiagnosticPlots Trace plot of the number of clusters.
 ClusterTraceplot <- function(dpobj, gg = TRUE) {
 
   n_clust <- sapply(dpobj$labelsChain, function(x) length(unique(x)))
@@ -57,6 +96,11 @@ ClusterTraceplot <- function(dpobj, gg = TRUE) {
   }
 }
 
+
+
+#' @export
+#' @describeIn  DiagnosticPlots Trace plot of the likelihood of the data for
+#'   each iteration.
 LikelihoodTraceplot <- function(dpobj, gg = TRUE) {
   if (gg) {
     ggplot2::ggplot(data.frame(Lik = dpobj$likelihoodChain,
@@ -70,17 +114,3 @@ LikelihoodTraceplot <- function(dpobj, gg = TRUE) {
          main = "Traceplot of the log-likelihood")
   }
 }
-
-DiagnosticPlots <- function(dpobj) {
-  oldpar <- par()
-  par(mfrow = c(2, 2))
-
-  if ("alphaChain"  %in% names(dpobj)) AlphaTraceplot(dpobj, gg = FALSE)
-  if ("alphaChain"  %in% names(dpobj)) AlphaPriorPosteriorPlot(dpobj, gg = FALSE)
-  if ("labelsChain" %in% names(dpobj)) ClusterTraceplot(dpobj, gg = FALSE)
-  if ("likelihoodChain" %in% names(dpobj)) LikelihoodTraceplot(dpobj, gg = FALSE)
-
-  suppressWarnings(par(oldpar))
-
-}
-
