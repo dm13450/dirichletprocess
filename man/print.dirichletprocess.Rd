@@ -4,12 +4,12 @@
 \alias{print.dirichletprocess}
 \title{Print the Dirichlet process object}
 \usage{
-\method{print}{dirichletprocess}(x, param_means = FALSE, digits = 2)
+\method{print}{dirichletprocess}(x, param_summary = FALSE, digits = 2)
 }
 \arguments{
 \item{x}{Dirichlet Process Object to print.}
 
-\item{param_means}{If \code{TRUE}, print the overall averages of each
+\item{param_summary}{If \code{TRUE}, print the overall averages of each
 parameter of the model. Note that this averages over all clusters and over
 all iterations, so it will only give a loose sense of the resulting DPM
 model.}
