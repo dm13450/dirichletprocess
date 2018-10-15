@@ -1,15 +1,17 @@
-
-
 #' Print the Dirichlet process object
 #'
-#' For a univariate Dirichlet process plot the density of the data with the
-#' posterior distribution and credible intervals overlayed. For multivariate data
-#' the first two columns of the data are plotted with the data points coloured by their
-#' cluster labels.
+#' Print a Dirichlet process object. This will print some basic information
+#' about the \code{dirichletprocess} object.
+#'
+#'
 #'
 #' @param x Dirichlet Process Object to print.
-#' @export
-print.dirichletprocess <- function(x, verbose = FALSE, digits = 2) {
+#' @param param_means If \code{TRUE}, print the overall averages of each
+#'   parameter of the model. Note that this averages over all clusters and over
+#'   all iterations, so it will only give a loose sense of the resulting DPM
+#'   model.
+#' @param digits Integer; Number of digits to display.
+#'
 print.dirichletprocess <- function(x, param_means = FALSE, digits = 2) {
 
   cat("Dirichlet process object run for", length(x$alphaChain), "iterations.\n")
