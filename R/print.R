@@ -14,13 +14,17 @@
 #'
 print.dirichletprocess <- function(x, param_summary = FALSE, digits = 2) {
 
-  cat("Dirichlet process object run for", length(x$alphaChain), "iterations.\n")
-
 
   # Formatting function.
   mysprint <- function(num) sprintf(paste0("%.", digits, "f"), num)
 
-  # Model info that always exists
+  # Main title.
+  burntxt <- ifelse(is.null(x$n_burned), "", paste0(" (", x$n_burned, " burned)"))
+  cat("Dirichlet process object run for", length(x$labelsChain),
+      "iterations.", burntxt, "\n")
+
+
+  # Model info that always exists.
   model_print <- data.frame(. = c(x$mixingDistribution$distribution,
                                   paste(x$mixingDistribution$priorParameters, collapse = ", "),
                                   x$mixingDistribution$conjugate,

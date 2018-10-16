@@ -16,7 +16,7 @@
 #'
 Burn <- function(dpobj, niter) {
 
-  if (niter > length(dpobj$likelihoodChain)) {
+  if (niter >= length(dpobj$likelihoodChain)) {
     stop("Can't burn more than total iterations.")
   }
   if (niter < 1) stop("Can't burn less than 1 iteration.")
