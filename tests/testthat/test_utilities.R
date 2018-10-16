@@ -12,3 +12,13 @@ test_that("Weighted Function Generator", {
   expect_is(test_weighted_func, "function")
   expect_equal(test_weighted_func(0), dnorm(0))
 })
+
+
+
+test_that("Burn", {
+  dp <- Fit(DirichletProcessGaussian(rnorm(10)), 4)
+
+  burned_dp <- Burn(dp, 2)
+
+  expect_s3_class(burned_dp, "dirichletprocess")
+})
