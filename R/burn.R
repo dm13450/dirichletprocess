@@ -1,11 +1,10 @@
-
-
-#' Title
+#' Add burn-in to a dirichletprocess object
 #'
-#' @param dpobj
-#' @param niter
+#' @param dpobj A dirichletprocess object.
+#' @param niter Number of iterations to burn.
 #'
-#' @return
+#' @return A dirichletprocess object where all chain objects have the first
+#'   \code{niter} iterations are removed.
 #' @export
 #'
 #' @examples
@@ -13,7 +12,6 @@
 #' DiagnosticPlots(dp)
 #' burned_dp <- Burn(dp, 50)
 #' DiagnosticPlots(burned_dp)
-#'
 Burn <- function(dpobj, niter) {
 
   if (niter >= length(dpobj$likelihoodChain)) {
