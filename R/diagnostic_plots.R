@@ -14,6 +14,11 @@
 #' @return If \code{gg = TRUE}, a ggplot2 object. Otherwise, nothing is returned
 #'   and a base plot is plotted.
 #' @export
+#'
+#' @examples
+#' dp <- Fit(DirichletProcessGaussian(rnorm(10)), 100)
+#' DiagnosticPlots(dp)
+#'
 DiagnosticPlots <- function(dpobj, gg = FALSE) {
   oldpar <- par()
   par(mfrow = c(2, 2))

@@ -48,3 +48,8 @@ plots focus on the likelihood, alpha, and the number of clusters.
 each iteration.
 }}
 
+\examples{
+dp <- Fit(DirichletProcessGaussian(rnorm(10)), 100)
+DiagnosticPlots(dp)
+
+}
