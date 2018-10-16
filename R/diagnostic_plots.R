@@ -10,6 +10,10 @@
 #' @param gg Logical; whether to create a ggplot or base R plot (if \code{gg =
 #'   FALSE}). For \code{DiagnosticPlots}, this means that the plots will be
 #'   given one-by-one, while base plots can be arranged in a grid.
+#' @param prior_color For \code{AlphaPriorPosteriorPlot}, the color of the prior
+#'   function.
+#' @param post_color  For \code{AlphaPriorPosteriorPlot}, the color of the
+#'   posterior histogram.
 #'
 #' @return If \code{gg = TRUE}, a ggplot2 object. Otherwise, nothing is returned
 #'   and a base plot is plotted.
@@ -20,15 +24,15 @@
 #' DiagnosticPlots(dp)
 #'
 DiagnosticPlots <- function(dpobj, gg = FALSE) {
-  oldpar <- par()
-  par(mfrow = c(2, 2))
+  oldpar <- graphics::par()
+  graphics::par(mfrow = c(2, 2))
 
   if ("alphaChain"  %in% names(dpobj)) AlphaTraceplot(dpobj, gg = gg)
   if ("alphaChain"  %in% names(dpobj)) AlphaPriorPosteriorPlot(dpobj, gg = gg)
   if ("labelsChain" %in% names(dpobj)) ClusterTraceplot(dpobj, gg = gg)
   if ("likelihoodChain" %in% names(dpobj)) LikelihoodTraceplot(dpobj, gg = gg)
 
-  suppressWarnings(par(mfrow = oldpar$mfrow))
+  suppressWarnings(graphics::par(mfrow = oldpar$mfrow))
 
 }
 
@@ -46,7 +50,7 @@ AlphaTraceplot <- function(dpobj, gg = TRUE) {
       ggplot2::ggtitle("Traceplot of alpha")
     return(p)
   } else {
-    plot(dpobj$alphaChain, type = "l", ylab = "Alpha",
+    graphics::plot(dpobj$alphaChain, type = "l", ylab = "Alpha",
          main = "Traceplot of alpha")
   }
 }
@@ -75,10 +79,11 @@ AlphaPriorPosteriorPlot <- function(dpobj, prior_color = "#2c7fb8", post_color =
       ggplot2::scale_colour_manual(labels = c("Posterior", "Prior"), values = c(prior_color, post_color), aesthetics = c("colour", "fill"), name = " ")
     return(p)
   } else {
-    hist(dpobj$alphaChain, freq = FALSE, breaks = min(its / 10, 100),
+    graphics::hist(dpobj$alphaChain, freq = FALSE, breaks = min(its / 10, 100),
          xlab = "Alpha", main = "Prior and posterior of alpha")
 
-    curve(dgamma(x, dap[1], dap[2]), add = TRUE, col = "tomato")
+    thisdgam <- function(x) dgamma(x, dap[1], dap[2])
+    graphics::curve(thisdgam, add = TRUE, col = "tomato")
   }
 }
 
@@ -98,7 +103,7 @@ ClusterTraceplot <- function(dpobj, gg = TRUE) {
       ggplot2::ggtitle("Traceplot of the number of clusters")
     return(p)
   } else {
-    plot(n_clust, type = "l", ylab = "Number of clusters",
+    graphics::plot(n_clust, type = "l", ylab = "Number of clusters",
          main = "Traceplot of the number of clusters")
   }
 }
@@ -118,7 +123,7 @@ LikelihoodTraceplot <- function(dpobj, gg = TRUE) {
       ggplot2::ggtitle("Traceplot of the log-likelihood")
     return(p)
   } else {
-    plot(dpobj$likelihoodChain, type = "l", ylab = "Log-likelihood",
+    graphics::plot(dpobj$likelihoodChain, type = "l", ylab = "Log-likelihood",
          main = "Traceplot of the log-likelihood")
   }
 }

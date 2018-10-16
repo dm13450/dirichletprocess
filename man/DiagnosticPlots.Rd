@@ -25,6 +25,12 @@ LikelihoodTraceplot(dpobj, gg = TRUE)
 \item{gg}{Logical; whether to create a ggplot or base R plot (if \code{gg =
 FALSE}). For \code{DiagnosticPlots}, this means that the plots will be
 given one-by-one, while base plots can be arranged in a grid.}
+
+\item{prior_color}{For \code{AlphaPriorPosteriorPlot}, the color of the prior
+function.}
+
+\item{post_color}{For \code{AlphaPriorPosteriorPlot}, the color of the
+posterior histogram.}
 }
 \value{
 If \code{gg = TRUE}, a ggplot2 object. Otherwise, nothing is returned

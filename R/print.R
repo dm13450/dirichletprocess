@@ -58,7 +58,7 @@ print.dirichletprocess <- function(x, param_summary = FALSE, digits = 2) {
 
 
   if ("alphaChain" %in% names(x)) {
-    ac_df <- data.frame(. = mysprint(median(x$alphaChain)), stringsAsFactors = FALSE)
+    ac_df <- data.frame(. = mysprint(stats::median(x$alphaChain)), stringsAsFactors = FALSE)
     rownames(ac_df) <- "Median alpha"
     post_print <- rbind(post_print, ac_df)
   }
@@ -78,7 +78,7 @@ print.dirichletprocess <- function(x, param_summary = FALSE, digits = 2) {
       for (i in seq_len(n_params)) {
         param_i <- unlist(sapply(x$clusterParametersChain, function(x) x[[i]]))
         meani[i] <- mean(param_i)
-        sdi[i]   <- sd(param_i)
+        sdi[i]   <- stats::sd(param_i)
       }
 
       param_dat <- data.frame(. = paste0(mysprint(meani), " (",
