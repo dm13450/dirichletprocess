@@ -20,8 +20,8 @@ print.dirichletprocess <- function(x, param_summary = FALSE, digits = 2) {
 
   # Main title.
   burntxt <- ifelse(is.null(x$n_burned), "", paste0(" (plus ", x$n_burned, " burned)"))
-  cat("Dirichlet process object run for", length(x$labelsChain),
-      "iterations", burntxt, ".\n")
+  cat("Dirichlet process object run for ", length(x$labelsChain),
+      " iterations", burntxt, ".\n", sep = "")
 
 
   # Model info that always exists.
