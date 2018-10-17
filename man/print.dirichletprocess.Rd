@@ -20,3 +20,8 @@ model.}
 Print a Dirichlet process object. This will print some basic information
 about the \code{dirichletprocess} object.
 }
+\examples{
+dp <- Fit(DirichletProcessGaussian(rnorm(10)), 100)
+dp
+
+}

@@ -23,5 +23,4 @@ dp <- Fit(DirichletProcessGaussian(rnorm(10)), 100)
 DiagnosticPlots(dp)
 burned_dp <- Burn(dp, 50)
 DiagnosticPlots(burned_dp)
-
 }
