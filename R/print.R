@@ -55,7 +55,7 @@ print.dirichletprocess <- function(x, param_summary = FALSE, digits = 2) {
   if ("labelsChain" %in% names(x)) {
 
     n_clust <- sapply(x$labelsChain, function(x) length(unique(x)))
-    nc_df <- data.frame(. = mean(n_clust), stringsAsFactors = FALSE)
+    nc_df <- data.frame(. = mysprint(mean(n_clust)), stringsAsFactors = FALSE)
     rownames(nc_df) <- "Mean number of clusters"
     post_print <- rbind(post_print, nc_df)
   }
