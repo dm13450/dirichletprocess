@@ -4,7 +4,8 @@
 \alias{print.dirichletprocess}
 \title{Print the Dirichlet process object}
 \usage{
-\method{print}{dirichletprocess}(x, param_summary = FALSE, digits = 2)
+\method{print}{dirichletprocess}(x, param_summary = FALSE, digits = 2,
+  ...)
 }
 \arguments{
 \item{x}{Dirichlet Process Object to print.}
@@ -15,6 +16,8 @@ all iterations, so it will only give a loose sense of the resulting DPM
 model.}
 
 \item{digits}{Integer; Number of digits to display.}
+
+\item{...}{Further arguments passed to or from other methods.}
 }
 \description{
 Print a Dirichlet process object. This will print some basic information

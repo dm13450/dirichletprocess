@@ -10,13 +10,14 @@
 #'   all iterations, so it will only give a loose sense of the resulting DPM
 #'   model.
 #' @param digits Integer; Number of digits to display.
+#' @param ... Further arguments passed to or from other methods.
 #' @export
 #'
 #' @examples
 #' dp <- Fit(DirichletProcessGaussian(rnorm(10)), 100)
 #' dp
 #'
-print.dirichletprocess <- function(x, param_summary = FALSE, digits = 2) {
+print.dirichletprocess <- function(x, param_summary = FALSE, digits = 2, ...) {
 
 
   # Formatting function.
