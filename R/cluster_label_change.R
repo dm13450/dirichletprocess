@@ -104,9 +104,10 @@ ClusterLabelChange.nonconjugate <- function(dpObj, i, newLabel, currentLabel, au
       # clusterParams = rbind(clusterParams, aux[newLabel-numLabels, ])
 
       for (j in seq_along(clusterParams)) {
-        clusterParams[[j]] <- array(c(clusterParams[[j]], aux[[j]][, , newLabel -
-          numLabels]), dim = c(dim(clusterParams[[j]])[1:2], dim(clusterParams[[j]])[3] +
-          1))
+        clusterParams[[j]] <- array(c(clusterParams[[j]],
+                                      aux[[j]][, , newLabel - numLabels]),
+                                    dim = c(dim(clusterParams[[j]])[1:2],
+                                            dim(clusterParams[[j]])[3] + 1))
       }
 
       numLabels <- numLabels + 1

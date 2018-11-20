@@ -7,7 +7,8 @@
 #' @export
 LikelihoodDP <- function(dpobj){
 
-  allParameters <- lapply(seq_along(dpobj$clusterParameters), function(i) dpobj$clusterParameters[[i]][,,dpobj$clusterLabels, drop=FALSE])
+  allParameters <- lapply(seq_along(dpobj$clusterParameters),
+                          function(i) dpobj$clusterParameters[[i]][,,dpobj$clusterLabels, drop=FALSE])
 
   likelihoodValues <- Likelihood(dpobj$mixingDistribution, dpobj$data, allParameters)
 
