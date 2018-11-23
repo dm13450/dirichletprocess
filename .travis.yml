@@ -18,5 +18,10 @@ cache: packages
 r_packages:
   - covr
 
+addons:
+  apt:
+    packages:
+      - ghostscript
+
 after_success:
   - Rscript -e 'library(covr); codecov()'

@@ -1,10 +1,12 @@
-# dirichletprocess 0.2.1.900
+# dirichletprocess 0.2.2
 
 * Added a likelihood variable for the `dirichletprocess` class that is calculate with each fit iteration. 
 * Added option to change how many Metropolis-Hasting steps are used in each iteration. 
 * Added a likelihood calculation with each iteration. 
 * Added and refactored some tests. 
 * Updated vignette.
+* Additional options to univariate plotting. 
+* Added Kees Mulder as a contributor. 
 
 # dirichletprocess 0.2.1
 
