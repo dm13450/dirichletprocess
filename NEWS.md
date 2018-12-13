@@ -1,3 +1,7 @@
+# dirichletprocess 0.2.2.900
+
+* Fixed bug in PosteriorClusters 
+
 # dirichletprocess 0.2.2
 
 * Added a likelihood variable for the `dirichletprocess` class that is calculate with each fit iteration. 

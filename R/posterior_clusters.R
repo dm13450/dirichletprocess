@@ -20,7 +20,7 @@ PosteriorClusters <- function(dpobj, ind) UseMethod("PosteriorClusters", dpobj)
 PosteriorClusters.dirichletprocess <- function(dpobj, ind) {
 
   if (!missing(ind)) {
-    pointsPerCluster <- dpobj$weightsChain[[ind]]
+    pointsPerCluster <- dpobj$weightsChain[[ind]] * dpobj$n
     alpha <- dpobj$alphaChain[ind]
     clusterParams <- dpobj$clusterParametersChain[[ind]]
   } else {
