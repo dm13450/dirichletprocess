@@ -52,7 +52,7 @@ pois_custom <- function(){
 }
 
 gamma_custom <- function(){
-
+  #Figure 8
   Likelihood.gamma <- function(mdobj, x, theta){
     return(as.numeric(dgamma(x, theta[[1]], theta[[2]])))
   }

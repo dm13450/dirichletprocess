@@ -172,6 +172,11 @@ stickbreaking_gen <- function(){
 
 }
 
+
+# For Figure 7 and 8 see custom_models.R
+
+# For Figure 9 see weibull_censor.R
+
 clusterprediction_gen <- function(){
   # Figure 10
   faithfulTrans <- scale(faithful)

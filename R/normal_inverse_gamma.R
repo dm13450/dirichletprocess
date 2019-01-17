@@ -5,12 +5,14 @@
 #'@param priorParameters Prior parameters for the base measure.
 #'@return Mixing distribution object
 #'@export
-GaussianMixtureCreate <- function(priorParameters){
+GaussianMixtureCreate <- function(priorParameters=c(0,1,1,1)){
   mdobj <- MixingDistribution("normal", priorParameters, "conjugate")
   return(mdobj)
 }
 
-Likelihood.normal <- function(mdobj, x, theta) as.numeric(dnorm(x, theta[[1]], theta[[2]]))
+Likelihood.normal <- function(mdobj, x, theta){
+  as.numeric(dnorm(x, theta[[1]], theta[[2]]))
+}
 
 PriorDraw.normal <- function(mdobj, n = 1) {
 

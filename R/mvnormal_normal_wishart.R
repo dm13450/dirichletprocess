@@ -35,8 +35,10 @@ PosteriorDraw.mvnormal <- function(mdobj, x, n = 1) {
   post_parameters <- PosteriorParameters(mdobj, x)
 
   sig <- rWishart(n, post_parameters$nu_n, post_parameters$t_n)
-  mu <- simplify2array(lapply(seq_len(n), function(x) mvtnorm::rmvnorm(1, post_parameters$mu_n,
-    solve(post_parameters$kappa_n * sig[, , x]))))
+  mu <- simplify2array(lapply(seq_len(n),
+                              function(x) mvtnorm::rmvnorm(1,
+                                                           post_parameters$mu_n,
+                                                           solve(post_parameters$kappa_n * sig[, , x]))))
 
   return(list(mu = mu, sig = sig/post_parameters$kappa_n^2))
 }
