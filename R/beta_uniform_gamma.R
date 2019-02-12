@@ -9,9 +9,10 @@
 #' @return A mixing distribution object.
 #' @export
 BetaMixtureCreate <- function(priorParameters = c(2, 8), mhStepSize = c(1, 1), maxT = 1,
-  hyperPriorParameters = c(1, 0.125)) {
+                              hyperPriorParameters = c(1, 0.125)) {
 
-  mdObj <- MixingDistribution("beta", priorParameters, "nonconjugate",
+  mdObj <- MixingDistribution("beta",
+                              priorParameters, "nonconjugate",
                               mhStepSize, hyperPriorParameters)
   mdObj$maxT <- maxT
   return(mdObj)
