@@ -16,9 +16,9 @@ ChangeObservations <- function(dpobj, newData) UseMethod("ChangeObservations", d
 #' @export
 ChangeObservations.default <- function(dpobj, newData) {
 
-  if (is.numeric(newData))
+  if (!is.matrix(newData)){
     newData <- matrix(newData, ncol = 1)
-
+  }
   predicted_data <- ClusterLabelPredict(dpobj, newData)
 
   predicted_data$pointsPerCluster[1:dpobj$numberClusters] <- predicted_data$pointsPerCluster[1:dpobj$numberClusters] -

@@ -46,3 +46,19 @@ test_that("Hierarchcial Change Observations", {
   expect_equal(sum(dpListNew$indDP[[1]]$pointsPerCluster), 10)
   expect_equal(sum(dpListNew$indDP[[2]]$pointsPerCluster), 20)
 })
+
+test_that("2D Change Observations", {
+
+  testData <- scale(faithful)
+
+  dp <- DirichletProcessMvnormal(testData)
+  dp <- Fit(dp, 3, progressBar = F)
+  dpNew <- ChangeObservations(dp, abs(testData))
+
+  expect_is(dpNew, class(dp))
+  expect_equal(abs(testData), dpNew$data)
+
+})
+
+
+

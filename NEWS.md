@@ -1,6 +1,8 @@
 # dirichletprocess 0.2.2.900
 
 * Fixed bug in PosteriorClusters 
+* Added in new Beta mixture model for avoiding boundary. 
+* Fixed a bug in ChangeObservations when using more than one dimension. 
 
 # dirichletprocess 0.2.2
 
