@@ -43,7 +43,7 @@ ChangeObservations.default <- function(dpobj, newData) {
   }
 
   dpobj$data <- newData
-  dpobj$n <- length(newData)
+  dpobj$n <- nrow(newData)
 
   dpobj$clusterLabels <- predicted_data$componentIndexes
   dpobj$pointsPerCluster <- predicted_data$pointsPerCluster

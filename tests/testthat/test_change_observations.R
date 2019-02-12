@@ -54,6 +54,7 @@ test_that("2D Change Observations", {
   dp <- DirichletProcessMvnormal(testData)
   dp <- Fit(dp, 3, progressBar = F)
   dpNew <- ChangeObservations(dp, abs(testData))
+  dpNew <- Fit(dpNew, 4, progressBar = F)
 
   expect_is(dpNew, class(dp))
   expect_equal(abs(testData), dpNew$data)
