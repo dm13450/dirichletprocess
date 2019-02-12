@@ -4,7 +4,7 @@
 \alias{GaussianMixtureCreate}
 \title{Create a Normal mixing distribution}
 \usage{
-GaussianMixtureCreate(priorParameters)
+GaussianMixtureCreate(priorParameters = c(0, 1, 1, 1))
 }
 \arguments{
 \item{priorParameters}{Prior parameters for the base measure.}

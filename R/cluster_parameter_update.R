@@ -78,7 +78,7 @@ cluster_parameter_update <- function(mdobj, data, clusters, params){
   uniqueClusters <- unique(clusters)
 
   newParams <- lapply(uniqueClusters, function(i){
-    updateData <- data[clusters==i]
+    updateData <- data[clusters==i, ,drop=F]
     newParam <- PosteriorDraw(mdobj, updateData)
     return(newParam)
 

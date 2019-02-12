@@ -1,7 +1,20 @@
+#' Create a generic Dirichlet process hidden Markov Model
+#'
+#' Create a hidden Markov model where the data is believed to be generated from the mixing object distribution.
+#'
+#' @param x Data to be modelled
+#' @param mdobj Mixing disitribution object
+#' @param alpha Alpha parameter
+#' @param beta Beta parameter
+#' @export
 DirichletHMMCreate <- function(x, mdobj, alpha, beta){
 
-  states <- seq_len(length(x))
-  params <- PriorDraw(mdobj, length(x))
+  if(is.vector(x)){
+    x <- matrix(x, ncol=1)
+  }
+
+  states <- seq_len(nrow(x))
+  params <- PriorDraw(mdobj, nrow(x))
 
   newParams <- lapply(seq_along(states),
                       function(i) lapply(params, function(x) x[,,i, drop=F]))
