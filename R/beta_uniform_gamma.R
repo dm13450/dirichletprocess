@@ -20,8 +20,8 @@ BetaMixtureCreate <- function(priorParameters = c(2, 8), mhStepSize = c(1, 1), m
 
 #' @export
 #' @rdname Likelihood
-Likelihood.beta <- function(mdobj, x, theta) {
-  maxT <- mdobj$maxT
+Likelihood.beta <- function(mdObj, x, theta) {
+  maxT <- mdObj$maxT
   x <- as.vector(x, "numeric")
   mu <- theta[[1]][, , , drop = TRUE]
   tau <- theta[[2]][, , , drop = TRUE]
@@ -41,11 +41,11 @@ Likelihood.beta <- function(mdobj, x, theta) {
 
 #' @export
 #' @rdname PriorDraw
-PriorDraw.beta <- function(mdobj, n = 1) {
+PriorDraw.beta <- function(mdObj, n = 1) {
 
-  priorParameters <- mdobj$priorParameters
+  priorParameters <- mdObj$priorParameters
 
-  mu <- runif(n, 0, mdobj$maxT)
+  mu <- runif(n, 0, mdObj$maxT)
   nu <- 1/rgamma(n, priorParameters[1], priorParameters[2])
   theta <- list(mu = array(mu, c(1, 1, n)), nu = array(nu, c(1, 1, n)))
   return(theta)
@@ -62,9 +62,9 @@ PriorDensity.beta <- function(mdObj, theta) {
   return(as.numeric(thetaDensity))
 }
 
-# PosteriorDraw.beta <- function(mdobj, x, n=100, start_pos){
-# if(missing(start_pos)){ start_pos <- PriorDraw(mdobj) } mh_result <-
-# MetropolisHastings(x, start_pos, mdobj, no_draws=n) theta <-
+# PosteriorDraw.beta <- function(mdObj, x, n=100, start_pos){
+# if(missing(start_pos)){ start_pos <- PriorDraw(mdObj) } mh_result <-
+# MetropolisHastings(x, start_pos, mdObj, no_draws=n) theta <-
 # list(mu=array(mh_result$parameter_samples[[1]], dim=c(1,1,n)),
 # nu=array(mh_result$parameter_samples[[2]], dim=c(1,1,n))) return(theta) }
 

@@ -19,25 +19,25 @@ Likelihood.exponential <- function(mdObj, x, theta){
 
 #' @export
 #' @rdname PriorDraw
-PriorDraw.exponential <- function(mdobj, n){
-  draws <- rgamma(n, mdobj$priorParameters[1], mdobj$priorParameters[2])
+PriorDraw.exponential <- function(mdObj, n){
+  draws <- rgamma(n, mdObj$priorParameters[1], mdObj$priorParameters[2])
   theta <- list(array(draws, dim=c(1,1,n)))
   return(theta)
 }
 
 #' @export
 #' @rdname PosteriorDraw
-PosteriorDraw.exponential <- function(mdobj, x, n=1){
-  priorParameters <- mdobj$priorParameters
+PosteriorDraw.exponential <- function(mdObj, x, n=1, ...){
+  priorParameters <- mdObj$priorParameters
   theta <- rgamma(n, priorParameters[1] + length(x), priorParameters[2] + sum(x))
   return(list(array(theta, dim=c(1,1,n))))
 }
 
 #' @export
 #' @rdname Predictive
-Predictive.exponential <- function(mdobj, x){
+Predictive.exponential <- function(mdObj, x){
 
-  priorParameters <- mdobj$priorParameters
+  priorParameters <- mdObj$priorParameters
 
   pred <- numeric(length(x))
 

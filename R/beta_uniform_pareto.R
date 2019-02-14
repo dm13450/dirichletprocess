@@ -16,21 +16,21 @@ BetaMixture2Create <- function(priorParameters = 2, mhStepSize = c(1, 1), maxT =
 
 #' @export
 #' @rdname Likelihood
-Likelihood.beta2 <- function(mdobj, x, theta){
+Likelihood.beta2 <- function(mdObj, x, theta){
 
-  Likelihood.beta(mdobj, x, theta)
+  Likelihood.beta(mdObj, x, theta)
 
 }
 
 #' @export
 #' @rdname PriorDraw
-PriorDraw.beta2 <- function(mdobj, n=1){
+PriorDraw.beta2 <- function(mdObj, n=1){
 
-  priorParameters <- mdobj$priorParameters
+  priorParameters <- mdObj$priorParameters
 
-  mu <- runif(n, 0, mdobj$maxT)
+  mu <- runif(n, 0, mdObj$maxT)
 
-  muLim <- vapply(mu, function(x) max(1/(x/mdobj$maxT), 1/(1-(x/mdobj$maxT))), numeric(1))
+  muLim <- vapply(mu, function(x) max(1/(x/mdObj$maxT), 1/(1-(x/mdObj$maxT))), numeric(1))
   nu <- rpareto(n, muLim, priorParameters[1])
 
   theta <- list(mu = array(mu, c(1, 1, n)), nu = array(nu, c(1, 1, n)))

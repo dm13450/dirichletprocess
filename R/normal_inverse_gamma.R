@@ -6,21 +6,21 @@
 #'@return Mixing distribution object
 #'@export
 GaussianMixtureCreate <- function(priorParameters){
-  mdobj <- MixingDistribution("normal", priorParameters, "conjugate")
-  return(mdobj)
+  mdObj <- MixingDistribution("normal", priorParameters, "conjugate")
+  return(mdObj)
 }
 
 #' @export
 #' @rdname Likelihood
-Likelihood.normal <- function(mdobj, x, theta) {
+Likelihood.normal <- function(mdObj, x, theta) {
   as.numeric(dnorm(x, theta[[1]], theta[[2]]))
 }
 
 #' @export
 #' @rdname PriorDraw
-PriorDraw.normal <- function(mdobj, n = 1) {
+PriorDraw.normal <- function(mdObj, n = 1) {
 
-  priorParameters <- mdobj$priorParameters
+  priorParameters <- mdObj$priorParameters
 
   lambda <- rgamma(n, priorParameters[3], priorParameters[4])
   mu <- rnorm(n, priorParameters[1], (priorParameters[2] * lambda)^(-0.5))
@@ -31,9 +31,9 @@ PriorDraw.normal <- function(mdobj, n = 1) {
 
 #' @export
 #' @rdname PosteriorParameters
-PosteriorParameters.normal <- function(mdobj, x) {
+PosteriorParameters.normal <- function(mdObj, x) {
 
-  priorParameters <- mdobj$priorParameters
+  priorParameters <- mdObj$priorParameters
 
   n.x <- length(x)
   ybar <- mean(x)
@@ -55,9 +55,9 @@ PosteriorParameters.normal <- function(mdobj, x) {
 
 #' @export
 #' @rdname PosteriorDraw
-PosteriorDraw.normal <- function(mdobj, x, n = 1) {
+PosteriorDraw.normal <- function(mdObj, x, n = 1, ...) {
 
-  PosteriorParameters_calc <- PosteriorParameters(mdobj, x)
+  PosteriorParameters_calc <- PosteriorParameters(mdObj, x)
 
   lambda <- rgamma(n, PosteriorParameters_calc[3], PosteriorParameters_calc[4])
   mu <- rnorm(n,
@@ -70,14 +70,14 @@ PosteriorDraw.normal <- function(mdobj, x, n = 1) {
 
 #' @export
 #' @rdname Predictive
-Predictive.normal <- function(mdobj, x) {
+Predictive.normal <- function(mdObj, x) {
 
-  priorParameters <- mdobj$priorParameters
+  priorParameters <- mdObj$priorParameters
   predictiveArray <- numeric(length(x))
 
   for (i in seq_along(x)) {
 
-    PosteriorParameters_calc <- PosteriorParameters(mdobj, x[i])
+    PosteriorParameters_calc <- PosteriorParameters(mdObj, x[i])
 
     predictiveArray[i] <- (gamma(PosteriorParameters_calc[3])/gamma(priorParameters[3])) *
       ((priorParameters[4]^(priorParameters[3]))/PosteriorParameters_calc[4]^PosteriorParameters_calc[3]) *

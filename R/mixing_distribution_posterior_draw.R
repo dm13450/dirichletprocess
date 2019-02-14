@@ -11,11 +11,13 @@ PosteriorDraw <- function(mdObj, x, n = 1, ...){
 }
 
 #' @export
-PosteriorDraw.nonconjugate <- function(mdObj, x, n = 1, start_pos, ...) {
+PosteriorDraw.nonconjugate <- function(mdObj, x, n = 1, ...) {
 
-  if (missing(start_pos)) {
+  if (missing(...)) {
     ### This might need a try catch for models that don't have a penalised likelihood.
     start_pos <- PenalisedLikelihood(mdObj, x)
+  } else {
+    start_pos <- list(...)$start_pos
   }
 
   mh_result <- MetropolisHastings(mdObj, x, start_pos, no_draws = n)

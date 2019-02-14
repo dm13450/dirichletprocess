@@ -12,14 +12,14 @@
 
 \method{PriorDensity}{beta2}(mdObj, theta)
 
-PriorDensity(mdObj, x)
+PriorDensity(mdObj, theta)
 
 \method{PriorDensity}{weibull}(mdObj, theta)
 }
 \arguments{
 \item{mdObj}{Mixing distribution}
 
-\item{x}{Prior parameters}
+\item{theta}{Prior parameters}
 }
 \description{
 Calculate the prior density of a mixing distribution

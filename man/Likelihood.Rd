@@ -13,26 +13,26 @@
 \alias{Likelihood.normal}
 \title{Mixing Distribution Likelihood}
 \usage{
-\method{Likelihood}{beta}(mdobj, x, theta)
+\method{Likelihood}{beta}(mdObj, x, theta)
 
-\method{Likelihood}{beta2}(mdobj, x, theta)
+\method{Likelihood}{beta2}(mdObj, x, theta)
 
 \method{Likelihood}{exponential}(mdObj, x, theta)
 
 Likelihood(mdObj, x, theta)
 
-\method{Likelihood}{mvnormal}(mdobj, x, theta)
+\method{Likelihood}{mvnormal}(mdObj, x, theta)
 
-\method{Likelihood}{mvnormal2}(mdobj, x, theta)
+\method{Likelihood}{mvnormal2}(mdObj, x, theta)
 
-\method{Likelihood}{normal}(mdobj, x, theta)
+\method{Likelihood}{normal}(mdObj, x, theta)
 }
 \arguments{
+\item{mdObj}{Mixing Distribution}
+
 \item{x}{Data}
 
 \item{theta}{Parameters of distribution}
-
-\item{mdObj}{Mixing Distribution}
 }
 \value{
 Likelihood of the data

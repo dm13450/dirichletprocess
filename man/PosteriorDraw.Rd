@@ -12,24 +12,24 @@
 \alias{PosteriorDraw.weibull}
 \title{Draw from the posterior distribution}
 \usage{
-\method{PosteriorDraw}{exponential}(mdobj, x, n = 1)
+\method{PosteriorDraw}{exponential}(mdObj, x, n = 1, ...)
 
 PosteriorDraw(mdObj, x, n = 1, ...)
 
-\method{PosteriorDraw}{mvnormal}(mdobj, x, n = 1)
+\method{PosteriorDraw}{mvnormal}(mdObj, x, n = 1, ...)
 
-\method{PosteriorDraw}{mvnormal2}(mdobj, x, mhDraws = 1, start_pos)
+\method{PosteriorDraw}{mvnormal2}(mdObj, x, n = 1, ...)
 
-\method{PosteriorDraw}{normal}(mdobj, x, n = 1)
+\method{PosteriorDraw}{normal}(mdObj, x, n = 1, ...)
 
-\method{PosteriorDraw}{weibull}(mdObj, x, n = 100, start_pos)
+\method{PosteriorDraw}{weibull}(mdObj, x, n = 100, ...)
 }
 \arguments{
+\item{mdObj}{Mixing Distribution}
+
 \item{x}{Data}
 
 \item{n}{Number of draws}
-
-\item{mdObj}{Mixing Distribution}
 
 \item{...}{For a non-conjugate distribution the starting parameters. Defaults to a draw from the prior distribution.}
 }

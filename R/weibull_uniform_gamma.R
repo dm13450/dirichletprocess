@@ -58,16 +58,19 @@ PriorDensity.weibull <- function(mdObj, theta) {
 
 #' @export
 #' @rdname PosteriorDraw
-PosteriorDraw.weibull <- function(mdObj, x, n = 100, start_pos) {
+PosteriorDraw.weibull <- function(mdObj, x, n = 100, ...) {
 
-  if (missing(start_pos)){
-    start_pos <- PriorDraw(mdObj)
+  if (missing(...)){
+    start_pos <- PriorDraw(mdObj, 1)
+  } else {
+    start_pos <- list(...)$start_pos
   }
 
   mh_result <- MetropolisHastings.weibull(mdObj, x, start_pos, no_draws = n)
 
-  theta <- list(array(mh_result$parameter_samples[[1]], dim = c(1, 1, n)), array(mh_result$parameter_samples[[2]],
-    dim = c(1, 1, n)))
+  theta <- list(array(mh_result$parameter_samples[[1]], dim = c(1, 1, n)),
+                array(mh_result$parameter_samples[[2]],
+                      dim = c(1, 1, n)))
 
   return(theta)
 }

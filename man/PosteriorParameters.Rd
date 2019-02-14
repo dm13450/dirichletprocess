@@ -9,9 +9,9 @@
 \usage{
 PosteriorParameters(mdObj, x)
 
-\method{PosteriorParameters}{mvnormal}(mdobj, x)
+\method{PosteriorParameters}{mvnormal}(mdObj, x)
 
-\method{PosteriorParameters}{normal}(mdobj, x)
+\method{PosteriorParameters}{normal}(mdObj, x)
 }
 \arguments{
 \item{mdObj}{Mixing distribution object}

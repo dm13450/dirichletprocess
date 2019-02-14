@@ -9,18 +9,18 @@
 \alias{Predictive.normal}
 \title{Calculate how well the prior predicts the data.}
 \usage{
-\method{Predictive}{exponential}(mdobj, x)
+\method{Predictive}{exponential}(mdObj, x)
 
 Predictive(mdObj, x)
 
-\method{Predictive}{mvnormal}(mdobj, x)
+\method{Predictive}{mvnormal}(mdObj, x)
 
-\method{Predictive}{normal}(mdobj, x)
+\method{Predictive}{normal}(mdObj, x)
 }
 \arguments{
-\item{x}{The data}
-
 \item{mdObj}{The distribution}
+
+\item{x}{The data}
 }
 \value{
 The probability of the data being from the prior.
