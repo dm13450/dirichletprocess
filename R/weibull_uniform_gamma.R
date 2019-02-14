@@ -32,6 +32,9 @@ Likelihood.weibull <- function(mdObj, x, theta) {
   y[x < 0] <- 0
   return(y)
 }
+
+#' @export
+#' @rdname PriorDraw
 PriorDraw.weibull <- function(mdObj, n = 1) {
 
   priorParameters <- mdObj$priorParameters
@@ -42,6 +45,8 @@ PriorDraw.weibull <- function(mdObj, n = 1) {
   return(theta)
 }
 
+#' @export
+#' @rdname PriorDensity
 PriorDensity.weibull <- function(mdObj, theta) {
 
   priorParameters <- mdObj$priorParameters
@@ -51,6 +56,8 @@ PriorDensity.weibull <- function(mdObj, theta) {
   return(theta_density)
 }
 
+#' @export
+#' @rdname PosteriorDraw
 PosteriorDraw.weibull <- function(mdObj, x, n = 100, start_pos) {
 
   if (missing(start_pos)){
@@ -65,6 +72,8 @@ PosteriorDraw.weibull <- function(mdObj, x, n = 100, start_pos) {
   return(theta)
 }
 
+#' @export
+#' @rdname PriorParametersUpdate
 PriorParametersUpdate.weibull <- function(mdObj, clusterParameters, n = 1) {
 
   hyperPriorParameters <- mdObj$hyperPriorParameters
@@ -85,6 +94,7 @@ PriorParametersUpdate.weibull <- function(mdObj, clusterParameters, n = 1) {
   return(mdObj)
 }
 
+#' @export
 MhParameterProposal.weibull <- function(mdObj, old_params) {
 
   mhStepSize <- mdObj$mhStepSize

@@ -9,6 +9,8 @@ MvnormalCreate <- function(priorParameters) {
   return(mdobj)
 }
 
+#' @export
+#' @rdname Likelihood
 Likelihood.mvnormal <- function(mdobj, x, theta) {
 
   y <- sapply(seq_len(dim(theta[[1]])[3]),
@@ -17,6 +19,8 @@ Likelihood.mvnormal <- function(mdobj, x, theta) {
   return(y)
 }
 
+#' @export
+#' @rdname PriorDraw
 PriorDraw.mvnormal <- function(mdobj, n = 1) {
 
   priorParameters <- mdobj$priorParameters
@@ -30,6 +34,8 @@ PriorDraw.mvnormal <- function(mdobj, n = 1) {
   return(theta)
 }
 
+#' @export
+#' @rdname PosteriorDraw
 PosteriorDraw.mvnormal <- function(mdobj, x, n = 1) {
 
   post_parameters <- PosteriorParameters(mdobj, x)
@@ -41,6 +47,8 @@ PosteriorDraw.mvnormal <- function(mdobj, x, n = 1) {
   return(list(mu = mu, sig = sig/post_parameters$kappa_n^2))
 }
 
+#' @export
+#' @rdname PosteriorParameters
 PosteriorParameters.mvnormal <- function(mdobj, x) {
 
   if (!is.matrix(x)) {
@@ -65,6 +73,8 @@ PosteriorParameters.mvnormal <- function(mdobj, x) {
   return(list(mu_n = mu_n, t_n = t_n, kappa_n = kappa_n, nu_n = nu_n))
 }
 
+#' @export
+#' @rdname Predictive
 Predictive.mvnormal <- function(mdobj, x) {
 
   priorParameters <- mdobj$priorParameters

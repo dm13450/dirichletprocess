@@ -2,9 +2,15 @@
 % Please edit documentation in R/cluster_component_update.R
 \name{ClusterComponentUpdate}
 \alias{ClusterComponentUpdate}
+\alias{ClusterComponentUpdate.conjugate}
+\alias{ClusterComponentUpdate.hierarchical}
 \title{Update the component of the Dirichlet process}
 \usage{
 ClusterComponentUpdate(dpObj)
+
+\method{ClusterComponentUpdate}{conjugate}(dpObj)
+
+\method{ClusterComponentUpdate}{hierarchical}(dpObj)
 }
 \arguments{
 \item{dpObj}{Dirichlet Process object}

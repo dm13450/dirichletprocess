@@ -14,6 +14,8 @@ Mvnormal2Create <- function(priorParameters) {
   return(mdobj)
 }
 
+#' @export
+#' @rdname Likelihood
 Likelihood.mvnormal2 <- function(mdobj, x, theta) {
 
   y <- sapply(seq_len(dim(theta[[1]])[3]),
@@ -22,6 +24,8 @@ Likelihood.mvnormal2 <- function(mdobj, x, theta) {
   return(y)
 }
 
+#' @export
+#' @rdname PriorDraw
 PriorDraw.mvnormal2 <- function(mdobj, n = 1) {
 
   priorParameters <- mdobj$priorParameters
@@ -52,6 +56,8 @@ PriorDraw.mvnormal2 <- function(mdobj, n = 1) {
 #   return(list(mu = mu, sig = sig/post_parameters$kappa_n^2))
 # }
 
+#' @export
+#' @rdname PosteriorDraw
 PosteriorDraw.mvnormal2 <- function(mdobj, x, mhDraws = 1, start_pos) {
 
   if (!is.matrix(x)) {

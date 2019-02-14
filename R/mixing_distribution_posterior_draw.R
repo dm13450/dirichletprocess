@@ -10,6 +10,7 @@ PosteriorDraw <- function(mdObj, x, n = 1, ...){
   UseMethod("PosteriorDraw", mdObj)
 }
 
+#' @export
 PosteriorDraw.nonconjugate <- function(mdObj, x, n = 1, start_pos, ...) {
 
   if (missing(start_pos)) {

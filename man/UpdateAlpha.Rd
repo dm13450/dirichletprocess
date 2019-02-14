@@ -2,9 +2,15 @@
 % Please edit documentation in R/update_alpha.R
 \name{UpdateAlpha}
 \alias{UpdateAlpha}
+\alias{UpdateAlpha.default}
+\alias{UpdateAlpha.hierarchical}
 \title{Update the Dirichlet process concentration parameter.}
 \usage{
 UpdateAlpha(dpobj)
+
+\method{UpdateAlpha}{default}(dpobj)
+
+\method{UpdateAlpha}{hierarchical}(dpobj)
 }
 \arguments{
 \item{dpobj}{Dirichlet process object.}

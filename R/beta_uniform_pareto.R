@@ -14,12 +14,16 @@ BetaMixture2Create <- function(priorParameters = 2, mhStepSize = c(1, 1), maxT =
   return(mdObj)
 }
 
+#' @export
+#' @rdname Likelihood
 Likelihood.beta2 <- function(mdobj, x, theta){
 
   Likelihood.beta(mdobj, x, theta)
 
 }
 
+#' @export
+#' @rdname PriorDraw
 PriorDraw.beta2 <- function(mdobj, n=1){
 
   priorParameters <- mdobj$priorParameters
@@ -33,6 +37,8 @@ PriorDraw.beta2 <- function(mdobj, n=1){
   return(theta)
 }
 
+#' @export
+#' @rdname PriorDensity
 PriorDensity.beta2 <- function(mdObj, theta){
 
   priorParameters <- mdObj$priorParameters
@@ -44,6 +50,8 @@ PriorDensity.beta2 <- function(mdObj, theta){
   return(as.numeric(thetaDensity))
 }
 
+#' @export
+#' @rdname MhParameterProposal
 MhParameterProposal.beta2 <- function(mdObj, old_params){
 
   mhStepSize <- mdObj$mhStepSize

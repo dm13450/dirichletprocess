@@ -11,7 +11,8 @@
 #'@export
 UpdateAlpha <- function(dpobj) UseMethod("UpdateAlpha", dpobj)
 
-#'@export
+#' @export
+#' @rdname UpdateAlpha
 UpdateAlpha.default <- function(dpobj) {
 
   newAlpha <- update_concentration(dpobj$alpha, dpobj$n, dpobj$numberClusters, dpobj$alphaPriorParameters)
@@ -20,6 +21,8 @@ UpdateAlpha.default <- function(dpobj) {
   return(dpobj)
 }
 
+#' @export
+#' @rdname UpdateAlpha
 UpdateAlpha.hierarchical <- function(dpobj) {
 
   for(i in seq_along(dpobj$indDP)){

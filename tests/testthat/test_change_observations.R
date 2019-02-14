@@ -45,6 +45,11 @@ test_that("Hierarchcial Change Observations", {
   expect_equal(newData[[2]], c(dpListNew$indDP[[2]]$data))
   expect_equal(sum(dpListNew$indDP[[1]]$pointsPerCluster), 10)
   expect_equal(sum(dpListNew$indDP[[2]]$pointsPerCluster), 20)
+
+  dpListNew <- Fit(dpListNew, 2, FALSE, FALSE)
+
+  expect_is(dpListNew, class(dpList))
+
 })
 
 test_that("2D Change Observations", {
