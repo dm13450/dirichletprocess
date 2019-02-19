@@ -3,3 +3,4 @@ doc
 inst/doc
 .Rproj.user
 .Rhistory
+tests/testthat/Rplots.pdf

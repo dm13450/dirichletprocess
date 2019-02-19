@@ -16,7 +16,7 @@
 Fit <- function(dpObj, its, updatePrior = FALSE, progressBar=TRUE) UseMethod("Fit", dpObj)
 
 #' @export
-Fit.default <- function(dpObj, its, updatePrior = FALSE, progressBar=TRUE) {
+Fit.default <- function(dpObj, its, updatePrior = FALSE, progressBar = interactive()) {
 
   if (progressBar){
     pb <- txtProgressBar(min=0, max=its, width=50, char="-", style=3)
@@ -68,7 +68,7 @@ Fit.default <- function(dpObj, its, updatePrior = FALSE, progressBar=TRUE) {
 }
 
 #'@export
-Fit.hierarchical <- function(dpObj, its, updatePrior = FALSE, progressBar = TRUE){
+Fit.hierarchical <- function(dpObj, its, updatePrior = FALSE, progressBar = interactive()){
   if (progressBar) {
     pb <- txtProgressBar(min=0, max=its, width=50, char="-", style=3)
   }
