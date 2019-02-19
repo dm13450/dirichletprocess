@@ -69,8 +69,14 @@ test_that("Beta Posterior Draw", {
 test_that("Beta Posterior Draw with Start Position", {
 
   start_pos_test <- list(mu=array(1, dim=c(1,1,1)), nu=array(1, dim=c(1,1,1)))
-  expect_is(PosteriorDraw(test_mdobj, rbeta(10, 1,1), 10, start_pos_test), "list")
-  expect_equal(length(PosteriorDraw(test_mdobj, rbeta(10, 1,1), 10, start_pos_test)), 2)
+
+  postDraws <- PosteriorDraw(test_mdobj, rbeta(10, 1,1), 10, start_pos = start_pos_test)
+
+  expect_is(postDraws, "list")
+  expect_length(postDraws, 2)
+  expect_equal(c(postDraws[[1]])[1], c(start_pos_test[[1]])[1])
+  expect_equal(c(postDraws[[2]])[1], c(start_pos_test[[2]])[1])
+
 })
 
 

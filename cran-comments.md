@@ -1,27 +1,22 @@
--dirichletprocess 0.2.1
+-dirichletprocess 0.2.2
 -----------------------
-
-## Resubmission
-
-This is a resubmission. In this version I have:
-
-* Fixed a failing test.
-
 
 This is a minor update to the previous submission. 
 
 ## Changes
 In this version I have:
 
-* Added AppVeyor, Travis-CI and codecov.io badges.
-* Added penalised log-likelihood step for posterior cluster parameter inference.
-* Added exponential mixture model `DirichletProcessExponential`. 
-* Updated `plot`. Multivariate Gaussian models can now be plotted.
-* Various bug fixes.
-* Updated description.
+* Removed LaTeX detritus
+* Added a likelihood variable for the `dirichletprocess` class that is calculate with each fit iteration. 
+* Added option to change how many Metropolis-Hasting steps are used in each iteration. 
+* Added a likelihood calculation with each iteration. 
+* Added and refactored some tests. 
+* Updated vignette.
+* Additional options to univariate plotting. 
+* Added Kees Mulder as a contributor. 
 
 ## Test environments
-* local OS X install, R 3.4.4
+* local OS X install, R 3.5.0
 * ubuntu 14.04 (on travis-ci), (oldrel, devel and release)
 * win-builder (devel and release)
 

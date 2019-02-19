@@ -6,15 +6,21 @@
 #'@return Mixing distribution object
 #'@export
 GaussianMixtureCreate <- function(priorParameters){
-  mdobj <- MixingDistribution("normal", priorParameters, "conjugate")
-  return(mdobj)
+  mdObj <- MixingDistribution("normal", priorParameters, "conjugate")
+  return(mdObj)
 }
 
-Likelihood.normal <- function(mdobj, x, theta) as.numeric(dnorm(x, theta[[1]], theta[[2]]))
+#' @export
+#' @rdname Likelihood
+Likelihood.normal <- function(mdObj, x, theta) {
+  as.numeric(dnorm(x, theta[[1]], theta[[2]]))
+}
 
-PriorDraw.normal <- function(mdobj, n = 1) {
+#' @export
+#' @rdname PriorDraw
+PriorDraw.normal <- function(mdObj, n = 1) {
 
-  priorParameters <- mdobj$priorParameters
+  priorParameters <- mdObj$priorParameters
 
   lambda <- rgamma(n, priorParameters[3], priorParameters[4])
   mu <- rnorm(n, priorParameters[1], (priorParameters[2] * lambda)^(-0.5))
@@ -23,9 +29,11 @@ PriorDraw.normal <- function(mdobj, n = 1) {
   return(theta)
 }
 
-PosteriorParameters.normal <- function(mdobj, x) {
+#' @export
+#' @rdname PosteriorParameters
+PosteriorParameters.normal <- function(mdObj, x) {
 
-  priorParameters <- mdobj$priorParameters
+  priorParameters <- mdObj$priorParameters
 
   n.x <- length(x)
   ybar <- mean(x)
@@ -45,26 +53,31 @@ PosteriorParameters.normal <- function(mdobj, x) {
   return(PosteriorParameters)
 }
 
-PosteriorDraw.normal <- function(mdobj, x, n = 1) {
+#' @export
+#' @rdname PosteriorDraw
+PosteriorDraw.normal <- function(mdObj, x, n = 1, ...) {
 
-  PosteriorParameters_calc <- PosteriorParameters(mdobj, x)
+  PosteriorParameters_calc <- PosteriorParameters(mdObj, x)
 
   lambda <- rgamma(n, PosteriorParameters_calc[3], PosteriorParameters_calc[4])
-  mu <- rnorm(n, PosteriorParameters_calc[1], 1/sqrt(PosteriorParameters_calc[2] *
-    lambda))
-  theta <- list(array(mu, dim = c(1, 1, n)), array(sqrt(1/lambda), dim = c(1, 1,
-    n)))
+  mu <- rnorm(n,
+              PosteriorParameters_calc[1],
+              1/sqrt(PosteriorParameters_calc[2] * lambda))
+  theta <- list(array(mu, dim = c(1, 1, n)),
+                array(sqrt(1/lambda), dim = c(1, 1, n)))
   return(theta)
 }
 
-Predictive.normal <- function(mdobj, x) {
+#' @export
+#' @rdname Predictive
+Predictive.normal <- function(mdObj, x) {
 
-  priorParameters <- mdobj$priorParameters
+  priorParameters <- mdObj$priorParameters
   predictiveArray <- numeric(length(x))
 
   for (i in seq_along(x)) {
 
-    PosteriorParameters_calc <- PosteriorParameters(mdobj, x[i])
+    PosteriorParameters_calc <- PosteriorParameters(mdObj, x[i])
 
     predictiveArray[i] <- (gamma(PosteriorParameters_calc[3])/gamma(priorParameters[3])) *
       ((priorParameters[4]^(priorParameters[3]))/PosteriorParameters_calc[4]^PosteriorParameters_calc[3]) *

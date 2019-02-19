@@ -44,11 +44,12 @@ Initialise.nonconjugate <- function(dpObj, posterior = TRUE, m = 3, verbose = TR
     post_draws <- PosteriorDraw(dpObj$mixingDistribution, dpObj$data, 1000)
 
     if (verbose)
-      cat(paste("Accept Ratio: ", length(unique(c(post_draws[[1]])))/1000,
-        "\n"))
+      cat(paste("Accept Ratio: ",
+                length(unique(c(post_draws[[1]])))/1000,
+                "\n"))
 
     dpObj$clusterParameters <- list(post_draws[[1]][, , 1000, drop = FALSE],
-      post_draws[[2]][, , 1000, drop = FALSE])
+                                    post_draws[[2]][, , 1000, drop = FALSE])
   } else {
     dpObj$clusterParameters <- PriorDraw(dpObj$mixingDistribution, 1)
   }

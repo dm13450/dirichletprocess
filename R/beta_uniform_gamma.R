@@ -9,16 +9,19 @@
 #' @return A mixing distribution object.
 #' @export
 BetaMixtureCreate <- function(priorParameters = c(2, 8), mhStepSize = c(1, 1), maxT = 1,
-  hyperPriorParameters = c(1, 0.125)) {
+                              hyperPriorParameters = c(1, 0.125)) {
 
-  mdObj <- MixingDistribution("beta", priorParameters, "nonconjugate",
+  mdObj <- MixingDistribution("beta",
+                              priorParameters, "nonconjugate",
                               mhStepSize, hyperPriorParameters)
   mdObj$maxT <- maxT
   return(mdObj)
 }
 
-Likelihood.beta <- function(mdobj, x, theta) {
-  maxT <- mdobj$maxT
+#' @export
+#' @rdname Likelihood
+Likelihood.beta <- function(mdObj, x, theta) {
+  maxT <- mdObj$maxT
   x <- as.vector(x, "numeric")
   mu <- theta[[1]][, , , drop = TRUE]
   tau <- theta[[2]][, , , drop = TRUE]
@@ -36,16 +39,20 @@ Likelihood.beta <- function(mdobj, x, theta) {
   return(as.numeric(y))
 }
 
-PriorDraw.beta <- function(mdobj, n = 1) {
+#' @export
+#' @rdname PriorDraw
+PriorDraw.beta <- function(mdObj, n = 1) {
 
-  priorParameters <- mdobj$priorParameters
+  priorParameters <- mdObj$priorParameters
 
-  mu <- runif(n, 0, mdobj$maxT)
+  mu <- runif(n, 0, mdObj$maxT)
   nu <- 1/rgamma(n, priorParameters[1], priorParameters[2])
   theta <- list(mu = array(mu, c(1, 1, n)), nu = array(nu, c(1, 1, n)))
   return(theta)
 }
 
+#' @export
+#' @rdname PriorDensity
 PriorDensity.beta <- function(mdObj, theta) {
 
   priorParameters <- mdObj$priorParameters
@@ -55,12 +62,14 @@ PriorDensity.beta <- function(mdObj, theta) {
   return(as.numeric(thetaDensity))
 }
 
-# PosteriorDraw.beta <- function(mdobj, x, n=100, start_pos){
-# if(missing(start_pos)){ start_pos <- PriorDraw(mdobj) } mh_result <-
-# MetropolisHastings(x, start_pos, mdobj, no_draws=n) theta <-
+# PosteriorDraw.beta <- function(mdObj, x, n=100, start_pos){
+# if(missing(start_pos)){ start_pos <- PriorDraw(mdObj) } mh_result <-
+# MetropolisHastings(x, start_pos, mdObj, no_draws=n) theta <-
 # list(mu=array(mh_result$parameter_samples[[1]], dim=c(1,1,n)),
 # nu=array(mh_result$parameter_samples[[2]], dim=c(1,1,n))) return(theta) }
 
+#' @export
+#' @rdname PriorParametersUpdate
 PriorParametersUpdate.beta <- function(mdObj, clusterParameters, n = 1) {
 
   hyperPriorParameters <- mdObj$hyperPriorParameters
@@ -79,6 +88,8 @@ PriorParametersUpdate.beta <- function(mdObj, clusterParameters, n = 1) {
   return(mdObj)
 }
 
+#' @export
+#' @rdname MhParameterProposal
 MhParameterProposal.beta <- function(mdObj, old_params) {
 
   mhStepSize <- mdObj$mhStepSize
@@ -96,6 +107,8 @@ MhParameterProposal.beta <- function(mdObj, old_params) {
   return(new_params)
 }
 
+#' @export
+#' @rdname PenalisedLikelihood
 PenalisedLikelihood.beta <- function(mdObj, x){
 
   optimStartParams <- c(mdObj$maxT/2, 2)

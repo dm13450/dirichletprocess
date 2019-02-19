@@ -1,6 +1,6 @@
 #'Calculate the prior density of a mixing distribution
 #'
 #'@param mdObj Mixing distribution
-#'@param x Prior parameters
+#'@param theta Prior parameters
 #'@export
-PriorDensity <- function(mdObj, x) UseMethod("PriorDensity", mdObj)
+PriorDensity <- function(mdObj, theta) UseMethod("PriorDensity", mdObj)

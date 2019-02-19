@@ -14,7 +14,8 @@ ClusterComponentUpdate <- function(dpObj){
   UseMethod("ClusterComponentUpdate", dpObj)
 }
 
-#'@export
+#' @export
+#' @rdname ClusterComponentUpdate
 ClusterComponentUpdate.conjugate <- function(dpObj) {
 
   y <- dpObj$data
@@ -141,7 +142,9 @@ ClusterComponentUpdate.nonconjugate <- function(dpObj) {
   dpObj$numberClusters <- numLabels
   return(dpObj)
 }
-#'@export
+
+#' @export
+#' @rdname ClusterComponentUpdate
 ClusterComponentUpdate.hierarchical <- function(dpObj){
 
   for(i in seq_along(dpObj$indDP)){

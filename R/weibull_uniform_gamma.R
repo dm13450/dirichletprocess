@@ -32,6 +32,9 @@ Likelihood.weibull <- function(mdObj, x, theta) {
   y[x < 0] <- 0
   return(y)
 }
+
+#' @export
+#' @rdname PriorDraw
 PriorDraw.weibull <- function(mdObj, n = 1) {
 
   priorParameters <- mdObj$priorParameters
@@ -42,6 +45,8 @@ PriorDraw.weibull <- function(mdObj, n = 1) {
   return(theta)
 }
 
+#' @export
+#' @rdname PriorDensity
 PriorDensity.weibull <- function(mdObj, theta) {
 
   priorParameters <- mdObj$priorParameters
@@ -51,20 +56,27 @@ PriorDensity.weibull <- function(mdObj, theta) {
   return(theta_density)
 }
 
-PosteriorDraw.weibull <- function(mdObj, x, n = 100, start_pos) {
+#' @export
+#' @rdname PosteriorDraw
+PosteriorDraw.weibull <- function(mdObj, x, n = 100, ...) {
 
-  if (missing(start_pos)){
-    start_pos <- PriorDraw(mdObj)
+  if (missing(...)){
+    start_pos <- PriorDraw(mdObj, 1)
+  } else {
+    start_pos <- list(...)$start_pos
   }
 
   mh_result <- MetropolisHastings.weibull(mdObj, x, start_pos, no_draws = n)
 
-  theta <- list(array(mh_result$parameter_samples[[1]], dim = c(1, 1, n)), array(mh_result$parameter_samples[[2]],
-    dim = c(1, 1, n)))
+  theta <- list(array(mh_result$parameter_samples[[1]], dim = c(1, 1, n)),
+                array(mh_result$parameter_samples[[2]],
+                      dim = c(1, 1, n)))
 
   return(theta)
 }
 
+#' @export
+#' @rdname PriorParametersUpdate
 PriorParametersUpdate.weibull <- function(mdObj, clusterParameters, n = 1) {
 
   hyperPriorParameters <- mdObj$hyperPriorParameters
@@ -85,6 +97,7 @@ PriorParametersUpdate.weibull <- function(mdObj, clusterParameters, n = 1) {
   return(mdObj)
 }
 
+#' @export
 MhParameterProposal.weibull <- function(mdObj, old_params) {
 
   mhStepSize <- mdObj$mhStepSize
