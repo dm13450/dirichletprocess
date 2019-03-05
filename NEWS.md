@@ -3,6 +3,7 @@
 * Fixed bug in PosteriorClusters 
 * Added in new Beta mixture model for avoiding boundary. 
 * Fixed a bug in ChangeObservations when using more than one dimension. 
+* Added in Burn, Print and Diagnostic Plots 
 
 # dirichletprocess 0.2.2
 
