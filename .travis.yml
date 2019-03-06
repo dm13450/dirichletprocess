@@ -9,6 +9,7 @@ r:
 
 os:
   - linux
+  - osx
 
 before_install:
   - tlmgr install tcolorbox
@@ -22,6 +23,10 @@ addons:
   apt:
     packages:
       - ghostscript
+
+matrix:
+  allow_failures:
+    - R: devel
 
 after_success:
   - Rscript -e 'library(covr); codecov()'
