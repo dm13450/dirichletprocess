@@ -9,7 +9,6 @@ r:
 
 os:
   - linux
-  - osx
 
 before_install:
   - if [[ "$OSTYPE" != "linux-gnu" ]]; then sudo tlmgr install tcolorbox framed; fi
