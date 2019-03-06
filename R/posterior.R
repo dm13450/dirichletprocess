@@ -22,8 +22,9 @@ PosteriorFunction.dirichletprocess <- function(dpobj, ind) {
   post_clusters <- PosteriorClusters(dpobj, ind)
   base_function <- function(x, theta) Likelihood(dpobj$mixingDistribution, x, theta)
 
-  post_func <- weighted_function_generator(base_function, post_clusters$weights,
-    post_clusters$params)
+  post_func <- weighted_function_generator(base_function,
+                                           post_clusters$weights,
+                                           post_clusters$params)
 
   return(post_func)
 }

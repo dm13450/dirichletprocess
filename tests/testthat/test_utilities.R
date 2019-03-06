@@ -11,6 +11,8 @@ test_that("Weighted Function Generator", {
 
   expect_is(test_weighted_func, "function")
   expect_equal(test_weighted_func(0), dnorm(0))
+  expect_equivalent(test_weighted_func(as.matrix(0)), dnorm(0))
+  expect_equivalent(test_weighted_func(as.data.frame(0)), dnorm(0))
 })
 
 
