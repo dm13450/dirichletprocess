@@ -12,7 +12,7 @@ os:
   - osx
 
 before_install:
-  - tlmgr install tcolorbox
+  - sudo tlmgr install tcolorbox
 sudo: true
 cache: packages
 
