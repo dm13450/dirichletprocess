@@ -12,7 +12,8 @@ os:
   - osx
 
 before_install:
-  - if [[ "$OSTYPE" != "linux-gnu" ]]; then sudo tlmgr install tcolorbox; fi
+  - if [[ "$OSTYPE" != "linux-gnu" ]]; then sudo tlmgr install tcolorbox framed; fi
+  - if [[ "$OSTYPE" == "linux-gnu" ]]; then tlmgr install tcolorbox; fi
 
 sudo: true
 cache: packages
