@@ -12,7 +12,7 @@ os:
   - osx
 
 before_install:
-  - if [[ "$OSTYPE" != "linux-gnu" ]]; then sudo tlmgr install framed titling; fi
+  - if [[ "$OSTYPE" != "linux-gnu" ]]; then sudo tlmgr install tcolorbox; fi
 
 sudo: true
 cache: packages
