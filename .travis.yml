@@ -12,7 +12,8 @@ os:
   - osx
 
 before_install:
-  - sudo tlmgr install tcolorbox
+  - if [[ "$OSTYPE" != "linux-gnu" ]]; then sudo tlmgr install framed titling; fi
+
 sudo: true
 cache: packages
 
@@ -26,7 +27,7 @@ addons:
 
 matrix:
   allow_failures:
-    - R: devel
+    - r: devel
 
 after_success:
   - Rscript -e 'library(covr); codecov()'
