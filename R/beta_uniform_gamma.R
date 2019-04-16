@@ -70,7 +70,7 @@ PriorDensity.beta <- function(mdObj, theta) {
 
 #' @export
 #' @rdname PriorParametersUpdate
-PriorParametersUpdate.beta <- function(mdObj, clusterParameters, n = 1) {
+PriorParametersUpdate.beta <- function(mdObj, clusterParameters, clusterLabels, n = 1) {
 
   hyperPriorParameters <- mdObj$hyperPriorParameters
   priorParameters <- mdObj$priorParameters

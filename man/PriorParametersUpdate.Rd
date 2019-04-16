@@ -7,11 +7,13 @@
 \alias{PriorParametersUpdate.weibull}
 \title{Update the prior parameters of a mixing distribution}
 \usage{
-\method{PriorParametersUpdate}{beta}(mdObj, clusterParameters, n = 1)
+\method{PriorParametersUpdate}{beta}(mdObj, clusterParameters,
+  clusterLabels, n = 1)
 
-PriorParametersUpdate(mdObj, clusterParameters, n = 1)
+PriorParametersUpdate(mdObj, clusterParameters, clusterLabels, n = 1)
 
-\method{PriorParametersUpdate}{weibull}(mdObj, clusterParameters, n = 1)
+\method{PriorParametersUpdate}{weibull}(mdObj, clusterParameters,
+  clusterLabels, n = 1)
 }
 \arguments{
 \item{mdObj}{Mixing Distribution Object}

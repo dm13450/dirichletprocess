@@ -19,7 +19,7 @@ DirichletProcessHierarchicalBeta <- function(dataList, maxY,
 
   mdobj_list <- HierarchicalBetaCreate(n=length(dataList), priorParameters=priorParameters,
                                        hyperPriorParameters=hyperPriorParameters, gammaPrior=gammaPriors,
-                                      alphaPrior = alphaPriors, maxT=maxY, mhStepSize=mhStepSize, num_sticks=numSticks)
+                                       alphaPrior = alphaPriors, maxT=maxY, mhStepSize=mhStepSize, num_sticks=numSticks)
 
   dpobjlist <- list()
   dpobjlist$indDP <- lapply(seq_along(dataList),

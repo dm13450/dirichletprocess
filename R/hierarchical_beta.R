@@ -14,8 +14,10 @@ HierarchicalBetaCreate <- function(n, priorParameters, hyperPriorParameters,
                                    alphaPrior, maxT, gammaPrior,
                                    mhStepSize, num_sticks) {
 
-  mdobj_beta <- BetaMixtureCreate(priorParameters, mhStepSize = mhStepSize,
-    maxT = maxT, hyperPriorParameters = hyperPriorParameters)
+  mdobj_beta <- BetaMixtureCreate(priorParameters,
+                                  mhStepSize = mhStepSize,
+                                  maxT = maxT,
+                                  hyperPriorParameters = hyperPriorParameters)
 
   class(mdobj_beta) <- c("hierarchical", "beta", "nonconjugate")
 

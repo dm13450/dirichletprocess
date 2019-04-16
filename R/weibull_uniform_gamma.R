@@ -77,7 +77,7 @@ PosteriorDraw.weibull <- function(mdObj, x, n = 100, ...) {
 
 #' @export
 #' @rdname PriorParametersUpdate
-PriorParametersUpdate.weibull <- function(mdObj, clusterParameters, n = 1) {
+PriorParametersUpdate.weibull <- function(mdObj, clusterParameters, clusterLabels, n = 1) {
 
   hyperPriorParameters <- mdObj$hyperPriorParameters
   priorParameters <- mdObj$priorParameters

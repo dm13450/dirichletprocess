@@ -5,6 +5,6 @@
 #' @param n Number of samples
 #' @return mdobj New Mixing Distribution object with updated cluster parameters
 #' @export
-PriorParametersUpdate <- function(mdObj, clusterParameters, n = 1){
+PriorParametersUpdate <- function(mdObj, clusterParameters, clusterLabels, n = 1){
   UseMethod("PriorParametersUpdate", mdObj)
 }

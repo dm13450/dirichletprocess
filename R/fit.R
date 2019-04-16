@@ -45,8 +45,10 @@ Fit.default <- function(dpObj, its, updatePrior = FALSE, progressBar = interacti
     dpObj <- UpdateAlpha(dpObj)
 
     if (updatePrior) {
-      dpObj$mixingDistribution <- PriorParametersUpdate(dpObj$mixingDistribution,
-        dpObj$clusterParameters)
+      #dpObj$mixingDistribution <- PriorParametersUpdate(dpObj$mixingDistribution,
+       # dpObj$clusterParameters)
+      dpObj <- BaseMeasureUpdate(dpObj)
+
     }
     if (progressBar){
       setTxtProgressBar(pb, i)

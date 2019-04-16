@@ -37,13 +37,13 @@ piDirichlet <- function(betas) {
 
 
 draw_gj <- function(alpha0, beta_k) {
-  pi_prime <- sapply(seq_along(beta_k), function(i){
+  pi_prime <- vapply(seq_along(beta_k), function(i){
     shape2 <- 1 - sum(beta_k[1:i])
     if(shape2 < 0) {
       shape2 <- 0
     }
     rbeta(1, alpha0 * beta_k[i], alpha0 * shape2)
-  }
+  }, numeric(1)
     )
   pi_k <- piDirichlet(pi_prime)
   if(anyNA(pi_k)){
