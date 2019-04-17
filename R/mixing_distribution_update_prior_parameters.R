@@ -2,6 +2,7 @@
 #'
 #' @param mdObj Mixing Distribution Object
 #' @param clusterParameters Current cluster parameters
+#' @param clusterLabels Current cluster labels
 #' @param n Number of samples
 #' @return mdobj New Mixing Distribution object with updated cluster parameters
 #' @export

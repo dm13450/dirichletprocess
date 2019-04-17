@@ -20,6 +20,8 @@ PriorParametersUpdate(mdObj, clusterParameters, clusterLabels, n = 1)
 
 \item{clusterParameters}{Current cluster parameters}
 
+\item{clusterLabels}{Current cluster labels}
+
 \item{n}{Number of samples}
 }
 \value{
