@@ -27,8 +27,10 @@ PriorDraw.mvnormal <- function(mdObj, n = 1) {
 
   sig <- rWishart(n, priorParameters$nu, priorParameters$Lambda)
 
-  mu <- simplify2array(lapply(seq_len(n), function(x) mvtnorm::rmvnorm(1, priorParameters$mu0,
-    solve(sig[, , x] * priorParameters$kappa0))))
+  mu <- simplify2array(lapply(seq_len(n),
+                              function(i) mvtnorm::rmvnorm(1,
+                                                           priorParameters$mu0,
+                                                           solve(sig[, , i] * priorParameters$kappa0))))
 
   theta <- list(mu = mu, sig = sig)
   return(theta)
@@ -41,8 +43,10 @@ PosteriorDraw.mvnormal <- function(mdObj, x, n = 1, ...) {
   post_parameters <- PosteriorParameters(mdObj, x)
 
   sig <- rWishart(n, post_parameters$nu_n, post_parameters$t_n)
-  mu <- simplify2array(lapply(seq_len(n), function(x) mvtnorm::rmvnorm(1, post_parameters$mu_n,
-    solve(post_parameters$kappa_n * sig[, , x]))))
+  mu <- simplify2array(lapply(seq_len(n),
+                              function(x) mvtnorm::rmvnorm(1,
+                                                           post_parameters$mu_n,
+                                                           solve(post_parameters$kappa_n * sig[, , x]))))
 
   return(list(mu = mu, sig = sig/post_parameters$kappa_n^2))
 }
@@ -67,8 +71,9 @@ PosteriorParameters.mvnormal <- function(mdObj, x) {
 
   sum_squares[is.na(sum_squares)] <- 0
 
-  t_n <- mdObj$priorParameters$Lambda + sum_squares + ((kappa0 * nrow(x))/(kappa0 +
-    nrow(x))) * ((mu0 - colMeans(x)) %*% t(mu0 - colMeans(x)))
+  t_n <- mdObj$priorParameters$Lambda +
+    sum_squares +
+    ((kappa0 * nrow(x))/(kappa0 + nrow(x))) * ((mu0 - colMeans(x)) %*% t(mu0 - colMeans(x)))
 
   return(list(mu_n = mu_n, t_n = t_n, kappa_n = kappa_n, nu_n = nu_n))
 }
