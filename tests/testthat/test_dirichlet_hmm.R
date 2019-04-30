@@ -5,11 +5,7 @@ normMD <- GaussianMixtureCreate()
 
 HMM_dp_test <- function(dp){
 
-  expectedValues <- c("data", "mdobj", "states", "params", "alpha", "beta")
-
-  expect_is(dp, "list")
-  expect_length(dp, length(expectedValues))
-  expect_equal(names(dp), expectedValues)
+  expect_is(dp, c("list", "markov", "dirichetprocess", "normal", "conjugate"))
   expect_is(dp$states, "integer")
   expect_length(dp$states, length(dp$data))
   expect_length(dp$params, length(dp$data))
@@ -22,7 +18,9 @@ test_that("Create",{
 
   dp <- DirichletHMMCreate(testData, normMD, 2, 3)
 
-  ##Add in class checks
+
+  expectedValues <- c("data", "mdobj", "states", "params", "alpha", "beta")
+  expect_equal(names(dp), expectedValues)
 
   HMM_dp_test(dp)
 
@@ -35,6 +33,9 @@ test_that("Update States Integration", {
 
   dp <- UpdateStates(dp)
 
+  expectedValues <- c("data", "mdobj", "states", "params", "alpha", "beta")
+  expect_equal(names(dp), expectedValues)
+
   HMM_dp_test(dp)
 
 })
@@ -45,22 +46,27 @@ test_that("Update Parameters Integration", {
   dp <- UpdateStates(dp)
   dp <- param_update(dp)
 
-  HMM_dp_test(dp)
+  expectedValues <- c("data", "mdobj", "states", "params", "alpha", "beta")
+  expect_equal(names(dp), expectedValues)
 
 })
 
-test_that("Fit", {
+test_that("Fit Inner", {
 
   dp <- DirichletHMMCreate(testData, normMD, 2, 3)
   dp <- fit_hmm(dp, 10)
 
-  expect_is(dp, "list")
-  expect_is(dp$states, "integer")
-  expect_length(dp$states, length(dp$data))
-  expect_length(dp$params, length(dp$data))
-  expect_length(dp$alpha, 1)
-  expect_length(dp$beta, 1)
+  HMM_dp_test(dp)
+
 
 })
 
+test_that("Fit Dispatch", {
+
+  dp <- DirichletHMMCreate(testData, normMD, 2, 3)
+  dp <- Fit(dp, 10)
+
+  HMM_dp_test(dp)
+
+})
 

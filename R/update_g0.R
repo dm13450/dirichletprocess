@@ -3,13 +3,14 @@ UpdateG0 <- function(dpobjlist){
 
   globalParams <- dpobjlist$globalParameters
 
-  globalLabels <- lapply(seq_along(dpobjlist$indDP), function(x) match(dpobjlist$indDP[[x]]$clusterParameters[[1]],
-                                                                 globalParams[[1]]))
+  globalLabels <- lapply(seq_along(dpobjlist$indDP),
+                         function(x) match(dpobjlist$indDP[[x]]$clusterParameters[[1]],
+                                           globalParams[[1]]))
 
   globalParamTable <- data.frame(table(GlobalParam=unlist(globalLabels)))
   globalParamTable$GlobalParam <- as.numeric(levels(globalParamTable$GlobalParam))
 
-  globalParams <- dpobjlist$globalParameters
+  #globalParams <- dpobjlist$globalParameters
 
   numTables <- nrow(globalParamTable)
   dirichlet_draws <- gtools::rdirichlet(1, c(globalParamTable$Freq, dpobjlist$gamma))

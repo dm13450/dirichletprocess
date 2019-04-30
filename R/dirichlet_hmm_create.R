@@ -28,5 +28,7 @@ DirichletHMMCreate <- function(x, mdobj, alpha, beta){
   dp$alpha <- alpha
   dp$beta <- beta
 
+  class(dp) <- append(class(dp), c("markov", "dirichletprocess", class(mdobj)[-1]))
+
   return(dp)
 }

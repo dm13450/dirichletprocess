@@ -8,7 +8,7 @@
 #' @param its Number of iterations to use
 #' @param updatePrior Logical flag, defaults to \code{FAlSE}. Set whether the parameters of the base measure are updated.
 #' @param progressBar Logical flag indicating whether to display a progress bar.
-#' @return A Dirichlet Process object the fitted cluster parameters and labels.
+#' @return A Dirichlet Process object with the fitted cluster parameters and labels.
 #'
 #' @references Neal, R. M. (2000). Markov chain sampling methods for Dirichlet process mixture models. Journal of computational and graphical statistics, 9(2), 249-265.
 #'
@@ -46,7 +46,7 @@ Fit.default <- function(dpObj, its, updatePrior = FALSE, progressBar=TRUE) {
 
     if (updatePrior) {
       dpObj$mixingDistribution <- PriorParametersUpdate(dpObj$mixingDistribution,
-        dpObj$clusterParameters)
+                                                        dpObj$clusterParameters)
     }
     if (progressBar){
       setTxtProgressBar(pb, i)
@@ -109,5 +109,4 @@ Fit.hierarchical <- function(dpObj, its, updatePrior = FALSE, progressBar = TRUE
   }
   return(dpObj)
 }
-
 
