@@ -1,4 +1,4 @@
-#' Update the $\alpha$ and $\beta$ parameter of a hidden Markov Dirichlet process model.
+#' Update the \eqn{\alpha} and \eqn{\beta} parameter of a hidden Markov Dirichlet process model.
 #'
 #' @export
 UpdateAlphaBeta <- function(dp){

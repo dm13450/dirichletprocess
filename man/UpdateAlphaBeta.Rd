@@ -2,10 +2,10 @@
 % Please edit documentation in R/update_alpha_beta.R
 \name{UpdateAlphaBeta}
 \alias{UpdateAlphaBeta}
-\title{Update the $\alpha$ and $\beta$ parameter of a hidden Markov Dirichlet process model.}
+\title{Update the \eqn{\alpha} and \eqn{\beta} parameter of a hidden Markov Dirichlet process model.}
 \usage{
 UpdateAlphaBeta(dp)
 }
 \description{
-Update the $\alpha$ and $\beta$ parameter of a hidden Markov Dirichlet process model.
+Update the \eqn{\alpha} and \eqn{\beta} parameter of a hidden Markov Dirichlet process model.
 }
