@@ -4,16 +4,16 @@
 \alias{Fit.markov}
 \title{Fit a Hidden Markov Dirichlet Process Model}
 \usage{
-\method{Fit}{markov}(dp, its, updatePrior = F, progressBar = F)
+\method{Fit}{markov}(dpObj, its, updatePrior = F, progressBar = F)
 }
 \arguments{
+\item{dpObj}{Initialised Dirichlet Process object}
+
 \item{its}{Number of iterations to use}
 
 \item{updatePrior}{Logical flag, defaults to \code{FAlSE}. Set whether the parameters of the base measure are updated.}
 
 \item{progressBar}{Logical flag indicating whether to display a progress bar.}
-
-\item{dpObj}{Initialised Dirichlet Process object}
 }
 \value{
 A Dirichlet Process object with the fitted cluster parameters and states.

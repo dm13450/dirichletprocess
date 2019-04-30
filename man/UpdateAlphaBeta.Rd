@@ -6,6 +6,9 @@
 \usage{
 UpdateAlphaBeta(dp)
 }
+\arguments{
+\item{dp}{Dirichlet process object}
+}
 \description{
 Update the \eqn{\alpha} and \eqn{\beta} parameter of a hidden Markov Dirichlet process model.
 }

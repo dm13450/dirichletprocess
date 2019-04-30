@@ -8,14 +8,14 @@
 #' @return A Dirichlet Process object with the fitted cluster parameters and states.
 
 #' @export
-Fit.markov <- function(dp, its, updatePrior=F, progressBar = F){
+Fit.markov <- function(dpObj, its, updatePrior=F, progressBar = F){
 
-  dp <- fit_hmm(dp, its, progressBar)
+  dpObj <- fit_hmm(dpObj, its, progressBar)
 
-  return(dp)
+  return(dpObj)
 }
 
-fit_hmm <- function(dp, its, progressBar=F){
+fit_hmm <- function(dpObj, its, progressBar=F){
 
   if (progressBar){
     pb <- txtProgressBar(min=0, max=its, width=50, char="-", style=3)
@@ -27,13 +27,13 @@ fit_hmm <- function(dp, its, progressBar=F){
 
   for(i in seq_len(its)){
 
-    alphaChain[i] <- dp$alpha
-    betaChain[i] <- dp$beta
-    statesChain[[i]] <- dp$states
+    alphaChain[i] <- dpObj$alpha
+    betaChain[i] <- dpObj$beta
+    statesChain[[i]] <- dpObj$states
 
-    dp <- UpdateStates(dp)
-    dp <- UpdateAlphaBeta(dp)
-    dp <- param_update(dp)
+    dp <- UpdateStates(dpObj)
+    dp <- UpdateAlphaBeta(dpObj)
+    dp <- param_update(dpObj)
 
     if (progressBar) {
       setTxtProgressBar(pb, i)
@@ -41,20 +41,19 @@ fit_hmm <- function(dp, its, progressBar=F){
 
   }
 
-  dp$alphaChain <- alphaChain
-  dp$betaChain <- betaChain
-  dp$statesChain <- statesChain
+  dpObj$alphaChain <- alphaChain
+  dpObj$betaChain <- betaChain
+  dpObj$statesChain <- statesChain
 
   if (progressBar) {
     close(pb)
   }
 
-  return(dp)
+  return(dpObj)
 }
 
 
 param_update <- function(dp){
-
 
   newParams <- cluster_parameter_update(dp$mdobj, dp$data, dp$states, dp$params)
 
