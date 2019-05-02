@@ -16,7 +16,7 @@ Fit(dpObj, its, updatePrior = FALSE, progressBar = TRUE)
 \item{progressBar}{Logical flag indicating whether to display a progress bar.}
 }
 \value{
-A Dirichlet Process object the fitted cluster parameters and labels.
+A Dirichlet Process object with the fitted cluster parameters and labels.
 }
 \description{
 Using Neal's algorithm 4 or 8 depending on conjugacy the sampling procedure for a Dirichlet process is carried out.

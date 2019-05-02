@@ -73,3 +73,20 @@ ClusterParameterUpdate.nonconjugate <- function(dpObj) {
   return(dpObj)
 }
 
+cluster_parameter_update <- function(mdobj, data, clusters, params){
+
+  uniqueClusters <- unique(clusters)
+
+  newParams <- lapply(uniqueClusters, function(i){
+    updateData <- data[clusters==i, ,drop=F]
+    newParam <- PosteriorDraw(mdobj, updateData)
+    return(newParam)
+
+  } )
+
+  newParamsFull <- newParams[clusters]
+  return(newParamsFull)
+}
+
+
+

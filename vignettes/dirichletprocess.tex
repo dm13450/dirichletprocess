@@ -1,4 +1,4 @@
-\documentclass[nojss]{jss}
+\documentclass[jss]{jss}
 
 %\VignetteIndexEntry{dirichletprocess: An R Package for Fitting Complex Bayesian Nonparametric Models}
 %\VignettePackage{dirichletprocess}
@@ -22,11 +22,7 @@
 
 %% For Sweave-based articles about R packages:
 %% need no \usepackage{Sweave}
-\SweaveOpts{engine=R, eps=FALSE, keep.source = TRUE}
-<<preliminaries, echo=FALSE, results=hide>>=
-options(prompt = "R> ", continue = "+  ", width = 70, useFancyQuotes = FALSE)
-library(dirichletprocess)
-@
+
 
 %\usepackage{refcheck}
 
@@ -83,7 +79,7 @@ The \pkg{dirichletprocess} package provides software for creating flexible Diric
 }
 
 \begin{document}
-\SweaveOpts{concordance=FALSE}
+
 
 
 \section[Introduction]{Introduction} \label{sec:intro}
@@ -106,7 +102,7 @@ y_{i,j} & \sim N(y_{i,j} \mid \mu_j,\sigma^2), \\
 \end{align*}
 where $\gamma$ is the (hyper-)parameters of the prior. This model is an example of \textbf{partial pooling}, where the inference for each mean $\mu_j$ is based on the means of each of the other $J-1$ groups, allowing information to be shared across groups. As a biased estimation technique, it is related to methods such as the Lasso estimator, and usually results in more accurate estimation than estimating each group mean separately. However, completing the model specification requires choosing a form for the prior distribution of group means $p(\mu_j \mid \gamma)$, which is made more difficult since the group means may not be observable with a high degree of accuracy, particularly when the number of observations is small. In this case, using a nonparametric DPMM specification for $p(\mu_j \mid \gamma) $ would avoid the risks of potentially specifying an inappropriate parametric form.
 
-Typically when working with DPMMs, the posterior distributions are analytically intractable, so inference instead usually involved computational simulation. A variety of simulation algorithms based around Gibbs sampling and Metropolis-Hastings have been developed to draw samples from DPMM posterior distributions, which can then be used for inference. As such, the widespread adoption of DPMMs has to some extent been held back by the level of statistical and programming literacy required to implement use them. The purpose of the \pkg{dirichletprocess} package is to provide a unified implementation of these simulation algorithms for a very wide class of DP mixture models which makes it easy to incorporate DPMMs into hierarchical models.
+Typically when working with DPMMs, the posterior distributions are analytically intractable, so inference instead usually involved computational simulation. A variety of simulation algorithms based around Gibbs sampling and Metropolis-Hastings have been developed to draw samples from DPMM posterior distributions, which can then be used for inference. As such, the widespread adoption of DPMMs has to some extent been held back by the level of statistical and programming literacy required to implement use them. The purpose of the \pkg{dirichletprocess} package is to provide a unified implementation of these simulation algorithms for a very wide class of DP mixture models which makes it easy to incorporate DPMMs into hierarchical models
 
 The design philosophy of the \pkg{dirichletprocess} package is the polar opposite of the existing  \pkg{DPpackage} \proglang{R} package which also provides an implementation of DPMMs. The purpose of \pkg{DPpackage} is to give a fast implementation of several common tasks where DPs are used, such as density estimation using Gaussian mixtures, and a variety of specific regression models. While the \pkg{DPpackage} package is very useful in these situations, it cannot be used for any applications of DPs which do not fall into one of the pre-specified tasks incorporated in the package, or use mixture kernels or base measures other than those provided.
 
@@ -128,7 +124,7 @@ The ultimate purpose of this package is to represent Dirichlet process mixture m
 \item Ease-of-use. A key feature of this package is that users can themselves specify new DP mixture types if the package does not implement the precise specification they desire.  The object systems S4 and RC are geared towards intermediary/advanced \proglang{R} programmers and can be intimidating to novices. The design philosophy of this package allows  users to override the behaviour of DP objects and create new mixture types without needing to learn the intricacies of any particular object system.  The chosen representation where DP objects are simple S3 structures does not require the user to learn anything about the more obscure intricacies of \proglang{R} objects, and instead they can focus purely on writing the \proglang{R} functions to implement the DP models.
 \end{enumerate}
 
-Current alternatives for nonparamteric inference include Stan, PyMC3 and Edward. However, whilst all three packages are much more general than the \pkg{dirichletprocess} offerings, they do not offer ease of customisation that \pkg{dirichletprocess} does. Firstly, Stan \citep{carpenter_bob_stan:_2016}, does not allow you to specify discrete parameters in models. As Dirichlet process models require cluster labels which are inherently discrete parameters you are unable to build Dirichlet process models directly in Stan. For both the Python libraries Edward and PyMC3, examples exist of building Dirichlet process models. However, these are built on top of TensorFlow and Theano \citep{tran_edward:_2016, salvatier_probabilistic_2016}, therefore, being able to build Dirichlet process objects into statistical work flows would require learning these external libraries. Instead our package \pkg{dirichletprocess} is written natively in R and abstracts the difficulties away, allowing users to write Dirichlet process models in R code and not worry about computational details.
+Current alternatives for nonparamteric inference include Stan, PyMC3 and Edward. However, whilst all three packages are much more general than the dirichletprocess offerings, they do not offer ease of customisation that \pkg{dirichletprocess} does. Firstly, Stan CITE, does not allow you to specify discrete parameters in models. As Dirichlet process models require cluster labels which are inherently discrete parameters you are unable to build Dirichlet process models directly in Stan. For both the Python libraries Edward and PyMC3, examples exist of building Dirichlet process models. However, these are built on top of TensorFlow and Theano \citep{tran_edward:_2016, salvatier_probabilistic_2016}, therefore, being able to build Dirichlet process objects into statistical work flows would require learning these external libraries. Instead our package \pkg{dirichletprocess} is written natively in R and abstracts the difficulties away, allowing users to write Dirichlet process models in R code and not worry about computational details.
 
 \section{Background information}
 \label{sec:background}
@@ -146,7 +142,7 @@ where $p(\theta \mid \gamma)$ denotes the prior distribution and $\gamma$ are th
 
 In practice however, it may not be clear how to choose an appropriate parametric family of distributions for $F$. If the wrong family is chosen, then conclusions based on the estimated model may be highly misleading. For example, if it is assumed that $F$ has a Normal distribution with unknown parameters $\theta=(\mu,\sigma^2)$ when in fact the true $F$ is heavy-tailed, this can lead to severe underestimation of the probability of extreme events occurring \citep{coles_introduction_2001}.
 
-This problem can be avoided by using a nonparametric prior specification which puts positive prior mass on the whole space of probability densities rather than on a subspace spanned by the finite-length parameter vector $\theta$. This allows the estimated $F$ to adapt to the data, rather than being restricted to a particular family of distributions such as the Normal or Exponential. The Dirichlet process (DP) is one of the most widely used Bayesian nonparametric priors, due to its flexibility and computational simplicity. Our aim in this section is not to give a full treatment of the Dirichlet processes, and a reader unfamiliar with them should refer to a standard reference such as \cite{escobar_bayesian_1995}. Instead we will only focus on describing the properties of the DP that are directly relevant to their implementation in the \pkg{dirichletprocess} package.
+This problem can be avoided by using a nonparametric prior specification which puts positive prior mass on the whole space of probability densities rather than on a subspace spanned by the finite-length parameter vector $\theta$. This allows the estimated $F$ to adapt to the data, rather than being restricted to a particular family of distributions such as the Normal or Exponential. The Dirichlet process (DP) is one of the most widely used Bayesian nonparametric priors, due to its flexibility and computational simplicity.  Our aim in this section is not to give a full treatment of the Dirichlet processes, and a reader unfamiliar with them should refer to a standard reference such as \cite{escobar_bayesian_1995}. Instead we will only focus on describing the properties of the DP that are directly relevant to their implementation in the \pkg{dirichletprocess} package.
 
 The basic DP model has the form:
 \begin{align*}
@@ -401,11 +397,13 @@ The \pkg{dirichletprocess} package contains implementations of a variety of Diri
 
 To illustrate how the package is meant to be used, and how it differs from other \proglang{R} packages, consider the task of density estimation. Suppose we wish to estimate the density of some data stored in the variable \code{y} using a Dirichlet process mixture of Gaussian distributions. This is done as follows:
 
-<<student-t, eval=FALSE>>=
-y <- rt(200, 3) + 2 #generate sample data
-dp <- DirichletProcessGaussian(y)
-dp <- Fit(dp, 1000)
-@
+\begin{Schunk}
+\begin{Sinput}
+R> y <- rt(200, 3) + 2 #generate sample data
+R> dp <- DirichletProcessGaussian(y)
+R> dp <- Fit(dp, 1000)
+\end{Sinput}
+\end{Schunk}
 
 The function \code{DirichletProcessGaussian} is the creator function for a mixture model of univariate Gaussians. This creates the object \code{dp}. We then use the function \code{Fit} on this object to infer the cluster parameters, which uses the Chinese Restaurant Sample algorithm described in Section \ref{subsec:dpm}. With each iteration, the assigned cluster label to each datapoint is updated, then the resulting cluster parameters are updated before finally updating the concentration parameter $\alpha$. Using the \code{Fit} function the details of the sampling are removed from the user and this provides an `out-of-the-box' method to easily fit a Dirichlet process to data. Only a specification of the type of mixture model is needed - in this case a Gaussian mixture. The returned object \code{dp} from the \code{Fit} function contains the following information: \code{dp$clusterParameterChains} stores the MCMC samples of the cluster parameters, \code{dp$weightsChain} stores the associate weights, and \code{dp$alphaChain} stores the samples of the concentration parameter $\alpha$. These posterior samples can then be used for inference based on what the user is trying to accomplish.
 
@@ -439,14 +437,16 @@ G & \sim \text{DP}(\alpha , G_0),
 \end{align*}
 where $k(y _i \mid \theta )$ is the standard normal probability density and $G_0$ is the base measure as in Section \ref{subsec:implemented}.
 \newpage %to stop chunk being split
-<<oldfaithfull, eval=FALSE>>=
-its <- 500
-faithfulTransformed <- scale(faithful$waiting)
-dp <- DirichletProcessGaussian(faithfulTransformed)
-dp <- Fit(dp, its)
-plot(dp)
-plot(dp, data_method="hist")
-@
+\begin{Schunk}
+\begin{Sinput}
+R> its <- 500
+R> faithfulTransformed <- scale(faithful$waiting)
+R> dp <- DirichletProcessGaussian(faithfulTransformed)
+R> dp <- Fit(dp, its)
+R> plot(dp)
+R> plot(dp, data_method="hist")
+\end{Sinput}
+\end{Schunk}
 
 \begin{figure}[tb]
 \centering
@@ -478,22 +478,23 @@ For most users the \code{Fit} function is sufficient for practical purposes. How
 
 By default, the \code{Fit} function updates the cluster allocation, the cluster parameters and then the $\alpha$ parameter. In some rare cases, updating $\alpha$ every iteration can delay convergence. Instead, the user can instead choose to update $\alpha$ every 10 iterations.
 \newpage %stop splitting
-<<customsampling, eval=FALSE>>=
-dp <- DirichletProcessGaussian(y)
-
-samples <- list()
-for(s in seq_len(1000)){
-  dp <- ClusterComponentUpdate(dp)
-  dp <- ClusterParameterUpdate(dp)
-
-  if(s %% 10 == 0) {
-  	dp <- UpdateAlpha(dp)
-  }
-  samples[[s]] <- list()
-  samples[[s]]$phi <- dp$clusterParameters
-  samples[[s]]$weights <- dp$weights
-}
-@
+\begin{Schunk}
+\begin{Sinput}
+R> dp <- DirichletProcessGaussian(y)
+R> samples <- list()
+R> for(s in seq_len(1000)){
++    dp <- ClusterComponentUpdate(dp)
++    dp <- ClusterParameterUpdate(dp)
++  
++    if(s %% 10 == 0) {
++    	dp <- UpdateAlpha(dp)
++    }
++    samples[[s]] <- list()
++    samples[[s]]$phi <- dp$clusterParameters
++    samples[[s]]$weights <- dp$weights
++  }
+\end{Sinput}
+\end{Schunk}
 
 The function \code{ClusterComponentUpdate} iterates through all the data points, $y_i$ for $i=1,\ldots,n$, updating its cluster assignment sequentially via the Chinese Restaurant Process sampling algorithm, using Key Property 4 in Section \ref{subsec:dpm}. For each data point, it can either be assigned to an existing cluster, or form a new cluster. The probability it is assigned to an existing cluster is proportional to $n_i k(y _j \mid \theta _{i})$, where $n_i$ is the number of points already assigned to the cluster $\theta _i$ and $k$ is the likelihood of the data point point evaluated with the cluster parameter $\theta _i$. The probability is forms a new cluster is proportional to $\alpha$, the concentration parameter. If the datapoint is selected to form a new cluster, then this new cluster parameter $\theta _{\text{new}}$ is drawn from $G_0$ and added to the cluster pool. Subsequent points can now also be added to this cluster. Note that when a conjugate base measure is used in the DP, this function samples directly from the conditional posteriors, while if a non-conjugate sampler is used then the sampling is carried out using Algorithm 8 from \cite{neal_markov_2000}.
 
@@ -506,30 +507,32 @@ The key point of the  \pkg{dirichletprocess} package which the above code highli
 \subsection{Density Estimation on Bounded Intervals}
 In some situations it will be necessary to estimate densities on bounded intervals. For example, it might be known that the observations $y_i$ are restricted to lie within the interval $[0,1]$. In this case, a mixture of Gaussian distributions is inappropriate, since this will assign positive probability to the whole real line. An alternative specification is a mixture of Beta distributions, since the Beta distribution only has positive mass in $[0,1]$. The full model is the same as in the previous example but replacing $k$ with the Beta distribution.
 
-<<toy-beta, eval=FALSE>>=
-y <- c(rbeta(150, 1, 3), rbeta(150, 7, 3)) #generate sample data
-dp <- DirichletProcessBeta(y, 1)
-dp <- Fit(dp, 1000)
-@
+\begin{Schunk}
+\begin{Sinput}
+R> y <- c(rbeta(150, 1, 3), rbeta(150, 7, 3)) #generate sample data
+R> dp <- DirichletProcessBeta(y, 1)
+R> dp <- Fit(dp, 1000)
+\end{Sinput}
+\end{Schunk}
 
 As we want to compare the resulting posterior distribution to a known distribution we must manually draw posterior samples, calculate the credible intervals and plot the results.
 \newpage
-<<toy-beta-plot, eval=FALSE>>=
-posteriorFrame <- PosteriorFrame(dp, ppoints(100), ci_size = 0.05)
-
-trueFrame <- data.frame(x=ppoints(100),
-                        y=0.5*dbeta(ppoints(100), 1, 3)+
-                          0.5*dbeta(ppoints(100), 7, 3))
-
-ggplot() +
-  geom_ribbon(data=posteriorFrame,
-              aes(x=x, ymin=X2.5., ymax=X97.5.),
-              alpha=0.2,
-              colour=NA,
-              fill="red") +
-  geom_line(data=posteriorFrame, aes(x=x, y=Mean), colour="red") +
-  geom_line(data=trueFrame, aes(x=x, y=y))
-@
+\begin{Schunk}
+\begin{Sinput}
+R> posteriorFrame <- PosteriorFrame(dp, ppoints(100), ci_size = 0.05)
+R> trueFrame <- data.frame(x=ppoints(100),
++                          y=0.5*dbeta(ppoints(100), 1, 3)+
++                            0.5*dbeta(ppoints(100), 7, 3))
+R> ggplot() +
++    geom_ribbon(data=posteriorFrame,
++                aes(x=x, ymin=X2.5., ymax=X97.5.),
++                alpha=0.2,
++                colour=NA,
++                fill="red") +
++    geom_line(data=posteriorFrame, aes(x=x, y=Mean), colour="red") +
++    geom_line(data=trueFrame, aes(x=x, y=y))
+\end{Sinput}
+\end{Schunk}
 
 \begin{figure}[tb]
 	\centering
@@ -592,15 +595,19 @@ G & \sim \text{DP} ( \alpha, G_0 ),
 where the prior parameters of $G_0$ take on their default value as shown in Section \ref{subsec:implemented}. We will be using the cluster labels to indicate which group each data point belongs to.
 
 We transform the data so that each variable is zero mean and unit standard deviation.
-<<clustering, eval=FALSE>>=
-faithfulTrans <- scale(faithful)
-@
+\begin{Schunk}
+\begin{Sinput}
+R> faithfulTrans <- scale(faithful)
+\end{Sinput}
+\end{Schunk}
 We form the dirichletprocess object and perform 1000 MCMC samples.
-<<clustering-fit, eval=FALSE>>=
-dp <-  DirichletProcessMvnormal(faithfulTrans)
-dp <- Fit(dp, 1000)
-plot(dp)
-@
+\begin{Schunk}
+\begin{Sinput}
+R> dp <-  DirichletProcessMvnormal(faithfulTrans)
+R> dp <- Fit(dp, 1000)
+R> plot(dp)
+\end{Sinput}
+\end{Schunk}
 When analysing the results of the fit we are interested in the final Gibbs sample of the cluster labels. Using the cluster label to assign a colour to each datapoint we can easily see the distinct clusters that form.
 
 \begin{figure}[tb]
@@ -655,54 +662,51 @@ F \sim & DP(\alpha, G_0),
 where $\alpha$ and $G_0$ follow the default implementations of the \pkg{dirichletprocess} package. We then implement this model using the \pkg{dirichletprocess} functions as follows:
 \clearpage
 
-<<rats, eval=FALSE>>=
-numSamples = 200
-thetaDirichlet <- matrix(nrow=numSamples, ncol=nrow(rats))
-
-dpobj <- DirichletProcessBeta(rats$y/rats$N,
-                              maxY=1,
-                              g0Priors = c(2, 150),
-                              mhStep=c(0.25, 0.25),
-                              hyperPriorParameters = c(1, 1/150))
-dpobj <- Fit(dpobj, 10)
-
-clusters <- dpobj$clusterParameters
-
-a <- clusters[[1]] * clusters[[2]]
-b <- (1 - clusters[[1]]) * clusters[[2]]
-
-for(i in seq_len(numSamples)){
-
-  posteriorA <- a[dpobj$clusterLabels] + rats$y
-  posteriorB <- b[dpobj$clusterLabels] + rats$N - rats$y
-  thetaDirichlet[i, ] <- rbeta(nrow(rats), posteriorA, posteriorB)
-
-  dpobj <- ChangeObservations(dpobj, thetaDirichlet[i, ])
-  dpobj <- Fit(dpobj, 5)
-  clusters <- dpobj$clusterParameters
-
-  a <- clusters[[1]] * clusters[[2]]
-  b <- (1 - clusters[[1]]) * clusters[[2]]
-}
-@
+\begin{Schunk}
+\begin{Sinput}
+R> numSamples = 200
+R> thetaDirichlet <- matrix(nrow=numSamples, ncol=nrow(rats))
+R> dpobj <- DirichletProcessBeta(rats$y/rats$N,
++                                maxY=1,
++                                g0Priors = c(2, 150),
++                                mhStep=c(0.25, 0.25),
++                                hyperPriorParameters = c(1, 1/150))
+R> dpobj <- Fit(dpobj, 10)
+R> clusters <- dpobj$clusterParameters
+R> a <- clusters[[1]] * clusters[[2]]
+R> b <- (1 - clusters[[1]]) * clusters[[2]]
+R> for(i in seq_len(numSamples)){
++  
++    posteriorA <- a[dpobj$clusterLabels] + rats$y
++    posteriorB <- b[dpobj$clusterLabels] + rats$N - rats$y
++    thetaDirichlet[i, ] <- rbeta(nrow(rats), posteriorA, posteriorB)
++  
++    dpobj <- ChangeObservations(dpobj, thetaDirichlet[i, ])
++    dpobj <- Fit(dpobj, 5)
++    clusters <- dpobj$clusterParameters
++  
++    a <- clusters[[1]] * clusters[[2]]
++    b <- (1 - clusters[[1]]) * clusters[[2]]
++  }
+\end{Sinput}
+\end{Schunk}
 
 Note the reason why the observations are changing is because the DP mixture model is applied to the $\theta_i$ parameters, which are resampled (and hence have different values) during each MCMC iteration.
 
-<<rats-plot, eval=FALSE>>==
-ggplot(rats, aes(x=y/N)) +
-  geom_density(fill="black") #Plot the emperical distribution
-
-
-posteriorFrame <- PosteriorFrame(dpobj, ppoints(1000))
-
-ggplot() +
-  geom_ribbon(data=posteriorFrame,
-              aes(x=x, ymin=X5.,ymax=X95.),
-              alpha=0.2) +
-  geom_line(data=posteriorFrame, aes(x=x, y=Mean)) +
-  xlim(c(0, 0.35)) #Plot the resulting prior distribution
-
-@
+\begin{Schunk}
+\begin{Sinput}
+R> ggplot(rats, aes(x=y/N)) +
++    geom_density(fill="black") #Plot the emperical distribution
+R> posteriorFrame <- PosteriorFrame(dpobj, ppoints(1000))
+R> ggplot() +
++    geom_ribbon(data=posteriorFrame,
++                aes(x=x, ymin=X5.,ymax=X95.),
++                alpha=0.2) +
++    geom_line(data=posteriorFrame, aes(x=x, y=Mean)) +
++    xlim(c(0, 0.35)) #Plot the resulting prior distribution
+R> 
+\end{Sinput}
+\end{Schunk}
 
 Plotting the resulting estimation in Figure \ref{fig:rats_dirichlet_model} reveals that the DP is a more suitable prior than the Beta distribution. This confirms what we saw from the empirical distribution that the data is bi-modal.
 
@@ -743,65 +747,67 @@ y_2 \sim & \text{Beta}(0.25, 5) + \text{Beta}(0.4, 10),
 \end{align*}
 where there is a common group of parameters between the two datasets. First we simulate the two data sets.
 \newpage %stop split
-<<hierarachical-gen, eval=FALSE>>=
-mu <- c(0.25, 0.75, 0.4)
-tau <- c(5, 6, 10)
-a <- mu * tau
-b <- (1 - mu) * tau
-y1 <- c(rbeta(500, a[1], b[1]), rbeta(500, a[2], b[2]))
-y2 <- c(rbeta(500, a[1], b[1]), rbeta(500, a[3], b[3]))
-@
+\begin{Schunk}
+\begin{Sinput}
+R> mu <- c(0.25, 0.75, 0.4)
+R> tau <- c(5, 6, 10)
+R> a <- mu * tau
+R> b <- (1 - mu) * tau
+R> y1 <- c(rbeta(500, a[1], b[1]), rbeta(500, a[2], b[2]))
+R> y2 <- c(rbeta(500, a[1], b[1]), rbeta(500, a[3], b[3]))
+\end{Sinput}
+\end{Schunk}
 We then use the appropriate constructor functions to build a hierarchical Dirichlet object with uninformative priors for the global base distribution and fit for 5000 iterations.
-<<hierarchical, eval=FALSE>>=
-dplist <- DirichletProcessHierarchicalBeta(list(y1, y2),
-                                           maxY=1,
-                                           hyperPriorParameters = c(1, 0.01),
-                                           mhStepSize = c(0.1, 0.1),
-                                           gammaPriors = c(2, 4),
-                                           alphaPriors = c(2, 4))
-dplist <- Fit(dplist, 500)
-@
+\begin{Schunk}
+\begin{Sinput}
+R> dplist <- DirichletProcessHierarchicalBeta(list(y1, y2),
++                                             maxY=1,
++                                             hyperPriorParameters = c(1, 0.01),
++                                             mhStepSize = c(0.1, 0.1),
++                                             gammaPriors = c(2, 4),
++                                             alphaPriors = c(2, 4))
+R> dplist <- Fit(dplist, 500)
+\end{Sinput}
+\end{Schunk}
 
 The creator function \code{DirichletProcessHierarchicalBeta} returns a list of \code{dirichletprocess} objects for each dataset (in this case two objects), a vector containing the global stick breaking weights, a list of the global parameters and the variable containing the global concentration parameter $\gamma$. The function \code{Fit} updates the cluster allocations locally of each \code{dirichletprocess} object using Algorithm 8 from \cite{neal_markov_2000}, then the local concentration parameter $\alpha _j$ is updated. The global cluster parameters are then updated using all the data pooled from the individual datasets by drawing from Eq. \eqref{eq:hierposterior}. Using these parameters, a new sample of $G_0$ is taken from which the individual $G_j$'s are also drawn using the above procedure in Equation \ref{eq:hierbase}.
 \newpage
-<<hierarchical-plot, eval=FALSE>>=
-xGrid <- ppoints(100)
-postDraws <- lapply(dplist$indDP,
-                    function(x) {
-                      replicate(1000, PosteriorFunction(x)(xGrid))
-                    }
-                    )
-
-postMeans <- lapply(postDraws, rowMeans)
-postQuantiles <- lapply(postDraws,
-                        function(x) {
-                          apply(x, 1, quantile, probs=c(0.025, 0.975))
-                        }
-                        )
-
-postFrame <- do.call(rbind,
-                     lapply(seq_along(postMeans),
-                            function(i) data.frame(Mean=postMeans[[i]],
-                                                      t(postQuantiles[[i]]),
-                                                      x=xGrid, ID=i)
-                            )
-                     )
-
-trueFrame1 <- data.frame(y=0.5*dbeta(xGrid, a[1], b[1]) +
-                           0.5*dbeta(xGrid, a[2], b[2]),
-                         x=ppoints(100), ID=1)
-trueFrame2 <- data.frame(y=0.5*dbeta(xGrid, a[1], b[1]) +
-                           0.5*dbeta(xGrid, a[3], b[3]),
-                         x=xGrid, ID=2)
-trueFrame <- rbind(trueFrame1, trueFrame2)
-
-ggplot() +
-  geom_ribbon(data=postFrame, aes(x=x, ymin=X2.5., ymax=X97.5.),
-              alpha=0.2, colour=NA, fill="red") + #credible interval
-  geom_line(data=postFrame, aes(x=x, y=Mean), colour="red") + #mean
-  geom_line(data=trueFrame, aes(x=x, y=y)) + #true density
-  facet_grid(~ID)
-@
+\begin{Schunk}
+\begin{Sinput}
+R> xGrid <- ppoints(100)
+R> postDraws <- lapply(dplist$indDP,
++                      function(x) {
++                        replicate(1000, PosteriorFunction(x)(xGrid))
++                      }
++                      )
+R> postMeans <- lapply(postDraws, rowMeans)
+R> postQuantiles <- lapply(postDraws,
++                          function(x) {
++                            apply(x, 1, quantile, probs=c(0.025, 0.975))
++                          }
++                          )
+R> postFrame <- do.call(rbind,
++                       lapply(seq_along(postMeans),
++                              function(i) data.frame(Mean=postMeans[[i]],
++                                                        t(postQuantiles[[i]]),
++                                                        x=xGrid, ID=i)
++                              )
++                       )
+R> trueFrame1 <- data.frame(y=0.5*dbeta(xGrid, a[1], b[1]) +
++                             0.5*dbeta(xGrid, a[2], b[2]),
++                           x=ppoints(100), ID=1)
+R> trueFrame2 <- data.frame(y=0.5*dbeta(xGrid, a[1], b[1]) +
++                             0.5*dbeta(xGrid, a[3], b[3]),
++                           x=xGrid, ID=2)
+R> trueFrame <- rbind(trueFrame1, trueFrame2)
+R> ggplot() +
++    geom_ribbon(data=postFrame, aes(x=x, ymin=X2.5., ymax=X97.5.),
++                alpha=0.2, colour=NA, fill="red") + #credible interval
++    geom_line(data=postFrame, aes(x=x, y=Mean), colour="red") + #mean
++    geom_line(data=trueFrame, aes(x=x, y=y)) + #true density
++    facet_grid(~ID)
+\end{Sinput}
+\end{Schunk}
 
 
 The resulting $G_j$'s from the above example are plotted in Figure \ref{fig:hierBeta}.
@@ -838,44 +844,47 @@ where $k$ and $G_0$ are as per Section \ref{subsec:implemented} for the Beta dis
 
 In this toy model we simulate 500 event times using the intensity function $\lambda (t) = \sin ^2 \frac{t}{50}$. Instead of passing the full data set into the Dirichlet process object, we just use a random sample of 100 of these event times.
 
-<<stickbreaking-gen, eval=FALSE>>=
-y <- cumsum(runif(1000))
-pdf <- function(x) sin(x/50)^2
-accept_prob <- pdf(y)
-pts <- sample(y, 500, prob=accept_prob)
-@
+\begin{Schunk}
+\begin{Sinput}
+R> y <- cumsum(runif(1000))
+R> pdf <- function(x) sin(x/50)^2
+R> accept_prob <- pdf(y)
+R> pts <- sample(y, 500, prob=accept_prob)
+\end{Sinput}
+\end{Schunk}
 
 We then fit the Dirichlet process, draw a posterior sample of the intensity function $\hat{\lambda} (t)$ and sample 150 new points from the full data set with probabilities proportional to $\hat{\lambda} (t)$. The Dirichlet process object is then modified with the new data and the process is repeated.
 
-<<stickbreaking, eval=FALSE>>=
-dp <- DirichletProcessBeta(sample(pts, 100), maxY = max(pts)*1.01,
-alphaPrior = c(2, 0.01))
-dp <- Fit(dp, 100, TRUE)
-
-for(i in seq_len(2000)){
-  lambdaHat <- PosteriorFunction(dp)
-  newPts <- sample(pts, 150, prob=lambdaHat(pts))
-  newPts[is.infinite(newPts)] <- 1
-  newPts[is.na(newPts)] <- 0
-  dp <- ChangeObservations(dp, newPts)
-  dp <- Fit(dp, 2, TRUE)
-}
-@
+\begin{Schunk}
+\begin{Sinput}
+R> dp <- DirichletProcessBeta(sample(pts, 100), maxY = max(pts)*1.01,
++  alphaPrior = c(2, 0.01))
+R> dp <- Fit(dp, 100, TRUE)
+R> for(i in seq_len(2000)){
++    lambdaHat <- PosteriorFunction(dp)
++    newPts <- sample(pts, 150, prob=lambdaHat(pts))
++    newPts[is.infinite(newPts)] <- 1
++    newPts[is.na(newPts)] <- 0
++    dp <- ChangeObservations(dp, newPts)
++    dp <- Fit(dp, 2, TRUE)
++  }
+\end{Sinput}
+\end{Schunk}
 
 After the fitting process has finished, we want to draw from the resulting posterior distribution again and comparing it to the true intensity function.
 
-<<stickbreaking-plot, eval=FALSE>>=
-posteriorFrame <- PosteriorFrame(dp, seq(0, max(pts)*1.01, by=0.1))
-
-trueFrame <- data.frame(y=pdf(seq(0, max(pts)*1.01, by=0.1))/238,
-                        x=seq(0, max(pts)*1.01, by=0.1))
-
-ggplot() +
-  geom_ribbon(data=posteriorFrame, aes(x=x, ymin=X5., ymax=X95.),
-              alpha=0.2, fill="red", colour=NA) + #credible interval
-  geom_line(data=posteriorFrame, aes(x=x, y=Mean), colour="red") + #mean
-  geom_line(data=trueFrame, aes(x=x, y=y)) #true intensity
-@
+\begin{Schunk}
+\begin{Sinput}
+R> posteriorFrame <- PosteriorFrame(dp, seq(0, max(pts)*1.01, by=0.1))
+R> trueFrame <- data.frame(y=pdf(seq(0, max(pts)*1.01, by=0.1))/238,
++                          x=seq(0, max(pts)*1.01, by=0.1))
+R> ggplot() +
++    geom_ribbon(data=posteriorFrame, aes(x=x, ymin=X5., ymax=X95.),
++                alpha=0.2, fill="red", colour=NA) + #credible interval
++    geom_line(data=posteriorFrame, aes(x=x, y=Mean), colour="red") + #mean
++    geom_line(data=trueFrame, aes(x=x, y=y)) #true intensity
+\end{Sinput}
+\end{Schunk}
 
 \begin{figure}[tb]
 \centering
@@ -988,35 +997,36 @@ Predictive.poisson <- function(mdobj, x){
 With these functions written for the Poisson mixture model we now need to use the \code{MixingDistribution} constructor function to create a new object that can be used by the Dirichlet process constructor function, \code{DirichletProcessCreate}.
 
 The constructor function \code{MixingDistribution} creates an object of class \code{distribution}, in this case 'poisson', with prior parameters $\alpha_0, \beta_0 = 1$ and that it is conjugate.
-<<poissonMD, eval=FALSE>>=
-poisMd <- MixingDistribution(distribution="poisson",
-                             priorParameters = c(1, 1),
-                             conjugate="conjugate")
-@
+\begin{Schunk}
+\begin{Sinput}
+R> poisMd <- MixingDistribution(distribution="poisson",
++                               priorParameters = c(1, 1),
++                               conjugate="conjugate")
+\end{Sinput}
+\end{Schunk}
 This object is now ready to be used in a \pkg{dirichletprocess} object and the appropriate sampling tasks can be carried out. To demonstrate we simulate some test data and fit a Dirichlet process with our new mixing distribution.
 \newpage %stop split
-<<poisson, eval=FALSE>>=
-y <- c(rpois(150, 3), rpois(150, 10)) #generate sample data
-dp <- DirichletProcessCreate(y, poisMd)
-dp <- Initialise(dp)
-dp <- Fit(dp, 1000)
-
-pf <- PosteriorFrame(dp, 0:20, 1000)
-
-trueFrame <- data.frame(x= 0:20,
-                        y= 0.5*dpois(0:20, 3) + 0.5*dpois(0:20, 10))
-
-ggplot() +
-    geom_ribbon(data=pf,
-                aes(x=x, ymin=X5., ymax=X95.),
-                colour=NA,
-                fill="red",
-                alpha=0.2) + #credible intervals
-    geom_line(data=pf, aes(x=x, y=Mean), colour="red") + #mean
-    geom_line(data=trueFrame, aes(x=x, y=y)) #true
-
-
-@
+\begin{Schunk}
+\begin{Sinput}
+R> y <- c(rpois(150, 3), rpois(150, 10)) #generate sample data
+R> dp <- DirichletProcessCreate(y, poisMd)
+R> dp <- Initialise(dp)
+R> dp <- Fit(dp, 1000)
+R> pf <- PosteriorFrame(dp, 0:20, 1000)
+R> trueFrame <- data.frame(x= 0:20,
++                          y= 0.5*dpois(0:20, 3) + 0.5*dpois(0:20, 10))
+R> ggplot() +
++      geom_ribbon(data=pf,
++                  aes(x=x, ymin=X5., ymax=X95.),
++                  colour=NA,
++                  fill="red",
++                  alpha=0.2) + #credible intervals
++      geom_line(data=pf, aes(x=x, y=Mean), colour="red") + #mean
++      geom_line(data=trueFrame, aes(x=x, y=y)) #true
+R> 
+R> 
+\end{Sinput}
+\end{Schunk}
 
 \begin{figure}[tb]
 \centering
@@ -1095,25 +1105,24 @@ gammaMd <- MixingDistribution(distribution = "gamma",
 \end{CodeInput}
 
 The dirichletprocess object can now be created and fit to some test data. As it is a new type of mixture, it must be initialised.
-<<gamma, eval=FALSE>>=
-y <- c(rgamma(100, 2, 4), rgamma(100, 6, 3)) #generate sample data
-dp <- DirichletProcessCreate(y, gammaMd)
-dp <- Initialise(dp)
-dp <- Fit(dp, 1000)
-
-pf <- PosteriorFrame(dp, ppoints(100)*6, 1000)
-
-trueFrame <- data.frame(x=ppoints(100)*6,
-                          y= 0.5*dgamma(ppoints(100)*6, 2, 4) +
-                          0.5*dgamma(ppoints(100)*6, 6, 3))
-
-ggplot() +
-  geom_ribbon(data=pf,
-              aes(x=x,ymin=X5.,ymax=X95.),
-              colour=NA, fill="red", alpha=0.2) +
-  geom_line(data=pf, aes(x=x, y=Mean), colour="red") +
-  geom_line(data=trueFrame, aes(x=x, y=y))
-@
+\begin{Schunk}
+\begin{Sinput}
+R> y <- c(rgamma(100, 2, 4), rgamma(100, 6, 3)) #generate sample data
+R> dp <- DirichletProcessCreate(y, gammaMd)
+R> dp <- Initialise(dp)
+R> dp <- Fit(dp, 1000)
+R> pf <- PosteriorFrame(dp, ppoints(100)*6, 1000)
+R> trueFrame <- data.frame(x=ppoints(100)*6,
++                            y= 0.5*dgamma(ppoints(100)*6, 2, 4) +
++                            0.5*dgamma(ppoints(100)*6, 6, 3))
+R> ggplot() +
++    geom_ribbon(data=pf,
++                aes(x=x,ymin=X5.,ymax=X95.),
++                colour=NA, fill="red", alpha=0.2) +
++    geom_line(data=pf, aes(x=x, y=Mean), colour="red") +
++    geom_line(data=trueFrame, aes(x=x, y=y))
+\end{Sinput}
+\end{Schunk}
 \begin{figure}[tb]
 \centering
 	\includegraphics[width=0.45\textwidth]{img/gamma_mixture_plot.pdf}
@@ -1229,31 +1238,32 @@ Likelihood.weibullcens <- function(mdobj, x, theta){
 
 We now wish to create two different \code{mixingDistribution} objects for each of the data sets. Again we use the \code{MixingDistribution} constructor function and provide the resulting object with a custom class using the \code{class} function.
 
-<<censoredMD, eval=FALSE>>=
-mdobjA <- MixingDistribution("weibullcens",
-                             c(1,2,0.5), "nonconjugate",
-                             mhStepSize=c(0.11,0.11),
-                             hyperPriorParameters=c(2.222, 2, 1, 0.05))
-mdobjB <- MixingDistribution("weibullcens",
-                             c(1,2,0.5), "nonconjugate",
-                             mhStepSize=c(0.11,0.11),
-                             hyperPriorParameters=c(2.069, 2, 1, 0.08))
-
-class(mdobjA) <- c("list", "weibullcens", "weibull", "nonconjugate")
-class(mdobjB) <- c("list", "weibullcens", "weibull", "nonconjugate")
-@
+\begin{Schunk}
+\begin{Sinput}
+R> mdobjA <- MixingDistribution("weibullcens",
++                               c(1,2,0.5), "nonconjugate",
++                               mhStepSize=c(0.11,0.11),
++                               hyperPriorParameters=c(2.222, 2, 1, 0.05))
+R> mdobjB <- MixingDistribution("weibullcens",
++                               c(1,2,0.5), "nonconjugate",
++                               mhStepSize=c(0.11,0.11),
++                               hyperPriorParameters=c(2.069, 2, 1, 0.08))
+R> class(mdobjA) <- c("list", "weibullcens", "weibull", "nonconjugate")
+R> class(mdobjB) <- c("list", "weibullcens", "weibull", "nonconjugate")
+\end{Sinput}
+\end{Schunk}
 
 We can easily use this modified mixture model for our censored data. The sampling is then carried out as normal with no other changes needed. The default functions available for the Weibull mixture model are applied to our custom dirichletprocess object.
-<<censored, eval=FALSE>>=
-dpA <- DirichletProcessCreate(data_a, mdobjA, c(2, 0.9))
-dpA <- Initialise(dpA)
-
-dpB <- DirichletProcessCreate(data_b, mdobjB, c(2, 0.9))
-dpB <- Initialise(dpB)
-
-dpA <- Fit(dpA, 500, TRUE)
-dpB <- Fit(dpB, 500, TRUE)
-@
+\begin{Schunk}
+\begin{Sinput}
+R> dpA <- DirichletProcessCreate(data_a, mdobjA, c(2, 0.9))
+R> dpA <- Initialise(dpA)
+R> dpB <- DirichletProcessCreate(data_b, mdobjB, c(2, 0.9))
+R> dpB <- Initialise(dpB)
+R> dpA <- Fit(dpA, 500, TRUE)
+R> dpB <- Fit(dpB, 500, TRUE)
+\end{Sinput}
+\end{Schunk}
 
 Using the fitted values we can easily extract the estimate density of the survival times using the weights and cluster parameters. The survival function is calculated as $S(y) = 1 - \exp(- \frac{y ^a}{b})$.
 \begin{figure}
@@ -1295,15 +1305,15 @@ Given a fitted DP object and some new data $\hat{y}$ to predict the cluster labe
 
 We refer back to our example in Section \ref{subsec:clusteranalysis} where we used a Dirichlet process to cluster the \code{faithful} dataset. In this example, we will withhold the last five entries of the data as the prediction set and use \code{ClusterLabelPredict} to estimate their cluster allocation.
 
-<<cluster-prediciton, eval=FALSE>>=
-faithfulTrans <- scale(faithful)
-trainIndex <- 1:(nrow(faithfulTrans)-5)
-
-dp <-  DirichletProcessMvnormal(faithfulTrans[trainIndex, ])
-dp <- Fit(dp, 1000)
-
-labelPred <- ClusterLabelPredict(dp, faithfulTrans[-trainIndex, ])
-@
+\begin{Schunk}
+\begin{Sinput}
+R> faithfulTrans <- scale(faithful)
+R> trainIndex <- 1:(nrow(faithfulTrans)-5)
+R> dp <-  DirichletProcessMvnormal(faithfulTrans[trainIndex, ])
+R> dp <- Fit(dp, 1000)
+R> labelPred <- ClusterLabelPredict(dp, faithfulTrans[-trainIndex, ])
+\end{Sinput}
+\end{Schunk}
 
 The function \code{ClusterLabelPredict} works by calculating and sampling the clustering label from the probability that each test point $\hat{y} _j$ belongs to each cluster $\theta _i$ or should form its own cluster proportional to $\alpha$
 \begin{align*}
@@ -1321,25 +1331,26 @@ The function returns a list with multiple entries:
 
 We can then use the results of this function to form a dataframe and plot the results.
 
-<<cluster-prediciton-plot, eval=FALSE>>=
-faithfulTrainPlot <- data.frame(faithful[trainIndex, ],
-                                Label=dp$clusterLabels)
-faithfulTestPlot <- data.frame(faithful[-trainIndex, ],
-                               Label=labelPred$componentIndexes)
-
-ggplot() +
-    geom_point(data=faithfulTrainPlot,
-               aes(x=eruptions,
-                   y=waiting,
-                   colour=as.factor(Label)),
-               size=1) +
-    geom_point(data=faithfulTestPlot,
-               aes(x=eruptions,
-                   y=waiting,
-                   colour=as.factor(Label)),
-               shape=17, size=5) +
-  guides(colour=FALSE)
-@
+\begin{Schunk}
+\begin{Sinput}
+R> faithfulTrainPlot <- data.frame(faithful[trainIndex, ],
++                                  Label=dp$clusterLabels)
+R> faithfulTestPlot <- data.frame(faithful[-trainIndex, ],
++                                 Label=labelPred$componentIndexes)
+R> ggplot() +
++      geom_point(data=faithfulTrainPlot,
++                 aes(x=eruptions,
++                     y=waiting,
++                     colour=as.factor(Label)),
++                 size=1) +
++      geom_point(data=faithfulTestPlot,
++                 aes(x=eruptions,
++                     y=waiting,
++                     colour=as.factor(Label)),
++                 shape=17, size=5) +
++    guides(colour=FALSE)
+\end{Sinput}
+\end{Schunk}
 
 
 \begin{figure}[tb]
@@ -1355,8 +1366,8 @@ Figure \ref{fig:faithfulpred} shows the test data being correctly identified wit
 \section*{Computational details}
 
 The results in this paper were obtained using
-\proglang{R}~\Sexpr{paste(R.Version()[6:7], collapse = ".")} with the
-\pkg{dirichletprocess}~\Sexpr{packageVersion("dirichletprocess")} package. \proglang{R} itself
+\proglang{R}~3.5.0 with the
+\pkg{dirichletprocess}~0.2.2 package. \proglang{R} itself
 and all packages used are available from the Comprehensive
 \proglang{R} Archive Network (CRAN) at
 \url{https://CRAN.R-project.org/}.

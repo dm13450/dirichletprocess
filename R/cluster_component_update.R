@@ -40,7 +40,8 @@ ClusterComponentUpdate.conjugate <- function(dpObj) {
 
     probs <- c(
       pointsPerCluster * Likelihood(mdObj, y[i, , drop = FALSE], clusterParams),
-      alpha * predictiveArray[i])
+      alpha * predictiveArray[i]
+      )
 
     probs[is.na(probs)] <- 0
 
