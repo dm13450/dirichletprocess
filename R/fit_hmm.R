@@ -31,9 +31,9 @@ fit_hmm <- function(dpObj, its, progressBar=F){
     betaChain[i] <- dpObj$beta
     statesChain[[i]] <- dpObj$states
 
-    dp <- UpdateStates(dpObj)
-    dp <- UpdateAlphaBeta(dpObj)
-    dp <- param_update(dpObj)
+    dpObj <- UpdateStates(dpObj)
+    dpObj <- UpdateAlphaBeta(dpObj)
+    dpObj <- param_update(dpObj)
 
     if (progressBar) {
       setTxtProgressBar(pb, i)
