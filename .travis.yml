@@ -11,8 +11,10 @@ os:
   - linux
 
 before_install:
-  - tlmgr install tcolorbox
-sudo: false
+  - if [[ "$OSTYPE" != "linux-gnu" ]]; then sudo tlmgr install tcolorbox framed; fi
+  - if [[ "$OSTYPE" == "linux-gnu" ]]; then tlmgr install tcolorbox; fi
+
+sudo: true
 cache: packages
 
 r_packages:
@@ -22,6 +24,10 @@ addons:
   apt:
     packages:
       - ghostscript
+
+matrix:
+  allow_failures:
+    - r: devel
 
 after_success:
   - Rscript -e 'library(covr); codecov()'

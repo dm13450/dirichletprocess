@@ -68,18 +68,25 @@ data.frame(Weight=dp$weights, Mean=c(dp$clusterParameters[[1]]), SD=c(dp$cluster
 Dirichlet processes can also be used to cluster data based on their common distribution parameters. 
 
 ```{r clustering, eval=TRUE}
-faithfulTrans <- as.matrix(apply(faithful, 2, function(x) (x-mean(x))/sd(x)))
+faithfulTrans <- scale(faithful)
 dpCluster <-  DirichletProcessMvnormal(faithfulTrans)
-dpCluster <- Fit(dpCluster, 1000, progressBar = FALSE)
-```
-
-To plot the results we take the cluster labels contained in the `dp` object and assign them a colour
-
-```{r clusteringplot, echo=FALSE}
-faithRes <- cbind(faithful, Labels = dpCluster$clusterLabels)
-ggplot(faithRes, aes(x=eruptions, y=waiting, colour=as.factor(Labels))) + geom_point() + guides(colour=FALSE)
+dpCluster <- Fit(dpCluster, 2000, progressBar = FALSE)
+plot(dpCluster)
 ```
 
 For more detailed explanations and examples see the vignette.
+
+### Tutorials
+
+I've written a number of tutorials: 
+
+* [Non parametric priors](http://dm13450.github.io/2019/02/22/Nonparametric-Prior.html)
+* [Calculating cluster probabilities](http://dm13450.github.io/2018/11/21/Cluster-Probabilities.html)
+* [Clustering](http://dm13450.github.io/2018/05/30/Clustering.html)
+* [Point processes](http://dm13450.github.io/2018/03/08/dirichletprocess-pointprocess.html)
+* [Custom mixtures](http://dm13450.github.io/2018/02/21/Custom-Distributions-Conjugate.html)
+* [Density estimation](http://dm13450.github.io/2018/02/01/Dirichlet-Density.html)
+
+
 
 

@@ -10,26 +10,34 @@ ExponentialMixtureCreate <- function(priorParameters=c(0.01, 0.01)){
   return(mdObj)
 }
 
+#' @export
+#' @rdname Likelihood
 Likelihood.exponential <- function(mdObj, x, theta){
   y <- as.numeric(dexp(x, theta[[1]]))
   return(y)
 }
 
-PriorDraw.exponential <- function(mdobj, n){
-  draws <- rgamma(n, mdobj$priorParameters[1], mdobj$priorParameters[2])
+#' @export
+#' @rdname PriorDraw
+PriorDraw.exponential <- function(mdObj, n){
+  draws <- rgamma(n, mdObj$priorParameters[1], mdObj$priorParameters[2])
   theta <- list(array(draws, dim=c(1,1,n)))
   return(theta)
 }
 
-PosteriorDraw.exponential <- function(mdobj, x, n=1){
-  priorParameters <- mdobj$priorParameters
+#' @export
+#' @rdname PosteriorDraw
+PosteriorDraw.exponential <- function(mdObj, x, n=1, ...){
+  priorParameters <- mdObj$priorParameters
   theta <- rgamma(n, priorParameters[1] + length(x), priorParameters[2] + sum(x))
   return(list(array(theta, dim=c(1,1,n))))
 }
 
-Predictive.exponential <- function(mdobj, x){
+#' @export
+#' @rdname Predictive
+Predictive.exponential <- function(mdObj, x){
 
-  priorParameters <- mdobj$priorParameters
+  priorParameters <- mdObj$priorParameters
 
   pred <- numeric(length(x))
 

@@ -9,12 +9,14 @@ Mvnormal2Create <- function(priorParameters) {
     priorParameters$mu0 <- matrix(priorParameters$mu0, nrow=1)
   }
 
-  mdobj <- MixingDistribution("mvnormal2", priorParameters, "nonconjugate")
+  mdObj <- MixingDistribution("mvnormal2", priorParameters, "nonconjugate")
 
-  return(mdobj)
+  return(mdObj)
 }
 
-Likelihood.mvnormal2 <- function(mdobj, x, theta) {
+#' @export
+#' @rdname Likelihood
+Likelihood.mvnormal2 <- function(mdObj, x, theta) {
 
   y <- sapply(seq_len(dim(theta[[1]])[3]),
               function(i) mvtnorm::dmvnorm(x, theta[[1]][,, i], theta[[2]][, , i]))
@@ -22,9 +24,11 @@ Likelihood.mvnormal2 <- function(mdobj, x, theta) {
   return(y)
 }
 
-PriorDraw.mvnormal2 <- function(mdobj, n = 1) {
+#' @export
+#' @rdname PriorDraw
+PriorDraw.mvnormal2 <- function(mdObj, n = 1) {
 
-  priorParameters <- mdobj$priorParameters
+  priorParameters <- mdObj$priorParameters
 
   sig <- simplify2array(lapply(seq_len(n),
                                function(x) solve(rWishart(1,
@@ -41,9 +45,9 @@ PriorDraw.mvnormal2 <- function(mdobj, n = 1) {
 }
 
 
-# PosteriorDraw.mvnormal2 <- function(mdobj, x, n = 1) {
+# PosteriorDraw.mvnormal2 <- function(mdObj, x, n = 1) {
 #
-#   post_parameters <- PosteriorParameters(mdobj, x)
+#   post_parameters <- PosteriorParameters(mdObj, x)
 #
 #   sig <- rWishart(n, post_parameters$nu_n, post_parameters$t_n)
 #   mu <- simplify2array(lapply(seq_len(n), function(x) mvtnorm::rmvnorm(1, post_parameters$mu_n,
@@ -52,25 +56,27 @@ PriorDraw.mvnormal2 <- function(mdobj, n = 1) {
 #   return(list(mu = mu, sig = sig/post_parameters$kappa_n^2))
 # }
 
-PosteriorDraw.mvnormal2 <- function(mdobj, x, mhDraws = 1, start_pos) {
+#' @export
+#' @rdname PosteriorDraw
+PosteriorDraw.mvnormal2 <- function(mdObj, x, n = 1, ...) {
 
   if (!is.matrix(x)) {
     x <- matrix(x, ncol = length(x))
   }
 
-  phi0 <- mdobj$priorParameters$phi0
+  phi0 <- mdObj$priorParameters$phi0
 
-  mu0 <- mdobj$priorParameters$mu0
-  sigma0 <- mdobj$priorParameters$sigma0
+  mu0 <- mdObj$priorParameters$mu0
+  sigma0 <- mdObj$priorParameters$sigma0
 
-  muSamples <- array(dim = c(dim(mu0), mhDraws))
-  sigSamples <- array(dim = c(dim(phi0), mhDraws))
+  muSamples <- array(dim = c(dim(mu0), n))
+  sigSamples <- array(dim = c(dim(phi0), n))
 
   muSamp <- matrix(rep_len(0, ncol(mu0)), ncol=ncol(mu0))
 
-  for (i in seq_len(mhDraws)){
+  for (i in seq_len(n)){
 
-    nuN <- nrow(x) +  mdobj$priorParameters$nu0
+    nuN <- nrow(x) +  mdObj$priorParameters$nu0
     phiN <- phi0 + Reduce("+", lapply(seq_len(nrow(x)),
                                     function(j) (x[j,] - c(muSamp)) %*% t(x[j,] - c(muSamp))))
 

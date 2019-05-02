@@ -4,3 +4,5 @@ inst/doc
 .Rproj.user
 .Rhistory
 clean_bib.sh
+tests/testthat/Rplots.pdf
+
