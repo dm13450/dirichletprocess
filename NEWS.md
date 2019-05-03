@@ -1,9 +1,10 @@
-# dirichletprocess 0.2.2.900
+# dirichletprocess 0.3.3
 
-* Fixed bug in PosteriorClusters and PosteriorFunction
+* Added Hidden Markov models.
+* Fixed bug in PosteriorClusters and PosteriorFunction.
 * Added in new Beta mixture model for avoiding boundary. 
 * Fixed a bug in ChangeObservations when using more than one dimension. 
-* Added in Burn, Print and Diagnostic Plots 
+* Added in Burn, Print and Diagnostic Plots.
 
 # dirichletprocess 0.2.2
 

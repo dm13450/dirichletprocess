@@ -1,19 +1,16 @@
--dirichletprocess 0.2.2
+-dirichletprocess 0.3.0
 -----------------------
 
-This is a minor update to the previous submission. 
+This is an update to the previous submission. 
 
 ## Changes
 In this version I have:
 
-* Removed LaTeX detritus
-* Added a likelihood variable for the `dirichletprocess` class that is calculate with each fit iteration. 
-* Added option to change how many Metropolis-Hasting steps are used in each iteration. 
-* Added a likelihood calculation with each iteration. 
-* Added and refactored some tests. 
-* Updated vignette.
-* Additional options to univariate plotting. 
-* Added Kees Mulder as a contributor. 
+* Added Hidden Markov models.
+* Fixed bug in PosteriorClusters and PosteriorFunction.
+* Added in new Beta mixture model for avoiding boundary. 
+* Fixed a bug in ChangeObservations when using more than one dimension. 
+* Added in Burn, Print and Diagnostic Plots.
 
 ## Test environments
 * local OS X install, R 3.5.0
