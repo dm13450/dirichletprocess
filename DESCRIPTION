@@ -21,7 +21,7 @@ Description: Perform nonparametric Bayesian analysis using Dirichlet
     <https://www.stats.ox.ac.uk/~teh/research/npbayes/Teh2010a.pdf>, 
     among many other sources.
 Depends: R (>= 2.10)
-License: GPL-3 + file LICENSE
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Suggests: testthat,
