@@ -25,25 +25,31 @@ StickBreaking <- function(alpha, N) {
 #'@param betas Draws from the Beta distribution.
 #'@export
 piDirichlet <- function(betas) {
+  logCompsFull <- numeric(length(betas))
 
-  pis <- numeric(length(betas))
-  pis[1] <- betas[1]
+  betaLogsComp <- log(1 - betas)
 
-  for (i in 2:length(betas)) {
-    pis[i] <- betas[i] * prod(1 - betas[1:(i - 1)])
-  }
-  return(pis)
+  logCompsFull[1] <- 0
+  logCompsFull[-1] <- betaLogsComp[-length(betas)]
+
+  logCompsFullSum <- cumsum(logCompsFull)
+
+  logPis <- log(betas) + logCompsFullSum
+
+  exp(logPis)
 }
 
-
 draw_gj <- function(alpha0, beta_k) {
-  pi_prime <- sapply(seq_along(beta_k), function(i){
-    shape2 <- 1 - sum(beta_k[1:i])
+
+  betaSum <- cumsum(beta_k)
+
+  pi_prime <- vapply(seq_along(beta_k), function(i){
+    shape2 <- 1 - sum(betaSum[i])
     if(shape2 < 0) {
       shape2 <- 0
     }
     rbeta(1, alpha0 * beta_k[i], alpha0 * shape2)
-  }
+  }, numeric(1)
     )
   pi_k <- piDirichlet(pi_prime)
   if(anyNA(pi_k)){

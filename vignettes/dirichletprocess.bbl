@@ -1,4 +1,4 @@
-\begin{thebibliography}{20}
+\begin{thebibliography}{21}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
@@ -8,6 +8,16 @@
   \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
   \urlstyle{rm}\Url}\fi
 \providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem[{{Carpenter, Bob} \emph{et~al.}(2016){Carpenter, Bob}, {Gelman,
+  Andrew}, {Hoffman, Matt}, {Lee, Daniel}, {Goodrich, Ben}, {Betancourt,
+  Michael}, {Brubaker, Michael A}, {Guo, Jiqiang}, {Li, Peter}, and {Riddell,
+  Allen}}]{carpenter_bob_stan:_2016}
+{Carpenter, Bob}, {Gelman, Andrew}, {Hoffman, Matt}, {Lee, Daniel}, {Goodrich,
+  Ben}, {Betancourt, Michael}, {Brubaker, Michael A}, {Guo, Jiqiang}, {Li,
+  Peter}, {Riddell, Allen} (2016).
+\newblock \enquote{Stan: {A} probabilistic programming language.}
+\newblock \emph{J Stat Softw}.
 
 \bibitem[{Coles(2001)}]{coles_introduction_2001}
 Coles S (2001).

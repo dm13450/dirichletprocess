@@ -1,4 +1,4 @@
-\documentclass[jss]{jss}
+\documentclass[nojss]{jss}
 
 %\VignetteIndexEntry{dirichletprocess: An R Package for Fitting Complex Bayesian Nonparametric Models}
 %\VignettePackage{dirichletprocess}
@@ -102,7 +102,7 @@ y_{i,j} & \sim N(y_{i,j} \mid \mu_j,\sigma^2), \\
 \end{align*}
 where $\gamma$ is the (hyper-)parameters of the prior. This model is an example of \textbf{partial pooling}, where the inference for each mean $\mu_j$ is based on the means of each of the other $J-1$ groups, allowing information to be shared across groups. As a biased estimation technique, it is related to methods such as the Lasso estimator, and usually results in more accurate estimation than estimating each group mean separately. However, completing the model specification requires choosing a form for the prior distribution of group means $p(\mu_j \mid \gamma)$, which is made more difficult since the group means may not be observable with a high degree of accuracy, particularly when the number of observations is small. In this case, using a nonparametric DPMM specification for $p(\mu_j \mid \gamma) $ would avoid the risks of potentially specifying an inappropriate parametric form.
 
-Typically when working with DPMMs, the posterior distributions are analytically intractable, so inference instead usually involved computational simulation. A variety of simulation algorithms based around Gibbs sampling and Metropolis-Hastings have been developed to draw samples from DPMM posterior distributions, which can then be used for inference. As such, the widespread adoption of DPMMs has to some extent been held back by the level of statistical and programming literacy required to implement use them. The purpose of the \pkg{dirichletprocess} package is to provide a unified implementation of these simulation algorithms for a very wide class of DP mixture models which makes it easy to incorporate DPMMs into hierarchical models
+Typically when working with DPMMs, the posterior distributions are analytically intractable, so inference instead usually involved computational simulation. A variety of simulation algorithms based around Gibbs sampling and Metropolis-Hastings have been developed to draw samples from DPMM posterior distributions, which can then be used for inference. As such, the widespread adoption of DPMMs has to some extent been held back by the level of statistical and programming literacy required to implement use them. The purpose of the \pkg{dirichletprocess} package is to provide a unified implementation of these simulation algorithms for a very wide class of DP mixture models which makes it easy to incorporate DPMMs into hierarchical models.
 
 The design philosophy of the \pkg{dirichletprocess} package is the polar opposite of the existing  \pkg{DPpackage} \proglang{R} package which also provides an implementation of DPMMs. The purpose of \pkg{DPpackage} is to give a fast implementation of several common tasks where DPs are used, such as density estimation using Gaussian mixtures, and a variety of specific regression models. While the \pkg{DPpackage} package is very useful in these situations, it cannot be used for any applications of DPs which do not fall into one of the pre-specified tasks incorporated in the package, or use mixture kernels or base measures other than those provided.
 
@@ -124,7 +124,7 @@ The ultimate purpose of this package is to represent Dirichlet process mixture m
 \item Ease-of-use. A key feature of this package is that users can themselves specify new DP mixture types if the package does not implement the precise specification they desire.  The object systems S4 and RC are geared towards intermediary/advanced \proglang{R} programmers and can be intimidating to novices. The design philosophy of this package allows  users to override the behaviour of DP objects and create new mixture types without needing to learn the intricacies of any particular object system.  The chosen representation where DP objects are simple S3 structures does not require the user to learn anything about the more obscure intricacies of \proglang{R} objects, and instead they can focus purely on writing the \proglang{R} functions to implement the DP models.
 \end{enumerate}
 
-Current alternatives for nonparamteric inference include Stan, PyMC3 and Edward. However, whilst all three packages are much more general than the dirichletprocess offerings, they do not offer ease of customisation that \pkg{dirichletprocess} does. Firstly, Stan CITE, does not allow you to specify discrete parameters in models. As Dirichlet process models require cluster labels which are inherently discrete parameters you are unable to build Dirichlet process models directly in Stan. For both the Python libraries Edward and PyMC3, examples exist of building Dirichlet process models. However, these are built on top of TensorFlow and Theano \citep{tran_edward:_2016, salvatier_probabilistic_2016}, therefore, being able to build Dirichlet process objects into statistical work flows would require learning these external libraries. Instead our package \pkg{dirichletprocess} is written natively in R and abstracts the difficulties away, allowing users to write Dirichlet process models in R code and not worry about computational details.
+Current alternatives for nonparamteric inference include Stan, PyMC3 and Edward. However, whilst all three packages are much more general than the \pkg{dirichletprocess} offerings, they do not offer ease of customisation that \pkg{dirichletprocess} does. Firstly, Stan \citep{carpenter_bob_stan:_2016}, does not allow you to specify discrete parameters in models. As Dirichlet process models require cluster labels which are inherently discrete parameters you are unable to build Dirichlet process models directly in Stan. For both the Python libraries Edward and PyMC3, examples exist of building Dirichlet process models. However, these are built on top of TensorFlow and Theano \citep{tran_edward:_2016, salvatier_probabilistic_2016}, therefore, being able to build Dirichlet process objects into statistical work flows would require learning these external libraries. Instead our package \pkg{dirichletprocess} is written natively in R and abstracts the difficulties away, allowing users to write Dirichlet process models in R code and not worry about computational details.
 
 \section{Background information}
 \label{sec:background}
@@ -142,7 +142,7 @@ where $p(\theta \mid \gamma)$ denotes the prior distribution and $\gamma$ are th
 
 In practice however, it may not be clear how to choose an appropriate parametric family of distributions for $F$. If the wrong family is chosen, then conclusions based on the estimated model may be highly misleading. For example, if it is assumed that $F$ has a Normal distribution with unknown parameters $\theta=(\mu,\sigma^2)$ when in fact the true $F$ is heavy-tailed, this can lead to severe underestimation of the probability of extreme events occurring \citep{coles_introduction_2001}.
 
-This problem can be avoided by using a nonparametric prior specification which puts positive prior mass on the whole space of probability densities rather than on a subspace spanned by the finite-length parameter vector $\theta$. This allows the estimated $F$ to adapt to the data, rather than being restricted to a particular family of distributions such as the Normal or Exponential. The Dirichlet process (DP) is one of the most widely used Bayesian nonparametric priors, due to its flexibility and computational simplicity.  Our aim in this section is not to give a full treatment of the Dirichlet processes, and a reader unfamiliar with them should refer to a standard reference such as \cite{escobar_bayesian_1995}. Instead we will only focus on describing the properties of the DP that are directly relevant to their implementation in the \pkg{dirichletprocess} package.
+This problem can be avoided by using a nonparametric prior specification which puts positive prior mass on the whole space of probability densities rather than on a subspace spanned by the finite-length parameter vector $\theta$. This allows the estimated $F$ to adapt to the data, rather than being restricted to a particular family of distributions such as the Normal or Exponential. The Dirichlet process (DP) is one of the most widely used Bayesian nonparametric priors, due to its flexibility and computational simplicity. Our aim in this section is not to give a full treatment of the Dirichlet processes, and a reader unfamiliar with them should refer to a standard reference such as \cite{escobar_bayesian_1995}. Instead we will only focus on describing the properties of the DP that are directly relevant to their implementation in the \pkg{dirichletprocess} package.
 
 The basic DP model has the form:
 \begin{align*}
@@ -301,6 +301,7 @@ p(\theta \mid y, \gamma) & = N ( \mu \mid \mu _n , \frac{\sigma ^2}{k_0 + n}  ) 
 \end{align*}
 
 \subsubsection{Multivariate Gaussian Mixture Model - Conjugate}
+
 The multivariate Gaussian mixture model is the most widely used nonparametric modeling approach for multivariate data. It is also heavily used in clustering applications \citep{maceachern_estimating_1998}. For the unknown parameters we have $\theta = ( \boldsymbol{\mu}, \Lambda )$ for $d$ dimensional data $\boldsymbol{\mu}$ is a column vector of length $d$ and $\Lambda$ is a $d \times d$ dimensional matrix
 \begin{equation*}
 k(y_i \mid \theta) = \frac{\mid \Lambda \mid ^{\frac{1}{2}}}{2 \pi ^{- \frac{d}{2}}} \exp \left( - \frac{1}{2} (y_i - \boldsymbol{\mu})^\top \Lambda (y_i - \boldsymbol{\mu})  \right).
@@ -310,7 +311,7 @@ For the prior choice we us a multivariate normal distribution for $\boldsymbol{\
 \begin{equation*}
 G_0 (\boldsymbol{\mu} , \Lambda \mid  \boldsymbol{\mu _0} , \kappa _0, \nu _0, T_0)  = N ( \boldsymbol{\mu} \mid \boldsymbol{\mu _0} , (\kappa _0 \Lambda )^{-1} ) \text{Wi} _{\nu _0} (\Lambda \mid T_0),
 \end{equation*}
-where $\boldsymbol{\mu _0}$ is the mean vector of the prior, $\kappa _0, \nu _0$ are single values and $T$ is a matrix. The default prior parameters are set as $\boldsymbol{\mu} = \mathbf{0}, T = \mathbf{I}, \kappa_0 = 0, \nu_0 = 1$.
+where $\boldsymbol{\mu _0}$ is the mean vector of the prior, $\kappa _0, \nu _0$ are single values and $T$ is a matrix. The default prior parameters are set as $\boldsymbol{\mu} = \mathbf{0}, T = \mathbf{I}, \kappa_0 = d, \nu_0 = d$.
 
 This prior choice is conjugate to the posterior, therefore the posterior distribution can be expressed analytically
 \begin{align*}
@@ -1367,7 +1368,7 @@ Figure \ref{fig:faithfulpred} shows the test data being correctly identified wit
 
 The results in this paper were obtained using
 \proglang{R}~3.5.0 with the
-\pkg{dirichletprocess}~0.2.2 package. \proglang{R} itself
+\pkg{dirichletprocess}~0.3.0 package. \proglang{R} itself
 and all packages used are available from the Comprehensive
 \proglang{R} Archive Network (CRAN) at
 \url{https://CRAN.R-project.org/}.

@@ -1,6 +1,12 @@
 -dirichletprocess 0.3.0
 -----------------------
 
+## Resubmission
+
+This is a resubmission. In this version I have:
+
+* Removed the uneeded LICENSE file
+
 This is an update to the previous submission. 
 
 ## Changes

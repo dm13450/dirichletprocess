@@ -214,7 +214,7 @@ The key point here is that since $F$ is discrete, two independent draws $\theta_
 \begin{split}
 y_i &\sim G, \\
 G & = \int k(y_i \mid \theta) F(\theta) \mathrm{d} \theta ,\\
-F &\sim \text{DP} (\alpha,\theta).
+F &\sim \text{DP} (\alpha, G_0).
 \end{split}
 \label{eqn:dp2}
 \end{align*}
@@ -281,7 +281,7 @@ As we will discuss, one of the strengths of the \pkg{dirichletprocess} package i
 \subsubsection{Gaussian Mixture Model}
 The Gaussian distribution is the most commonly used mixture model. In this case, $\theta = (\mu,\sigma^2)$ for the mean and variance. The kernel is:
 \begin{equation*}
-k(y_i \mid \theta) = N(y_i \mid \mu, \sigma^2) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp \left( \frac{ -(y-\mu)^2}{2\sigma^2} \right).
+k(y \mid \theta) = N(y_i \mid \mu, \sigma^2) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp \left( \frac{ -(y-\mu)^2}{2\sigma^2} \right).
 \end{equation*}
 The conjugate prior for $\theta$ is the Normal-Gamma distribution, with parameters $\gamma = (\mu_0, k_0, \alpha_0, \beta_0)$
 \begin{equation*}
@@ -290,9 +290,9 @@ G_0(\theta \mid \gamma) =  N\left(\mu \mid \mu_0, \frac{\sigma^2}{k_0} \right) \
 the default setting of the parameters is $\mu_0 = 0, \sigma _0 ^2 = 1, \alpha _0 = 1, \beta _0 = 1$.
 We recommenced rescaling our data $y$ such that its mean is 0 and standard deviation is 1. This leads to the default parameterisation of $G_0$ being uninformative.
 
-Since this prior is conjugate, the predictive distribution for a new observation $\hat{y}$ can be found analytically, and is a location/scale Student-t distribution:
+Since this prior is conjugate, the predictive distribution for a new observation $\tilde{y}$ can be found analytically, and is a location/scale Student-t distribution:
 \begin{equation*}
-p(\tilde{y} \mid \gamma) = \int k(\hat{y}\mid\theta) p(\theta \mid G_0) d\theta = \frac{1}{\tilde{\sigma}} \text{Student-t} \left( \frac{ \tilde{y} - \tilde{\mu}}{\tilde{\sigma}} \mid \tilde{v}\right),
+p(\tilde{y} \mid \gamma) = \int k(\tilde{y}\mid\theta) p(\theta \mid G_0) d\theta = \frac{1}{\tilde{\sigma}} \text{Student-t} \left( \frac{ \tilde{y} - \tilde{\mu}}{\tilde{\sigma}} \mid \tilde{v}\right),
 \end{equation*}
 where $\tilde{v} = 2 \alpha_0, \quad \tilde{\mu} = \mu_0, \quad \tilde{\sigma} = \sqrt{ \frac{\beta_0 (k_0 + 1)}{\alpha_0 k_0}}$.
 
@@ -305,6 +305,7 @@ p(\theta \mid y, \gamma) & = N ( \mu \mid \mu _n , \frac{\sigma ^2}{k_0 + n}  ) 
 \end{align*}
 
 \subsubsection{Multivariate Gaussian Mixture Model - Conjugate}
+
 The multivariate Gaussian mixture model is the most widely used nonparametric modeling approach for multivariate data. It is also heavily used in clustering applications \citep{maceachern_estimating_1998}. For the unknown parameters we have $\theta = ( \boldsymbol{\mu}, \Lambda )$ for $d$ dimensional data $\boldsymbol{\mu}$ is a column vector of length $d$ and $\Lambda$ is a $d \times d$ dimensional matrix
 \begin{equation*}
 k(y_i \mid \theta) = \frac{\mid \Lambda \mid ^{\frac{1}{2}}}{2 \pi ^{- \frac{d}{2}}} \exp \left( - \frac{1}{2} (y_i - \boldsymbol{\mu})^\top \Lambda (y_i - \boldsymbol{\mu})  \right).
@@ -314,7 +315,7 @@ For the prior choice we us a multivariate normal distribution for $\boldsymbol{\
 \begin{equation*}
 G_0 (\boldsymbol{\mu} , \Lambda \mid  \boldsymbol{\mu _0} , \kappa _0, \nu _0, T_0)  = N ( \boldsymbol{\mu} \mid \boldsymbol{\mu _0} , (\kappa _0 \Lambda )^{-1} ) \text{Wi} _{\nu _0} (\Lambda \mid T_0),
 \end{equation*}
-where $\boldsymbol{\mu _0}$ is the mean vector of the prior, $\kappa _0, \nu _0$ are single values and $T$ is a matrix. The default prior parameters are set as $\boldsymbol{\mu} = \mathbf{0}, T = \mathbf{I}, \kappa_0 = 0, \nu_0 = 1$.
+where $\boldsymbol{\mu _0}$ is the mean vector of the prior, $\kappa _0, \nu _0$ are single values and $T$ is a matrix. The default prior parameters are set as $\boldsymbol{\mu} = \mathbf{0}, T = \mathbf{I}, \kappa_0 = d, \nu_0 = d$.
 
 This prior choice is conjugate to the posterior, therefore the posterior distribution can be expressed analytically
 \begin{align*}
@@ -325,9 +326,9 @@ p(\theta \mid y_i ) & = N ( \boldsymbol{\mu} \mid \boldsymbol{\mu _n} , (\kappa 
 T_n & = T_0 + \sum _{i=1} ^n (y_i - \mathbf{\overline{{y}}}) ( y_i -  \mathbf{\overline{{y}}} ) ^\top + \frac{\kappa _0 n}{\kappa _0 + n} ( \mu _0 - \mathbf{\overline{{y}}} )( \mu _0 -  \mathbf{\overline{{y}}} ) ^\top.
 \end{align*}
 
-Again, as this is a conjugate mixture we can write the predictive function for some new data $\hat{y}$
+Again, as this is a conjugate mixture we can write the predictive function for some new data $\tilde{y}$
 \begin{equation*}
-p(\hat{y} \mid \mathbf{y}  ) = \frac{1}{\pi ^{\frac{nd}{2}}} \frac{\Gamma _d ( \frac{\nu _n}{2})}{\Gamma _d (\frac{\nu _0}{2})}  \frac{\mid T_0 \mid ^ \frac{\nu _0}{2}}{\mid T_n \mid ^ \frac{\nu _n}{2}} \left(  \frac{\kappa _0}{\kappa _n} \right)  ^\frac{d}{2}.
+p(\tilde{y} \mid \mathbf{y}  ) = \frac{1}{\pi ^{\frac{nd}{2}}} \frac{\Gamma _d ( \frac{\nu _n}{2})}{\Gamma _d (\frac{\nu _0}{2})}  \frac{\mid T_0 \mid ^ \frac{\nu _0}{2}}{\mid T_n \mid ^ \frac{\nu _n}{2}} \left(  \frac{\kappa _0}{\kappa _n} \right)  ^\frac{d}{2}.
 \end{equation*}
 
 \subsubsection{Multivariate Gaussian Mixture Model - Semi-Conjugate}
@@ -351,7 +352,7 @@ using the conditional probabilities, each parameter can be sampled using the pre
 \subsubsection{Beta Mixture Model}
 Dirichlet process mixtures of Beta distributions have been considered by \cite{kottas_dirichlet_2006} for the nonparametric estimation of continuous distributions that are defined on a bounded interval, $\left[0, T \right]$. For ease of interpretation, we follow their parameterisation of the Beta distribution in terms of its mean and standard deviation, In this case, $\theta = (\mu,\nu)$ with a known parameter $T$. The mixture kernel is:
 \begin{equation*}
-k(y_i \mid \theta) = \text{Beta} (y_i \mid \mu, \nu, T) = \frac{y^{\frac{\mu \nu}{T} - 1} (T-y)^{\nu (1- \frac{\mu}{T})-1}}{\text{B}(\frac{\mu \nu}{T}, \nu(1-\frac{\mu}{T})) T^{\nu -1}}.
+k(y_i \mid \theta) = \text{Beta} (y_i \mid \mu, \nu, T) = \frac{y_i^{\frac{\mu \nu}{T} - 1} (T-y_i)^{\nu (1- \frac{\mu}{T})-1}}{\text{B}(\frac{\mu \nu}{T}, \nu(1-\frac{\mu}{T})) T^{\nu -1}}.
 \end{equation*}
 
 There is no conjugate prior for the mixture kernel. Instead, the \pkg{dirichletprocess} package uses the (non-conjugate) prior from \cite{kottas_dirichlet_2006} where
@@ -369,7 +370,7 @@ The Weibull distribution has strictly positive support it is mainly used for pos
 The parameters of the Weibull distribution are the shape $a$ and scale $b$
 
 \begin{equation}
-k(y_i \mid \theta) = \text{Weibull} (y \mid a, b) = \frac{a}{b} y ^{a-1}  \exp \left( -  \frac{y^a}{b}  \right),
+k(y_i \mid \theta) = \text{Weibull} (y_i \mid a, b) = \frac{a}{b} y_i ^{a-1}  \exp \left( -  \frac{y_i^a}{b}  \right),
 \end{equation}
 where $\theta = ( a, b )$.
 

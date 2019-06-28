@@ -1,17 +1,16 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.5.10)  14 DEC 2018 11:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.2.26)  4 JUN 2019 08:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **dirichletprocess.tex
 (./dirichletprocess.tex
-LaTeX2e <2018-04-01> patch level 4
-Babel <3.20> and hyphenation patterns for 84 language(s) loaded.
-(./jss.cls
+LaTeX2e <2018-12-01>
+(/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/jss.cls
 Document Class: jss 2015/09/01 3.0 jss class by Achim Zeileis
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/size11.clo
-File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+File: size11.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
 )
 \c@part=\count80
 \c@section=\count81
@@ -61,10 +60,10 @@ Package color Info: Driver file: pdftex.def on input line 147.
 Package: ae 2001/02/12 1.3 Almost European Computer Modern
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/fontenc.sty
-Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
+Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/t1enc.def
-File: t1enc.def 2017/04/05 v2.0i Standard LaTeX file
+File: t1enc.def 2018/08/11 v2.0j Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 )
 LaTeX Font Info:    Try loading font information for T1+aer on input line 105.
@@ -73,22 +72,21 @@ LaTeX Font Info:    Try loading font information for T1+aer on input line 105.
 File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
 )))
 (/usr/local/texlive/2018/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
-Package: fancyvrb 2008/02/07
+Package: fancyvrb 2019/01/15
 
-Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)
+Style option: `fancyvrb' v3.2a <2019/01/15> (tvz)
 \FV@CodeLineNo=\count88
 \FV@InFile=\read1
-\FV@TabBox=\box26
+\FV@TabBox=\box27
 \c@FancyVerbLine=\count89
 \FV@StepNumber=\count90
 \FV@OutFile=\write3
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/fontenc.sty
-Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
+Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/t1enc.def
-File: t1enc.def 2017/04/05 v2.0i Standard LaTeX file
+File: t1enc.def 2018/08/11 v2.0j Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
 (/usr/local/texlive/2018/texmf-dist/tex/latex/upquote/upquote.sty
@@ -96,7 +94,7 @@ Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/textcomp.sty
-Package: textcomp 2017/04/05 v2.0i Standard LaTeX package
+Package: textcomp 2018/08/11 v2.0j Standard LaTeX package
 Package textcomp Info: Sub-encoding information:
 (textcomp)               5 = only ISO-Adobe without \textcurrency
 (textcomp)               4 = 5 + \texteuro
@@ -116,7 +114,7 @@ Now handling font encoding TS1 ...
 ... processing UTF-8 mapping file for font encoding TS1
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/ts1enc.dfu
-File: ts1enc.dfu 2018/04/05 v1.2c UTF-8 support for inputenc
+File: ts1enc.dfu 2018/10/05 v1.2f UTF-8 support for inputenc
    defining Unicode char U+00A2 (decimal 162)
    defining Unicode char U+00A3 (decimal 163)
    defining Unicode char U+00A4 (decimal 164)
@@ -262,7 +260,7 @@ LaTeX Info: Redefining \cite on input line 694.
 \footerskip=\skip45
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2018/02/06 v6.86b Hypertext links for LaTeX
+Package: hyperref 2018/11/30 v6.88e Hypertext links for LaTeX
 
 (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
@@ -278,7 +276,7 @@ Package ifluatex Info: LuaTeX not detected.
 Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
-Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
 Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
 Package etexcmds Info: Could not find \expanded.
 (etexcmds)             That can mean that you are not using pdfTeX 1.50 or
@@ -286,7 +284,7 @@ Package etexcmds Info: Could not find \expanded.
 (etexcmds)             In the latter case, load this package earlier.
 Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
 Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-Package: pdftexcmds 2018/01/30 v0.27 Utility functions of pdfTeX for LuaTeX (HO
+Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
@@ -322,7 +320,7 @@ Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 \Hy@pagecounter=\count93
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2018/02/06 v6.86b Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2018/11/30 v6.88e Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
@@ -331,33 +329,33 @@ Now handling font encoding PD1 ...
 (/usr/local/texlive/2018/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
-Package hyperref Info: Hyper figures OFF on input line 4509.
-Package hyperref Info: Link nesting OFF on input line 4514.
-Package hyperref Info: Hyper index ON on input line 4517.
-Package hyperref Info: Plain pages OFF on input line 4524.
-Package hyperref Info: Backreferencing OFF on input line 4529.
+Package hyperref Info: Hyper figures OFF on input line 4519.
+Package hyperref Info: Link nesting OFF on input line 4524.
+Package hyperref Info: Hyper index ON on input line 4527.
+Package hyperref Info: Plain pages OFF on input line 4534.
+Package hyperref Info: Backreferencing OFF on input line 4539.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4762.
+Package hyperref Info: Bookmarks ON on input line 4772.
 \c@Hy@tempcnt=\count95
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip10
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 5115.
+LaTeX Info: Redefining \url on input line 5125.
 \XeTeXLinkMargin=\dimen106
 \Fld@menulength=\count96
 \Field@Width=\dimen107
 \Fld@charsize=\dimen108
-Package hyperref Info: Hyper figures OFF on input line 6369.
-Package hyperref Info: Link nesting OFF on input line 6374.
-Package hyperref Info: Hyper index ON on input line 6377.
-Package hyperref Info: backreferencing OFF on input line 6384.
-Package hyperref Info: Link coloring OFF on input line 6389.
-Package hyperref Info: Link coloring with OCG OFF on input line 6394.
-Package hyperref Info: PDF/A mode OFF on input line 6399.
-LaTeX Info: Redefining \ref on input line 6439.
-LaTeX Info: Redefining \pageref on input line 6443.
+Package hyperref Info: Hyper figures OFF on input line 6380.
+Package hyperref Info: Link nesting OFF on input line 6385.
+Package hyperref Info: Hyper index ON on input line 6388.
+Package hyperref Info: backreferencing OFF on input line 6395.
+Package hyperref Info: Link coloring OFF on input line 6400.
+Package hyperref Info: Link coloring with OCG OFF on input line 6405.
+Package hyperref Info: PDF/A mode OFF on input line 6410.
+LaTeX Info: Redefining \ref on input line 6450.
+LaTeX Info: Redefining \pageref on input line 6454.
 \Hy@abspage=\count97
 \c@Item=\count98
 \c@Hfootnote=\count99
@@ -365,7 +363,7 @@ LaTeX Info: Redefining \pageref on input line 6443.
 Package hyperref Info: Driver (autodetected): hpdftex.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2018/02/06 v6.86b Hyperref driver for pdfTeX
+File: hpdftex.def 2018/11/30 v6.88e Hyperref driver for pdfTeX
 \Fld@listcount=\count100
 \c@bookmark@seq@number=\count101
 
@@ -385,22 +383,16 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 
 
 Package hyperref Warning: Option `hyperindex' has already been used,
-(hyperref)                setting the option has no effect on input line 466.
+(hyperref)                setting the option has no effect on input line 446.
 
-Package hyperref Info: Option `colorlinks' set `true' on input line 466.
-Package hyperref Info: Option `linktocpage' set `true' on input line 466.
-Package hyperref Info: Option `plainpages' set `false' on input line 466.
+Package hyperref Info: Option `colorlinks' set `true' on input line 446.
+Package hyperref Info: Option `linktocpage' set `true' on input line 446.
+Package hyperref Info: Option `plainpages' set `false' on input line 446.
 ) (/usr/local/texlive/2018/texmf-dist/tex/generic/thumbpdf/thumbpdf.sty
-Package: thumbpdf 2014/07/15 v3.16 Inclusion of thumbnails (HO)
-
-
-Package thumbpdf Warning: Compressed PDF objects of PDF 1.5 are not supported.
-
-
-Package thumbpdf Warning: Thumbnail data file `dirichletprocess.tpt' not found.
-
-
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/lmodern.sty
+Package: thumbpdf 2018/09/07 v3.17 Inclusion of thumbnails (HO)
+THUMBPDF: Compressed PDF objects of PDF 1.5 are not supported
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/lm/lmodern.sty
 Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
@@ -444,7 +436,7 @@ Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \FrameSep=\dimen112
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2017/09/02 v2.17a AMS math features
+Package: amsmath 2018/12/01 v2.17b AMS math features
 \@mathmargin=\skip54
 
 For additional information on amsmath, use the `?' option.
@@ -464,20 +456,20 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count102
-LaTeX Info: Redefining \frac on input line 213.
+LaTeX Info: Redefining \frac on input line 223.
 \uproot@=\count103
 \leftroot@=\count104
-LaTeX Info: Redefining \overline on input line 375.
+LaTeX Info: Redefining \overline on input line 385.
 \classnum@=\count105
 \DOTSCASE@=\count106
-LaTeX Info: Redefining \ldots on input line 472.
-LaTeX Info: Redefining \dots on input line 475.
-LaTeX Info: Redefining \cdots on input line 596.
-\Mathstrutbox@=\box27
-\strutbox@=\box28
+LaTeX Info: Redefining \ldots on input line 482.
+LaTeX Info: Redefining \dots on input line 485.
+LaTeX Info: Redefining \cdots on input line 606.
+\Mathstrutbox@=\box28
+\strutbox@=\box29
 \big@size=\dimen115
-LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
+LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
 \macc@depth=\count107
 \c@MaxMatrixCols=\count108
 \dotsspace@=\muskip11
@@ -498,11 +490,11 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \multlinegap=\skip55
 \multlinetaggap=\skip56
 \mathdisplay@stack=\toks19
-LaTeX Info: Redefining \[ on input line 2817.
-LaTeX Info: Redefining \] on input line 2818.
+LaTeX Info: Redefining \[ on input line 2844.
+LaTeX Info: Redefining \] on input line 2845.
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/multirow/multirow.sty
-Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
+Package: multirow 2019/01/01 v2.4 Span multiple rows of a table
 \multirow@colwidth=\skip57
 \multirow@cntb=\count114
 \multirow@dima=\skip58
@@ -510,7 +502,7 @@ Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count115
-\lst@gtempboxa=\box29
+\lst@gtempboxa=\box30
 \lst@token=\toks20
 \lst@length=\count116
 \lst@currlwidth=\dimen123
@@ -523,24 +515,24 @@ Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
 \lst@maxwidth=\dimen126
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+File: lstmisc.sty 2018/09/02 1.7 (Carsten Heinz)
 \c@lstnumber=\count121
 \lst@skipnumbers=\count122
-\lst@framebox=\box30
+\lst@framebox=\box31
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/listings/listings.cfg
-File: listings.cfg 2015/06/04 1.6 listings configuration
+File: listings.cfg 2018/09/02 1.7 listings configuration
 ))
-Package: listings 2015/06/04 1.6 (Carsten Heinz)
+Package: listings 2018/09/02 1.7 (Carsten Heinz)
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/caption/subcaption.sty
-Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
+Package: subcaption 2018/05/01 v1.1-162 Sub-captions (AR)
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2017/03/19 v3.3-145 Customizing captions (AR)
+Package: caption 2018/10/06 v3.3-154 Customizing captions (AR)
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2018/04/15 v1.7-167 caption3 kernel (AR)
+Package: caption3 2018/09/12 v1.8c caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 64.
 \captionmargin=\dimen127
 \captionmargin@=\dimen128
@@ -550,15 +542,16 @@ Package caption3 Info: TeX engine: e-TeX on input line 64.
 \caption@parindent=\dimen132
 \caption@hangindent=\dimen133
 )
-\c@ContinuedFloat=\count123
+\c@caption@flags=\count123
+\c@ContinuedFloat=\count124
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 )
-\c@subfigure=\count124
-\c@subtable=\count125
+\c@subfigure=\count125
+\c@subtable=\count126
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
-Package: tcolorbox 2018/03/22 version 4.13 text color boxes
+Package: tcolorbox 2018/12/07 version 4.15 text color boxes
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/local/texlive/2018/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
@@ -571,18 +564,20 @@ x
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-li
 sts.tex))
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box31
+\pgfutil@abb=\box32
 (/usr/local/texlive/2018/texmf-dist/tex/latex/ms/everyshi.sty
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
 ))
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
-Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
+(/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2019/02/02 v3.1.1 (3.1.1)
 ))
-Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
+Package: pgf 2019/02/02 v3.1.1 (3.1.1)
+
 (/usr/local/texlive/2018/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
 (/usr/local/texlive/2018/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
-Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
+Package: pgfsys 2019/02/02 v3.1.1 (3.1.1)
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
 \pgfkeys@pathtoks=\toks22
 \pgfkeys@temptoks=\toks23
@@ -601,36 +596,37 @@ ode.tex
 \pgf@yc=\dimen143
 \w@pgf@writea=\write4
 \r@pgf@reada=\read2
-\c@pgf@counta=\count126
-\c@pgf@countb=\count127
-\c@pgf@countc=\count128
-\c@pgf@countd=\count129
+\c@pgf@counta=\count127
+\c@pgf@countb=\count128
+\c@pgf@countc=\count129
+\c@pgf@countd=\count130
 \t@pgf@toka=\toks25
 \t@pgf@tokb=\toks26
 \t@pgf@tokc=\toks27
+\pgf@sys@id@count=\count131
 
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
-File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+File: pgf.cfg 2019/02/02 v3.1.1 (3.1.1)
 )
 Driver file for pgf: pgfsys-pdftex.def
 
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
 ef
-File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
+File: pgfsys-pdftex.def 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
 df.def
-File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
+File: pgfsys-common-pdf.def 2019/02/02 v3.1.1 (3.1.1)
 )))
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
 code.tex
-File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
-\pgfsyssoftpath@smallbuffer@items=\count130
-\pgfsyssoftpath@bigbuffer@items=\count131
+File: pgfsyssoftpath.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgfsyssoftpath@smallbuffer@items=\count132
+\pgfsyssoftpath@bigbuffer@items=\count133
 )
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
 code.tex
-File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+File: pgfsysprotocol.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )) (/usr/local/texlive/2018/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
@@ -650,14 +646,14 @@ Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
-Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
+Package: pgfcore 2019/02/02 v3.1.1 (3.1.1)
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen144
-\pgfmath@count=\count132
-\pgfmath@box=\box32
+\pgfmath@count=\count134
+\pgfmath@box=\box33
 \pgfmath@toks=\toks28
 \pgfmath@stack@operand=\toks29
 \pgfmath@stack@operation=\toks30
@@ -681,11 +677,11 @@ code.tex)
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
 erarithmetics.code.tex)))
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count133
+\c@pgfmathroundto@lastzeros=\count135
 ))
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
 de.tex
-File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
+File: pgfcorepoints.code.tex 2019/02/02 v3.1.1 (3.1.1)
 \pgf@picminx=\dimen145
 \pgf@picmaxx=\dimen146
 \pgf@picminy=\dimen147
@@ -703,98 +699,102 @@ File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
 )
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
 ruct.code.tex
-File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
+File: pgfcorepathconstruct.code.tex 2019/02/02 v3.1.1 (3.1.1)
 \pgf@path@lastx=\dimen159
 \pgf@path@lasty=\dimen160
 )
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
 .code.tex
-File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
+File: pgfcorepathusage.code.tex 2019/02/02 v3.1.1 (3.1.1)
 \pgf@shorten@end@additional=\dimen161
 \pgf@shorten@start@additional=\dimen162
 )
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
 de.tex
-File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
-\pgfpic=\box33
-\pgf@hbox=\box34
-\pgf@layerbox@main=\box35
-\pgf@picture@serial@count=\count134
+File: pgfcorescopes.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgfpic=\box34
+\pgf@hbox=\box35
+\pgf@layerbox@main=\box36
+\pgf@picture@serial@count=\count136
 )
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
 ate.code.tex
-File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
+File: pgfcoregraphicstate.code.tex 2019/02/02 v3.1.1 (3.1.1)
 \pgflinewidth=\dimen163
 )
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
 ations.code.tex
-File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
+File: pgfcoretransformations.code.tex 2019/02/02 v3.1.1 (3.1.1)
 \pgf@pt@x=\dimen164
 \pgf@pt@y=\dimen165
 \pgf@pt@temp=\dimen166
 )
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
 e.tex
-File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+File: pgfcorequick.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
 ode.tex
-File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+File: pgfcoreobjects.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
 ssing.code.tex
-File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
+File: pgfcorepathprocessing.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
 de.tex
-File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
+File: pgfcorearrows.code.tex 2019/02/02 v3.1.1 (3.1.1)
 \pgfarrowsep=\dimen167
 )
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
 e.tex
-File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
+File: pgfcoreshade.code.tex 2019/02/02 v3.1.1 (3.1.1)
 \pgf@max=\dimen168
-\pgf@sys@shading@range@num=\count135
+\pgf@sys@shading@range@num=\count137
 )
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
 e.tex
-File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
+File: pgfcoreimage.code.tex 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
 code.tex
-File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
-\pgfexternal@startupbox=\box36
+File: pgfcoreexternal.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgfexternal@startupbox=\box37
 ))
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
 de.tex
-File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
+File: pgfcorelayers.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
 ncy.code.tex
-File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
+File: pgfcoretransparency.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
 code.tex
-File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
+File: pgfcorepatterns.code.tex 2019/02/02 v3.1.1 (3.1.1)
+)
+(/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.
+tex
+File: pgfcorerdf.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )))
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
 e.tex
-File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
-\pgfnodeparttextbox=\box37
+File: pgfmoduleshapes.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgfnodeparttextbox=\box38
 )
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
 tex
-File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
+File: pgfmoduleplot.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -0-65.sty
-Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
+Package: pgfcomp-version-0-65 2019/02/02 v3.1.1 (3.1.1)
 \pgf@nodesepstart=\dimen169
 \pgf@nodesepend=\dimen170
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -1-18.sty
-Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
+Package: pgfcomp-version-1-18 2019/02/02 v3.1.1 (3.1.1)
 )) (/usr/local/texlive/2018/texmf-dist/tex/latex/tools/verbatim.sty
 Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks31
@@ -808,20 +808,20 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
 (/usr/local/texlive/2018/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-Package: etoolbox 2018/02/11 v2.5e e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count136
+Package: etoolbox 2018/08/19 v2.5f e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count138
 )
-\tcb@titlebox=\box38
-\tcb@upperbox=\box39
-\tcb@lowerbox=\box40
-\tcb@phantombox=\box41
-\c@tcbbreakpart=\count137
-\c@tcblayer=\count138
-\tcolorbox@number=\count139
-\tcb@temp=\box42
+\tcb@titlebox=\box39
+\tcb@upperbox=\box40
+\tcb@lowerbox=\box41
+\tcb@phantombox=\box42
+\c@tcbbreakpart=\count139
+\c@tcblayer=\count140
+\tcolorbox@number=\count141
 \tcb@temp=\box43
 \tcb@temp=\box44
 \tcb@temp=\box45
+\tcb@temp=\box46
 \tcb@out=\write5
 \tcb@record@out=\write6
 )
@@ -836,30 +836,26 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
 (/usr/local/texlive/2018/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2018/05/02 3.20 The Babel package
+Package: babel 2018/11/13 3.27 The Babel package
 
 (/usr/local/texlive/2018/texmf-dist/tex/generic/babel/switch.def
-File: switch.def 2018/05/02 3.20 Babel switching mechanism
+File: switch.def 2018/11/13 3.27 Babel switching mechanism
 )
 (/usr/local/texlive/2018/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
 
 (/usr/local/texlive/2018/texmf-dist/tex/generic/babel/babel.def
-File: babel.def 2018/05/02 3.20 Babel common definitions
-\babel@savecnt=\count140
+File: babel.def 2018/11/13 3.27 Babel common definitions
+\babel@savecnt=\count142
 \U@D=\dimen171
 
 (/usr/local/texlive/2018/texmf-dist/tex/generic/babel/txtbabel.def)
-\bbl@dirlevel=\count141
+\bbl@dirlevel=\count143
 )
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
 \l@newzealand = a dialect from \language\l@british 
 ))
-
-LaTeX Warning: Unused global option(s):
-    [jss].
-
 (./dirichletprocess.aux)
 \openout1 = `dirichletprocess.aux'.
 
@@ -891,16 +887,16 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 (/usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count142
+\scratchcounter=\count144
 \scratchdimen=\dimen172
-\scratchbox=\box46
-\nofMPsegments=\count143
-\nofMParguments=\count144
+\scratchbox=\box47
+\nofMPsegments=\count145
+\nofMParguments=\count146
 \everyMPshowfont=\toks33
-\MPscratchCnt=\count145
+\MPscratchCnt=\count147
 \MPscratchDim=\dimen173
-\MPnumerator=\count146
-\makeMPintoPDFobject=\count147
+\MPnumerator=\count148
+\makeMPintoPDFobject=\count149
 \everyMPtoPDFconversion=\toks34
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -919,7 +915,7 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box47
+\AtBeginShipoutBox=\box48
 Package hyperref Info: Link coloring ON on input line 81.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -928,7 +924,7 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count148
+\c@section@level=\count150
 )
 LaTeX Info: Redefining \ref on input line 81.
 LaTeX Info: Redefining \pageref on input line 81.
@@ -938,23 +934,8 @@ LaTeX Info: Redefining \nameref on input line 81.
 \@outlinefile=\write7
 \openout7 = `dirichletprocess.out'.
 
-<jsslogo.jpg, id=139, 540.0175pt x 393.47pt>
-File: jsslogo.jpg Graphic file (type jpg)
-<use jsslogo.jpg>
-Package pdftex.def Info: jsslogo.jpg  used on input line 81.
-(pdftex.def)             Requested size: 89.80768pt x 65.43607pt.
-LaTeX Font Info:    Try loading font information for T1+pzc on input line 81.
-
-(/usr/local/texlive/2018/texmf-dist/tex/latex/psnfss/t1pzc.fd
-File: t1pzc.fd 2001/06/04 font definitions for T1/pzc.
-)
-LaTeX Font Info:    Font shape `T1/pzc/m/n' in size <28> not available
-(Font)              Font shape `T1/pzc/mb/it' tried instead on input line 81.
-
-
-Package xcolor Warning: Incompatible color definition on input line 81.
-
 LaTeX Font Info:    Try loading font information for T1+lmss on input line 81.
+
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1002,7 +983,7 @@ Package xcolor Warning: Incompatible color definition on input line 81.
 
 Package xcolor Warning: Incompatible color definition on input line 81.
 
-\c@lstlisting=\count149
+\c@lstlisting=\count151
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 ABD: EveryShipout initializing macros
@@ -1032,8 +1013,7 @@ Package xcolor Warning: Incompatible color definition on input line 89.
 
 [1
 
-{/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./jsslo
-go.jpg>]
+{/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10.95 2 []
  []
@@ -1051,23 +1031,29 @@ Package xcolor Warning: Incompatible color definition on input line 122.
 Package xcolor Warning: Incompatible color definition on input line 122.
 
 
+Package xcolor Warning: Incompatible color definition on input line 127.
+
+
+Package xcolor Warning: Incompatible color definition on input line 127.
+
+
+Package xcolor Warning: Incompatible color definition on input line 127.
+
+
+Package xcolor Warning: Incompatible color definition on input line 127.
+
+
+Package xcolor Warning: Incompatible color definition on input line 127.
+
+
+Package xcolor Warning: Incompatible color definition on input line 127.
+
+
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 [] \T1/lmr/m/n/10.95 3
  []
 
 [3]
-
-Package xcolor Warning: Incompatible color definition on input line 127.
-
-
-Package xcolor Warning: Incompatible color definition on input line 127.
-
-
-Package xcolor Warning: Incompatible color definition on input line 127.
-
-
-Package xcolor Warning: Incompatible color definition on input line 127.
-
 
 Package xcolor Warning: Incompatible color definition on input line 133.
 
@@ -1096,6 +1082,9 @@ Package xcolor Warning: Incompatible color definition on input line 163.
 Package xcolor Warning: Incompatible color definition on input line 163.
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 [] \T1/lmr/m/n/10.95 5
  []
@@ -1105,20 +1094,20 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 Package xcolor Warning: Incompatible color definition on input line 217.
 
 
+Package xcolor Warning: Incompatible color definition on input line 219.
+
+
+Package xcolor Warning: Incompatible color definition on input line 219.
+
+
+Package xcolor Warning: Incompatible color definition on input line 219.
+
+
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10.95 6 []
  []
 
 [6]
-
-Package xcolor Warning: Incompatible color definition on input line 219.
-
-
-Package xcolor Warning: Incompatible color definition on input line 219.
-
-
-Package xcolor Warning: Incompatible color definition on input line 219.
-
 
 Package xcolor Warning: Incompatible color definition on input line 231.
 
@@ -1163,10 +1152,10 @@ Overfull \hbox (12.43193pt too wide) in paragraph at lines 281--283
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 304.
+Package xcolor Warning: Incompatible color definition on input line 305.
 
 
-Package xcolor Warning: Incompatible color definition on input line 304.
+Package xcolor Warning: Incompatible color definition on input line 305.
 
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
@@ -1175,10 +1164,10 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 
 [9]
 
-Package xcolor Warning: Incompatible color definition on input line 348.
+Package xcolor Warning: Incompatible color definition on input line 349.
 
 
-Package xcolor Warning: Incompatible color definition on input line 348.
+Package xcolor Warning: Incompatible color definition on input line 349.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1187,16 +1176,16 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [10]
 
-Package xcolor Warning: Incompatible color definition on input line 353.
+Package xcolor Warning: Incompatible color definition on input line 354.
 
 
-Package xcolor Warning: Incompatible color definition on input line 353.
+Package xcolor Warning: Incompatible color definition on input line 354.
 
 
-Package xcolor Warning: Incompatible color definition on input line 364.
+Package xcolor Warning: Incompatible color definition on input line 365.
 
 
-Package xcolor Warning: Incompatible color definition on input line 364.
+Package xcolor Warning: Incompatible color definition on input line 365.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1204,13 +1193,13 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [11]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 398.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 399.
 
  (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 
-Package xcolor Warning: Incompatible color definition on input line 408.
+Package xcolor Warning: Incompatible color definition on input line 409.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1219,17 +1208,17 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [12]
 
-Package xcolor Warning: Incompatible color definition on input line 416.
+Package xcolor Warning: Incompatible color definition on input line 417.
 
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 422.
+(hyperref)                than one, level fixed on input line 423.
 
 
-Package xcolor Warning: Incompatible color definition on input line 428.
+Package xcolor Warning: Incompatible color definition on input line 429.
 
 
-Package xcolor Warning: Incompatible color definition on input line 438.
+Package xcolor Warning: Incompatible color definition on input line 439.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1237,21 +1226,21 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [13]
-<img/old_faithful_density_plot.pdf, id=309, 284.06125pt x 284.06125pt>
+<img/old_faithful_density_plot.pdf, id=311, 284.06125pt x 284.06125pt>
 File: img/old_faithful_density_plot.pdf Graphic file (type pdf)
 <use img/old_faithful_density_plot.pdf>
 Package pdftex.def Info: img/old_faithful_density_plot.pdf  used on input line 
-454.
+455.
 (pdftex.def)             Requested size: 189.23257pt x 189.24075pt.
-<img/old_faithful_hist_plot.pdf, id=310, 284.06125pt x 284.06125pt>
+<img/old_faithful_hist_plot.pdf, id=312, 284.06125pt x 284.06125pt>
 File: img/old_faithful_hist_plot.pdf Graphic file (type pdf)
 <use img/old_faithful_hist_plot.pdf>
-Package pdftex.def Info: img/old_faithful_hist_plot.pdf  used on input line 459
+Package pdftex.def Info: img/old_faithful_hist_plot.pdf  used on input line 460
 .
 (pdftex.def)             Requested size: 189.23257pt x 189.24075pt.
 
 
-Package xcolor Warning: Incompatible color definition on input line 466.
+Package xcolor Warning: Incompatible color definition on input line 467.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1260,25 +1249,25 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [14 <./img/old_faithful_density_plot.pdf> <./img/old_faithful_hist_plot.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 499.
+Package xcolor Warning: Incompatible color definition on input line 500.
 
 
-Package xcolor Warning: Incompatible color definition on input line 499.
+Package xcolor Warning: Incompatible color definition on input line 500.
 
 
-Package xcolor Warning: Incompatible color definition on input line 499.
+Package xcolor Warning: Incompatible color definition on input line 500.
 
 
-Package xcolor Warning: Incompatible color definition on input line 501.
+Package xcolor Warning: Incompatible color definition on input line 502.
 
 
-Overfull \hbox (2.22017pt too wide) in paragraph at lines 501--502
+Overfull \hbox (2.22017pt too wide) in paragraph at lines 502--503
 []\T1/lmr/m/n/10.95 After each data point has its clus-ter al-lo-ca-tion up-dat
 ed the func-tion \T1/lmtt/m/n/10.95 ClusterParameterUpdate
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 503.
+Package xcolor Warning: Incompatible color definition on input line 504.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1291,26 +1280,26 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [16]
-<img/betaGraph.pdf, id=343, 284.06125pt x 284.06125pt>
+<img/betaGraph.pdf, id=345, 284.06125pt x 284.06125pt>
 File: img/betaGraph.pdf Graphic file (type pdf)
 <use img/betaGraph.pdf>
-Package pdftex.def Info: img/betaGraph.pdf  used on input line 539.
+Package pdftex.def Info: img/betaGraph.pdf  used on input line 540.
 (pdftex.def)             Requested size: 199.19283pt x 199.20125pt.
 
 
-Package xcolor Warning: Incompatible color definition on input line 543.
+Package xcolor Warning: Incompatible color definition on input line 544.
 
 
-Package xcolor Warning: Incompatible color definition on input line 586.
+Package xcolor Warning: Incompatible color definition on input line 587.
 
 
-Package xcolor Warning: Incompatible color definition on input line 586.
+Package xcolor Warning: Incompatible color definition on input line 587.
 
 
-Package xcolor Warning: Incompatible color definition on input line 586.
+Package xcolor Warning: Incompatible color definition on input line 587.
 
 
-Package xcolor Warning: Incompatible color definition on input line 586.
+Package xcolor Warning: Incompatible color definition on input line 587.
 
 
 Underfull \vbox (badness 2903) has occurred while \output is active []
@@ -1322,15 +1311,15 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [17 <./img/betaGraph.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 595.
+Package xcolor Warning: Incompatible color definition on input line 596.
 
-<img/faithful_multi_plot.pdf, id=367, 284.06125pt x 284.06125pt>
+<img/faithful_multi_plot.pdf, id=369, 284.06125pt x 284.06125pt>
 File: img/faithful_multi_plot.pdf Graphic file (type pdf)
 <use img/faithful_multi_plot.pdf>
-Package pdftex.def Info: img/faithful_multi_plot.pdf  used on input line 615.
+Package pdftex.def Info: img/faithful_multi_plot.pdf  used on input line 616.
 (pdftex.def)             Requested size: 221.32687pt x 221.33714pt.
 
-Package xcolor Warning: Incompatible color definition on input line 620.
+Package xcolor Warning: Incompatible color definition on input line 621.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1339,35 +1328,35 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [18 <./img/faithful_multi_plot.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 629.
+Package xcolor Warning: Incompatible color definition on input line 630.
 
 
-Package xcolor Warning: Incompatible color definition on input line 629.
+Package xcolor Warning: Incompatible color definition on input line 630.
 
-<img/ratsImpericalDistribution.pdf, id=384, 284.06125pt x 284.06125pt>
+<img/ratsImpericalDistribution.pdf, id=386, 284.06125pt x 284.06125pt>
 File: img/ratsImpericalDistribution.pdf Graphic file (type pdf)
 <use img/ratsImpericalDistribution.pdf>
 Package pdftex.def Info: img/ratsImpericalDistribution.pdf  used on input line 
-640.
+641.
 (pdftex.def)             Requested size: 199.19283pt x 199.20125pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 641.
+(Font)              <10> on input line 642.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 641.
+(Font)              <7> on input line 642.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 641.
-<img/ratsDirichletPrior.pdf, id=385, 284.06125pt x 284.06125pt>
+(Font)              <5> on input line 642.
+<img/ratsDirichletPrior.pdf, id=387, 284.06125pt x 284.06125pt>
 File: img/ratsDirichletPrior.pdf Graphic file (type pdf)
 <use img/ratsDirichletPrior.pdf>
-Package pdftex.def Info: img/ratsDirichletPrior.pdf  used on input line 646.
+Package pdftex.def Info: img/ratsDirichletPrior.pdf  used on input line 647.
 (pdftex.def)             Requested size: 199.19283pt x 199.20125pt.
 
-Overfull \hbox (2.43333pt too wide) in paragraph at lines 638--650
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 639--651
 [][] [] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 653.
+Package xcolor Warning: Incompatible color definition on input line 654.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1381,13 +1370,13 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [20]
 
-Package xcolor Warning: Incompatible color definition on input line 711.
+Package xcolor Warning: Incompatible color definition on input line 712.
 
 
-Package xcolor Warning: Incompatible color definition on input line 714.
+Package xcolor Warning: Incompatible color definition on input line 715.
 
 
-Package xcolor Warning: Incompatible color definition on input line 714.
+Package xcolor Warning: Incompatible color definition on input line 715.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1398,16 +1387,16 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 ]
 
-Package xcolor Warning: Incompatible color definition on input line 732.
+Package xcolor Warning: Incompatible color definition on input line 733.
 
 
-Package xcolor Warning: Incompatible color definition on input line 732.
+Package xcolor Warning: Incompatible color definition on input line 733.
 
 
-Package xcolor Warning: Incompatible color definition on input line 734.
+Package xcolor Warning: Incompatible color definition on input line 735.
 
 
-Package xcolor Warning: Incompatible color definition on input line 741.
+Package xcolor Warning: Incompatible color definition on input line 742.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1416,19 +1405,19 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [22]
 
-Package xcolor Warning: Incompatible color definition on input line 773.
+Package xcolor Warning: Incompatible color definition on input line 774.
 
 
-Package xcolor Warning: Incompatible color definition on input line 773.
+Package xcolor Warning: Incompatible color definition on input line 774.
 
 
-Package xcolor Warning: Incompatible color definition on input line 773.
+Package xcolor Warning: Incompatible color definition on input line 774.
 
 
-Package xcolor Warning: Incompatible color definition on input line 773.
+Package xcolor Warning: Incompatible color definition on input line 774.
 
 
-Overfull \hbox (7.512pt too wide) in paragraph at lines 773--774
+Overfull \hbox (7.512pt too wide) in paragraph at lines 774--775
 []\T1/lmr/m/n/10.95 The cre-ator func-tion \T1/lmtt/m/n/10.95 DirichletProcessH
 ierarchicalBeta \T1/lmr/m/n/10.95 re-turns a list of \T1/lmtt/m/n/10.95 dirichl
 etprocess
@@ -1441,24 +1430,24 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [23]
 
-Package xcolor Warning: Incompatible color definition on input line 813.
+Package xcolor Warning: Incompatible color definition on input line 814.
 
-<img/hierBetaGraph.pdf, id=443, 568.1225pt x 284.06125pt>
+<img/hierBetaGraph.pdf, id=445, 568.1225pt x 284.06125pt>
 File: img/hierBetaGraph.pdf Graphic file (type pdf)
 <use img/hierBetaGraph.pdf>
-Package pdftex.def Info: img/hierBetaGraph.pdf  used on input line 816.
+Package pdftex.def Info: img/hierBetaGraph.pdf  used on input line 817.
 (pdftex.def)             Requested size: 376.25838pt x 188.13548pt.
 
-Package xcolor Warning: Incompatible color definition on input line 823.
+Package xcolor Warning: Incompatible color definition on input line 824.
 
 
-Package xcolor Warning: Incompatible color definition on input line 826.
+Package xcolor Warning: Incompatible color definition on input line 827.
 
 
-Package xcolor Warning: Incompatible color definition on input line 830.
+Package xcolor Warning: Incompatible color definition on input line 831.
 
 
-Package xcolor Warning: Incompatible color definition on input line 830.
+Package xcolor Warning: Incompatible color definition on input line 831.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1467,10 +1456,10 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [24]
 
-Package xcolor Warning: Incompatible color definition on input line 843.
+Package xcolor Warning: Incompatible color definition on input line 844.
 
 
-Package xcolor Warning: Incompatible color definition on input line 843.
+Package xcolor Warning: Incompatible color definition on input line 844.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1478,14 +1467,14 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [25 <./img/hierBetaGraph.pdf>]
-<img/poissonStickBreaking.pdf, id=473, 284.06125pt x 284.06125pt>
+<img/poissonStickBreaking.pdf, id=475, 284.06125pt x 284.06125pt>
 File: img/poissonStickBreaking.pdf Graphic file (type pdf)
 <use img/poissonStickBreaking.pdf>
-Package pdftex.def Info: img/poissonStickBreaking.pdf  used on input line 891.
+Package pdftex.def Info: img/poissonStickBreaking.pdf  used on input line 892.
 (pdftex.def)             Requested size: 199.19283pt x 199.20125pt.
 
 
-Package xcolor Warning: Incompatible color definition on input line 895.
+Package xcolor Warning: Incompatible color definition on input line 896.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1499,22 +1488,22 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [27 <./img/poissonStickBreaking.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 918.
+Package xcolor Warning: Incompatible color definition on input line 919.
 
 
-Package xcolor Warning: Incompatible color definition on input line 918.
+Package xcolor Warning: Incompatible color definition on input line 919.
 
 
-Package xcolor Warning: Incompatible color definition on input line 927.
+Package xcolor Warning: Incompatible color definition on input line 928.
 
 
-Package xcolor Warning: Incompatible color definition on input line 927.
+Package xcolor Warning: Incompatible color definition on input line 928.
 
 
-Package xcolor Warning: Incompatible color definition on input line 931.
+Package xcolor Warning: Incompatible color definition on input line 932.
 
 
-Overfull \hbox (21.10825pt too wide) in paragraph at lines 931--932
+Overfull \hbox (21.10825pt too wide) in paragraph at lines 932--933
 []\T1/lmr/m/n/10.95 By us-ing the de-fault con-struc-tor func-tions \T1/lmtt/m/
 n/10.95 DirichletProcessBeta/Gaussian/Mvnormal/Weibull
  []
@@ -1530,7 +1519,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [29]
-Overfull \hbox (48.8786pt too wide) in paragraph at lines 997--998
+Overfull \hbox (48.8786pt too wide) in paragraph at lines 998--999
 []\T1/lmr/m/n/10.95 With these func-tions writ-ten for the Pois-son mix-ture mo
 del we now need to use the \T1/lmtt/m/n/10.95 MixingDistribution
  []
@@ -1541,15 +1530,15 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [30]
-<img/poisson_mixture_plot.pdf, id=513, 284.06125pt x 284.06125pt>
+<img/poisson_mixture_plot.pdf, id=515, 284.06125pt x 284.06125pt>
 File: img/poisson_mixture_plot.pdf Graphic file (type pdf)
 <use img/poisson_mixture_plot.pdf>
-Package pdftex.def Info: img/poisson_mixture_plot.pdf  used on input line 1033.
+Package pdftex.def Info: img/poisson_mixture_plot.pdf  used on input line 1034.
 
 (pdftex.def)             Requested size: 221.32687pt x 221.33714pt.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1037.
+Package xcolor Warning: Incompatible color definition on input line 1038.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1562,36 +1551,36 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [32]
-Overfull \hbox (55.72273pt too wide) in paragraph at lines 1099--1100
+Overfull \hbox (55.72273pt too wide) in paragraph at lines 1100--1101
 []\T1/lmr/m/n/10.95 We can now con-struct our mix-ing dis-tri-bu-tion ob-ject u
 s-ing the con-struc-tor func-tion \T1/lmtt/m/n/10.95 MixingDistribution\T1/lmr/
 m/n/10.95 .
  []
 
-<img/gamma_mixture_plot.pdf, id=535, 284.06125pt x 284.06125pt>
+<img/gamma_mixture_plot.pdf, id=537, 284.06125pt x 284.06125pt>
 File: img/gamma_mixture_plot.pdf Graphic file (type pdf)
 <use img/gamma_mixture_plot.pdf>
-Package pdftex.def Info: img/gamma_mixture_plot.pdf  used on input line 1128.
+Package pdftex.def Info: img/gamma_mixture_plot.pdf  used on input line 1129.
 (pdftex.def)             Requested size: 199.19283pt x 199.20125pt.
 
-Package xcolor Warning: Incompatible color definition on input line 1132.
+Package xcolor Warning: Incompatible color definition on input line 1133.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1146.
+(hyperref)                removing `math shift' on input line 1147.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 1146.
+(hyperref)                removing `subscript' on input line 1147.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1146.
+(hyperref)                removing `math shift' on input line 1147.
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 1146.
+(Font)              <12> on input line 1147.
 
-Package xcolor Warning: Incompatible color definition on input line 1149.
+Package xcolor Warning: Incompatible color definition on input line 1150.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1600,16 +1589,16 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [33]
 
-Package xcolor Warning: Incompatible color definition on input line 1202.
+Package xcolor Warning: Incompatible color definition on input line 1203.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1202.
+Package xcolor Warning: Incompatible color definition on input line 1203.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1202.
+Package xcolor Warning: Incompatible color definition on input line 1203.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1202.
+Package xcolor Warning: Incompatible color definition on input line 1203.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1618,7 +1607,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [34 <./img/gamma_mixture_plot.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 1208.
+Package xcolor Warning: Incompatible color definition on input line 1209.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1626,27 +1615,27 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [35]
-<img/weibull_censor_graph.pdf, id=571, 361.35pt x 216.81pt>
+<img/weibull_censor_graph.pdf, id=573, 361.35pt x 216.81pt>
 File: img/weibull_censor_graph.pdf Graphic file (type pdf)
 <use img/weibull_censor_graph.pdf>
-Package pdftex.def Info: img/weibull_censor_graph.pdf  used on input line 1271.
+Package pdftex.def Info: img/weibull_censor_graph.pdf  used on input line 1272.
 
 (pdftex.def)             Requested size: 354.12434pt x 212.47565pt.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1275.
+Package xcolor Warning: Incompatible color definition on input line 1276.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1275.
+Package xcolor Warning: Incompatible color definition on input line 1276.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1275.
+Package xcolor Warning: Incompatible color definition on input line 1276.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1281.
+Package xcolor Warning: Incompatible color definition on input line 1282.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1281.
+Package xcolor Warning: Incompatible color definition on input line 1282.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1655,31 +1644,31 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [36 <./img/weibull_censor_graph.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 1285.
+Package xcolor Warning: Incompatible color definition on input line 1286.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1285.
+Package xcolor Warning: Incompatible color definition on input line 1286.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1290.
+Package xcolor Warning: Incompatible color definition on input line 1291.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1290.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1292.
+Package xcolor Warning: Incompatible color definition on input line 1291.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 1292.
+(hyperref)                removing `math shift' on input line 1293.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1292.
+(hyperref)                removing `subscript' on input line 1293.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1295.
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 1293.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1296.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1688,7 +1677,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [37]
 
-Package xcolor Warning: Incompatible color definition on input line 1306.
+Package xcolor Warning: Incompatible color definition on input line 1307.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1696,17 +1685,17 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [38]
-<img/faithful_pred_plot.pdf, id=613, 216.81pt x 216.81pt>
+<img/faithful_pred_plot.pdf, id=615, 216.81pt x 216.81pt>
 File: img/faithful_pred_plot.pdf Graphic file (type pdf)
 <use img/faithful_pred_plot.pdf>
-Package pdftex.def Info: img/faithful_pred_plot.pdf  used on input line 1358.
+Package pdftex.def Info: img/faithful_pred_plot.pdf  used on input line 1359.
 (pdftex.def)             Requested size: 221.32687pt x 221.33846pt.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1362.
+Package xcolor Warning: Incompatible color definition on input line 1363.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1373.
+Package xcolor Warning: Incompatible color definition on input line 1374.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1723,28 +1712,16 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [40])
 
-Package xcolor Warning: Incompatible color definition on input line 1381.
+Package xcolor Warning: Incompatible color definition on input line 1382.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1381.
+Package xcolor Warning: Incompatible color definition on input line 1382.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1381.
+Package xcolor Warning: Incompatible color definition on input line 1382.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1381.
-
-LaTeX Font Info:    Font shape `T1/pzc/m/n' in size <13> not available
-(Font)              Font shape `T1/pzc/mb/it' tried instead on input line 1381.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1381.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1381.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1381.
+Package xcolor Warning: Incompatible color definition on input line 1382.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1752,58 +1729,57 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [41]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1381.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1381.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1382.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1382.
  (./dirichletprocess.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1381.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1381.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1382.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1382.
 
 Package rerunfilecheck Info: File `dirichletprocess.out' has not changed.
 (rerunfilecheck)             Checksum: FF7DEA5301F1D79458E4F07E43EEE4F6;4519.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1381.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1382.
  ) 
 Here is how much of TeX's memory you used:
- 20550 strings out of 492649
- 370246 string characters out of 6129622
- 443996 words of memory out of 5000000
- 23870 multiletter control sequences out of 15000+600000
- 130642 words of font info for 94 fonts, out of 8000000 for 9000
+ 20807 strings out of 492616
+ 375715 string characters out of 6128982
+ 451029 words of memory out of 5000000
+ 24157 multiletter control sequences out of 15000+600000
+ 122167 words of font info for 89 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 54i,16n,73p,1260b,531s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 54i,16n,73p,1260b,539s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/lo
 cal/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/20
 18/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2018/texmf-dist/
 fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2018/texmf-dist/fonts/enc/
 dvips/lm/lm-ts1.enc}{/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-m
-athex.enc}{/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr
-/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/l
-ocal/texlive/2018/texmf-dist/fonts/type1/public/lm/lmb10.pfb></usr/local/texliv
-e/2018/texmf-dist/fonts/type1/public/lm/lmbo10.pfb></usr/local/texlive/2018/tex
-mf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2018/texmf-dist/fo
-nts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/
-public/lm/lmbx8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/l
-mex10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmmi10.pfb>
-</usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/loca
-l/texlive/2018/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2
-018/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></usr/local/texlive/2018/texmf-d
-ist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2018/texmf-dist/fonts/t
-ype1/public/lm/lmmib10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
-ic/lm/lmr10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr6.
-pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/lo
-cal/texlive/2018/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texliv
-e/2018/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2018/tex
-mf-dist/fonts/type1/public/lm/lmro10.pfb></usr/local/texlive/2018/texmf-dist/fo
-nts/type1/public/lm/lmss10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/
-public/lm/lmssbx10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/l
-m/lmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy8.pf
-b></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/lo
-cal/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtto10.pfb></usr/local/texli
-ve/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/t
-exlive/2018/texmf-dist/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
-Output written on dirichletprocess.pdf (41 pages, 791404 bytes).
+athex.enc}</usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmb10.pfb></u
+sr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmbo10.pfb></usr/local/t
+exlive/2018/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/201
+8/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2018/texmf-di
+st/fonts/type1/public/lm/lmbx8.pfb></usr/local/texlive/2018/texmf-dist/fonts/ty
+pe1/public/lm/lmex10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public
+/lm/lmmi10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmmi12
+.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/
+local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></usr/local/texli
+ve/2018/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2018/tex
+mf-dist/fonts/type1/public/lm/lmmib10.pfb></usr/local/texlive/2018/texmf-dist/f
+onts/type1/public/lm/lmr10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/
+public/lm/lmr6.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lm
+r8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmri10.pfb></u
+sr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/t
+exlive/2018/texmf-dist/fonts/type1/public/lm/lmro10.pfb></usr/local/texlive/201
+8/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2018/texmf-di
+st/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2018/texmf-dist/fonts
+/type1/public/lm/lmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/pub
+lic/lm/lmsy8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt
+10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtto10.pfb></
+usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pf
+b>
+Output written on dirichletprocess.pdf (41 pages, 758688 bytes).
 PDF statistics:
- 770 PDF objects out of 1000 (max. 8388607)
- 668 compressed objects within 7 object streams
- 146 named destinations out of 1000 (max. 500000)
- 342 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 765 PDF objects out of 1000 (max. 8388607)
+ 665 compressed objects within 7 object streams
+ 147 named destinations out of 1000 (max. 500000)
+ 337 words of extra memory for PDF output out of 10000 (max. 10000000)
 
