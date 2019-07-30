@@ -5,10 +5,12 @@
 #' @param y Data
 #' @param g0Priors Prior parameters for the base distribution.
 #' @param alphaPriors Alpha prior parameters. See \code{\link{UpdateAlpha}}.
+#' @param numInitialClusters Number of clusters to initialise with.
 #' @export
 DirichletProcessMvnormal <- function(y,
                                      g0Priors,
-                                     alphaPriors = c(2, 4)) {
+                                     alphaPriors = c(2, 4),
+                                     numInitialClusters=1) {
 
   if(!is.matrix(y)){
     y <- matrix(y, ncol=length(y))
@@ -17,13 +19,14 @@ DirichletProcessMvnormal <- function(y,
   if(missing(g0Priors)){
     g0Priors <- list(mu0 = rep_len(0, length.out = ncol(y)),
                      Lambda = diag(ncol(y)),
-                     kappa0 = ncol(y), nu = ncol(y))
+                     kappa0 = ncol(y),
+                     nu = ncol(y))
   }
 
 
   mdobj <- MvnormalCreate(g0Priors)
   dpobj <- DirichletProcessCreate(y, mdobj, alphaPriors)
-  dpobj <- Initialise(dpobj)
+  dpobj <- Initialise(dpobj, numInitialClusters=numInitialClusters)
 
   return(dpobj)
 }

@@ -8,21 +8,21 @@
 #' @param verbose Logical flag indicating whether to output the acceptance ratio for non-conjugate mixtures.
 #' @return A Dirichlet process object that has initial cluster allocations.
 #' @export
-Initialise <- function(dpObj, posterior = TRUE, m=3, verbose=TRUE){
+Initialise <- function(dpObj, posterior = TRUE, m=3, verbose=TRUE, numInitialClusters = 1){
   UseMethod("Initialise", dpObj)
 }
 
 #' @export
-Initialise.conjugate <- function(dpObj, posterior = TRUE, m=NULL, verbose=NULL) {
+Initialise.conjugate <- function(dpObj, posterior = TRUE, m=NULL, verbose=NULL, numInitialClusters = 1) {
 
-  dpObj$clusterLabels <- rep_len(1, dpObj$n)
-  dpObj$numberClusters <- 1
-  dpObj$pointsPerCluster <- dpObj$n
+  dpObj$clusterLabels <- rep(seq_len(numInitialClusters), dpObj$n)
+  dpObj$numberClusters <- numInitialClusters
+  dpObj$pointsPerCluster <- vapply(seq_len(numInitialClusters), function(x) sum(dpObj$clusterLabels == x), numeric(1))
 
-  if (posterior) {
+  if (posterior && numInitialClusters == 1) {
     dpObj$clusterParameters <- PosteriorDraw(dpObj$mixingDistribution, dpObj$data, 1)
   } else {
-    dpObj$clusterParameters <- PriorDraw(dpObj$mixingDistribution, 1)
+    dpObj$clusterParameters <- PriorDraw(dpObj$mixingDistribution, numInitialClusters)
   }
 
   dpObj <- InitialisePredictive(dpObj)

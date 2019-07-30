@@ -117,6 +117,23 @@ test_that("Multivariate Normal Dirichlet Create and Initialise", {
   expect_equal(dim(dpobj$clusterParameters$sig), c(2,2,1))
 })
 
+test_that("Multivariate Normal Dirichlet Create and Initialise Multi Cluster", {
+
+  test_data <- mvtnorm::rmvnorm(10, c(0,0), diag(2))
+  priorParameters <- list(mu0=c(0,0), Lambda=diag(2), kappa0=1, nu=2)
+  mdobj <- MvnormalCreate(priorParameters)
+
+  dpobj <- DirichletProcessCreate(test_data, mdobj)
+  dpobj <- Initialise(dpobj, numInitialClusters = 10)
+
+  expect_is(dpobj, c("list", "dirichletprocess", "mvnormal", "conjugate"))
+
+  expect_equal(length(dpobj$clusterParameters), 2)
+  expect_equal(dim(dpobj$clusterParameters$mu), c(1,2,10))
+  expect_equal(dim(dpobj$clusterParameters$sig), c(2,2,10))
+})
+
+
 test_that("Multivariate Normal Componenet Update", {
 
   test_data <- mvtnorm::rmvnorm(10, c(0,0), diag(2))
@@ -190,3 +207,18 @@ test_that("Multivariate Normal Cluster Predict", {
   expect_length(pred$componentIndexes, 1)
 
 })
+
+test_that("Multivariate Normal Initial Clusters", {
+
+  test_data <- as.matrix(mvtnorm::rmvnorm(10, c(0,0), diag(2)))
+
+  dp <- DirichletProcessMvnormal(test_data, numInitialClusters = 5)
+
+  expect_equal(dp$numberClusters, 5)
+  expect_length(dp$pointsPerCluster, 5)
+  expect_equal(dim(dp$clusterParameters[[1]]), c(1,2,5))
+  expect_equal(dim(dp$clusterParameters[[2]]), c(2,2,5))
+
+})
+
+

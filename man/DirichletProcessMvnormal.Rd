@@ -4,7 +4,8 @@
 \alias{DirichletProcessMvnormal}
 \title{Create a Dirichlet mixture of multivariate normal distributions.}
 \usage{
-DirichletProcessMvnormal(y, g0Priors, alphaPriors = c(2, 4))
+DirichletProcessMvnormal(y, g0Priors, alphaPriors = c(2, 4),
+  numInitialClusters = 1)
 }
 \arguments{
 \item{y}{Data}
@@ -12,6 +13,8 @@ DirichletProcessMvnormal(y, g0Priors, alphaPriors = c(2, 4))
 \item{g0Priors}{Prior parameters for the base distribution.}
 
 \item{alphaPriors}{Alpha prior parameters. See \code{\link{UpdateAlpha}}.}
+
+\item{numInitialClusters}{Number of clusters to initialise with.}
 }
 \description{
 \eqn{G_0 (\boldsymbol{\mu} , \Lambda |  \boldsymbol{\mu _0} , \kappa _0, \nu _0, T_0)  = N ( \boldsymbol{\mu} | \boldsymbol{\mu _0} , (\kappa _0 \Lambda )^{-1} ) \mathrm{Wi} _{\nu _0} (\Lambda | T_0)}
