@@ -12,7 +12,7 @@ weighted_function_generator <- function(func, weights, params) {
 
   weightedFunc <- function(y) {
 
-    if (class(y) %in% c("matrix", "data.frame")){
+    if (is.matrix(y) || is.data.frame(y)){
       out <- numeric(nrow(y))
       y <- as.matrix(y)
     }
