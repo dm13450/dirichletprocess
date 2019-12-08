@@ -1,4 +1,12 @@
-# dirichletprocess 0.3.3
+# dirichletprocess 0.3.1
+
+* Fixed matrix class checking for R 4.0.0
+* Corrected typos in vignette
+* Added a parameter for the number of initial clusters in DirichletProcessMvnormal.
+* Various refactoring.
+
+
+# dirichletprocess 0.3.0
 
 * Added Hidden Markov models.
 * Fixed bug in PosteriorClusters and PosteriorFunction.
