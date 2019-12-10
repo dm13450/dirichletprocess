@@ -1,22 +1,15 @@
--dirichletprocess 0.3.0
+-dirichletprocess 0.3.1
 -----------------------
 
-## Resubmission
 
-This is a resubmission. In this version I have:
-
-* Removed the uneeded LICENSE file
-
-This is an update to the previous submission. 
 
 ## Changes
 In this version I have:
 
-* Added Hidden Markov models.
-* Fixed bug in PosteriorClusters and PosteriorFunction.
-* Added in new Beta mixture model for avoiding boundary. 
-* Fixed a bug in ChangeObservations when using more than one dimension. 
-* Added in Burn, Print and Diagnostic Plots.
+* Fixed matrix class checking for R 4.0.0
+* Corrected typos in vignette
+* Added a parameter for the number of initial clusters in DirichletProcessMvnormal.
+* Various refactoring.
 
 ## Test environments
 * local OS X install, R 3.5.0

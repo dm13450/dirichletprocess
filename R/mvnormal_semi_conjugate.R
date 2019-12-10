@@ -5,7 +5,7 @@
 Mvnormal2Create <- function(priorParameters) {
 
 
-  if (class(priorParameters$mu0) != "matrix"){
+  if (!is.matrix(priorParameters$mu0)){
     priorParameters$mu0 <- matrix(priorParameters$mu0, nrow=1)
   }
 
