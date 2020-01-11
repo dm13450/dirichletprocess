@@ -16,7 +16,7 @@ Initialise <- function(dpObj, posterior = TRUE, m=3, verbose=TRUE, numInitialClu
 #' @export
 Initialise.conjugate <- function(dpObj, posterior = TRUE, m=NULL, verbose=NULL, numInitialClusters = 1) {
 
-  dpObj$clusterLabels <- rep(seq_len(numInitialClusters), dpObj$n)
+  dpObj$clusterLabels <- rep_len(seq_len(numInitialClusters), length.out = dpObj$n)
   dpObj$numberClusters <- numInitialClusters
   dpObj$pointsPerCluster <- vapply(seq_len(numInitialClusters), function(x) sum(dpObj$clusterLabels == x), numeric(1))
 

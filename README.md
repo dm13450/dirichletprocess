@@ -94,3 +94,5 @@ I’ve written a number of tutorials:
     mixtures](http://dm13450.github.io/2018/02/21/Custom-Distributions-Conjugate.html)
   - [Density
     estimation](http://dm13450.github.io/2018/02/01/Dirichlet-Density.html)
+  - [Checking
+    convergence](http://dm13450.github.io/2020/01/11/Dirichlet-Convergence.html)
