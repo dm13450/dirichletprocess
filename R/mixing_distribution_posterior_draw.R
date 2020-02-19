@@ -22,7 +22,7 @@ PosteriorDraw.nonconjugate <- function(mdObj, x, n = 1, ...) {
 
   mh_result <- MetropolisHastings(mdObj, x, start_pos, no_draws = n)
 
-  theta <- vector("list", length(mh_result))
+  theta <- vector("list", length(mh_result$parameter_samples))
 
   for (i in seq_along(mh_result$parameter_samples)) {
     theta[[i]] <- array(mh_result$parameter_samples[[i]],
