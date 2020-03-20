@@ -3,8 +3,8 @@ DuplicateClusterRemove <- function(dpobj){
   cp <- dpobj$clusterParameters
 
   dup_array <- matrix(cp[[1]], ncol=ncol(dpobj$data), byrow = TRUE)
-  
-  dup <- duplicated(c(cp[[1]]))
+
+  dup <- duplicated(dup_array)
 
   if (all(!dup)){
     return(dpobj)
