@@ -1,3 +1,9 @@
+# dirichletprocess 0.3.1.900
+
+* Hierarchical Normal Models added by Giovanni Sighinolfi
+* Added Giovanni Sighinolfi as a contributor. 
+
+
 # dirichletprocess 0.3.1
 
 * Fixed matrix class checking for R 4.0.0
