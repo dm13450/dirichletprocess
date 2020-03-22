@@ -2,14 +2,16 @@ DuplicateClusterRemove <- function(dpobj){
 
   cp <- dpobj$clusterParameters
 
-  dup <- duplicated(c(cp[[1]]))
+  dup_array <- matrix(cp[[1]], ncol=ncol(dpobj$data), byrow = TRUE)
+
+  dup <- duplicated(dup_array)
 
   if (all(!dup)){
     return(dpobj)
   }
 
   dupLabels <- seq_len(dpobj$numberClusters)
-  inds <- match((c(cp[[1]])), unique(c(cp[[1]])))
+  inds <- match(data.frame(t(dup_array)), data.frame(t(unique(dup_array))))
 
   oldLabs <- dpobj$clusterLabels
   newLabs <- oldLabs

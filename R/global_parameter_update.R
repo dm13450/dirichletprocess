@@ -20,7 +20,8 @@ GlobalParameterUpdate.hierarchical <- function(dpobjlist) {
                                  )
                           )
 
-
+  global_labels <- true_cluster_labels(global_labels, dpobjlist)
+  
   for (i in seq_along(global_labels)) {
 
     param <- theta_k[[1]][, , global_labels[i]]
@@ -31,13 +32,14 @@ GlobalParameterUpdate.hierarchical <- function(dpobjlist) {
     for (k in seq_along(dpobjlist$indDP)) {
 
       localInd <- which(dpobjlist$indDP[[k]]$clusterParameters[[1]] == param)
+      localInd <- true_cluster_labels(localInd, dpobjlist)
       if(length(localInd) != 0){
         localIndex[k] <- localInd
         pts[[k]] <- dpobjlist$indDP[[k]]$data[dpobjlist$indDP[[k]]$clusterLabels %in% localIndex[k],]
       }
     }
 
-    total_pts <- matrix(unlist(pts), ncol = 1)
+    total_pts <- matrix(unlist(pts),  ncol=ncol(dpobjlist$indDP[[1]]$data), byrow = TRUE)
 
     #start_pos <- vector("list", length(theta_k))
     #for (k in seq_along(start_pos)) {

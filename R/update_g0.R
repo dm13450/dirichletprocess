@@ -7,6 +7,13 @@ UpdateG0 <- function(dpobjlist){
                          function(x) match(dpobjlist$indDP[[x]]$clusterParameters[[1]],
                                            globalParams[[1]]))
 
+  for (i in seq_along(globalLabels)){
+    globalLabels[[i]] <- unique(globalLabels[[i]])
+    if (length(globalLabels[[i]]) > 1) {
+      globalLabels[[i]] <- true_cluster_labels(globalLabels[[i]], dpobjlist)
+    }
+  }
+  
   globalParamTable <- data.frame(table(GlobalParam=unlist(globalLabels)))
   globalParamTable$GlobalParam <- as.numeric(levels(globalParamTable$GlobalParam))
 
@@ -20,12 +27,21 @@ UpdateG0 <- function(dpobjlist){
   sticks <- sticks * dirichlet_draws[numTables + 1]
   sticks <- c(dirichlet_draws[-(numTables + 1)], sticks)
 
-  priorDraws <- PriorDraw.beta(dpobjlist$indDP[[1]]$mixingDistribution, numBreaks)
+  if (class(dpobjlist$indDP[[1]]$mixingDistribution)[[2]] == "beta") {
+    priorDraws <- PriorDraw.beta(dpobjlist$indDP[[1]]$mixingDistribution, numBreaks)
+  } else if (class(dpobjlist$indDP[[1]]$mixingDistribution)[[2]] == "mvnormal2") {
+    priorDraws <- PriorDraw.mvnormal2(dpobjlist$indDP[[1]]$mixingDistribution, numBreaks)
+  } else {
+    stop(paste("The hierarchical fit is not implemented for ",
+               class(dpobjlist$indDP[[1]]$mixingDistribution)[[2]],
+               " mixing distribution object"))
+  }
   postParams <- list()
 
-  postParams[[1]] <- array(c(globalParams[[1]][,,globalParamTable$GlobalParam], priorDraws[[1]]), dim=c(1,1,numBreaks+numTables))
-  postParams[[2]] <- array(c(globalParams[[2]][,,globalParamTable$GlobalParam], priorDraws[[2]]), dim=c(1,1,numBreaks+numTables))
-
+  for (i in seq_along(priorDraws)) {
+    postParams[[i]] <- array(c(globalParams[[i]][,,globalParamTable$GlobalParam], priorDraws[[i]]), dim=c(dim(priorDraws[[i]])[1:2],numBreaks+numTables))
+  }
+  
   for(i in seq_along(dpobjlist$indDP)){
     newGJ <- draw_gj(dpobjlist$indDP[[i]]$mixingDistribution$alpha, sticks)
     newGJ[is.na(newGJ)] <- 0

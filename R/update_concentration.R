@@ -27,6 +27,9 @@ UpdateGamma <- function(dpobjlist){
 
   globalLabels <- lapply(seq_along(dpobjlist$indDP), function(x) match(dpobjlist$indDP[[x]]$clusterParameters[[1]],
                                                                  dpobjlist$globalParameters[[1]]))
+  for (i in seq_along(globalLabels)){
+    globalLabels[[i]] <- true_cluster_labels(globalLabels[[i]], dpobjlist)
+  }
   globalParamTable <- data.frame(table(GlobalParam=unlist(globalLabels)))
   globalParamTable$GlobalParam <- as.numeric(levels(globalParamTable$GlobalParam))
 
