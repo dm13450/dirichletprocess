@@ -2,6 +2,7 @@
 
 * Hierarchical Normal Models added by Giovanni Sighinolfi
 * Added Giovanni Sighinolfi as a contributor. 
+* Added params chain to Hidden Markov Models
 
 
 # dirichletprocess 0.3.1

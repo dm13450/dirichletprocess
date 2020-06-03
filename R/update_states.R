@@ -1,7 +1,7 @@
 
 UpdateStates <- function(dp){
 
-  new_states <- update_states(dp$mdobj,
+  new_states <- update_states(dp$mixingDistribution,
                               dp$data,
                               dp$states,
                               dp$params,

@@ -84,8 +84,8 @@ cluster_parameter_update <- function(mdobj, data, clusters, params){
 
   } )
 
-  newParamsFull <- newParams[clusters]
-  return(newParamsFull)
+  #newParamsFull <- newParams[clusters]
+  return(newParams)
 }
 
 

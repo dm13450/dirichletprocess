@@ -24,6 +24,7 @@ fit_hmm <- function(dpObj, its, progressBar=F){
   alphaChain <- numeric(its)
   betaChain <- numeric(its)
   statesChain <- vector("list", its)
+  paramChain <- vector("list", its)
 
   for(i in seq_len(its)){
 
@@ -31,9 +32,13 @@ fit_hmm <- function(dpObj, its, progressBar=F){
     betaChain[i] <- dpObj$beta
     statesChain[[i]] <- dpObj$states
 
+
+    paramChain[[i]] <- dpObj$uniqueParams
+
     dpObj <- UpdateStates(dpObj)
     dpObj <- UpdateAlphaBeta(dpObj)
     dpObj <- param_update(dpObj)
+
 
     if (progressBar) {
       setTxtProgressBar(pb, i)
@@ -44,7 +49,7 @@ fit_hmm <- function(dpObj, its, progressBar=F){
   dpObj$alphaChain <- alphaChain
   dpObj$betaChain <- betaChain
   dpObj$statesChain <- statesChain
-
+  dpObj$paramChain <- paramChain
   if (progressBar) {
     close(pb)
   }
@@ -55,8 +60,9 @@ fit_hmm <- function(dpObj, its, progressBar=F){
 
 param_update <- function(dp){
 
-  newParams <- cluster_parameter_update(dp$mdobj, dp$data, dp$states, dp$params)
+  newParams <- cluster_parameter_update(dp$mixingDistribution, dp$data, dp$states, dp$params)
 
-  dp$params <- newParams
+  dp$uniqueParams <- newParams
+  dp$params <- newParams[dp$states]
   return(dp)
 }

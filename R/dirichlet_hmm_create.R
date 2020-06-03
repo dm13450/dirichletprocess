@@ -22,8 +22,10 @@ DirichletHMMCreate <- function(x, mdobj, alpha, beta){
   dp <- list()
 
   dp$data <- x
-  dp$mdobj <- mdobj
+  dp$n <- length(x)
+  dp$mixingDistribution <- mdobj
   dp$states <- states
+  dp$uniqueParams <- params
   dp$params <- newParams
   dp$alpha <- alpha
   dp$beta <- beta

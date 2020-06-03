@@ -246,7 +246,7 @@ For simple density estimation and non-hierarchical predictive tasks, having a po
 \begin{tcolorbox}
 \textbf{Key Property 5}: Given the model from Eq. \eqref{eqn:dpmm} let $\theta_1,\ldots,\theta_n$  be a sample from the posterior $p(\theta_{1:n} \mid y_{1:n},\alpha,G_0)$ drawn using the CRP sampler. Then, $p(F \mid \theta_{1:n},y_{1:n},\alpha,G_0) = p(F\mid\theta_{1:n},\alpha,G_0)$ is conditionally independent of $y_{1:n}$. As such, $\theta_{1:n}$ can be considered as an i.i.d sample from $F$, and so $F$ can be sampled from its posterior distribution using Key Property 3 above:
 
-$$F = \sum_{i=1}^N w_i \delta_{\theta_i}, \quad w_i \sim \text{Beta}(\alpha+n,1), \quad \phi_i \sim G_0 + \sum_{i=1}^n \delta_{y_i}$$
+$$F = \sum_{i=1}^N w_i \delta_{\theta_i}, \quad w_i \sim \text{Beta}(\alpha+n,1), \quad \theta_i \sim \frac{\alpha G_0 + \sum_{i=1}^n \delta_{\theta _i}}{\alpha + n}$$
 where $N$ is again a truncation parameter.
 \end{tcolorbox}
 
