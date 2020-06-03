@@ -2,7 +2,7 @@
 % Please edit documentation in R/true_cluster_labels.R
 \name{true_cluster_labels}
 \alias{true_cluster_labels}
-\title{Identifies the correct clusters labels, in any dimension, 
+\title{Identifies the correct clusters labels, in any dimension,
 when cluster parameters and global parameters are matched.}
 \usage{
 true_cluster_labels(array, dpObj)
@@ -10,12 +10,12 @@ true_cluster_labels(array, dpObj)
 \arguments{
 \item{array}{The array containing matching indexes.}
 
-\item{dpobj}{A hierarchical dirichletprocess object.}
+\item{dpObj}{A hierarchical dirichletprocess object.}
 }
 \value{
 The array containing the correct matching indexes
 }
 \description{
-Identifies the correct clusters labels, in any dimension, 
+Identifies the correct clusters labels, in any dimension,
 when cluster parameters and global parameters are matched.
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/dirichlet_process_hierarchical_mvnormal2.R
 \name{DirichletProcessHierarchicalMvnormal2}
 \alias{DirichletProcessHierarchicalMvnormal2}
-\title{Create a Hierarchical Dirichlet Mixture of 
+\title{Create a Hierarchical Dirichlet Mixture of
 semi-conjugate Multivariate Normal Distributions}
 \usage{
 DirichletProcessHierarchicalMvnormal2(dataList, g0Priors,
@@ -12,20 +12,22 @@ DirichletProcessHierarchicalMvnormal2(dataList, g0Priors,
 \arguments{
 \item{dataList}{List of data for each separate Dirichlet mixture object}
 
+\item{g0Priors}{Prior Parameters for the top level base distribution.}
+
 \item{gammaPriors}{Prior parameters for the top level concentration parameter.}
 
 \item{alphaPriors}{Prior parameters for the individual parameters.}
 
 \item{numSticks}{Truncation level for the Stick Breaking formulation.}
 
-\item{mhDraws}{Number of Metropolis-Hastings samples to perform for each cluster update.}
+\item{numInitialClusters}{Number of clusters to initialise with.}
 
-\item{priorParameters}{Prior Parameters for the top level base distribution.}
+\item{mhDraws}{Number of Metropolis-Hastings samples to perform for each cluster update.}
 }
 \value{
 dpobjlist A Hierarchical Dirichlet Process object that can be fitted, plotted etc.
 }
 \description{
-Create a Hierarchical Dirichlet Mixture of 
+Create a Hierarchical Dirichlet Mixture of
 semi-conjugate Multivariate Normal Distributions
 }

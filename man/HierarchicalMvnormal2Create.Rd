@@ -2,7 +2,7 @@
 % Please edit documentation in R/hierarchical_mvnormal2.R
 \name{HierarchicalMvnormal2Create}
 \alias{HierarchicalMvnormal2Create}
-\title{Create a Mixing Object for a hierarchical semi-conjugate 
+\title{Create a Mixing Object for a hierarchical semi-conjugate
 Multivariate Normal Dirichlet process object.}
 \usage{
 HierarchicalMvnormal2Create(n, priorParameters, alphaPrior, gammaPrior,
@@ -23,6 +23,6 @@ HierarchicalMvnormal2Create(n, priorParameters, alphaPrior, gammaPrior,
 A mixing distribution object.
 }
 \description{
-Create a Mixing Object for a hierarchical semi-conjugate 
+Create a Mixing Object for a hierarchical semi-conjugate
 Multivariate Normal Dirichlet process object.
 }
