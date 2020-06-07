@@ -1,9 +1,9 @@
-# dirichletprocess 0.3.1.900
+# dirichletprocess 0.4.0
 
 * Hierarchical Normal Models added by Giovanni Sighinolfi
 * Added Giovanni Sighinolfi as a contributor. 
 * Added params chain to Hidden Markov Models
-
+* Updated the vignette for hierarchical normal models. 
 
 # dirichletprocess 0.3.1
 

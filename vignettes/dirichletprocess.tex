@@ -12,7 +12,7 @@
 %% another package (only for this demo article)
 \usepackage{framed}
 \usepackage{amsmath}
-\usepackage{multirow,listings,hyperref, subcaption}
+\usepackage{multirow,listings,subcaption}
 \usepackage{tcolorbox,amsmath,amssymb}
 \usepackage[english]{babel}
 
@@ -811,13 +811,57 @@ R> ggplot() +
 \end{Schunk}
 
 
-The resulting $G_j$'s from the above example are plotted in Figure \ref{fig:hierBeta}.
+The resulting $G_j$'s from the above example are plotted in Figure~\ref{fig:hierBeta}.
 \begin{figure}
 \centering
 \includegraphics[width=0.85\textwidth]{img/hierBetaGraph.pdf}
 \caption{Hierarchical Beta Dirichlet process mixture results. The red lines indicate the true generating distributions. The black and shaded area are the posterior mean and credible intervals.}
 \label{fig:hierBeta}
 \end{figure}
+
+\subsubsection{Hierarchical Multivariate Normal Distribution}
+
+\textit{Implemented by Giovanni Sighinolfi}
+
+If the hierarchical data is not distributed across a bounded distribution or there are more than one dimension then the multivariate normal distribution might be more suited.
+
+\begin{Schunk}
+\begin{Sinput}
+R> N <- 300
+R> #Sample N random uniform U
+R> U <- runif(N)
+R> group1 <- matrix(nrow=N, ncol=2)
+R> group2 <- matrix(nrow=N, ncol=2)
+R> #Sampling from the mixture
+R> for(i in 1:N){
++    if(U[i]<.3){
++      group1[i,] <- rmvnorm(1,c(-2,-2))
++      group2[i,] <- rmvnorm(1,c(-2,-2))
++    }else if(U[i]<0.7){
++      group1[i,] <- rmvnorm(1,c(2,2))
++      group2[i,] <- rmvnorm(1,c(-2,-2))
++    }else {
++      group1[i,] <- rmvnorm(1,c(2,2))
++      group2[i,] <- rmvnorm(1,c(2,2))
++    }
++  }
+R> hdp_mvnorm <- DirichletProcessHierarchicalMvnormal2(list(group1,group2))
+R> hdp_mvnorm <- Fit(hdp_mvnorm, 500)
+\end{Sinput}
+\end{Schunk}
+
+After generating the synthetic data we fit a hierarchical multivariate normal Dirichlet process. The resulting clusters in Figure~\ref{fig:hierNormal} are common across both datasets.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.85\textwidth]{img/hierNormalGraph.pdf}
+\caption{Hierarchical multivariate normal Dirichlet results where the correct common clusters between the two datasets have been found.}
+\label{fig:hierNormal}
+\end{figure}
+
+
+
+
 
 
 \subsection{Stick Breaking Representation}

@@ -1,4 +1,4 @@
--dirichletprocess 0.3.1
+-dirichletprocess 0.4.0
 -----------------------
 
 
@@ -6,10 +6,11 @@
 ## Changes
 In this version I have:
 
-* Fixed matrix class checking for R 4.0.0
-* Corrected typos in vignette
-* Added a parameter for the number of initial clusters in DirichletProcessMvnormal.
-* Various refactoring.
+* Hierarchical Normal Models added by Giovanni Sighinolfi
+* Added Giovanni Sighinolfi as a contributor. 
+* Added params chain to Hidden Markov Models
+* Updated the vignette for hierarchical normal models. 
+
 
 ## Test environments
 * local OS X install, R 3.5.0

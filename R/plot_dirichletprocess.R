@@ -96,6 +96,7 @@ plot_dirichletprocess_multivariate <- function(x) {
 
   plotFrame <- data.frame(x1=x$data[,1], x2=x$data[,2], Cluster=as.factor(x$clusterLabel))
 
-  graph <- ggplot2::ggplot(plotFrame, ggplot2::aes_(x=~x1, y=~x2, colour=~Cluster)) + ggplot2::geom_point()
+  graph <- ggplot2::ggplot(plotFrame, ggplot2::aes_(x=~x1, y=~x2, colour=~Cluster)) +
+    ggplot2::geom_point()
   return(graph)
 }
