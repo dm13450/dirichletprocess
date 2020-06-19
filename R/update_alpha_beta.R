@@ -16,7 +16,7 @@ update_alpha_beta <- function(dp_states){
 
   uniqueStates <- unique(dp_states)
 
-  nii <- sapply(uniqueStates, function(i) sum(dp_states == i) - 1)
+  nii <- vapply(uniqueStates, function(i) sum(dp_states == i) - 1, numeric(1))
 
   optim(c(1,1), function(x) -1*alphabeta_log_posterior(x[1], x[2], nii),
         lower = c(1e-8,1e-8),

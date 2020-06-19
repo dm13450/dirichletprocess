@@ -18,8 +18,9 @@ Mvnormal2Create <- function(priorParameters) {
 #' @rdname Likelihood
 Likelihood.mvnormal2 <- function(mdObj, x, theta) {
 
-  y <- sapply(seq_len(dim(theta[[1]])[3]),
-              function(i) mvtnorm::dmvnorm(x, theta[[1]][,, i], theta[[2]][, , i]))
+  y <- vapply(seq_len(dim(theta[[1]])[3]),
+              function(i) mvtnorm::dmvnorm(x, theta[[1]][,, i], theta[[2]][, , i]),
+              numeric(nrow(x)))
 
   return(y)
 }

@@ -11,7 +11,8 @@ DuplicateClusterRemove <- function(dpobj){
   }
 
   dupLabels <- seq_len(dpobj$numberClusters)
-  inds <- match(data.frame(t(dup_array)), data.frame(t(unique(dup_array))))
+  inds <- match(data.frame(t(dup_array)),
+                data.frame(t(unique(dup_array))))
 
   oldLabs <- dpobj$clusterLabels
   newLabs <- oldLabs
@@ -21,7 +22,7 @@ DuplicateClusterRemove <- function(dpobj){
       next
     }
     else{
-      newLabs[which(oldLabs==dupLabels[i])] <- inds[i]
+      newLabs[which(oldLabs == dupLabels[i])] <- inds[i]
     }
   }
 
@@ -31,12 +32,16 @@ DuplicateClusterRemove <- function(dpobj){
   newCP[[1]] <- cp[[1]][,,which(!dup), drop=FALSE]
   newCP[[2]] <- cp[[2]][,,which(!dup), drop=FALSE]
 
-  newPointsPerCluster <- sapply(1:max(newLabs), function(x) sum(newLabs==x))
+  newPointsPerCluster <- vapply(1:max(newLabs),
+                                function(x) sum(newLabs==x),
+                                numeric(1))
 
   while (any(newPointsPerCluster==0)){
 
     newLabs[newLabs > which(newPointsPerCluster == 0)] = newLabs[newLabs > which(newPointsPerCluster == 0)] - 1
-    newPointsPerCluster <- sapply(1:max(newLabs), function(x) sum(newLabs==x))
+    newPointsPerCluster <- sapply(1:max(newLabs),
+                                  function(x) sum(newLabs == x),
+                                  numeric(1))
      #print(oldLabs)
      #print(newLabs)
      print(c(newCP[[1]]))
@@ -45,6 +50,8 @@ DuplicateClusterRemove <- function(dpobj){
   dpobj$clusterLabels <- newLabs
   dpobj$clusterParameters <- newCP
   dpobj$numberClusters <- length(unique(newLabs))
-  dpobj$pointsPerCluster <- sapply(1:max(newLabs), function(x) sum(newLabs==x))
+  dpobj$pointsPerCluster <- vapply(1:max(newLabs),
+                                   function(x) sum(newLabs == x),
+                                   numeric(1))
   return(dpobj)
 }

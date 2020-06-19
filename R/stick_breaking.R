@@ -60,7 +60,9 @@ draw_gj <- function(alpha0, beta_k) {
     print("Shape")
     print(alpha0*beta_k)
     print("scale")
-    print(sapply(seq_along(beta_k), function(i) alpha0*(1-sum(beta_k[1:i]))))
+    print(vapply(seq_along(beta_k),
+                 function(i) alpha0*(1-sum(beta_k[1:i])),
+                 numeric(1)))
     stop("Error")
     }
   return(pi_k)
