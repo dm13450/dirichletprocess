@@ -51,7 +51,7 @@ test_that("Beta Prior Density", {
 
 test_that("Beta Prior Draw", {
   expect_is(PriorDraw(test_mdobj, 10), "list")
-  expect_equal(length(PriorDraw(test_mdobj, 10)), c(2))
+  expect_equal(length(PriorDraw(test_mdobj, 10)), 2)
   expect_equal(dim(PriorDraw(test_mdobj, 10)$mu), c(1,1,10))
 })
 

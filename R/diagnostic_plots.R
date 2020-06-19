@@ -92,7 +92,7 @@ AlphaPriorPosteriorPlot <- function(dpobj, prior_color = "#2c7fb8", post_color =
 #' @describeIn  DiagnosticPlots Trace plot of the number of clusters.
 ClusterTraceplot <- function(dpobj, gg = TRUE) {
 
-  n_clust <- sapply(dpobj$labelsChain, function(x) length(unique(x)))
+  n_clust <- vapply(dpobj$labelsChain, function(x) length(unique(x)), numeric(1))
 
   if (gg) {
     p <- ggplot2::ggplot(data.frame(nclust = n_clust,

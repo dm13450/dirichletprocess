@@ -85,7 +85,7 @@ Fit.hierarchical <- function(dpObj, its, updatePrior = FALSE, progressBar = inte
 
     if (updatePrior) {
 
-      clustParamLen <- length(unique(unlist(sapply(dpObj$indDP, function(x) x$clusterParameters[[1]]))))
+      clustParamLen <- length(unique(lapply(dpObj$indDP, function(x) x$clusterParameters[[1]])))
 
       clustParam <- lapply(dpObj$globalParameters, function(x) x[,,1:clustParamLen, drop=FALSE])
 

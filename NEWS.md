@@ -1,3 +1,5 @@
+# dirichletprocess 0.4.0.9000
+
 # dirichletprocess 0.4.0
 
 * Hierarchical Normal Models added by Giovanni Sighinolfi

@@ -13,8 +13,11 @@ MvnormalCreate <- function(priorParameters) {
 #' @rdname Likelihood
 Likelihood.mvnormal <- function(mdObj, x, theta) {
 
-  y <- sapply(seq_len(dim(theta[[1]])[3]),
-            function(i) mvtnorm::dmvnorm(x, theta[[1]][,, i], theta[[2]][, , i]))
+  y <- vapply(seq_len(dim(theta[[1]])[3]),
+            function(i) mvtnorm::dmvnorm(x,
+                                         theta[[1]][,, i],
+                                         theta[[2]][, , i]),
+            numeric(nrow(x)))
 
   return(y)
 }
@@ -103,9 +106,9 @@ Predictive.mvnormal <- function(mdObj, x) {
     pred[i] <- pred[i] * (det(priorParameters$Lambda)^(priorParameters$nu/2))/(det(post_params$t_n)^(post_params$nu_n/2))
 
     if (pred[i] > 0) {
-      gamma_contrib <- prod(sapply(seq_along(d),
-                            function(j) gamma(priorParameters$nu/2 + nrow(x[i,,drop=FALSE])/2 + (1 - j)/2)))/prod(sapply(seq_along(d),
-                            function(j) gamma(priorParameters$nu/2 + (1 - j)/2)))
+      gamma_contrib <- prod(vapply(seq_along(d),
+                            function(j) gamma(priorParameters$nu/2 + nrow(x[i,,drop=FALSE])/2 + (1 - j)/2), numeric(1)))/prod(vapply(seq_along(d),
+                            function(j) gamma(priorParameters$nu/2 + (1 - j)/2), numeric(1)))
       pred[i] <- pred[i] * gamma_contrib
     }
   }

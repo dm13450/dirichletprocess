@@ -29,27 +29,27 @@ test_that("Cluster Remove", {
 })
 
 test_that("Cluster Remove 2D", {
-  
-  require(mvtnorm)
-  testData <- rmvnorm(10, c(0,0), diag(2))
-  
+
+  #require(mvtnorm)
+  testData <- mvtnorm::rmvnorm(10, c(0,0), diag(2))
+
   testDP <- DirichletProcessMvnormal2(testData)
-  
+
   preCP <- list()
   preCP[[1]] <- array(c(c(0,0),c(1,1),c(0,0)), dim=c(1,2,3))
   preCP[[2]] <- array(c(diag(2),diag(2),diag(2)), dim=c(2,2,3))
-  
+
   preNumCluster <- 3
   preLabels <- c(1,1,1,1,3,3, 2,2,2,2)
   prePointsPerCluster <- c(4, 4, 2)
-  
+
   testDP$numberClusters <- preNumCluster
   testDP$clusterLabels <- preLabels
   testDP$pointsPerCluster <- prePointsPerCluster
   testDP$clusterParameters <- preCP
-  
+
   testDP <- DuplicateClusterRemove(testDP)
-  
+
   expect_equal(dim(testDP$clusterParameters[[1]]), c(1,2,2))
   expect_equal(testDP$numberClusters, 2)
   expect_equal(testDP$clusterLabels, c(1,1,1,1,1,1,2,2,2,2))
@@ -111,27 +111,27 @@ test_that("3 Cluster Change", {
 })
 
 test_that("3 Cluster Change 2D", {
-  
-  require(mvtnorm)
-  testData <- rmvnorm(10, c(0,0), diag(2))
-  
+
+  #require(mvtnorm)
+  testData <- mvtnorm::rmvnorm(10, c(0,0), diag(2))
+
   testDP <- DirichletProcessMvnormal2(testData)
-  
+
   preCP <- list()
   preCP[[1]] <- array(c(c(0,0),c(1,1),c(1,1), c(1,1)), dim=c(1,2,4))
   preCP[[2]] <- array(c(matrix(c(1.5,0,0,1), nrow=2, ncol=2),diag(2),diag(2),diag(2)), dim=c(2,2,4))
-  
+
   preNumCluster <- 4
   preLabels <- c(1,1,4,4,3,3, 4, 4,2,2)
   prePointsPerCluster <- c(2, 2, 2, 4)
-  
+
   testDP$numberClusters <- preNumCluster
   testDP$clusterLabels <- preLabels
   testDP$pointsPerCluster <- prePointsPerCluster
   testDP$clusterParameters <- preCP
-  
+
   testDP <- DuplicateClusterRemove(testDP)
-  
+
   expect_equal(dim(testDP$clusterParameters[[1]]), c(1,2,2))
   expect_equal(testDP$numberClusters, 2)
   expect_equal(testDP$clusterLabels, c(1,1, 2,2, 2,2, 2,2,2,2))

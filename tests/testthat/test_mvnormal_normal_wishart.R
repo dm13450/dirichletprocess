@@ -12,12 +12,12 @@ test_that("Multivariate Normal Likelihood", {
   priorParameters <- list(mu0=c(0,0), Lambda=diag(2), kappa0=1, nu=2)
   mdobj <- MvnormalCreate(priorParameters)
   test_theta <- list(mu=array(c(0,0), c(1,2,1)), sig=array(diag(2), c(2,2,1)))
-  lik_test <- Likelihood(mdobj, c(0,0), test_theta)
+  lik_test <- Likelihood(mdobj, matrix(c(0,0), nrow=1), test_theta)
 
   expect_equal(lik_test, 1/sqrt(4*pi^2))
 
   test_theta_multi <- list(mu=array(c(0,0), c(1,2,2)), sig=array(diag(2), c(2,2,2)))
-  lik_test_multi <- Likelihood(mdobj, c(0,0), test_theta_multi)
+  lik_test_multi <- Likelihood(mdobj, matrix(c(0,0), nrow=1), test_theta_multi)
 
   expect_equal(lik_test_multi, rep.int(1/sqrt(4*pi^2), 2))
 
