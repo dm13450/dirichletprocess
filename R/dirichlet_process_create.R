@@ -1,6 +1,7 @@
 #' Create a Dirichlet Process object
 #'
 #' Using a  previously created Mixing Distribution Object (\code{mdObject}) create a Dirichlet process object.
+#' `\code{alphaPriorParameters} sets the parameters for alpha using the shape-rate specification of the gamma distribution.
 #'
 #' @param x Data
 #' @param mdObject Mixing Distribution Object

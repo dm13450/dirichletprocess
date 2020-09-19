@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.2.26)  13 JUN 2020 10:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.2.26)  19 SEP 2020 17:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1790,7 +1790,7 @@ lic/lm/lmsy8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt
 10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtto10.pfb></
 usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pf
 b>
-Output written on dirichletprocess.pdf (42 pages, 770748 bytes).
+Output written on dirichletprocess.pdf (42 pages, 770757 bytes).
 PDF statistics:
  785 PDF objects out of 1000 (max. 8388607)
  682 compressed objects within 7 object streams

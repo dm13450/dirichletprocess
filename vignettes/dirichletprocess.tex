@@ -486,7 +486,7 @@ R> samples <- list()
 R> for(s in seq_len(1000)){
 +    dp <- ClusterComponentUpdate(dp)
 +    dp <- ClusterParameterUpdate(dp)
-+  
++
 +    if(s %% 10 == 0) {
 +    	dp <- UpdateAlpha(dp)
 +    }
@@ -677,15 +677,15 @@ R> clusters <- dpobj$clusterParameters
 R> a <- clusters[[1]] * clusters[[2]]
 R> b <- (1 - clusters[[1]]) * clusters[[2]]
 R> for(i in seq_len(numSamples)){
-+  
++
 +    posteriorA <- a[dpobj$clusterLabels] + rats$y
 +    posteriorB <- b[dpobj$clusterLabels] + rats$N - rats$y
 +    thetaDirichlet[i, ] <- rbeta(nrow(rats), posteriorA, posteriorB)
-+  
++
 +    dpobj <- ChangeObservations(dpobj, thetaDirichlet[i, ])
 +    dpobj <- Fit(dpobj, 5)
 +    clusters <- dpobj$clusterParameters
-+  
++
 +    a <- clusters[[1]] * clusters[[2]]
 +    b <- (1 - clusters[[1]]) * clusters[[2]]
 +  }
@@ -705,7 +705,7 @@ R> ggplot() +
 +                alpha=0.2) +
 +    geom_line(data=posteriorFrame, aes(x=x, y=Mean)) +
 +    xlim(c(0, 0.35)) #Plot the resulting prior distribution
-R> 
+R>
 \end{Sinput}
 \end{Schunk}
 
@@ -1068,8 +1068,8 @@ R> ggplot() +
 +                  alpha=0.2) + #credible intervals
 +      geom_line(data=pf, aes(x=x, y=Mean), colour="red") + #mean
 +      geom_line(data=trueFrame, aes(x=x, y=y)) #true
-R> 
-R> 
+R>
+R>
 \end{Sinput}
 \end{Schunk}
 
@@ -1412,7 +1412,7 @@ Figure \ref{fig:faithfulpred} shows the test data being correctly identified wit
 
 The results in this paper were obtained using
 \proglang{R}~3.5.0 with the
-\pkg{dirichletprocess}~0.4.0 package. \proglang{R} itself
+\pkg{dirichletprocess}~0.4.0.9000 package. \proglang{R} itself
 and all packages used are available from the Comprehensive
 \proglang{R} Archive Network (CRAN) at
 \url{https://CRAN.R-project.org/}.

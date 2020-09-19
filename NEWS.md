@@ -1,5 +1,7 @@
 # dirichletprocess 0.4.0.9000
 
+* Added PriorFunction and PriorClusters to draw from the base measure. 
+
 # dirichletprocess 0.4.0
 
 * Hierarchical Normal Models added by Giovanni Sighinolfi

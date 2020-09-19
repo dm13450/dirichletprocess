@@ -23,8 +23,9 @@ LikelihoodFunction.dirichletprocess <- function(dpobj, ind) {
   base_function <- function(x, theta) Likelihood(dpobj$mixingDistribution, x, theta)
 
   if (missing(ind)){
-    likelihood_function <- weighted_function_generator(base_function, dpobj$pointsPerCluster,
-      dpobj$clusterParameters)
+    likelihood_function <- weighted_function_generator(base_function,
+                                                       dpobj$pointsPerCluster,
+                                                       dpobj$clusterParameters)
   } else {
     likelihood_function <- weighted_function_generator(base_function,
                                                        dpobj$weightsChain[[ind]]*dpobj$n,
