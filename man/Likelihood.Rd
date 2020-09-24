@@ -2,7 +2,7 @@
 % Please edit documentation in R/beta_uniform_gamma.R, R/beta_uniform_pareto.R,
 %   R/exponential_gamma.R, R/mixing_distribution_likelihood.R,
 %   R/mvnormal_normal_wishart.R, R/mvnormal_semi_conjugate.R,
-%   R/normal_inverse_gamma.R
+%   R/normal_fixed_variance.R, R/normal_inverse_gamma.R
 \name{Likelihood.beta}
 \alias{Likelihood.beta}
 \alias{Likelihood.beta2}
@@ -10,6 +10,7 @@
 \alias{Likelihood}
 \alias{Likelihood.mvnormal}
 \alias{Likelihood.mvnormal2}
+\alias{Likelihood.normalFixedVariance}
 \alias{Likelihood.normal}
 \title{Mixing Distribution Likelihood}
 \usage{
@@ -24,6 +25,8 @@ Likelihood(mdObj, x, theta)
 \method{Likelihood}{mvnormal}(mdObj, x, theta)
 
 \method{Likelihood}{mvnormal2}(mdObj, x, theta)
+
+\method{Likelihood}{normalFixedVariance}(mdObj, x, theta)
 
 \method{Likelihood}{normal}(mdObj, x, theta)
 }

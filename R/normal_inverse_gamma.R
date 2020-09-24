@@ -51,8 +51,8 @@ PosteriorParameters.normal <- function(mdObj, x) {
   beta.n <- beta0 + 0.5 * sum((x - ybar)^2) + kappa0 * n.x * (ybar - mu0)^2/(2 *
     (kappa0 + n.x))
 
-  PosteriorParameters <- matrix(c(mu.n, kappa.n, alpha.n, beta.n), ncol = 4)
-  return(PosteriorParameters)
+  posteriorParameters <- matrix(c(mu.n, kappa.n, alpha.n, beta.n), ncol = 4)
+  return(posteriorParameters)
 }
 
 #' @export

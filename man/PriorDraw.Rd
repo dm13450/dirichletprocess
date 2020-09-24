@@ -2,7 +2,8 @@
 % Please edit documentation in R/beta_uniform_gamma.R, R/beta_uniform_pareto.R,
 %   R/exponential_gamma.R, R/mixing_distribution_prior_draw.R,
 %   R/mvnormal_normal_wishart.R, R/mvnormal_semi_conjugate.R,
-%   R/normal_inverse_gamma.R, R/weibull_uniform_gamma.R
+%   R/normal_fixed_variance.R, R/normal_inverse_gamma.R,
+%   R/weibull_uniform_gamma.R
 \name{PriorDraw.beta}
 \alias{PriorDraw.beta}
 \alias{PriorDraw.beta2}
@@ -10,6 +11,7 @@
 \alias{PriorDraw}
 \alias{PriorDraw.mvnormal}
 \alias{PriorDraw.mvnormal2}
+\alias{PriorDraw.normalFixedVariance}
 \alias{PriorDraw.normal}
 \alias{PriorDraw.weibull}
 \title{Draw from the prior distribution}
@@ -25,6 +27,8 @@ PriorDraw(mdObj, n)
 \method{PriorDraw}{mvnormal}(mdObj, n = 1)
 
 \method{PriorDraw}{mvnormal2}(mdObj, n = 1)
+
+\method{PriorDraw}{normalFixedVariance}(mdObj, n = 1)
 
 \method{PriorDraw}{normal}(mdObj, n = 1)
 
