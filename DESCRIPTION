@@ -33,6 +33,6 @@ Suggests: testthat,
 Imports: gtools,
          ggplot2,
          mvtnorm
-URL: https://github.com/dm13450/dirichletprocess
+URL: https://github.com/dm13450/dirichletprocess, https://dm13450.github.io/dirichletprocess/
 BugReports: https://github.com/dm13450/dirichletprocess/issues
 RoxygenNote: 6.1.1
