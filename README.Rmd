@@ -50,7 +50,7 @@ browseVignettes(package = "dirichletprocess")
 
 Dirichlet processes can be used for nonparametric density estimation. 
 
-```{r density, eval=TRUE}
+```{r density, eval=FALSE}
 faithfulTransformed <- faithful$waiting - mean(faithful$waiting)
 faithfulTransformed <- faithfulTransformed/sd(faithful$waiting)
 dp <- DirichletProcessGaussian(faithfulTransformed)
@@ -58,21 +58,21 @@ dp <- Fit(dp, 100, progressBar = FALSE)
 plot(dp)
 ```
 
-```{r}
-data.frame(Weight=dp$weights, Mean=c(dp$clusterParameters[[1]]), SD=c(dp$clusterParameters[[1]]))
-```
+<img src=https://github.com/dm13450/dirichletprocess/raw/master/vignettes/img/density-1.png width=50% />
 
 
 ### Clustering
 
 Dirichlet processes can also be used to cluster data based on their common distribution parameters. 
 
-```{r clustering, eval=TRUE}
+```{r clustering, eval=FALSE}
 faithfulTrans <- scale(faithful)
 dpCluster <-  DirichletProcessMvnormal(faithfulTrans)
 dpCluster <- Fit(dpCluster, 2000, progressBar = FALSE)
 plot(dpCluster)
 ```
+
+<img src=https://github.com/dm13450/dirichletprocess/raw/master/vignettes/img/clustering-1.png width=50% />
 
 For more detailed explanations and examples see the vignette.
 
@@ -88,5 +88,7 @@ I've written a number of tutorials:
 * [Density estimation](http://dm13450.github.io/2018/02/01/Dirichlet-Density.html)
 * [Checking convergence](http://dm13450.github.io/2020/01/11/Dirichlet-Convergence.html)
 
+and some case studies: 
 
+* [State of the Market - Infinite State Hidden Markov Models](http://dm13450.github.io/2020/06/03/State-of-the-Market.html)
 

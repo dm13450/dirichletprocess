@@ -53,15 +53,7 @@ dp <- Fit(dp, 100, progressBar = FALSE)
 plot(dp)
 ```
 
-![](vignettes/img/density-1.png)<!-- -->
-
-``` r
-data.frame(Weight=dp$weights, Mean=c(dp$clusterParameters[[1]]), SD=c(dp$clusterParameters[[1]]))
-#>        Weight       Mean         SD
-#> 1 0.371323529 -1.1756510 -1.1756510
-#> 2 0.625000000  0.6597522  0.6597522
-#> 3 0.003676471  0.1061095  0.1061095
-```
+<img src=https://github.com/dm13450/dirichletprocess/raw/master/vignettes/img/density-1.png width=50% />
 
 ### Clustering
 
@@ -75,7 +67,7 @@ dpCluster <- Fit(dpCluster, 2000, progressBar = FALSE)
 plot(dpCluster)
 ```
 
-![](vignettes/img/clustering-1.png)<!-- -->
+<img src=https://github.com/dm13450/dirichletprocess/raw/master/vignettes/img/clustering-1.png width=50% />
 
 For more detailed explanations and examples see the vignette.
 
@@ -96,3 +88,8 @@ I’ve written a number of tutorials:
     estimation](http://dm13450.github.io/2018/02/01/Dirichlet-Density.html)
   - [Checking
     convergence](http://dm13450.github.io/2020/01/11/Dirichlet-Convergence.html)
+
+and some case studies:
+
+  - [State of the Market - Infinite State Hidden Markov
+    Models](http://dm13450.github.io/2020/06/03/State-of-the-Market.html)

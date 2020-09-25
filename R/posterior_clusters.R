@@ -41,7 +41,7 @@ PosteriorClusters.dirichletprocess <- function(dpobj, ind) {
   sticks <- c(dirichlet_draws[-(numLabels + 1)], sticks)
   # postParams <- rbind(clusterParams, PriorDraw(mdobj, numBreaks))
 
-  n_smps <- numBreaks + numLabels
+  #n_smps <- numBreaks + numLabels
 
   PriorDraws <- PriorDraw(mdobj, numBreaks)
   postParams <- list()
