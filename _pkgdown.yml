@@ -2,4 +2,4 @@ destination: docs
 
 template:
   params:
-    ganalytics:
+    ganalytics: UA-113472164-2
