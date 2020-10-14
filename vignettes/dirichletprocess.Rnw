@@ -7,7 +7,7 @@
 %% -- LaTeX packages and custom commands ---------------------------------------
 
 %% recommended packages
-\usepackage{thumbpdf,lmodern}
+\usepackage{thumbpdf,lmodern, expl3}
 
 %% another package (only for this demo article)
 \usepackage{framed}
