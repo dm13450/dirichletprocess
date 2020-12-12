@@ -23,7 +23,7 @@ jobs:
       - uses: r-lib/actions/setup-tinytex@master
       - name: Install dependencies
         run: |
-          install.packages(c("remotes", "rcmdcheck"))
+          install.packages(c("remotes", "rcmdcheck", "tinytex"))
           tinytex::parse_install( text = "! LaTeX Error: File ae.sty' not found.")
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
