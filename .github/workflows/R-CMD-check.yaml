@@ -29,7 +29,7 @@ jobs:
                                           "multirow", "listings",
                                           "caption", "subcaption",
                                           "tcolorbox", "pgf",
-                                          "environ"))
+                                          "environ", "babel-english"))
         shell: Rscript {0}
       - name: Check
         run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
