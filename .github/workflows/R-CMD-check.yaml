@@ -28,7 +28,7 @@ jobs:
           tinytex::tlmgr_install(pkgs = c("ae", "thumbpdf",
                                           "multirow", "listings",
                                           "caption", "subcaption",
-                                          "tcolorbox"))
+                                          "tcolorbox", "pgf"))
         shell: Rscript {0}
       - name: Check
         run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
