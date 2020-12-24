@@ -24,7 +24,7 @@ jobs:
       - name: Add TeX packages
         run: |
           tinytex::tlmgr_install(pkgs = "ae")
-        shell: Rscript{0}
+        shell: Rscript {0}
       - name: Install dependencies
         run: |
           install.packages(c("remotes", "rcmdcheck"))
