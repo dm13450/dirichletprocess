@@ -26,7 +26,8 @@ jobs:
           install.packages(c("remotes", "rcmdcheck", "tinytex",
                              "ggplot2", "gtools", "mvtnorm"))
           tinytex::tlmgr_install(pkgs = c("ae", "thumbpdf",
-                                          "multirow", "listings"))
+                                          "multirow", "listings",
+                                          "subcaption"))
         shell: Rscript {0}
       - name: Check
         run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
