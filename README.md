@@ -3,8 +3,8 @@
 
 # dirichletprocess
 
-[![Travis-CI Build
-Status](https://travis-ci.org/dm13450/dirichletprocess.svg?branch=master)](https://travis-ci.org/dm13450/dirichletprocess)
+[![R build
+status](https://github.com/dm13450/dirichletprocess/workflows/R-CMD-check/badge.svg)](https://github.com/dm13450/dirichletprocess/actions)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/dm13450/dirichletprocess?branch=master&svg=true)](https://ci.appveyor.com/project/dm13450/dirichletprocess)
 [![Coverage
