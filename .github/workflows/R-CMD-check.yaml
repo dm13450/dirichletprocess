@@ -30,7 +30,7 @@ jobs:
                                           "caption", "subcaption",
                                           "tcolorbox", "pgf",
                                           "environ", "babel-english",
-                                          "grfext"))
+                                          "grfext", "hyperref"))
         shell: Rscript {0}
       - name: Check
         run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")

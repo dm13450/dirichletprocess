@@ -75,21 +75,23 @@ For more detailed explanations and examples see the vignette.
 
 I’ve written a number of tutorials:
 
-  - [Non parametric
+-   [Non parametric
     priors](http://dm13450.github.io/2019/02/22/Nonparametric-Prior.html)
-  - [Calculating cluster
+-   [Calculating cluster
     probabilities](http://dm13450.github.io/2018/11/21/Cluster-Probabilities.html)
-  - [Clustering](http://dm13450.github.io/2018/05/30/Clustering.html)
-  - [Point
+-   [Clustering](http://dm13450.github.io/2018/05/30/Clustering.html)
+-   [Point
     processes](http://dm13450.github.io/2018/03/08/dirichletprocess-pointprocess.html)
-  - [Custom
+-   [Custom
     mixtures](http://dm13450.github.io/2018/02/21/Custom-Distributions-Conjugate.html)
-  - [Density
+-   [Density
     estimation](http://dm13450.github.io/2018/02/01/Dirichlet-Density.html)
-  - [Checking
+-   [Checking
     convergence](http://dm13450.github.io/2020/01/11/Dirichlet-Convergence.html)
 
 and some case studies:
 
-  - [State of the Market - Infinite State Hidden Markov
+-   [State of the Market - Infinite State Hidden Markov
     Models](http://dm13450.github.io/2020/06/03/State-of-the-Market.html)
+-   [Palmer Penguins and an Introduction to Dirichlet
+    Processes](http://dm13450.github.io/2020/09/28/PriorToPosterior.html)

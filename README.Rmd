@@ -92,4 +92,5 @@ I've written a number of tutorials:
 and some case studies: 
 
 * [State of the Market - Infinite State Hidden Markov Models](http://dm13450.github.io/2020/06/03/State-of-the-Market.html)
+* [Palmer Penguins and an Introduction to Dirichlet Processes](http://dm13450.github.io/2020/09/28/PriorToPosterior.html)
 
