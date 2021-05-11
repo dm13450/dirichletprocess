@@ -24,7 +24,9 @@ jobs:
       - name: Install dependencies
         run: |
           install.packages(c("remotes", "rcmdcheck", "tinytex",
-                             "ggplot2", "gtools", "mvtnorm"))
+                             "ggplot2", "gtools", "mvtnorm",
+                             "testthat", "knitr", "rmarkdown",
+                             "tidyr", "dplyr"))
           tinytex::tlmgr_install(pkgs = c("ae", "thumbpdf",
                                           "multirow", "listings",
                                           "caption", "subcaption",
