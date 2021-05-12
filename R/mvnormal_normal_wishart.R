@@ -15,7 +15,7 @@ Likelihood.mvnormal <- function(mdObj, x, theta) {
 
   y <- vapply(seq_len(dim(theta[[1]])[3]),
             function(i) mvtnorm::dmvnorm(x,
-                                         theta[[1]][,, i],
+                                         theta[[1]][, , i],
                                          theta[[2]][, , i]),
             numeric(nrow(x)))
 
