@@ -1,6 +1,7 @@
 # dirichletprocess 0.4.0.9000
 
 * Added PriorFunction and PriorClusters to draw from the base measure. 
+* Fixed a bug in the likelihood calculation (#21) by Filippo Fiocchi.
 
 # dirichletprocess 0.4.0
 
