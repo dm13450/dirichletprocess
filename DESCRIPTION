@@ -8,7 +8,7 @@ Authors@R: c(
             person("Kees", "Mulder", email="keestimmulder@gmail.com", role=c("ctb"), 
             comment = c(ORCID = "0000-0002-5387-3812")),
             person("Giovanni", "Sighinolfi", email ="giovanni.sighinolfi2@studio.unibo.it", role=c("ctb")),
-            person("Filippo Fiocchi", email="filippofiocchi1@gmail.com", roles=c("ctb"))
+            person("Filippo Fiocchi", email="filippofiocchi1@gmail.com", role=c("ctb"))
           )
 Maintainer: Dean Markwick <dean.markwick@talk21.com>
 Description: Perform nonparametric Bayesian analysis using Dirichlet 
