@@ -17,7 +17,18 @@
 #' dp <- Fit(DirichletProcessGaussian(rnorm(10)), 100)
 #' dp
 #'
-print.dirichletprocess <- function(x, param_summary = FALSE, digits = 2, ...) {
+print.dirichletprocess <- function(x, param_summary=FALSE, digits=2, ...){
+
+  if(inherits(x, "hierarchical")){
+    print_hierarchical(x, param_summary = FALSE, digits = 2, ...)
+  } else {
+    print_dp(x, param_summary, digits, ...)
+  }
+
+}
+
+
+print_dp <- function(x, param_summary = FALSE, digits = 2, ...) {
 
 
   # Formatting function.
@@ -101,14 +112,23 @@ print.dirichletprocess <- function(x, param_summary = FALSE, digits = 2, ...) {
 
                        post_print)
 
- colnames(total_print) <- NULL
- rownames(total_print) <- paste0("  ", rownames(total_print))
+  colnames(total_print) <- NULL
+  rownames(total_print) <- paste0("  ", rownames(total_print))
 
- print(total_print)
+  print(total_print)
 
- cat("\n")
+  cat("\n")
 
- invisible(total_print)
+  invisible(total_print)
+}
+
+print_hierarchical <- function(x, param_summary = FALSE, digits = 2, ...){
+
+  burntxt <- ifelse(is.null(x$n_burned), "", paste0(" (plus ", x$n_burned, " burned)"))
+
+  cat("Dirichlet process object run for ", length(x$gammaValues),
+      " iterations", burntxt, ".\n", sep = "")
+
 }
 
 

@@ -63,6 +63,39 @@ test_that("MvNormal Printing", {
   expect_error(capture.output(print(dpfit, param_summary = TRUE)), NA)
 })
 
+test_that("Hierarchical Printing", {
+
+  N <- 300
+
+  #Sample N random uniform U
+  U <- runif(N)
+  group1 <- matrix(nrow=N, ncol=2)
+  group2 <- matrix(nrow=N, ncol=2)
+  #Sampling from the mixture
+
+  m1 <- c(-2,-2)
+  m2 <- c(2,2)
+
+  for(i in 1:N){
+    if(U[i]<.3){
+      group1[i,] <- mvtnorm::rmvnorm(1,m1)
+      group2[i,] <- mvtnorm::rmvnorm(1,m1)
+    }else if(U[i]<0.7){
+      group1[i,] <- mvtnorm::rmvnorm(1,m2)
+      group2[i,] <- mvtnorm::rmvnorm(1,m1)
+    }else {
+      group1[i,] <- mvtnorm::rmvnorm(1,m2)
+      group2[i,] <- mvtnorm::rmvnorm(1,m2)
+    }
+  }
+
+  data_hdp <- list(group1, group2)
+
+  hdp_mvnorm <- DirichletProcessHierarchicalMvnormal2(dataList = data_hdp)
+
+  expect_error(capture.output(print(hdp_mvnorm)), NA)
+
+})
 
 
 
