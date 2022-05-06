@@ -82,9 +82,10 @@ plot_dirichletprocess_univariate <- function(x,
 
   if (likelihood) {
     graph <- graph + ggplot2::stat_function(fun = function(z) LikelihoodFunction(x)(z),
-                                            n = xgrid_pts * 10, ggplot2::aes(colour = "Likelihood"))
+                                            n = xgrid_pts * 10,
+                                            ggplot2::aes(colour = "Likelihood"))
   } else {
-    graph <- graph + ggplot2::guides(colour=FALSE)
+    graph <- graph + ggplot2::guides(colour="none")
   }
 
   return(graph)
