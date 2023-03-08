@@ -58,8 +58,8 @@ ClusterLabelPredict.conjugate <- function(dpobj, newData) {
 
       for (j in seq_along(clusterParams)) {
         clusterParams[[j]] <- array(c(clusterParams[[j]], post_draw[[j]]),
-          dim = c(dim(post_draw[[j]])[1:2], dim(clusterParams[[j]])[3] +
-          1))
+          dim = c(dim(post_draw[[j]])[1:2],
+                  dim(clusterParams[[j]])[3] + 1))
       }
 
 

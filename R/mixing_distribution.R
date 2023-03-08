@@ -21,6 +21,6 @@ MixingDistribution <- function(distribution, priorParameters, conjugate, mhStepS
   return(mdObj)
 }
 
-MhParameterProposal <- function(MixingDistribution, old_params){
-  UseMethod("MhParameterProposal",MixingDistribution)
+MhParameterProposal <- function(mdObj, old_params){
+  UseMethod("MhParameterProposal", mdObj)
 }
