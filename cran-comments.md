@@ -1,4 +1,4 @@
--dirichletprocess 0.4.0
+-dirichletprocess 0.4.1
 -----------------------
 
 
@@ -6,10 +6,7 @@
 ## Changes
 In this version I have:
 
-* Hierarchical Normal Models added by Giovanni Sighinolfi
-* Added Giovanni Sighinolfi as a contributor. 
-* Added params chain to Hidden Markov Models
-* Updated the vignette for hierarchical normal models. 
+* Changed the MhParameterProposal function signature to be consistent.
 
 
 ## Test environments
@@ -19,7 +16,7 @@ In this version I have:
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 0 note
 
 * This is a new release.
 

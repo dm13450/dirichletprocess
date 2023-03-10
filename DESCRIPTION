@@ -1,7 +1,7 @@
 Package: dirichletprocess
 Type: Package
 Title: Build Dirichlet Process Objects for Bayesian Modelling
-Version: 0.4.0.9000
+Version: 0.4.1
 Authors@R: c(
             person("Gordon", "J. Ross", email="gordon@gordonjross.co.uk", role=c("aut")),
             person("Dean", "Markwick", email="dean.markwick@talk21.com", role=c("aut", "cre")),

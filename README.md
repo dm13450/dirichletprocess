@@ -8,7 +8,7 @@ status](https://github.com/dm13450/dirichletprocess/workflows/R-CMD-check/badge.
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/dm13450/dirichletprocess?branch=master&svg=true)](https://ci.appveyor.com/project/dm13450/dirichletprocess)
 [![Coverage
-Status](https://codecov.io/gh/dm13450/dirichletprocess/branch/master/graph/badge.svg)](https://codecov.io/gh/dm13450/dirichletprocess)
+Status](https://codecov.io/gh/dm13450/dirichletprocess/branch/master/graph/badge.svg)](https://app.codecov.io/gh/dm13450/dirichletprocess)
 
 The dirichletprocess package provides tools for you to build custom
 Dirichlet process mixture models. You can use the pre-built
@@ -76,22 +76,22 @@ For more detailed explanations and examples see the vignette.
 I’ve written a number of tutorials:
 
 -   [Non parametric
-    priors](http://dm13450.github.io/2019/02/22/Nonparametric-Prior.html)
+    priors](https://dm13450.github.io/2019/02/22/Nonparametric-Prior.html)
 -   [Calculating cluster
-    probabilities](http://dm13450.github.io/2018/11/21/Cluster-Probabilities.html)
--   [Clustering](http://dm13450.github.io/2018/05/30/Clustering.html)
+    probabilities](https://dm13450.github.io/2018/11/21/Cluster-Probabilities.html)
+-   [Clustering](https://dm13450.github.io/2018/05/30/Clustering.html)
 -   [Point
-    processes](http://dm13450.github.io/2018/03/08/dirichletprocess-pointprocess.html)
+    processes](https://dm13450.github.io/2018/03/08/dirichletprocess-pointprocess.html)
 -   [Custom
-    mixtures](http://dm13450.github.io/2018/02/21/Custom-Distributions-Conjugate.html)
+    mixtures](https://dm13450.github.io/2018/02/21/Custom-Distributions-Conjugate.html)
 -   [Density
-    estimation](http://dm13450.github.io/2018/02/01/Dirichlet-Density.html)
+    estimation](https://dm13450.github.io/2018/02/01/Dirichlet-Density.html)
 -   [Checking
-    convergence](http://dm13450.github.io/2020/01/11/Dirichlet-Convergence.html)
+    convergence](https://dm13450.github.io/2020/01/11/Dirichlet-Convergence.html)
 
 and some case studies:
 
 -   [State of the Market - Infinite State Hidden Markov
-    Models](http://dm13450.github.io/2020/06/03/State-of-the-Market.html)
+    Models](https://dm13450.github.io/2020/06/03/State-of-the-Market.html)
 -   [Palmer Penguins and an Introduction to Dirichlet
-    Processes](http://dm13450.github.io/2020/09/28/PriorToPosterior.html)
+    Processes](https://dm13450.github.io/2020/09/28/PriorToPosterior.html)
