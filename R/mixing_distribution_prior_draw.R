@@ -6,9 +6,8 @@
 #' @export
 PriorDraw <- function(mdObj, n) UseMethod("PriorDraw", mdObj)
 
+#' @export
 PriorDraw.hierarchical <- function(mdObj, n = 1) {
-
-  ##ind <- sample.int(length(mdObj$pi_k), n, prob = mdObj$pi_k, replace = TRUE)
 
   probs <- mdObj$pi_k
 

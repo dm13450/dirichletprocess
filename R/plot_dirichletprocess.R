@@ -14,16 +14,16 @@ plot_dirichletprocess.default <- function(x, ...){
 
 }
 
-plot_dirichletprocess.gaussian <- function(x, likelihood = FALSE, single = TRUE){
-  plot_dirichletprocess_univariate(x, likelihood = FALSE, single = TRUE)
+plot_dirichletprocess.gaussian <- function(x, ...){
+  plot_dirichletprocess_univariate(x, ...)
 }
 
-plot_dirichletprocess.beta <- function(x, likelihood = FALSE, single = TRUE) {
-  plot_dirichletprocess_univariate(x, likelihood = FALSE, single = TRUE)
+plot_dirichletprocess.beta <- function(x, ...) {
+  plot_dirichletprocess_univariate(x, ...)
 }
 
-plot_dirichletprocess.weibull <- function(x, likelihood = FALSE, single = TRUE) {
-  plot_dirichletprocess_univariate(x, likelihood = FALSE, single = TRUE)
+plot_dirichletprocess.weibull <- function(x, ...) {
+  plot_dirichletprocess_univariate(x, ...)
 }
 
 plot_dirichletprocess.mvnormal <- function(x, ...) {

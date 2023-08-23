@@ -1,8 +1,8 @@
-ClusterLabelChange <- function(dpObj, x, newLabel, currentLabel, ...){
+ClusterLabelChange <- function(dpObj, x, newLabel, currentLabel, aux=0) {
   UseMethod("ClusterLabelChange", dpObj)
 }
 
-ClusterLabelChange.conjugate <- function(dpObj, i, newLabel, currentLabel) {
+ClusterLabelChange.conjugate <- function(dpObj, i, newLabel, currentLabel, aux=0) {
 
   x <- dpObj$data[i, , drop = FALSE]
   pointsPerCluster <- dpObj$pointsPerCluster
@@ -64,7 +64,7 @@ ClusterLabelChange.conjugate <- function(dpObj, i, newLabel, currentLabel) {
   return(dpObj)
 }
 
-ClusterLabelChange.nonconjugate <- function(dpObj, i, newLabel, currentLabel, aux) {
+ClusterLabelChange.nonconjugate <- function(dpObj, i, newLabel, currentLabel, aux=0) {
 
   pointsPerCluster <- dpObj$pointsPerCluster
   clusterLabels <- dpObj$clusterLabels
