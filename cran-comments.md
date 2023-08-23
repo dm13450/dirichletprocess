@@ -1,4 +1,4 @@
--dirichletprocess 0.4.1
+-dirichletprocess 0.4.2
 -----------------------
 
 
@@ -6,7 +6,7 @@
 ## Changes
 In this version I have:
 
-* Changed the MhParameterProposal function signature to be consistent.
+* Updated the log likelihood function
 
 
 ## Test environments
