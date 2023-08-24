@@ -3,6 +3,7 @@
 #' @param mdObj Mixing Distribution
 #' @param n Number of draws.
 #' @return A sample from the prior distribution
+
 #' @export
 PriorDraw <- function(mdObj, n) UseMethod("PriorDraw", mdObj)
 

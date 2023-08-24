@@ -1,4 +1,4 @@
-ClusterLabelChange <- function(dpObj, x, newLabel, currentLabel, aux=0) {
+ClusterLabelChange <- function(dpObj, i, newLabel, currentLabel, aux=0) {
   UseMethod("ClusterLabelChange", dpObj)
 }
 
