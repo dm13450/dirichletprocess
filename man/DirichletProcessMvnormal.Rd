@@ -4,8 +4,12 @@
 \alias{DirichletProcessMvnormal}
 \title{Create a Dirichlet mixture of multivariate normal distributions.}
 \usage{
-DirichletProcessMvnormal(y, g0Priors, alphaPriors = c(2, 4),
-  numInitialClusters = 1)
+DirichletProcessMvnormal(
+  y,
+  g0Priors,
+  alphaPriors = c(2, 4),
+  numInitialClusters = 1
+)
 }
 \arguments{
 \item{y}{Data}

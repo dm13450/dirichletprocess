@@ -4,8 +4,12 @@
 \alias{DirichletProcessCreate}
 \title{Create a Dirichlet Process object}
 \usage{
-DirichletProcessCreate(x, mdObject, alphaPriorParameters = c(1, 1),
-  mhDraws = 250)
+DirichletProcessCreate(
+  x,
+  mdObject,
+  alphaPriorParameters = c(1, 1),
+  mhDraws = 250
+)
 }
 \arguments{
 \item{x}{Data}

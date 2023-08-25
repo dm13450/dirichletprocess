@@ -4,8 +4,13 @@
 \alias{Initialise}
 \title{Initialise a Dirichlet process object}
 \usage{
-Initialise(dpObj, posterior = TRUE, m = 3, verbose = TRUE,
-  numInitialClusters = 1)
+Initialise(
+  dpObj,
+  posterior = TRUE,
+  m = 3,
+  verbose = TRUE,
+  numInitialClusters = 1
+)
 }
 \arguments{
 \item{dpObj}{A Dirichlet process object.}

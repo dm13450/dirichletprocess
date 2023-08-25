@@ -4,8 +4,12 @@
 \alias{BetaMixtureCreate}
 \title{Create a Beta mixing distribution.}
 \usage{
-BetaMixtureCreate(priorParameters = c(2, 8), mhStepSize = c(1, 1),
-  maxT = 1, hyperPriorParameters = c(1, 0.125))
+BetaMixtureCreate(
+  priorParameters = c(2, 8),
+  mhStepSize = c(1, 1),
+  maxT = 1,
+  hyperPriorParameters = c(1, 0.125)
+)
 }
 \arguments{
 \item{priorParameters}{The prior parameters for the base measure.}

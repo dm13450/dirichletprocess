@@ -4,8 +4,12 @@
 \alias{DirichletProcessGaussianFixedVariance}
 \title{Create a Dirichlet Mixture of the Gaussian Distribution with fixed variance.}
 \usage{
-DirichletProcessGaussianFixedVariance(y, sigma, g0Priors = c(0, 1),
-  alphaPriors = c(2, 4))
+DirichletProcessGaussianFixedVariance(
+  y,
+  sigma,
+  g0Priors = c(0, 1),
+  alphaPriors = c(2, 4)
+)
 }
 \arguments{
 \item{y}{Data.}

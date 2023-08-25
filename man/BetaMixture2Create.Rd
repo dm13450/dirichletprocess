@@ -4,8 +4,7 @@
 \alias{BetaMixture2Create}
 \title{Create a Beta mixture with zeros at the boundaries.}
 \usage{
-BetaMixture2Create(priorParameters = 2, mhStepSize = c(1, 1),
-  maxT = 1)
+BetaMixture2Create(priorParameters = 2, mhStepSize = c(1, 1), maxT = 1)
 }
 \arguments{
 \item{priorParameters}{The prior parameters for the base measure.}

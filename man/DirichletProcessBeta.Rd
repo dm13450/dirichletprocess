@@ -4,9 +4,16 @@
 \alias{DirichletProcessBeta}
 \title{Dirichlet process mixture of the Beta distribution.}
 \usage{
-DirichletProcessBeta(y, maxY, g0Priors = c(2, 8), alphaPrior = c(2, 4),
-  mhStep = c(1, 1), hyperPriorParameters = c(1, 0.125),
-  verbose = TRUE, mhDraws = 250)
+DirichletProcessBeta(
+  y,
+  maxY,
+  g0Priors = c(2, 8),
+  alphaPrior = c(2, 4),
+  mhStep = c(1, 1),
+  hyperPriorParameters = c(1, 0.125),
+  verbose = TRUE,
+  mhDraws = 250
+)
 }
 \arguments{
 \item{y}{Data for which to be modelled.}

@@ -5,8 +5,13 @@
 \title{Create a Mixing Object for a hierarchical semi-conjugate
 Multivariate Normal Dirichlet process object.}
 \usage{
-HierarchicalMvnormal2Create(n, priorParameters, alphaPrior, gammaPrior,
-  num_sticks)
+HierarchicalMvnormal2Create(
+  n,
+  priorParameters,
+  alphaPrior,
+  gammaPrior,
+  num_sticks
+)
 }
 \arguments{
 \item{n}{Number of data sets}

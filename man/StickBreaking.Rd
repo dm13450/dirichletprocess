@@ -29,9 +29,9 @@ the series. For more details see reference.
 }
 \section{Functions}{
 \itemize{
-\item \code{piDirichlet}: Function for calculating stick lengths.
-}}
+\item \code{piDirichlet()}: Function for calculating stick lengths.
 
+}}
 \references{
 Ishwaran, H., & James, L. F. (2001). Gibbs sampling methods for stick-breaking priors. Journal of the American Statistical Association, 96(453), 161-173.
 }

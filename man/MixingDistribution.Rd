@@ -4,8 +4,13 @@
 \alias{MixingDistribution}
 \title{Create a mixing distribution object}
 \usage{
-MixingDistribution(distribution, priorParameters, conjugate,
-  mhStepSize = NULL, hyperPriorParameters = NULL)
+MixingDistribution(
+  distribution,
+  priorParameters,
+  conjugate,
+  mhStepSize = NULL,
+  hyperPriorParameters = NULL
+)
 }
 \arguments{
 \item{distribution}{The name of the distribution mixture}

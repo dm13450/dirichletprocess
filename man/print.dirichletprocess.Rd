@@ -4,8 +4,7 @@
 \alias{print.dirichletprocess}
 \title{Print the Dirichlet process object}
 \usage{
-\method{print}{dirichletprocess}(x, param_summary = FALSE, digits = 2,
-  ...)
+\method{print}{dirichletprocess}(x, param_summary = FALSE, digits = 2, ...)
 }
 \arguments{
 \item{x}{Dirichlet Process Object to print.}

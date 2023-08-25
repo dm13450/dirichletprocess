@@ -5,9 +5,15 @@
 \title{Create a Hierarchical Dirichlet Mixture of
 semi-conjugate Multivariate Normal Distributions}
 \usage{
-DirichletProcessHierarchicalMvnormal2(dataList, g0Priors,
-  gammaPriors = c(2, 4), alphaPriors = c(2, 4), numSticks = 50,
-  numInitialClusters = 1, mhDraws = 250)
+DirichletProcessHierarchicalMvnormal2(
+  dataList,
+  g0Priors,
+  gammaPriors = c(2, 4),
+  alphaPriors = c(2, 4),
+  numSticks = 50,
+  numInitialClusters = 1,
+  mhDraws = 250
+)
 }
 \arguments{
 \item{dataList}{List of data for each separate Dirichlet mixture object}

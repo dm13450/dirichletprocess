@@ -4,10 +4,12 @@
 \name{rats}
 \alias{rats}
 \title{Tumour incidences in rats}
-\format{\describe{
+\format{
+\describe{
 \item{y}{number of rats with a tumour}
 \item{N}{total number of rats in the experiment}
-}}
+}
+}
 \source{
 \url{http://www.stat.columbia.edu/~gelman/book/data/rats.asc}
 }

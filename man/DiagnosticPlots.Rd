@@ -12,8 +12,12 @@ DiagnosticPlots(dpobj, gg = FALSE)
 
 AlphaTraceplot(dpobj, gg = TRUE)
 
-AlphaPriorPosteriorPlot(dpobj, prior_color = "#2c7fb8",
-  post_color = "#d95f02", gg = TRUE)
+AlphaPriorPosteriorPlot(
+  dpobj,
+  prior_color = "#2c7fb8",
+  post_color = "#d95f02",
+  gg = TRUE
+)
 
 ClusterTraceplot(dpobj, gg = TRUE)
 
@@ -44,16 +48,16 @@ plots focus on the likelihood, alpha, and the number of clusters.
 }
 \section{Functions}{
 \itemize{
-\item \code{AlphaTraceplot}: Trace plot of alpha.
+\item \code{AlphaTraceplot()}: Trace plot of alpha.
 
-\item \code{AlphaPriorPosteriorPlot}: Plot of the prior and posterior of alpha.
+\item \code{AlphaPriorPosteriorPlot()}: Plot of the prior and posterior of alpha.
 
-\item \code{ClusterTraceplot}: Trace plot of the number of clusters.
+\item \code{ClusterTraceplot()}: Trace plot of the number of clusters.
 
-\item \code{LikelihoodTraceplot}: Trace plot of the likelihood of the data for
+\item \code{LikelihoodTraceplot()}: Trace plot of the likelihood of the data for
 each iteration.
-}}
 
+}}
 \examples{
 dp <- Fit(DirichletProcessGaussian(rnorm(10)), 100)
 DiagnosticPlots(dp)

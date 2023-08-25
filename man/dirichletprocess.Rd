@@ -3,7 +3,6 @@
 \docType{package}
 \name{dirichletprocess}
 \alias{dirichletprocess}
-\alias{dirichletprocess-package}
 \title{A flexible package for fitting Bayesian non-parametric models.}
 \description{
 Create, fit and take posterior samples from a Dirichlet process.

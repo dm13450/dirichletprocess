@@ -4,8 +4,15 @@
 \alias{DirichletProcessBeta2}
 \title{Dirichlet process mixture of Beta distributions with a Uniform Pareto base measure.}
 \usage{
-DirichletProcessBeta2(y, maxY, g0Priors = 2, alphaPrior = c(2, 4),
-  mhStep = c(1, 1), verbose = TRUE, mhDraws = 250)
+DirichletProcessBeta2(
+  y,
+  maxY,
+  g0Priors = 2,
+  alphaPrior = c(2, 4),
+  mhStep = c(1, 1),
+  verbose = TRUE,
+  mhDraws = 250
+)
 }
 \arguments{
 \item{y}{Data for which to be modelled.}
