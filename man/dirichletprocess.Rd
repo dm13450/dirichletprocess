@@ -2,8 +2,36 @@
 % Please edit documentation in R/dirichletprocess.R
 \docType{package}
 \name{dirichletprocess}
+\alias{dirichletprocess-package}
 \alias{dirichletprocess}
 \title{A flexible package for fitting Bayesian non-parametric models.}
 \description{
 Create, fit and take posterior samples from a Dirichlet process.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/dm13450/dirichletprocess}
+  \item \url{https://dm13450.github.io/dirichletprocess/}
+  \item Report bugs at \url{https://github.com/dm13450/dirichletprocess/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Gordon J. Ross \email{gordon.ross@ed.ac.uk}
+
+Authors:
+\itemize{
+  \item Dean Markwick \email{dean.markwick@talk21.com}
+}
+
+Other contributors:
+\itemize{
+  \item Priyanshu Tiwari \email{tiwari.priyanshu.iitk@gmail.com} (Implemented an earlier C++ version of the core ordinary mixture samplers.) [contributor]
+  \item Kees Mulder \email{keestimmulder@gmail.com} (\href{https://orcid.org/0000-0002-5387-3812}{ORCID}) [contributor]
+  \item Giovanni Sighinolfi \email{giovanni.sighinolfi2@studio.unibo.it} [contributor]
+  \item Filippo Fiocchi \email{filippofiocchi1@gmail.com} [contributor]
+}
+
+}
+\keyword{internal}

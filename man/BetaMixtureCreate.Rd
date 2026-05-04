@@ -24,5 +24,7 @@ BetaMixtureCreate(
 A mixing distribution object.
 }
 \description{
-See \code{\link{DirichletProcessBeta}} for the default prior and hyper prior distributions.
+Creates a bounded Beta mixing distribution using the mean and precision
+parameterisation on \eqn{(0, maxT)}. See \code{\link{DirichletProcessBeta}}
+for the default prior and hyper-prior distributions.
 }

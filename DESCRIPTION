@@ -1,39 +1,65 @@
 Package: dirichletprocess
 Type: Package
-Title: Build Dirichlet Process Objects for Bayesian Modelling
-Version: 0.4.2
+Title: Fit and Extend Dirichlet Process Mixture Models
+Version: 2.0.0
 Authors@R: c(
-            person("Gordon", "J. Ross", email="gordon@gordonjross.co.uk", role=c("aut")),
-            person("Dean", "Markwick", email="dean.markwick@talk21.com", role=c("aut", "cre")),
-            person("Kees", "Mulder", email="keestimmulder@gmail.com", role=c("ctb"), 
-            comment = c(ORCID = "0000-0002-5387-3812")),
-            person("Giovanni", "Sighinolfi", email ="giovanni.sighinolfi2@studio.unibo.it", role=c("ctb")),
-            person("Filippo Fiocchi", email="filippofiocchi1@gmail.com", role=c("ctb"))
-          )
-Maintainer: Dean Markwick <dean.markwick@talk21.com>
-Description: Perform nonparametric Bayesian analysis using Dirichlet 
-    processes without the need to program the inference algorithms. 
-    Utilise included pre-built models or specify custom 
-    models and allow the 'dirichletprocess' package to handle the 
-    Markov chain Monte Carlo sampling. 
-    Our Dirichlet process objects can act as building blocks for a variety 
-    of statistical models including and not limited to: density estimation, 
-    clustering and prior distributions in hierarchical models.
-    See Teh, Y. W. (2011) 
-    <https://www.stats.ox.ac.uk/~teh/research/npbayes/Teh2010a.pdf>, 
-    among many other sources.
-Depends: R (>= 2.10)
+    person(given = c("Gordon", "J."),
+           family = "Ross",
+           email = "gordon.ross@ed.ac.uk",
+           role = c("aut", "cre")),
+    person(given = "Dean",
+           family = "Markwick",
+           email = "dean.markwick@talk21.com",
+           role = "aut"),
+    person(given = "Priyanshu",
+           family = "Tiwari",
+           email = "tiwari.priyanshu.iitk@gmail.com",
+           role = "ctb",
+           comment = "Implemented an earlier C++ version of the core ordinary mixture samplers."),
+    person(given = "Kees",
+           family = "Mulder",
+           email = "keestimmulder@gmail.com",
+           role = "ctb",
+           comment = c(ORCID = "0000-0002-5387-3812")),
+    person(given = "Giovanni",
+           family = "Sighinolfi",
+           email = "giovanni.sighinolfi2@studio.unibo.it",
+           role = "ctb"),
+    person(given = "Filippo",
+           family = "Fiocchi",
+           email = "filippofiocchi1@gmail.com",
+           role = "ctb")
+    )
+Description: Fit, inspect, and extend Dirichlet process mixture models for
+    Bayesian nonparametric analysis. The package provides an object-based
+    interface for density estimation, clustering, hierarchical modelling, and
+    custom mixture specifications. Built-in models include Gaussian,
+    multivariate Gaussian, Beta, Exponential, Weibull, hierarchical, and hidden
+    Markov model workflows, with compiled C++ sampler implementations for the
+    main ordinary mixture models and R implementations for extensible and
+    hierarchical workflows. Users can define new mixture kernels by supplying
+    likelihood, prior, and posterior-update methods while reusing the package's
+    Markov chain Monte Carlo machinery. See Teh (2010)
+    <https://www.stats.ox.ac.uk/~teh/research/npbayes/Teh2010a.pdf>.
+Depends: R (>= 4.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Suggests: testthat,
-    knitr,
-    rmarkdown,
-    tidyr,
-    dplyr
-Imports: gtools,
-         ggplot2,
-         mvtnorm
-URL: https://github.com/dm13450/dirichletprocess, https://dm13450.github.io/dirichletprocess/
+Suggests: testthat, knitr, rmarkdown, tidyr, dplyr, grid, coda, pkgload
+Imports: gtools, ggplot2, mvtnorm, Rcpp (>= 1.0.11), abind, methods,
+        stats, utils
+LinkingTo: Rcpp, RcppArmadillo
+URL: https://github.com/dm13450/dirichletprocess,
+        https://dm13450.github.io/dirichletprocess/
 BugReports: https://github.com/dm13450/dirichletprocess/issues
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.3
+NeedsCompilation: yes
+Packaged: 2026-05-01 16:14:12 UTC; rosss
+Author: Gordon J. Ross [aut, cre],
+  Dean Markwick [aut],
+  Priyanshu Tiwari [ctb] (Implemented an earlier C++ version of the core
+    ordinary mixture samplers.),
+  Kees Mulder [ctb] (<https://orcid.org/0000-0002-5387-3812>),
+  Giovanni Sighinolfi [ctb],
+  Filippo Fiocchi [ctb]
+Maintainer: Gordon J. Ross <gordon.ross@ed.ac.uk>

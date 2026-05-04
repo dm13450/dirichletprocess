@@ -21,6 +21,14 @@ MixingDistribution <- function(distribution, priorParameters, conjugate, mhStepS
   return(mdObj)
 }
 
+#' Metropolis-Hastings Parameter Proposal
+#' 
+#' Generate parameter proposals for Metropolis-Hastings sampling.
+#' 
+#' @param mdObj A mixing distribution object
+#' @param old_params Current parameter values
+#' @return Proposed parameter values
+#' @export
 MhParameterProposal <- function(mdObj, old_params){
   UseMethod("MhParameterProposal", mdObj)
 }

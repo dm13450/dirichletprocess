@@ -4,25 +4,64 @@
 \alias{Fit}
 \title{Fit the Dirichlet process object}
 \usage{
-Fit(dpObj, its, updatePrior = FALSE, progressBar = TRUE)
+Fit(
+  dpObj,
+  its,
+  updatePrior = FALSE,
+  progressBar = TRUE,
+  storeSamples = TRUE,
+  thinning = 1,
+  ...
+)
 }
 \arguments{
 \item{dpObj}{Initialised Dirichlet Process object}
 
 \item{its}{Number of iterations to use}
 
-\item{updatePrior}{Logical flag, defaults to \code{FAlSE}. Set whether the parameters of the base measure are updated.}
+\item{updatePrior}{Logical flag, defaults to FALSE. Set whether the parameters
+of the base measure are updated.}
 
 \item{progressBar}{Logical flag indicating whether to display a progress bar.}
+
+\item{storeSamples}{Logical flag indicating whether to retain MCMC samples in
+the fitted object. Defaults to `TRUE`. Retained samples are stored in
+the fitted object, not written to disk.}
+
+\item{thinning}{Integer thinning interval applied only to iterations
+generated in the current `Fit()` call. Defaults to `1`.}
+
+\item{...}{Additional arguments}
 }
 \value{
-A Dirichlet Process object with the fitted cluster parameters and labels.
+A fitted Dirichlet process-related object with updated current state
+  and, when requested, appended retained sample history.
 }
 \description{
-Using Neal's algorithm 4 or 8 depending on conjugacy the sampling procedure for a Dirichlet process is carried out.
-Lists of both cluster parameters, weights and the sampled concentration values are included in the fitted \code{dpObj}.
-When \code{update_prior} is set to \code{TRUE} the parameters of the base measure are also updated.
+Using Neal's algorithm 4 or 8 depending on conjugacy, the sampling
+procedure for a Dirichlet process is carried out.
+}
+\details{
+Ordinary `Fit()` methods always update the current fitted state. When
+`storeSamples = TRUE`, retained iterations generated during the current
+`Fit()` call are appended to any existing retained history on the object.
+`thinning` applies only to newly generated iterations from the current call
+and keeps iterations `1, 1 + thinning, 1 + 2 * thinning, ...` from that
+call. When `storeSamples = FALSE`, the sampler still runs and updates the
+current fitted state, but no newly retained history is appended. Previously
+retained samples are never re-thinned or deleted by later `Fit()` calls.
+
+When `updatePrior = TRUE` the parameters of the base measure are also
+updated when supported by the mixing distribution.
+}
+\examples{
+dp <- DirichletProcessGaussian(rnorm(20))
+dp <- Fit(dp, 10, progressBar = FALSE)
+dp <- Fit(dp, 6, progressBar = FALSE, thinning = 2)
+
 }
 \references{
-Neal, R. M. (2000). Markov chain sampling methods for Dirichlet process mixture models. Journal of computational and graphical statistics, 9(2), 249-265.
+Neal, R. M. (2000). Markov chain sampling methods for Dirichlet
+            process mixture models. Journal of computational and graphical
+            statistics, 9(2), 249-265.
 }

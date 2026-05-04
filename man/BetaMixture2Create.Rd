@@ -17,5 +17,6 @@ BetaMixture2Create(priorParameters = 2, mhStepSize = c(1, 1), maxT = 1)
 A mixing distribution object.
 }
 \description{
-Create a Beta mixture with zeros at the boundaries.
+This bounded Beta mixing distribution also uses the mean and precision
+parameterisation on \eqn{(0, maxT)}.
 }

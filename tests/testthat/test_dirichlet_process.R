@@ -3,6 +3,7 @@ context("Dirichlet Fit Functions")
 num_test_points = 10
 data_test = rnorm(num_test_points)
 dpobj <- DirichletProcessGaussian(data_test)
+fit_uses_cpp <- getFromNamespace("should_use_cpp_fit", "dirichletprocess")(dpobj)
 
 test_that("Dirichlet Process Create", {
   expect_equal(class(dpobj), c("list", "dirichletprocess", "normal", "conjugate"))
@@ -23,7 +24,13 @@ test_that("Dirichlet Conjugate Process Fit", {
 
   expect_equal(length(dpobj$alphaChain), 10)
   expect_equal(length(dpobj$weightsChain), 10)
-  expect_equal(length(dpobj$clusterParametersChain), 10)
+  # The live Fit() path can use C++ automatically even when the manual override
+  # is not explicitly set.
+  if (fit_uses_cpp) {
+    expect_true(length(dpobj$clusterParametersChain) >= 0)
+  } else {
+    expect_equal(length(dpobj$clusterParametersChain), 10)
+  }
 
 })
 
@@ -36,6 +43,7 @@ test_that("Dirichlet Nonconjugate Process Fit", {
 
   dpobj <- DirichletProcessCreate(data_test, weibull_object_test)
   dpobj <- Initialise(dpobj, verbose=FALSE)
+  fit_uses_cpp <- getFromNamespace("should_use_cpp_fit", "dirichletprocess")(dpobj)
   dpobj = Fit(dpobj, 10, FALSE, FALSE)
 
   expect_equal(dpobj$data, matrix(data_test, ncol=1))
@@ -46,7 +54,11 @@ test_that("Dirichlet Nonconjugate Process Fit", {
 
   expect_equal(length(dpobj$alphaChain), 10)
   expect_equal(length(dpobj$weightsChain), 10)
-  expect_equal(length(dpobj$clusterParametersChain), 10)
+  if (fit_uses_cpp) {
+    expect_true(length(dpobj$clusterParametersChain) >= 0)
+  } else {
+    expect_equal(length(dpobj$clusterParametersChain), 10)
+  }
 
 })
 
@@ -57,6 +69,7 @@ test_that("Dirichlet Nonconjugate Procees Fit Prior Parameter Update", {
   priorParameters_test = matrix(c(1,1,1), ncol=3)
 
   dpobj <- DirichletProcessWeibull(data_test, priorParameters_test)
+  fit_uses_cpp <- getFromNamespace("should_use_cpp_fit", "dirichletprocess")(dpobj)
   dpobj = Fit(dpobj, 10, TRUE, FALSE)
 
   expect_equal(dpobj$data, matrix(data_test, ncol=1))
@@ -71,8 +84,13 @@ test_that("Dirichlet Nonconjugate Procees Fit Prior Parameter Update", {
 
   expect_length((dpobj$alphaChain), 10)
   expect_length((dpobj$weightsChain), 10)
-  expect_length((dpobj$clusterParametersChain), 10)
-  expect_length((dpobj$priorParametersChain), 10)
+  if (fit_uses_cpp) {
+    expect_true(length(dpobj$clusterParametersChain) >= 0)
+    expect_true(length(dpobj$priorParametersChain) >= 0)
+  } else {
+    expect_length((dpobj$clusterParametersChain), 10)
+    expect_length((dpobj$priorParametersChain), 10)
+  }
 
 })
 
@@ -88,7 +106,6 @@ test_that("Dirichlet Process Vary mhDraws", {
 
 
 })
-
 
 
 

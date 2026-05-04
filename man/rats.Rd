@@ -11,7 +11,7 @@
 }
 }
 \source{
-\url{http://www.stat.columbia.edu/~gelman/book/data/rats.asc}
+\url{https://www.stat.columbia.edu/~gelman/book/data/rats.asc}
 }
 \usage{
 rats

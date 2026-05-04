@@ -8,7 +8,8 @@ DirichletProcessGaussianFixedVariance(
   y,
   sigma,
   g0Priors = c(0, 1),
-  alphaPriors = c(2, 4)
+  alphaPriors = c(2, 4),
+  cpp = FALSE
 )
 }
 \arguments{
@@ -19,6 +20,10 @@ DirichletProcessGaussianFixedVariance(
 \item{g0Priors}{Base Distribution Priors.}
 
 \item{alphaPriors}{Prior parameter distributions for the alpha concentration parameter.}
+
+\item{cpp}{Logical compatibility argument. Constructors no longer toggle the
+package-wide C++ implementation flag; `Fit()` now selects the validated
+C++ path automatically when supported.}
 }
 \value{
 Dirichlet process object

@@ -35,10 +35,11 @@ weibull_censor_generate <- function(){
   class(mdobjB) <- c("list", "weibullcens", "weibull", "nonconjugate")
 
   data_a <- c(1, 3 ,3, 6, 7, 7, 10, 12, 14, 15, 18 ,19, 22 ,26 , 28 , 29 ,34, 40, 48 ,49)
-  data_a <- 1 + (data_a / max(data_a))
-  data_a <- cbind(data_a, c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1))
   data_b <- c(1, 1, 2, 2,3,4,5,8,8,9,11,12,14,16,18,21,27,31,38, 44)
-  data_b <- 1 + (data_b / max(data_b))
+  scale_factor <- max(data_a,data_b)
+  data_a <- 1 + (data_a / scale_factor)
+  data_a <- cbind(data_a, c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1))
+  data_b <- 1 + (data_b / scale_factor)
   data_b <- cbind(data_b, c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0))
 
 
@@ -50,8 +51,8 @@ weibull_censor_generate <- function(){
 
   its <- 15000
 
-  dpA <- Fit(dpA, its, TRUE)
-  dpB <- Fit(dpB, its, TRUE)
+  dpA <- Fit(dpA, its, updatePrior = TRUE)
+  dpB <- Fit(dpB, its, updatePrior = TRUE)
 
 
 

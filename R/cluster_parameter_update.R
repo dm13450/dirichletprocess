@@ -37,6 +37,14 @@ ClusterParameterUpdate.conjugate <- function(dpObj) {
   dpObj$clusterParameters <- clusterParams
   return(dpObj)
 }
+#' @export
+#' @rdname ClusterParameterUpdate
+ClusterParameterUpdate.hierarchical <- function(dpObj) {
+  for (i in seq_along(dpObj$indDP)) {
+    dpObj$indDP[[i]] <- ClusterParameterUpdate(dpObj$indDP[[i]])
+  }
+  return(dpObj)
+}
 #'@export
 ClusterParameterUpdate.nonconjugate <- function(dpObj) {
 
@@ -87,6 +95,3 @@ cluster_parameter_update <- function(mdobj, data, clusters, params){
   #newParamsFull <- newParams[clusters]
   return(newParams)
 }
-
-
-

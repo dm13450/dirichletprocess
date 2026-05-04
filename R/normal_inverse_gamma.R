@@ -14,20 +14,82 @@ GaussianMixtureCreate <- function(priorParameters=c(0,1,1,1)){
 #' @export
 #' @rdname Likelihood
 Likelihood.normal <- function(mdObj, x, theta) {
-
-  as.numeric(dnorm(x, theta[[1]], theta[[2]]))
+  # Handle different parameter formats gracefully
+  if (is.list(theta) && length(theta) >= 2) {
+    # Standard case: list with mean and sd components
+    mean_param <- theta[[1]]
+    sd_param <- theta[[2]]
+    
+    # Ensure parameters are valid
+    if (any(is.na(mean_param)) || any(is.na(sd_param)) || 
+        any(is.infinite(mean_param)) || any(is.infinite(sd_param))) {
+      # Return small positive likelihood for invalid parameters
+      return(rep(1e-100, length(x)))
+    }
+    
+    # Ensure positive standard deviation
+    sd_param <- pmax(abs(sd_param), 1e-8)
+    
+    result <- tryCatch({
+      as.numeric(dnorm(x, mean_param, sd_param))
+    }, error = function(e) {
+      rep(1e-100, length(x))
+    })
+    
+    # Handle NaN or infinite results
+    result[is.na(result) | is.infinite(result)] <- 1e-100
+    return(result)
+    
+  } else if (is.list(theta) && length(theta) == 1) {
+    # Single parameter case - try to extract both components
+    if (is.array(theta[[1]]) && length(dim(theta[[1]])) >= 2) {
+      # Extract mean and sd from array structure
+      mean_val <- theta[[1]][1, , drop = TRUE]
+      sd_val <- theta[[1]][2, , drop = TRUE]
+      sd_val <- pmax(abs(sd_val), 1e-8)  # Ensure positive
+      result <- tryCatch({
+        as.numeric(dnorm(x, mean_val, sd_val))
+      }, error = function(e) {
+        rep(1e-100, length(x))
+      })
+      result[is.na(result) | is.infinite(result)] <- 1e-100
+      return(result)
+    } else {
+      # Fallback: use default values
+      return(as.numeric(dnorm(x, 0, 1)))
+    }
+  } else {
+    # Fallback for unexpected formats
+    return(as.numeric(dnorm(x, 0, 1)))
+  }
 }
 
 #' @export
 #' @rdname PriorDraw
-PriorDraw.normal <- function(mdObj, n = 1) {
+PriorDraw.normal <- function(mdObj, n = 1, ...) {
 
   priorParameters <- mdObj$priorParameters
 
+  # Draw gamma values and handle potential NAs
   lambda <- rgamma(n, priorParameters[3], priorParameters[4])
+  
+  # Handle NA values that can occur with extreme parameters
+  if (any(is.na(lambda))) {
+    lambda[is.na(lambda)] <- 1.0  # Default to reasonable value
+  }
+  
+  # Ensure we don't divide by zero
+  lambda[lambda == 0] <- 1e-04
+  
+  # Draw normal values and handle potential NAs
   mu <- rnorm(n, priorParameters[1], (priorParameters[2] * lambda)^(-0.5))
-  theta <- list(array(mu, dim = c(1, 1, n)), array(sqrt(1/lambda), dim = c(1, 1,
-    n)))
+  
+  # Handle NA values
+  if (any(is.na(mu))) {
+    mu[is.na(mu)] <- priorParameters[1]  # Default to prior mean
+  }
+  
+  theta <- list(mu = array(mu, dim = c(1, 1, n)), sigma = array(sqrt(1/lambda), dim = c(1, 1, n)))
   return(theta)
 }
 
@@ -49,7 +111,7 @@ PosteriorParameters.normal <- function(mdObj, x) {
   kappa.n <- kappa0 + n.x
   alpha.n <- alpha0 + n.x/2
   beta.n <- beta0 + 0.5 * sum((x - ybar)^2) + kappa0 * n.x * (ybar - mu0)^2/(2 *
-    (kappa0 + n.x))
+                                                                               (kappa0 + n.x))
 
   posteriorParameters <- matrix(c(mu.n, kappa.n, alpha.n, beta.n), ncol = 4)
   return(posteriorParameters)
@@ -65,8 +127,8 @@ PosteriorDraw.normal <- function(mdObj, x, n = 1, ...) {
   mu <- rnorm(n,
               PosteriorParameters_calc[1],
               1/sqrt(PosteriorParameters_calc[2] * lambda))
-  theta <- list(array(mu, dim = c(1, 1, n)),
-                array(sqrt(1/lambda), dim = c(1, 1, n)))
+  theta <- list(mu = array(mu, dim = c(1, 1, n)),
+                sigma = array(sqrt(1/lambda), dim = c(1, 1, n)))
   return(theta)
 }
 

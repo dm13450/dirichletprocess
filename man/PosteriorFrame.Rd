@@ -2,22 +2,28 @@
 % Please edit documentation in R/posterior_frame.R
 \name{PosteriorFrame}
 \alias{PosteriorFrame}
-\title{Calculate the posterior mean and quantiles from a Dirichlet process object.}
+\title{Legacy conditional-state posterior summary helper.}
 \usage{
 PosteriorFrame(dpobj, xgrid, ndraws = 1000, ci_size = 0.1)
 }
 \arguments{
 \item{dpobj}{The Dirichlet process object to be drawn from.}
 
-\item{xgrid}{The x values the posterior is to be evaluated at.}
+\item{xgrid}{The x values the conditional posterior is to be evaluated at.}
 
-\item{ndraws}{The number of posterior draws to take.}
+\item{ndraws}{The number of conditional-state posterior draws to take.}
 
-\item{ci_size}{The size of the credible interval draw in terms of percentage.}
+\item{ci_size}{The size of the conditional credible interval in tail
+probability terms.}
 }
 \value{
-A dataframe consisting of the posterior mean and credible intervals.
+A data frame containing conditional-state posterior means and
+  quantiles on \code{xgrid}.
 }
 \description{
-Calculate the posterior mean and quantiles from a Dirichlet process object.
+`PosteriorFrame()` is retained for backward compatibility. It repeatedly
+draws \code{PosteriorFunction(dpobj)} from the current fitted state only and
+summarises those conditional draws on \code{xgrid}. For retained-sample
+posterior summaries and pointwise credible intervals across stored MCMC
+iterations, prefer \code{\link{PosteriorSummary}}.
 }

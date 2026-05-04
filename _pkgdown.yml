@@ -1,5 +1,0 @@
-destination: docs
-
-template:
-  params:
-    ganalytics: UA-113472164-2

@@ -1,7 +1,7 @@
 #' Tumour incidences in rats
 #'
 #' Rat tumour data from Tarone (1982). Data from Table 5.1 of Bayesian Data Analysis
-#' @source \url{http://www.stat.columbia.edu/~gelman/book/data/rats.asc}
+#' @source \url{https://www.stat.columbia.edu/~gelman/book/data/rats.asc}
 #'
 #' @format
 #' \describe{

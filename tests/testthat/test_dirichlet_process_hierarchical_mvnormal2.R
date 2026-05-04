@@ -12,3 +12,25 @@ test_that("",{
   expect_s3_class(dp, c("list", "dirichletprocess", "hierarchical"))
   
 })
+
+test_that("Hierarchical Mvnormal2 default numInitialClusters keeps one local cluster per group", {
+  set.seed(11)
+  testData <- replicate(2, mvtnorm::rmvnorm(8, c(1, -1), diag(2)), simplify = FALSE)
+
+  dp <- DirichletProcessHierarchicalMvnormal2(testData, numInitialClusters = 1)
+
+  expect_equal(vapply(dp$indDP, function(x) x$numberClusters, numeric(1)), c(1, 1))
+  expect_equal(lapply(dp$indDP, function(x) as.numeric(x$pointsPerCluster)),
+               list(8, 8))
+})
+
+test_that("Hierarchical Mvnormal2 numInitialClusters is passed through to local initialisation", {
+  set.seed(12)
+  testData <- replicate(2, mvtnorm::rmvnorm(8, c(0, 0), diag(2)), simplify = FALSE)
+
+  dp <- DirichletProcessHierarchicalMvnormal2(testData, numInitialClusters = 3)
+
+  expect_equal(vapply(dp$indDP, function(x) x$numberClusters, numeric(1)), c(3, 3))
+  expect_equal(lapply(dp$indDP, function(x) as.numeric(x$pointsPerCluster)),
+               list(c(3, 3, 2), c(3, 3, 2)))
+})

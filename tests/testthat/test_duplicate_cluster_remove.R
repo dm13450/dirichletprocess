@@ -1,5 +1,9 @@
 context("Duplicate Cluster Remove")
 
+# Access function from namespace if not available in global environment
+if (!exists("DuplicateClusterRemove")) {
+  DuplicateClusterRemove <- get("DuplicateClusterRemove", getNamespace("dirichletprocess"))
+}
 
 test_that("Cluster Remove", {
 

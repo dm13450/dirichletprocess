@@ -1,3 +1,10 @@
+#' Remove Duplicate Clusters
+#'
+#' Removes duplicate clusters from a Dirichlet process object.
+#'
+#' @param dpobj A Dirichlet process object
+#' @return Dirichlet process object with duplicate clusters removed
+#' @export
 DuplicateClusterRemove <- function(dpobj){
 
   cp <- dpobj$clusterParameters

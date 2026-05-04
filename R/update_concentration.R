@@ -24,9 +24,14 @@ update_concentration <- function(oldParam, n, nParams, priorParameters){
 }
 
 UpdateGamma <- function(dpobjlist){
+  # Use C++ implementation if enabled and available
+  if (using_cpp_hierarchical_samplers() && all(sapply(dpobjlist$indDP, function(x) inherits(x, "beta")))) {
+    return(UpdateGamma.cpp(dpobjlist))
+  }
 
+  # Original R implementation
   globalLabels <- lapply(seq_along(dpobjlist$indDP), function(x) match(dpobjlist$indDP[[x]]$clusterParameters[[1]],
-                                                                 dpobjlist$globalParameters[[1]]))
+                                                                       dpobjlist$globalParameters[[1]]))
   for (i in seq_along(globalLabels)){
     globalLabels[[i]] <- true_cluster_labels(globalLabels[[i]], dpobjlist)
   }

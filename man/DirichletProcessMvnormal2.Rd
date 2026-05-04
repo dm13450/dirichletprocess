@@ -4,7 +4,7 @@
 \alias{DirichletProcessMvnormal2}
 \title{Create a Dirichlet mixture of multivariate normal distributions with semi-conjugate prior.}
 \usage{
-DirichletProcessMvnormal2(y, g0Priors, alphaPriors = c(2, 4))
+DirichletProcessMvnormal2(y, g0Priors, alphaPriors = c(2, 4), cpp = FALSE)
 }
 \arguments{
 \item{y}{Data}
@@ -12,6 +12,10 @@ DirichletProcessMvnormal2(y, g0Priors, alphaPriors = c(2, 4))
 \item{g0Priors}{Prior parameters for the base distribution.}
 
 \item{alphaPriors}{Alpha prior parameters. See \code{\link{UpdateAlpha}}.}
+
+\item{cpp}{Logical compatibility argument. Constructors no longer toggle the
+package-wide C++ implementation flag; `Fit()` now selects the validated
+C++ path automatically when supported.}
 }
 \description{
 Create a Dirichlet mixture of multivariate normal distributions with semi-conjugate prior.

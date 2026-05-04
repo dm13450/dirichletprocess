@@ -110,7 +110,7 @@ hierarchical_gen <- function(){
   dpobjlist <- DirichletProcessHierarchicalBeta(list(y1, y2), maxY=1,
                                                 hyperPriorParameters = c(1, 0.01), mhStepSize = c(0.1, 0.1),
                                                 gammaPriors = c(2, 4), alphaPriors = c(2, 4))
-  dpobjlist <- Fit(dpobjlist, 500, TRUE)
+  dpobjlist <- Fit(dpobjlist, 500, updatePrior = TRUE)
 
   postDraws <- lapply(dpobjlist$indDP, function(x) replicate(1000, PosteriorFunction(x)(ppoints(100))))
 
@@ -144,7 +144,7 @@ stickbreaking_gen <- function(){
 
   dp <- DirichletProcessBeta(sample(pts, 100), maxY = max(pts)*1.01,
                              alphaPrior = c(2, 0.01))
-  dp <- Fit(dp, 100, TRUE)
+  dp <- Fit(dp, 100, updatePrior = TRUE)
 
   for(i in seq_len(2000)){
     lambdaHat <- PosteriorFunction(dp)
@@ -198,5 +198,3 @@ clusterprediction_gen <- function(){
     guides(colour=FALSE)
 
 }
-
-

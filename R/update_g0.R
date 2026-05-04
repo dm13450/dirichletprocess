@@ -1,6 +1,10 @@
-
 UpdateG0 <- function(dpobjlist){
+  # Use C++ implementation if enabled and available
+  if (using_cpp_hierarchical_samplers() && all(sapply(dpobjlist$indDP, function(x) inherits(x, "beta")))) {
+    return(UpdateG0.cpp(dpobjlist))
+  }
 
+  # Original R implementation
   globalParams <- dpobjlist$globalParameters
 
   globalLabels <- lapply(seq_along(dpobjlist$indDP),
@@ -13,7 +17,7 @@ UpdateG0 <- function(dpobjlist){
       globalLabels[[i]] <- true_cluster_labels(globalLabels[[i]], dpobjlist)
     }
   }
-  
+
   globalParamTable <- data.frame(table(GlobalParam=unlist(globalLabels)))
   globalParamTable$GlobalParam <- as.numeric(levels(globalParamTable$GlobalParam))
 
@@ -41,7 +45,7 @@ UpdateG0 <- function(dpobjlist){
   for (i in seq_along(priorDraws)) {
     postParams[[i]] <- array(c(globalParams[[i]][,,globalParamTable$GlobalParam], priorDraws[[i]]), dim=c(dim(priorDraws[[i]])[1:2],numBreaks+numTables))
   }
-  
+
   for(i in seq_along(dpobjlist$indDP)){
     newGJ <- draw_gj(dpobjlist$indDP[[i]]$mixingDistribution$alpha, sticks)
     newGJ[is.na(newGJ)] <- 0
@@ -54,5 +58,3 @@ UpdateG0 <- function(dpobjlist){
 
   return(dpobjlist)
 }
-
-

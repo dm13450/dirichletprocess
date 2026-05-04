@@ -1,8 +1,7 @@
-Meta
-doc
-inst/doc
 .Rproj.user
 .Rhistory
-clean_bib.sh
-tests/testthat/Rplots.pdf
-
+.RData
+.Ruserdata
+src/*.o
+src/*.so
+src/*.dll

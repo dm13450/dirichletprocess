@@ -2,13 +2,26 @@
 % Please edit documentation in R/mvnormal_normal_wishart.R
 \name{MvnormalCreate}
 \alias{MvnormalCreate}
-\title{Create a multivariate normal mixing distribution}
+\title{Create a Multivariate Normal mixing distribution with conjugate prior}
 \usage{
 MvnormalCreate(priorParameters)
 }
 \arguments{
-\item{priorParameters}{The prior parameters for the Multivariate Normal.}
+\item{priorParameters}{A list containing prior parameters:
+\describe{
+  \item{mu0}{Prior mean vector}
+  \item{kappa0}{Prior precision parameter for the mean}
+  \item{nu}{Prior degrees of freedom for the covariance}
+  \item{Lambda}{Prior scale matrix for the covariance}
+  \item{covModel}{Only \code{"FULL"} is currently supported in the live
+                  package and is the default.}
+}}
+}
+\value{
+A mixing distribution object
 }
 \description{
-Create a multivariate normal mixing distribution
+Creates a multivariate normal mixing distribution with Normal-Wishart conjugate prior.
+The base measure is \eqn{G_0(\mu, \Sigma | \mu_0, \kappa_0, \nu, \Lambda) = N(\mu | \mu_0, \Sigma/\kappa_0) * IW(\Sigma | \nu, \Lambda)}
+Non-\code{"FULL"} covariance models are currently rejected in the live package.
 }

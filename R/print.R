@@ -86,23 +86,45 @@ print_dp <- function(x, param_summary = FALSE, digits = 2, ...) {
     # been fit.
     if ("clusterParametersChain" %in% names(x)) {
 
-      # Get averages over all clusters and iterations for the parameters.
-      n_params <- length(x$clusterParametersChain[[1]])
-      meani <- numeric(n_params)
-      sdi   <- numeric(n_params)
+      # Check if clusterParametersChain is valid and has content
+      if (length(x$clusterParametersChain) > 0 && 
+          !is.null(x$clusterParametersChain[[1]]) && 
+          length(x$clusterParametersChain[[1]]) > 0) {
+        
+        # Get averages over all clusters and iterations for the parameters.
+        n_params <- length(x$clusterParametersChain[[1]])
+        meani <- numeric(n_params)
+        sdi   <- numeric(n_params)
 
-      for (i in seq_len(n_params)) {
-        param_i <- unlist(sapply(x$clusterParametersChain, function(x) x[[i]]))
-        meani[i] <- mean(param_i)
-        sdi[i]   <- stats::sd(param_i)
+        for (i in seq_len(n_params)) {
+          # Add error checking for parameter access
+          param_i <- tryCatch({
+            unlist(sapply(x$clusterParametersChain, function(x) {
+              if (i <= length(x)) x[[i]] else NA
+            }))
+          }, error = function(e) {
+            # If there's an error, return NAs
+            rep(NA, length(x$clusterParametersChain))
+          })
+          
+          # Filter out NAs before calculating statistics
+          param_i <- param_i[!is.na(param_i)]
+          if (length(param_i) > 0) {
+            meani[i] <- mean(param_i)
+            sdi[i]   <- stats::sd(param_i)
+          } else {
+            meani[i] <- NA
+            sdi[i]   <- NA
+          }
+        }
+
+        param_dat <- data.frame(. = paste0(mysprint(meani), " (",
+                                           mysprint(sdi), ")"),
+                                stringsAsFactors = FALSE)
+        rownames(param_dat) <- paste("Overall mean (sd) parameter", 1:n_params, " ")
+
+        post_print <- rbind(post_print, param_dat)
       }
-
-      param_dat <- data.frame(. = paste0(mysprint(meani), " (",
-                                         mysprint(sdi), ")"),
-                              stringsAsFactors = FALSE)
-      rownames(param_dat) <- paste("Overall mean (sd) parameter", 1:n_params, " ")
-
-      post_print <- rbind(post_print, param_dat)
     }
   }
 

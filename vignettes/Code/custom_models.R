@@ -37,13 +37,13 @@ pois_custom <- function(){
   dp <- Initialise(dp)
   dp <- Fit(dp, 2500)
 
-  pf <- PosteriorFrame(dp, 0:20, 1000)
+  pf <- PosteriorSummary(dp, 0:20)
 
   trueFrame <- data.frame(x=0:20,
                           y= 0.5*dpois(0:20, 3) + 0.5*dpois(0:20, 10))
 
   ggplot() +
-    geom_ribbon(data=pf, aes(x=x, ymin=X5., ymax=X95.), colour=NA, fill="red", alpha=0.2) +
+    geom_ribbon(data=pf, aes(x=x, ymin=Lower, ymax=Upper), colour=NA, fill="red", alpha=0.2) +
     geom_line(data=pf, aes(x=x, y=Mean), colour="red") +
     geom_line(data=trueFrame, aes(x=x, y=y)) + theme_pub() -> poissonPlot
 
@@ -91,13 +91,13 @@ gamma_custom <- function(){
   plot(dp)
 
 
-  pf <- PosteriorFrame(dp, ppoints(100)*6, 1000)
+  pf <- PosteriorSummary(dp, ppoints(100)*6)
 
   trueFrame <- data.frame(x=ppoints(100)*6,
                           y= 0.5*dgamma(ppoints(100)*6, 2, 4) + 0.5*dgamma(ppoints(100)*6, 6, 3))
 
   ggplot() +
-    geom_ribbon(data=pf, aes(x=x, ymin=X5., ymax=X95.), colour=NA, fill="red", alpha=0.2) +
+    geom_ribbon(data=pf, aes(x=x, ymin=Lower, ymax=Upper), colour=NA, fill="red", alpha=0.2) +
     geom_line(data=pf, aes(x=x, y=Mean), colour="red") +
     geom_line(data=trueFrame, aes(x=x, y=y)) + theme_pub() -> gammaPlot
 
@@ -105,7 +105,6 @@ gamma_custom <- function(){
   ggsave("../img/gamma_mixture_plot.pdf", gammaPlot, width=10, height=10, units="cm", device="pdf")
 
 }
-
 
 
 

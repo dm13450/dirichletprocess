@@ -31,8 +31,7 @@ plot_dirichletprocess_multivariate(x)
 \item{likelihood}{Logical, indicating whether to plot the likelihood from the
 dpobj.}
 
-\item{single}{Logical, indicating whether to draw the posterior from the last
-iteration or use the full cluster sequence.}
+\item{single}{Retained for backward compatibility.}
 
 \item{data_fill}{Passed to `fill` in the data geom, for example a color.
 Defaults to "black".}
@@ -43,12 +42,13 @@ Defaults to "black".}
 \item{data_bw}{Bandwith to be passed either as the binwidth of
 \code{geom_histogram}, or as the bw of \code{geom_density}.}
 
-\item{ci_size}{Numeric, the interval size to use. Defaults to .05.}
+\item{ci_size}{Numeric tail probability for the pointwise interval.
+Defaults to `.05`, giving a `0.95` interval when stored samples are
+available.}
 
 \item{xgrid_pts}{Integer, the number of points on the x-axis to evaluate.}
 
-\item{quant_pts}{Integer, the number of posterior functions to use to obtain
-the posterior and its interval.}
+\item{quant_pts}{Retained for backward compatibility.}
 
 \item{xlim}{Default NA. If a vector of length two, the limits on the x-axis
 of the plot. If \code{NA} (default), the limits will be automatically
@@ -59,14 +59,21 @@ A ggplot object.
 }
 \description{
 For a univariate Dirichlet process plot the density of the data with the
-posterior distribution and credible intervals overlayed. For multivariate
-data the first two columns of the data are plotted with the data points
-coloured by their cluster labels. The additional arguments are not used for
-multivariate data.
+posterior distribution and, when stored MCMC samples are available,
+\code{PosteriorSummary()}-based pointwise credible intervals overlayed. If
+no usable stored samples are available, the current fitted curve is shown
+without intervals and a message explains why. Top-level hierarchical HDP
+objects are intentionally unsupported in the rewritten live path; plot a
+local restaurant object such as \code{dplist$indDP[[j]]} instead.
+}
+\details{
+For multivariate data the first two columns of the data are plotted with the
+data points coloured by their cluster labels. The additional arguments are
+not used for multivariate data.
 }
 \examples{
 dp <- DirichletProcessGaussian(c(rnorm(50, 2, .2), rnorm(60)))
-dp <- Fit(dp, 100)
+dp <- Fit(dp, 100, progressBar = FALSE)
 plot(dp)
 
 plot(dp, likelihood = TRUE, data_method = "hist",

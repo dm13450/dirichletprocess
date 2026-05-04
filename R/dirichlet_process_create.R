@@ -21,11 +21,11 @@ DirichletProcessCreate <- function(x, mdObject, alphaPriorParameters = c(1, 1), 
                 alpha = rgamma(1, alphaPriorParameters[1], alphaPriorParameters[2]),
                 mhDraws=mhDraws)
 
-  class(dpObj) <- append(class(dpObj), c("dirichletprocess", class(mdObject)[-1]))
+  class(dpObj) <- append(class(dpObj),
+                         c("dirichletprocess", class_without_list(mdObject)))
 
   return(dpObj)
 }
-
 
 
 

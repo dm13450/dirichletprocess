@@ -14,6 +14,43 @@ ClusterComponentUpdate <- function(dpObj){
   UseMethod("ClusterComponentUpdate", dpObj)
 }
 
+stable_allocation_probs <- function(log_probs) {
+  log_probs[is.na(log_probs)] <- -Inf
+
+  pos_inf <- is.infinite(log_probs) & log_probs > 0
+  if (any(pos_inf)) {
+    probs <- numeric(length(log_probs))
+    probs[pos_inf] <- 1
+    return(probs)
+  }
+
+  finite_inds <- is.finite(log_probs)
+  if (!any(finite_inds)) {
+    return(rep_len(1, length(log_probs)))
+  }
+
+  max_log_prob <- max(log_probs[finite_inds])
+  probs <- exp(log_probs - max_log_prob)
+  probs[!is.finite(probs)] <- 0
+  return(probs)
+}
+
+weighted_log_probs <- function(weights, likelihoods) {
+  weights <- rep_len(weights, length(likelihoods))
+  likelihoods <- as.numeric(likelihoods)
+
+  log_probs <- rep_len(-Inf, length(likelihoods))
+
+  finite_mass <- !is.na(likelihoods) & !is.nan(likelihoods) &
+    weights > 0 & likelihoods > 0 & is.finite(likelihoods)
+  log_probs[finite_mass] <- log(weights[finite_mass]) + log(likelihoods[finite_mass])
+
+  infinite_mass <- weights > 0 & is.infinite(likelihoods) & likelihoods > 0
+  log_probs[infinite_mass] <- Inf
+
+  return(log_probs)
+}
+
 #' @export
 #' @rdname ClusterComponentUpdate
 ClusterComponentUpdate.conjugate <- function(dpObj) {
@@ -38,16 +75,12 @@ ClusterComponentUpdate.conjugate <- function(dpObj) {
 
     pointsPerCluster[currentLabel] <- pointsPerCluster[currentLabel] - 1
 
-    probs <- c(
-      pointsPerCluster * Likelihood(mdObj, y[i, , drop = FALSE], clusterParams),
-      alpha * predictiveArray[i]
-      )
-
-    probs[is.na(probs)] <- 0
-
-    if (all(probs == 0)) {
-      probs <- rep_len(1, length(probs))
-    }
+    log_probs <- c(
+      weighted_log_probs(pointsPerCluster,
+                         Likelihood(mdObj, y[i, , drop = FALSE], clusterParams)),
+      weighted_log_probs(alpha, predictiveArray[i])
+    )
+    probs <- stable_allocation_probs(log_probs)
 
     newLabel <- sample.int(numLabels + 1, 1, prob = probs)
 
@@ -104,26 +137,13 @@ ClusterComponentUpdate.nonconjugate <- function(dpObj) {
         aux <- PriorDraw(mdObj, m)
     }
 
-    probs <- c(
-      pointsPerCluster * Likelihood(mdObj, y[i, , drop = FALSE],clusterParams),
-      (alpha/m) * Likelihood(mdObj, y[i, , drop = FALSE], aux))
-
-    if (any(is.nan(probs))) {
-      probs[is.nan(probs)] <- 0
-    }
-
-
-    probs[is.na(probs)] <- 0
-
-
-    if (any(is.infinite(probs))) {
-      probs[is.infinite(probs)] <- 1
-      probs[-is.infinite(probs)] <- 0
-    }
-
-    if (all(probs == 0)) {
-      probs <- rep_len(1, length(probs))
-    }
+    log_probs <- c(
+      weighted_log_probs(pointsPerCluster,
+                         Likelihood(mdObj, y[i, , drop = FALSE], clusterParams)),
+      weighted_log_probs(alpha / m,
+                         Likelihood(mdObj, y[i, , drop = FALSE], aux))
+    )
+    probs <- stable_allocation_probs(log_probs)
     newLabel <- sample.int(numLabels + m, 1, prob = probs)
 
     dpObj$pointsPerCluster <- pointsPerCluster
@@ -154,7 +174,3 @@ ClusterComponentUpdate.hierarchical <- function(dpObj){
   }
   return(dpObj)
 }
-
-
-
-

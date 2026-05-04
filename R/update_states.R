@@ -1,6 +1,20 @@
-
+#' Update States for Dirichlet Process
+#'
+#' Updates the states of a Dirichlet process object using either C++ or R implementation.
+#'
+#' @param dp A Dirichlet process object
+#' @return Updated Dirichlet process object
+#' @export
 UpdateStates <- function(dp){
+  # Use C++ implementation if enabled
+  if (using_cpp_markov_samplers()) {
+    cpp_result <- UpdateStates.cpp(dp)
+    dp$states <- cpp_result[[1]]
+    dp$params <- cpp_result[[2]]
+    return(dp)
+  }
 
+  # Original R implementation
   new_states <- update_states(dp$mixingDistribution,
                               dp$data,
                               dp$states,
@@ -30,11 +44,29 @@ update_states <- function(mdobj, data, states, params, alpha, beta){
           (n_s2 + alpha)/(n_s2 + beta + alpha)
         )
 
-        likelihoodValue <- vapply(params[1:2], function(x) Likelihood(mdobj, data[i], x), numeric(1))
+        likelihoodValue <- numeric(2)
+        for (k in 1:2) {
+          # Extract parameters for state k
+          state_params <- params[[states[k]]]
+          if (inherits(mdobj, "normal")) {
+            if (!is.list(state_params) || !all(c("mean", "sd") %in% names(state_params))) {
+              if (is.numeric(state_params)) {
+                state_params <- list(mean = state_params, sd = 1)
+              } else if (is.list(state_params)) {
+                if (!("mean" %in% names(state_params))) state_params$mean <- 0
+                if (!("sd" %in% names(state_params))) state_params$sd <- 1
+              } else {
+                stop("Invalid state parameters for normal distribution")
+              }
+            }
+          }
+          # Call Likelihood with properly formatted parameters
+          likelihoodValue[k] <- Likelihood(mdobj, data[i], state_params)
+        }
 
         newState <- sample(states[1:2], 1, prob=wts*likelihoodValue)
         states[i] <- newState
-        params[i] <- params[newState]
+        params[[i]] <- params[[newState]]
       }
 
     } else if ( (i == n)  ) {
@@ -45,7 +77,24 @@ update_states <- function(mdobj, data, states, params, alpha, beta){
         n_sn1 <- sum(states_eq1) - 1
 
 
-        likelihoodValue <- vapply(params[(i-1):i], function(x) Likelihood(mdobj, data[i], x), numeric(1))
+        likelihoodValue <- numeric(2)
+        candidate_indices <- c(i-1, i)
+        for (k in 1:2) {
+          state_params <- params[[states[candidate_indices[k]]]]
+          if (inherits(mdobj, "normal")) {
+            if (!is.list(state_params) || !all(c("mean", "sd") %in% names(state_params))) {
+              if (is.numeric(state_params)) {
+                state_params <- list(mean = state_params, sd = 1)
+              } else if (is.list(state_params)) {
+                if (!("mean" %in% names(state_params))) state_params$mean <- 0
+                if (!("sd" %in% names(state_params))) state_params$sd <- 1
+              } else {
+                stop("Invalid state parameters for normal distribution")
+              }
+            }
+          }
+          likelihoodValue[k] <- Likelihood(mdobj, data[i], state_params)
+        }
 
         wts <- c(n_sn1 + alpha,
                  beta)
@@ -55,7 +104,7 @@ update_states <- function(mdobj, data, states, params, alpha, beta){
         newState <- sample(candiateStates, 1, prob=wts*likelihoodValue)
 
         states[i] <- states[newState]
-        params[i] <- params[newState]
+        params[[i]] <- params[[newState]]
       }
     } else {
 
@@ -70,7 +119,23 @@ update_states <- function(mdobj, data, states, params, alpha, beta){
 
         candiateStates <- c(i-1, i+1)
 
-        likelihoodValue <- vapply(params[candiateStates], function(x) Likelihood(mdobj, data[i], x), numeric(1))
+        likelihoodValue <- numeric(2)
+        for (k in 1:2) {
+          state_params <- params[[states[candiateStates[k]]]]
+          if (inherits(mdobj, "normal")) {
+            if (!is.list(state_params) || !all(c("mean", "sd") %in% names(state_params))) {
+              if (is.numeric(state_params)) {
+                state_params <- list(mean = state_params, sd = 1)
+              } else if (is.list(state_params)) {
+                if (!("mean" %in% names(state_params))) state_params$mean <- 0
+                if (!("sd" %in% names(state_params))) state_params$sd <- 1
+              } else {
+                stop("Invalid state parameters for normal distribution")
+              }
+            }
+          }
+          likelihoodValue[k] <- Likelihood(mdobj, data[i], state_params)
+        }
 
         wts <- c(
           (nii + alpha)/(nii + 1 + beta + alpha),
@@ -80,7 +145,7 @@ update_states <- function(mdobj, data, states, params, alpha, beta){
         newState <- sample(candiateStates, 1, prob = wts*likelihoodValue)
 
         states[i] <- states[newState]
-        params[i] <- params[newState]
+        params[[i]] <- params[[newState]]
 
       }
 
@@ -98,5 +163,3 @@ relabel_states <- function(dp_states){
   newUniqueStates <- length(unique(dp_states))
   rep(seq_len(newUniqueStates), table(dp_states))
 }
-
-

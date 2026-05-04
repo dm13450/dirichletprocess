@@ -1,14 +1,20 @@
-#' Generate the posterior function of the Dirichlet function
+#' Draw a posterior function conditional on one fitted state
+#'
+#' Lower-level helper for drawing a posterior function conditional on the
+#' current fitted state, or on one retained stored iteration when
+#' \code{ind} is supplied. For retained-sample posterior summaries across
+#' multiple stored iterations, prefer \code{\link{PosteriorSummary}}.
 #'
 #'@param dpobj Fitted Dirichlet Process object
-#'@param ind What iteration to draw the posterior function from. Defaults to the last iteration.
-#'@return A posterior function f(x).
+#'@param ind Stored-iteration index to draw from. If omitted, the current
+#'  fitted state is used.
+#'@return A posterior function \code{f(x)}.
 #'
 #'@examples
 #'
 #'y <- rnorm(10)
 #'dp <- DirichletProcessGaussian(y)
-#'dp <- Fit(dp, 5)
+#'dp <- Fit(dp, 5, progressBar = FALSE)
 #'postFuncDraw <- PosteriorFunction(dp)
 #'plot(-3:3, postFuncDraw(-3:3))
 #'
