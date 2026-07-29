@@ -99,8 +99,6 @@ test_that("Multivariate Normal Predictive", {
 
 })
 
-
-
 test_that("Multivariate Normal Dirichlet Create and Initialise", {
 
   test_data <- mvtnorm::rmvnorm(10, c(0,0), diag(2))
@@ -161,6 +159,8 @@ test_that("Multivariate Normal Cluster Label Change",{
   dpobj <- Initialise(dpobj)
 
   dpobj <- ClusterLabelChange(dpobj, 1, 11, 1)
+
+  expect_equal(dpobj$clusterLabels[1], 11)
 
 })
 

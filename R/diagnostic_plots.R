@@ -36,16 +36,15 @@ DiagnosticPlots <- function(dpobj, gg = FALSE) {
 
 }
 
-
-
 #' @export
-#' @describeIn  DiagnosticPlots Trace plot of alpha.
+#' @describeIn DiagnosticPlots Trace plot of alpha.
+#' @importFrom ggplot2 .data
 AlphaTraceplot <- function(dpobj, gg = TRUE) {
 
   if (gg) {
     p <- ggplot2::ggplot(data.frame(Alpha = dpobj$alphaChain,
                                Index = seq_along(dpobj$alphaChain)),
-                    ggplot2::aes_string("Index", "Alpha")) +
+                    ggplot2::aes(x=.data$Index, y=.data$Alpha)) +
       ggplot2::geom_line() +
       ggplot2::ggtitle("Traceplot of alpha")
     return(p)
@@ -58,6 +57,7 @@ AlphaTraceplot <- function(dpobj, gg = TRUE) {
 
 #' @export
 #' @describeIn  DiagnosticPlots Plot of the prior and posterior of alpha.
+#' @importFrom ggplot2 .data
 AlphaPriorPosteriorPlot <- function(dpobj, prior_color = "#2c7fb8", post_color = "#d95f02", gg = TRUE) {
 
   dap <- dpobj$alphaPriorParameters
@@ -69,14 +69,17 @@ AlphaPriorPosteriorPlot <- function(dpobj, prior_color = "#2c7fb8", post_color =
 
     p <- ggplot2::ggplot() +
       ggplot2::geom_histogram(data = data.frame(Alpha = dpobj$alphaChain),
-                              mapping = ggplot2::aes_string("Alpha",
-                                                            "..density..",
-                                                            colour = "'Posterior'", fill = "'Posterior'"),
+                              mapping = ggplot2::aes(x=.data$Alpha,
+                                                     ggplot2::after_stat(.data$density),
+                                                     colour = "'Posterior'",
+                                                     fill = "'Posterior'"),
                               bins = min(its / 10, 100)) +
       ggplot2::stat_function(fun = prior_fun,
-                             mapping = ggplot2::aes_string(colour = "'Prior'")) +
+                             mapping = ggplot2::aes(colour = "'Prior'")) +
       ggplot2::ggtitle("Prior and posterior of alpha") +
-      ggplot2::scale_colour_manual(labels = c("Posterior", "Prior"), values = c(prior_color, post_color), aesthetics = c("colour", "fill"), name = " ")
+      ggplot2::scale_colour_manual(labels = c("Posterior", "Prior"),
+                                   values = c(prior_color, post_color),
+                                   aesthetics = c("colour", "fill"), name = " ")
     return(p)
   } else {
     graphics::hist(dpobj$alphaChain, freq = FALSE, breaks = min(its / 10, 100),
@@ -90,6 +93,7 @@ AlphaPriorPosteriorPlot <- function(dpobj, prior_color = "#2c7fb8", post_color =
 
 #' @export
 #' @describeIn  DiagnosticPlots Trace plot of the number of clusters.
+#' @importFrom ggplot2 .data
 ClusterTraceplot <- function(dpobj, gg = TRUE) {
 
   n_clust <- vapply(dpobj$labelsChain, function(x) length(unique(x)), numeric(1))
@@ -97,7 +101,7 @@ ClusterTraceplot <- function(dpobj, gg = TRUE) {
   if (gg) {
     p <- ggplot2::ggplot(data.frame(nclust = n_clust,
                                Index = seq_along(n_clust)),
-                    ggplot2::aes_string("Index", "nclust")) +
+                    ggplot2::aes(x=.data$Index, y=.data$nclust)) +
       ggplot2::geom_line() +
       ggplot2::ylab("Number of clusters") +
       ggplot2::ggtitle("Traceplot of the number of clusters")
@@ -117,7 +121,7 @@ LikelihoodTraceplot <- function(dpobj, gg = TRUE) {
   if (gg) {
     p <- ggplot2::ggplot(data.frame(Lik = dpobj$likelihoodChain,
                                Index = seq_along(dpobj$likelihoodChain)),
-                    ggplot2::aes_string("Index", "Lik")) +
+                    ggplot2::aes(x=.data$Index, y=.data$Lik)) +
       ggplot2::geom_line() +
       ggplot2::ylab("Log-likelihood") +
       ggplot2::ggtitle("Traceplot of the log-likelihood")

@@ -32,6 +32,7 @@ plot_dirichletprocess.mvnormal <- function(x, ...) {
 
 #' @export
 #' @rdname plot.dirichletprocess
+#' @importFrom ggplot2 .data
 plot_dirichletprocess_univariate <- function(x,
                                              likelihood  = FALSE,
                                              single      = TRUE,
@@ -43,15 +44,17 @@ plot_dirichletprocess_univariate <- function(x,
                                              quant_pts   = 100,
                                              xlim        = NA) {
 
-  graph <- ggplot2::ggplot(data.frame(dt = x$data), ggplot2::aes_(x = ~dt)) +
+  graph <- ggplot2::ggplot(data.frame(dt = x$data), ggplot2::aes(x = .data$dt)) +
     ggplot2::theme(axis.title = ggplot2::element_blank())
 
   if (data_method == "density") {
     graph <- graph + ggplot2::geom_density(fill = data_fill,
-                                           bw = ifelse(is.null(data_bw), "nrd0", data_bw))
+                                           bw = ifelse(is.null(data_bw),
+                                                       "nrd0",
+                                                       data_bw))
   } else if (data_method == "hist" | data_method == "histogram") {
-    graph <- graph + ggplot2::geom_histogram(ggplot2::aes_(x = ~dt,
-                                                           y = ~..density..),
+    graph <- graph + ggplot2::geom_histogram(ggplot2::aes(x = .data$dt,
+                                                          ggplot2::after_stat(.data$density)),
                                              fill = data_fill,
                                              binwidth = data_bw)
   } else if (data_method != "none") {
@@ -76,9 +79,9 @@ plot_dirichletprocess_univariate <- function(x,
                        quantile, probs = c(ci_size/2, 0.5, 1 - ci_size/2),
                        na.rm = TRUE)
 
-  graph <- graph + ggplot2::geom_line(data=data.frame(x=x_grid, y=posteriorCI[1,]), ggplot2::aes_(x=~x,y=~y, colour="Posterior"), linetype=2)
-  graph <- graph + ggplot2::geom_line(data=data.frame(x=x_grid, y=posteriorCI[2,]), ggplot2::aes_(x=~x,y=~y, colour="Posterior"))
-  graph <- graph + ggplot2::geom_line(data=data.frame(x=x_grid, y=posteriorCI[3,]), ggplot2::aes_(x=~x,y=~y, colour="Posterior"), linetype=2)
+  graph <- graph + ggplot2::geom_line(data=data.frame(x=x_grid, y=posteriorCI[1,]), ggplot2::aes(x=.data$x,y=.data$y, colour="Posterior"), linetype=2)
+  graph <- graph + ggplot2::geom_line(data=data.frame(x=x_grid, y=posteriorCI[2,]), ggplot2::aes(x=.data$x,y=.data$y, colour="Posterior"))
+  graph <- graph + ggplot2::geom_line(data=data.frame(x=x_grid, y=posteriorCI[3,]), ggplot2::aes(x=.data$x,y=.data$y, colour="Posterior"), linetype=2)
 
   if (likelihood) {
     graph <- graph + ggplot2::stat_function(fun = function(z) LikelihoodFunction(x)(z),
@@ -93,11 +96,17 @@ plot_dirichletprocess_univariate <- function(x,
 
 #' @export
 #' @rdname plot.dirichletprocess
+#' @importFrom ggplot2 .data
 plot_dirichletprocess_multivariate <- function(x) {
 
-  plotFrame <- data.frame(x1=x$data[,1], x2=x$data[,2], Cluster=as.factor(x$clusterLabel))
+  plotFrame <- data.frame(x1=x$data[,1],
+                          x2=x$data[,2],
+                          Cluster=as.factor(x$clusterLabel))
 
-  graph <- ggplot2::ggplot(plotFrame, ggplot2::aes_(x=~x1, y=~x2, colour=~Cluster)) +
+  graph <- ggplot2::ggplot(plotFrame,
+                           ggplot2::aes(x=.data$x1,
+                                        y=.data$x2,
+                                        colour=.data$Cluster)) +
     ggplot2::geom_point()
   return(graph)
 }

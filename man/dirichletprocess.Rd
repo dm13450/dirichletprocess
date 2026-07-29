@@ -7,3 +7,29 @@
 \description{
 Create, fit and take posterior samples from a Dirichlet process.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/dm13450/dirichletprocess}
+  \item \url{https://dm13450.github.io/dirichletprocess/}
+  \item Report bugs at \url{https://github.com/dm13450/dirichletprocess/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Dean Markwick \email{dean.markwick@talk21.com}
+
+Authors:
+\itemize{
+  \item Dean Markwick \email{dean.markwick@talk21.com}
+  \item Gordon J. Ross \email{gordon@gordonjross.co.uk}
+}
+
+Other contributors:
+\itemize{
+  \item Kees Mulder \email{keestimmulder@gmail.com} (\href{https://orcid.org/0000-0002-5387-3812}{ORCID}) [contributor]
+  \item Giovanni Sighinolfi \email{giovanni.sighinolfi2@studio.unibo.it} [contributor]
+  \item Filippo Fiocchi \email{filippofiocchi1@gmail.com} [contributor]
+}
+
+}

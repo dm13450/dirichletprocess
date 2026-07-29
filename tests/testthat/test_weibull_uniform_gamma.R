@@ -83,6 +83,8 @@ test_that("Parameter Proposal", {
 
   old_param <- PriorDraw(test_mdobj, 1)
   new_param <- MhParameterProposal(test_mdobj, old_param)
+
+  expect_shape(new_param[[1]], dim = dim(old_param[[1]]))
 })
 
 
