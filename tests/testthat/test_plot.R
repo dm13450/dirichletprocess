@@ -70,10 +70,6 @@ test_that("MvNormal Plotting", {
 })
 
 
-
-
-
-
 test_that("Plotting options", {
 
   dp <- DirichletProcessGaussian(c(rnorm(50, 2, .2), rnorm(60)))

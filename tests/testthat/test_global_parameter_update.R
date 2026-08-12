@@ -97,11 +97,14 @@ test_that("2 Data; 1 Cluster, 2D", {
   expect_equal(dpobjlistTest$indDP[[1]]$clusterParameters[[1]][,,1], dpobjlistTest$indDP[[2]]$clusterParameters[[1]][,,1])
 })
 
-test_that("5 Data",{
+test_that("5 Data Beta",{
   dataTest <- list(rbeta(10, 1, 3), rbeta(10, 1, 3), rbeta(10, 3, 5), rbeta(10, 4, 5), rbeta(10, 6, 3))
   dpobjlistTest <- DirichletProcessHierarchicalBeta(dataTest, 1)
 
   dpobjlistTest <- GlobalParameterUpdate(dpobjlistTest)
+
+  expect_equal(dim(dpobjlistTest$indDP[[1]]$clusterParameters[[1]]), c(1,1,1))
+  expect_equal(dim(dpobjlistTest$indDP[[1]]$clusterParameters[[2]]), c(1,1,1))
 
 })
 

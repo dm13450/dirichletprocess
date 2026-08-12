@@ -17,10 +17,12 @@ knitr::opts_chunk$set(
 
 # dirichletprocess
 
-[![R build status](https://github.com/dm13450/dirichletprocess/workflows/R-CMD-check/badge.svg)](https://github.com/dm13450/dirichletprocess/actions)
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/dm13450/dirichletprocess/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dm13450/dirichletprocess/actions/workflows/R-CMD-check.yaml)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/dm13450/dirichletprocess?branch=master&svg=true)](https://ci.appveyor.com/project/dm13450/dirichletprocess)
 [![Coverage Status](https://codecov.io/gh/dm13450/dirichletprocess/branch/master/graph/badge.svg)](https://app.codecov.io/gh/dm13450/dirichletprocess)
-
+[![Codecov test coverage](https://codecov.io/gh/dm13450/dirichletprocess/graph/badge.svg)](https://app.codecov.io/gh/dm13450/dirichletprocess)
+<!-- badges: end -->
 
 The dirichletprocess package provides tools for you to build custom Dirichlet process mixture models. You can use the pre-built Normal/Weibull/Beta distributions or create your own following the instructions in the vignette. In as little as four lines of code you can be modelling your data nonparametrically.
 

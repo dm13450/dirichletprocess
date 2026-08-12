@@ -5,4 +5,5 @@ inst/doc
 .Rhistory
 clean_bib.sh
 tests/testthat/Rplots.pdf
+.DS_Store
 

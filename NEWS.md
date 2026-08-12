@@ -1,4 +1,10 @@
-# dirichletprocess 0.4.0.9000
+# dirichletprocess 0.4.2.9000
+
+* Updated GitHub Actions
+* Fixed ggplot deprecation
+* Added some missing tests
+
+# dirichletprocess 0.4.2
 
 * Added PriorFunction and PriorClusters to draw from the base measure. 
 * Fixed a bug in the likelihood calculation (#21) by Filippo Fiocchi.
