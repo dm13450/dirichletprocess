@@ -2,19 +2,25 @@
 % Please edit documentation in R/dirichlet_hmm_create.R
 \name{DirichletHMMCreate}
 \alias{DirichletHMMCreate}
-\title{Create a generic Dirichlet process hidden Markov Model}
+\title{Hidden Markov Dirichlet Process}
 \usage{
-DirichletHMMCreate(x, mdobj, alpha, beta)
+DirichletHMMCreate(x, mdobj, alpha, beta, cpp = FALSE)
 }
 \arguments{
 \item{x}{Data to be modelled}
 
-\item{mdobj}{Mixing disitribution object}
+\item{mdobj}{Mixing distribution object}
 
 \item{alpha}{Alpha parameter}
 
 \item{beta}{Beta parameter}
+
+\item{cpp}{Logical compatibility argument. HMM compiled routing is controlled
+separately from the ordinary DP C++ override; this argument is accepted for
+backward compatibility only and does not itself enable compiled HMM
+fitting or mutate unrelated routing flags.}
 }
 \description{
-Create a hidden Markov model where the data is believed to be generated from the mixing object distribution.
+Create a hidden Markov model where the data is believed to be generated from
+the mixing object distribution.
 }

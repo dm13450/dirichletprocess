@@ -1,10 +1,22 @@
-# dirichletprocess 0.4.2.9000
+# dirichletprocess 2.0.0
 
-* Updated GitHub Actions
-* Fixed ggplot deprecation
-* Added some missing tests
+## Major changes
 
-# dirichletprocess 0.4.2
+
+* Added compiled C++ sampler implementations for the main ordinary Dirichlet process mixture models.
+* Added `PosteriorSummary()` for posterior means, medians, and pointwise credible intervals computed from retained MCMC samples.
+* `Fit()` now retains samples inside the fitted object by default with
+  `storeSamples = TRUE` and `thinning = 1`. Repeated `Fit()` calls append
+  newly retained samples only. `storeSamples = FALSE` still updates the
+  current fitted state but appends no new retained history.
+* Updated ordinary univariate plotting so credible intervals are computed from retained MCMC samples when available.
+* Reworked the supported hierarchical Beta and hierarchical multivariate normal workflows around an explicit restaurant/dish representation.
+* Improved Weibull likelihood and prior support handling for invalid proposals and off-support values.
+* Updated documentation, examples, and the package vignette to reflect the current posterior-summary and plotting interfaces.
+
+
+
+# dirichletprocess 0.4.0.9000
 
 * Added PriorFunction and PriorClusters to draw from the base measure. 
 * Fixed a bug in the likelihood calculation (#21) by Filippo Fiocchi.
@@ -57,6 +69,4 @@
 
 * First public release.
 * Added a `NEWS.md` file to track changes to the package.
-
-
 

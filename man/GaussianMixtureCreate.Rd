@@ -2,7 +2,7 @@
 % Please edit documentation in R/normal_inverse_gamma.R
 \name{GaussianMixtureCreate}
 \alias{GaussianMixtureCreate}
-\title{Create a Normal mixing distribution}
+\title{Gaussian Mixing Distribution}
 \usage{
 GaussianMixtureCreate(priorParameters = c(0, 1, 1, 1))
 }

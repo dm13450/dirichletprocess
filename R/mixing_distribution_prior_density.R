@@ -1,4 +1,4 @@
-#'Calculate the prior density of a mixing distribution
+#' Prior Density
 #'
 #'@param mdObj Mixing distribution
 #'@param theta Prior parameters

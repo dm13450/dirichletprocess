@@ -4,7 +4,9 @@ context("Exponential Mixing Distribution Tests")
 test_mdobj <- ExponentialMixtureCreate(c(0.1, 0.1))
 
 test_that("Creation", {
-  expect_is(test_mdobj, c("list", "exponential", "conjugate"))
+  expect_equal(class(test_mdobj),
+               c("exponential", "mixing_distribution", "list"))
+  expect_false(inherits(test_mdobj, "conjugate"))
 })
 
 test_that("Likelihood: 1 Parameter", {

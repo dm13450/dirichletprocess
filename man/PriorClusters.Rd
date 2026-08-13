@@ -2,7 +2,7 @@
 % Please edit documentation in R/prior_clusters.R
 \name{PriorClusters}
 \alias{PriorClusters}
-\title{Draw prior clusters and weights from the Dirichlet process}
+\title{Prior Clusters}
 \usage{
 PriorClusters(dpobj)
 }
@@ -13,5 +13,5 @@ PriorClusters(dpobj)
 A list of weights and parameters of the prior distribution of the Dirichcet process
 }
 \description{
-Draw prior clusters and weights from the Dirichlet process
+Prior Clusters
 }

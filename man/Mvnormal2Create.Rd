@@ -2,7 +2,7 @@
 % Please edit documentation in R/mvnormal_semi_conjugate.R
 \name{Mvnormal2Create}
 \alias{Mvnormal2Create}
-\title{Create a multivariate normal mixing distribution with semi conjugate prior}
+\title{Semi-Conjugate MVNormal Mixing Distribution}
 \usage{
 Mvnormal2Create(priorParameters)
 }
@@ -10,5 +10,5 @@ Mvnormal2Create(priorParameters)
 \item{priorParameters}{The prior parameters for the Multivariate Normal.}
 }
 \description{
-Create a multivariate normal mixing distribution with semi conjugate prior
+Semi-Conjugate MVNormal Mixing Distribution
 }

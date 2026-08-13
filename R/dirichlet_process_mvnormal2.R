@@ -1,14 +1,18 @@
-#' Create a Dirichlet mixture of multivariate normal distributions with semi-conjugate prior.
+#' Semi-Conjugate MVNormal Dirichlet Process Mixture
 #'
 #'
 #'
 #' @param y Data
 #' @param g0Priors Prior parameters for the base distribution.
 #' @param alphaPriors Alpha prior parameters. See \code{\link{UpdateAlpha}}.
+#' @param cpp Logical compatibility argument. Constructors no longer toggle the
+#'   package-wide C++ implementation flag; `Fit()` now selects the validated
+#'   C++ path automatically when supported.
 #' @export
 DirichletProcessMvnormal2 <- function(y,
-                                     g0Priors,
-                                     alphaPriors = c(2, 4)) {
+                                      g0Priors,
+                                      alphaPriors = c(2, 4),
+                                      cpp = FALSE) {
 
   if (!is.matrix(y)){
     y <- matrix(y, ncol=length(y))
@@ -20,7 +24,6 @@ DirichletProcessMvnormal2 <- function(y,
                      mu0 = numeric(ncol(y)),
                      sigma0 = diag(ncol(y)))
   }
-
 
   mdobj <- Mvnormal2Create(g0Priors)
   dpobj <- DirichletProcessCreate(y, mdobj, alphaPriors)

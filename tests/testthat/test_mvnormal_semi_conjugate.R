@@ -9,7 +9,8 @@ test_that("Mixture Object Create", {
 
   mdobj <- Mvnormal2Create(pp)
 
-  expect_s3_class(mdobj, c("list", "MixingDistribution", "mvnormal", "nonconjugate"))
+  expect_equal(class(mdobj), c("mvnormal2", "mixing_distribution", "list"))
+  expect_false(inherits(mdobj, "nonconjugate"))
 })
 
 test_that("Multivariate Normal Likelihood", {
@@ -20,10 +21,22 @@ test_that("Multivariate Normal Likelihood", {
 
   expect_equal(lik_test, 1/sqrt(4*pi^2))
 
-  test_theta_multi <- list(mu=array(c(0,0), c(1,2,2)), sig=array(diag(2), c(2,2,2)))
-  lik_test_multi <- Likelihood(mdobj, matrix(c(0,0), nrow=1), test_theta_multi)
+  old_cpp_setting <- using_cpp()
+  on.exit(set_use_cpp(old_cpp_setting), add = TRUE)
+  set_use_cpp(TRUE)
 
-  expect_equal(lik_test_multi, rep.int(1/sqrt(4*pi^2), 2))
+  test_theta_multi <- list(
+    mu = array(c(0, 0,
+                 2, 2), c(1, 2, 2)),
+    sig = array(c(diag(2), diag(2)), c(2, 2, 2))
+  )
+  lik_test_multi <- Likelihood(mdobj, matrix(c(0,0), nrow=1), test_theta_multi)
+  expected_multi <- c(
+    mvtnorm::dmvnorm(matrix(c(0, 0), nrow = 1), c(0, 0), diag(2)),
+    mvtnorm::dmvnorm(matrix(c(0, 0), nrow = 1), c(2, 2), diag(2))
+  )
+
+  expect_equal(lik_test_multi, expected_multi)
 
 })
 
@@ -68,7 +81,10 @@ test_that("DP Object", {
   test_data <- mvtnorm::rmvnorm(10, as.matrix(c(0,0), nrow=1), diag(2))
   dp <- DirichletProcessMvnormal2(test_data)
 
-  expect_is(dp, c("list", "dirichletprocess", "mvnormal2", "nonconjugate"))
+  expect_equal(class(dp), c("dirichletprocess", "list"))
+  expect_false(inherits(dp, "mvnormal2"))
+  expect_false(inherits(dp, "nonconjugate"))
+  expect_equal(dp$mixingDistribution$priorParameters$nu0, 2)
 
 })
 
@@ -78,10 +94,8 @@ test_that("DP Object Fit", {
   dp <- DirichletProcessMvnormal2(test_data)
   dp <- Fit(dp, 2)
 
-  expect_is(dp, c("list", "dirichletprocess", "mvnormal2", "nonconjugate"))
+  expect_equal(class(dp), c("dirichletprocess", "list"))
   expect_length(dp$likelihoodChain, 2)
   expect_length(dp$alphaChain, 2)
 
 })
-
-

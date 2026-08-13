@@ -8,7 +8,7 @@
 \alias{Predictive.mvnormal}
 \alias{Predictive.normalFixedVariance}
 \alias{Predictive.normal}
-\title{Calculate how well the prior predicts the data.}
+\title{Predictive Density}
 \usage{
 \method{Predictive}{exponential}(mdObj, x)
 
@@ -29,5 +29,5 @@ Predictive(mdObj, x)
 The probability of the data being from the prior.
 }
 \description{
-Calculate how well the prior predicts the data.
+Predictive Density
 }

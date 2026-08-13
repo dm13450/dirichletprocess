@@ -2,7 +2,7 @@
 % Please edit documentation in R/mixing_distribution.R
 \name{MixingDistribution}
 \alias{MixingDistribution}
-\title{Create a mixing distribution object}
+\title{Mixing Distribution}
 \usage{
 MixingDistribution(
   distribution,

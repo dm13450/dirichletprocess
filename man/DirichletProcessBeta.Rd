@@ -2,44 +2,60 @@
 % Please edit documentation in R/dirichlet_process_beta.R
 \name{DirichletProcessBeta}
 \alias{DirichletProcessBeta}
-\title{Dirichlet process mixture of the Beta distribution.}
+\title{Beta Dirichlet Process Mixture}
 \usage{
 DirichletProcessBeta(
   y,
-  maxY,
+  maxY = 1,
   g0Priors = c(2, 8),
   alphaPrior = c(2, 4),
   mhStep = c(1, 1),
   hyperPriorParameters = c(1, 0.125),
   verbose = TRUE,
-  mhDraws = 250
+  mhDraws = 250,
+  cpp = FALSE,
+  ...
 )
 }
 \arguments{
 \item{y}{Data for which to be modelled.}
 
-\item{maxY}{End point of the data}
+\item{maxY}{End point of the data. Defaults to 1 for backward compatibility.}
 
-\item{g0Priors}{Prior parameters of the base measure \eqn{(\alpha _0, \beta _0)}.}
+\item{g0Priors}{Prior parameters of the base measure for the precision
+component \eqn{(\alpha _0, \beta _0)}.}
 
-\item{alphaPrior}{Prior parameters for the concentration parameter. See also \code{\link{UpdateAlpha}}.}
+\item{alphaPrior}{Prior parameters for the concentration parameter.}
 
-\item{mhStep}{Step size for Metropolis Hastings sampling algorithm.}
+\item{mhStep}{Step size for the Metropolis-Hastings sampler.}
 
-\item{hyperPriorParameters}{Hyper-prior parameters for the prior distributions of the base measure parameters \eqn{(a, b)}.}
+\item{hyperPriorParameters}{Hyper-prior parameters for the prior distributions
+of the base measure parameters \eqn{(a, b)}.}
 
-\item{verbose}{Logical, control the level of on screen output.}
+\item{verbose}{Logical, control the level of on-screen output.}
 
 \item{mhDraws}{Number of Metropolis-Hastings samples to perform for each cluster update.}
+
+\item{cpp}{Logical compatibility argument. Constructors no longer toggle the
+package-wide C++ implementation flag; `Fit()` now selects the validated
+C++ path automatically when supported.}
+
+\item{...}{Backward-compatible aliases such as \code{alphaPriors} or \code{mhStepSize}.}
 }
 \value{
 Dirichlet process object
 }
 \description{
-Create a Dirichlet process object using the mean and scale parameterisation of the Beta distribution bounded on \eqn{(0, maxY)}.
+Create a Dirichlet process object using the mean and precision
+parameterisation of the Beta distribution bounded on \eqn{(0, maxY)}.
+This is not the ordinary Beta \eqn{(\alpha, \beta)} shape-parameter
+parameterisation.
 }
 \details{
-\eqn{G_0 (\mu , \nu | maxY, \alpha _0 , \beta _0) = U(\mu | 0, maxY) \mathrm{Inv-Gamma} (\nu | \alpha _0, \beta _0)}.
+\eqn{G_0 (\mu , \nu | maxY, \alpha _0 , \beta _0) = U(\mu | 0, maxY)
+\mathrm{Inv-Gamma} (\nu | \alpha _0, \beta _0)}.
 
-The parameter \eqn{\beta _0} also has a prior distribution \eqn{\beta _0 \sim \mathrm{Gamma} (a, b)} if the user selects \code{Fit(...,updatePrior=TRUE)}.
+The parameter \eqn{\beta _0} also has a prior distribution
+\eqn{\beta _0 \sim \mathrm{Gamma} (a, b)} if the user selects
+\code{Fit(..., updatePrior = TRUE)}.
 }

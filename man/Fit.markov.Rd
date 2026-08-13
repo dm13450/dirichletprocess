@@ -2,22 +2,24 @@
 % Please edit documentation in R/fit_hmm.R
 \name{Fit.markov}
 \alias{Fit.markov}
-\title{Fit a Hidden Markov Dirichlet Process Model}
+\title{Fit Hidden Markov Dirichlet Process}
 \usage{
-\method{Fit}{markov}(dpObj, its, updatePrior = F, progressBar = F)
+\method{Fit}{markov}(dpObj, its, updatePrior = FALSE, progressBar = FALSE, ...)
 }
 \arguments{
 \item{dpObj}{Initialised Dirichlet Process object}
 
 \item{its}{Number of iterations to use}
 
-\item{updatePrior}{Logical flag, defaults to \code{FAlSE}. Set whether the parameters of the base measure are updated.}
+\item{updatePrior}{Logical flag, defaults to \code{FALSE}. Set whether the parameters of the base measure are updated.}
 
 \item{progressBar}{Logical flag indicating whether to display a progress bar.}
+
+\item{...}{Additional arguments}
 }
 \value{
 A Dirichlet Process object with the fitted cluster parameters and states.
 }
 \description{
-Fit a Hidden Markov Dirichlet Process Model
+Fit Hidden Markov Dirichlet Process
 }

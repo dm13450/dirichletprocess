@@ -1,4 +1,4 @@
-#' Create a Dirichlet Process object
+#' Dirichlet Process Object
 #'
 #' Using a  previously created Mixing Distribution Object (\code{mdObject}) create a Dirichlet process object.
 #' `\code{alphaPriorParameters} sets the parameters for alpha using the shape-rate specification of the gamma distribution.
@@ -19,15 +19,14 @@ DirichletProcessCreate <- function(x, mdObject, alphaPriorParameters = c(1, 1), 
                 n = dim(x)[1],
                 alphaPriorParameters = alphaPriorParameters,
                 alpha = rgamma(1, alphaPriorParameters[1], alphaPriorParameters[2]),
+                kernel = mixing_distribution_kernel(mdObject),
+                conjugacy = mixing_distribution_conjugacy(mdObject),
                 mhDraws=mhDraws)
 
-  class(dpObj) <- append(class(dpObj), c("dirichletprocess", class(mdObject)[-1]))
+  class(dpObj) <- c("dirichletprocess", "list")
 
   return(dpObj)
 }
-
-
-
 
 
 

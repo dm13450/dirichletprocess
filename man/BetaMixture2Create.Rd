@@ -2,7 +2,7 @@
 % Please edit documentation in R/beta_uniform_pareto.R
 \name{BetaMixture2Create}
 \alias{BetaMixture2Create}
-\title{Create a Beta mixture with zeros at the boundaries.}
+\title{Beta Mixture With Boundary Masses}
 \usage{
 BetaMixture2Create(priorParameters = 2, mhStepSize = c(1, 1), maxT = 1)
 }
@@ -17,5 +17,6 @@ BetaMixture2Create(priorParameters = 2, mhStepSize = c(1, 1), maxT = 1)
 A mixing distribution object.
 }
 \description{
-Create a Beta mixture with zeros at the boundaries.
+This bounded Beta mixing distribution also uses the mean and precision
+parameterisation on \eqn{(0, maxT)}.
 }

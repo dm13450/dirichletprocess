@@ -1,9 +1,14 @@
-#' Update the \eqn{\alpha} and \eqn{\beta} parameter of a hidden Markov Dirichlet process model.
+#' Update HMM Concentration Parameters
 #'
 #' @param dp Dirichlet process object
 #' @export
 UpdateAlphaBeta <- function(dp){
+  # Use C++ implementation if enabled
+  if (using_cpp_markov_samplers()) {
+    return(UpdateAlphaBeta.cpp(dp))
+  }
 
+  # Original R implementation
   newparams <- update_alpha_beta(dp$states)
 
   dp$alpha <- newparams[1]

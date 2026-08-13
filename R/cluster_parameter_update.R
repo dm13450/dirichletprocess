@@ -1,4 +1,4 @@
-#'Update the cluster parameters of the Dirichlet process.
+#' Update Cluster Parameters
 #'
 #' Update the parameters of each individual cluster using all the data assigned to the particular cluster.
 #' A sample is taken from the posterior distribution using a direct sample if the mixing distribution is conjugate or the Metropolis Hastings algorithm for non-conjugate mixtures.
@@ -12,6 +12,22 @@
 #'
 #'@export
 ClusterParameterUpdate <- function(dpObj) UseMethod("ClusterParameterUpdate", dpObj)
+
+#'@export
+#'@rdname ClusterParameterUpdate
+ClusterParameterUpdate.dirichletprocess <- function(dpObj) {
+  if (is_conjugate_dp(dpObj)) {
+    return(ClusterParameterUpdate.conjugate(dpObj))
+  }
+
+  if (identical(dp_conjugacy(dpObj), "nonconjugate")) {
+    return(ClusterParameterUpdate.nonconjugate(dpObj))
+  }
+
+  stop("ClusterParameterUpdate not implemented for this dirichletprocess object.",
+       call. = FALSE)
+}
+
 #'@export
 ClusterParameterUpdate.conjugate <- function(dpObj) {
 
@@ -35,6 +51,14 @@ ClusterParameterUpdate.conjugate <- function(dpObj) {
   }
 
   dpObj$clusterParameters <- clusterParams
+  return(dpObj)
+}
+#' @export
+#' @rdname ClusterParameterUpdate
+ClusterParameterUpdate.hierarchical <- function(dpObj) {
+  for (i in seq_along(dpObj$indDP)) {
+    dpObj$indDP[[i]] <- ClusterParameterUpdate(dpObj$indDP[[i]])
+  }
   return(dpObj)
 }
 #'@export
@@ -87,6 +111,3 @@ cluster_parameter_update <- function(mdobj, data, clusters, params){
   #newParamsFull <- newParams[clusters]
   return(newParams)
 }
-
-
-

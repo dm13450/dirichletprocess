@@ -6,7 +6,7 @@
 \alias{AlphaPriorPosteriorPlot}
 \alias{ClusterTraceplot}
 \alias{LikelihoodTraceplot}
-\title{Diagnostic plots for dirichletprocess objects}
+\title{Diagnostic Plots}
 \usage{
 DiagnosticPlots(dpobj, gg = FALSE)
 

@@ -7,6 +7,14 @@
 \alias{PosteriorDraw.exponential}
 \alias{PosteriorDraw}
 \alias{PosteriorDraw.mvnormal}
+\alias{PosteriorDraw.mvnormal.E}
+\alias{PosteriorDraw.mvnormal.V}
+\alias{PosteriorDraw.mvnormal.EII}
+\alias{PosteriorDraw.mvnormal.VII}
+\alias{PosteriorDraw.mvnormal.EEI}
+\alias{PosteriorDraw.mvnormal.VEI}
+\alias{PosteriorDraw.mvnormal.EVI}
+\alias{PosteriorDraw.mvnormal.VVI}
 \alias{PosteriorDraw.mvnormal2}
 \alias{PosteriorDraw.normalFixedVariance}
 \alias{PosteriorDraw.normal}
@@ -18,6 +26,22 @@
 PosteriorDraw(mdObj, x, n = 1, ...)
 
 \method{PosteriorDraw}{mvnormal}(mdObj, x, n = 1, ...)
+
+\method{PosteriorDraw}{mvnormal.E}(mdObj, x, n = 1, ...)
+
+\method{PosteriorDraw}{mvnormal.V}(mdObj, x, n = 1, ...)
+
+\method{PosteriorDraw}{mvnormal.EII}(mdObj, x, n = 1, ...)
+
+\method{PosteriorDraw}{mvnormal.VII}(mdObj, x, n = 1, ...)
+
+\method{PosteriorDraw}{mvnormal.EEI}(mdObj, x, n = 1, ...)
+
+\method{PosteriorDraw}{mvnormal.VEI}(mdObj, x, n = 1, ...)
+
+\method{PosteriorDraw}{mvnormal.EVI}(mdObj, x, n = 1, ...)
+
+\method{PosteriorDraw}{mvnormal.VVI}(mdObj, x, n = 1, ...)
 
 \method{PosteriorDraw}{mvnormal2}(mdObj, x, n = 1, ...)
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/likelihood.R
 \name{LikelihoodDP}
 \alias{LikelihoodDP}
-\title{The likelihood of the Dirichlet process object}
+\title{Dirichlet Process Likelihood}
 \usage{
 LikelihoodDP(dpobj)
 }

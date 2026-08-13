@@ -2,7 +2,7 @@
 % Please edit documentation in R/change_observations.R
 \name{ChangeObservations}
 \alias{ChangeObservations}
-\title{Change the observations of fitted Dirichlet Process.}
+\title{Change Observations}
 \usage{
 ChangeObservations(dpobj, newData)
 }

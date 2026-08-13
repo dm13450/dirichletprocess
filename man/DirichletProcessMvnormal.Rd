@@ -2,24 +2,34 @@
 % Please edit documentation in R/dirichlet_process_mvnormal.R
 \name{DirichletProcessMvnormal}
 \alias{DirichletProcessMvnormal}
-\title{Create a Dirichlet mixture of multivariate normal distributions.}
+\title{Multivariate Normal Dirichlet Process Mixture}
 \usage{
 DirichletProcessMvnormal(
   y,
   g0Priors,
   alphaPriors = c(2, 4),
-  numInitialClusters = 1
+  numInitialClusters = 1,
+  cpp = FALSE
 )
 }
 \arguments{
 \item{y}{Data}
 
-\item{g0Priors}{Prior parameters for the base distribution.}
+\item{g0Priors}{Prior parameters for the base distribution. The live package
+currently supports only \code{covModel = "FULL"} for
+\code{DirichletProcessMvnormal()}.}
 
 \item{alphaPriors}{Alpha prior parameters. See \code{\link{UpdateAlpha}}.}
 
 \item{numInitialClusters}{Number of clusters to initialise with.}
+
+\item{cpp}{Logical compatibility argument. Constructors no longer toggle the
+package-wide C++ implementation flag. \code{Fit()} now selects the
+validated FULL-model C++ path automatically when supported.}
 }
 \description{
 \eqn{G_0 (\boldsymbol{\mu} , \Lambda |  \boldsymbol{\mu _0} , \kappa _0, \nu _0, T_0)  = N ( \boldsymbol{\mu} | \boldsymbol{\mu _0} , (\kappa _0 \Lambda )^{-1} ) \mathrm{Wi} _{\nu _0} (\Lambda | T_0)}
+}
+\details{
+Non-\code{"FULL"} covariance models are rejected in the live package.
 }

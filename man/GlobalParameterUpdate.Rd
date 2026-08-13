@@ -2,7 +2,7 @@
 % Please edit documentation in R/global_parameter_update.R
 \name{GlobalParameterUpdate}
 \alias{GlobalParameterUpdate}
-\title{Update the parameters of the hierarchical Dirichlet process object.}
+\title{Update Hierarchical Global Parameters}
 \usage{
 GlobalParameterUpdate(dpobjlist)
 }
@@ -10,5 +10,5 @@ GlobalParameterUpdate(dpobjlist)
 \item{dpobjlist}{List of Dirichlet Process objects.}
 }
 \description{
-Update the parameters of the hierarchical Dirichlet process object.
+Update Hierarchical Global Parameters
 }

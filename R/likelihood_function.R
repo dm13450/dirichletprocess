@@ -1,4 +1,4 @@
-#' The Likelihood function of a Dirichlet process object.
+#' Likelihood Function
 #'
 #' Collecting the fitted cluster parameters and number of datapoints associated with each parameter a likelihood can be calculated.
 #' Each cluster is weighted by the number of datapoints assigned.

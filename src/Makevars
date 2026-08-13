@@ -1,0 +1,12 @@
+# src/Makevars
+
+# Standard compilation flags for CRAN compliance
+# Note: Code has been validated with strict flags during development
+PKG_CXXFLAGS = $(SHLIB_OPENMP_CXXFLAGS)
+
+PKG_LIBS = $(SHLIB_OPENMP_CXXFLAGS) $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
+
+# Include directory
+PKG_CPPFLAGS = -I../inst/include
+
+# NO SOURCES SPECIFIED - R will compile ALL .cpp files

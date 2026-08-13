@@ -1,4 +1,4 @@
-#' Create a mixing distribution object
+#' Mixing Distribution
 #'
 #' The constructor function for a mixing distribution object.
 #' Use this function to prepare an object for use with the appropriate distribution functions.
@@ -14,13 +14,22 @@ MixingDistribution <- function(distribution, priorParameters, conjugate, mhStepS
   mdObj <- list(distribution = distribution,
                 priorParameters = priorParameters,
                 conjugate = conjugate,
+                conjugacy = conjugate,
                 mhStepSize = mhStepSize,
                 hyperPriorParameters = hyperPriorParameters)
 
-  class(mdObj) <- append(class(mdObj), c(distribution, conjugate))
+  class(mdObj) <- c(distribution, "mixing_distribution", "list")
   return(mdObj)
 }
 
+#' Metropolis-Hastings Parameter Proposal
+#' 
+#' Generate parameter proposals for Metropolis-Hastings sampling.
+#' 
+#' @param mdObj A mixing distribution object
+#' @param old_params Current parameter values
+#' @return Proposed parameter values
+#' @export
 MhParameterProposal <- function(mdObj, old_params){
   UseMethod("MhParameterProposal", mdObj)
 }

@@ -19,3 +19,4 @@ The array containing the correct matching indexes
 Identifies the correct clusters labels, in any dimension,
 when cluster parameters and global parameters are matched.
 }
+\keyword{internal}

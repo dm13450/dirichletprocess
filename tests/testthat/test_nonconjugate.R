@@ -11,7 +11,9 @@ test_that("Dirichlet Nonconjugate Class", {
 
   dpobj <- DirichletProcessCreate(data_test, weibull_object_test)
 
-  expect_is(dpobj, c("list", "dirichletprocess", "weibull", "nonconjugate"))
+  expect_equal(class(dpobj), c("dirichletprocess", "list"))
+  expect_false(inherits(dpobj, "weibull"))
+  expect_false(inherits(dpobj, "nonconjugate"))
 
 })
 
@@ -21,7 +23,7 @@ test_that("Nonconjugate Initialise", {
 
   dpobj <- Initialise(dpobj, verbose=FALSE)
 
-  expect_is(dpobj, c("list", "dirichletprocess", "weibull", "nonconjugate"))
+  expect_equal(class(dpobj), c("dirichletprocess", "list"))
   expect_equal(dpobj$numberClusters, 1)
   expect_equal(dpobj$clusterLabels, rep_len(1, (num_test_points)))
   expect_equal(dpobj$pointsPerCluster, (num_test_points))
@@ -64,5 +66,4 @@ test_that("Dirichlet Nonconjugate Cluster Predict", {
   expect_equal(length(predicted_labels$componentIndexes), 10)
 
 })
-
 

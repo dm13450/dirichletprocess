@@ -1,6 +1,10 @@
-
 UpdateG0 <- function(dpobjlist){
+  # Use C++ implementation if enabled and available
+  if (using_cpp_hierarchical_samplers() && all(sapply(dpobjlist$indDP, function(x) identical(dp_kernel(x), "beta")))) {
+    return(UpdateG0.cpp(dpobjlist))
+  }
 
+  # Original R implementation
   globalParams <- dpobjlist$globalParameters
 
   globalLabels <- lapply(seq_along(dpobjlist$indDP),
@@ -13,7 +17,7 @@ UpdateG0 <- function(dpobjlist){
       globalLabels[[i]] <- true_cluster_labels(globalLabels[[i]], dpobjlist)
     }
   }
-  
+
   globalParamTable <- data.frame(table(GlobalParam=unlist(globalLabels)))
   globalParamTable$GlobalParam <- as.numeric(levels(globalParamTable$GlobalParam))
 
@@ -27,13 +31,16 @@ UpdateG0 <- function(dpobjlist){
   sticks <- sticks * dirichlet_draws[numTables + 1]
   sticks <- c(dirichlet_draws[-(numTables + 1)], sticks)
 
-  if (class(dpobjlist$indDP[[1]]$mixingDistribution)[[2]] == "beta") {
-    priorDraws <- PriorDraw.beta(dpobjlist$indDP[[1]]$mixingDistribution, numBreaks)
-  } else if (class(dpobjlist$indDP[[1]]$mixingDistribution)[[2]] == "mvnormal2") {
-    priorDraws <- PriorDraw.mvnormal2(dpobjlist$indDP[[1]]$mixingDistribution, numBreaks)
+  md_obj <- dpobjlist$indDP[[1]]$mixingDistribution
+  md_kernel <- mixing_distribution_kernel(md_obj)
+
+  if (identical(md_kernel, "beta")) {
+    priorDraws <- PriorDraw.beta(md_obj, numBreaks)
+  } else if (identical(md_kernel, "mvnormal2")) {
+    priorDraws <- PriorDraw.mvnormal2(md_obj, numBreaks)
   } else {
     stop(paste("The hierarchical fit is not implemented for ",
-               class(dpobjlist$indDP[[1]]$mixingDistribution)[[2]],
+               mixing_distribution_display_class(md_obj),
                " mixing distribution object"))
   }
   postParams <- list()
@@ -41,7 +48,7 @@ UpdateG0 <- function(dpobjlist){
   for (i in seq_along(priorDraws)) {
     postParams[[i]] <- array(c(globalParams[[i]][,,globalParamTable$GlobalParam], priorDraws[[i]]), dim=c(dim(priorDraws[[i]])[1:2],numBreaks+numTables))
   }
-  
+
   for(i in seq_along(dpobjlist$indDP)){
     newGJ <- draw_gj(dpobjlist$indDP[[i]]$mixingDistribution$alpha, sticks)
     newGJ[is.na(newGJ)] <- 0
@@ -54,5 +61,3 @@ UpdateG0 <- function(dpobjlist){
 
   return(dpobjlist)
 }
-
-
