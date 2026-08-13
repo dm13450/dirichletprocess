@@ -10,7 +10,9 @@ test_that("Dirichlet Conjugate Class", {
 
   dpobj = DirichletProcessCreate(data_test, normal_object_test)
 
-  expect_is((dpobj), c("list", "dirichletprocess", "normal", "conjugate"))
+  expect_equal(class(dpobj), c("dirichletprocess", "list"))
+  expect_false(inherits(dpobj, "normal"))
+  expect_false(inherits(dpobj, "conjugate"))
 })
 
 test_that("Dirichlet Conjugate Initialise", {
@@ -63,5 +65,4 @@ test_that("Dirichlet Conjugate Cluster Predict", {
   expect_equal(length(predicted_labels$componentIndexes), 10)
 
 })
-
 

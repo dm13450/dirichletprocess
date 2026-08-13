@@ -6,7 +6,9 @@ test_that("Create",{
 
   dp <- DirichletProcessBeta2(testData, 1)
 
-  expect_is(dp, c("list", "dirichletprocess", "beta2", "nonconjugate"))
+  expect_equal(class(dp), c("dirichletprocess", "list"))
+  expect_false(inherits(dp, "beta2"))
+  expect_false(inherits(dp, "nonconjugate"))
 
 })
 
@@ -18,7 +20,7 @@ test_that("Fit", {
 
   dp <- Fit(dp, 10, FALSE, FALSE)
 
-  expect_is(dp, c("list", "dirichletprocess", "beta2", "nonconjugate"))
+  expect_equal(class(dp), c("dirichletprocess", "list"))
 
   expect_is(dp$clusterParameters, "list")
   expect_length(dp$clusterParameters, 2)

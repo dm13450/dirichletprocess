@@ -1,4 +1,4 @@
-#' Draw prior clusters and weights from the Dirichlet process
+#' Prior Clusters
 #'
 #' @param dpobj A Dirichlet process object
 #' @return A list of weights and parameters of the prior distribution of the Dirichcet process
@@ -18,6 +18,7 @@ PriorClusters.dirichletprocess <- function(dpobj){
   priorParams <- PriorDraw(dpobj$mixingDistribution, numBreaks)
 
   returnList <- list(weights = sticks, params = priorParams)
+  returnList <- new_dirichletprocess_prior_clusters(returnList, dpobj, alpha)
 
   return(returnList)
 }

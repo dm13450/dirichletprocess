@@ -3,7 +3,7 @@
 \name{StickBreaking}
 \alias{StickBreaking}
 \alias{piDirichlet}
-\title{The Stick Breaking representation of the Dirichlet process.}
+\title{Stick-Breaking Weights}
 \usage{
 StickBreaking(alpha, N)
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/exponential_gamma.R
 \name{ExponentialMixtureCreate}
 \alias{ExponentialMixtureCreate}
-\title{Create a Exponential mixing distribution}
+\title{Exponential Mixing Distribution}
 \usage{
 ExponentialMixtureCreate(priorParameters = c(0.01, 0.01))
 }

@@ -4,12 +4,24 @@
 \name{PriorParametersUpdate.beta}
 \alias{PriorParametersUpdate.beta}
 \alias{PriorParametersUpdate}
+\alias{PriorParametersUpdate.normal}
+\alias{PriorParametersUpdate.conjugate}
+\alias{PriorParametersUpdate.exponential}
+\alias{PriorParametersUpdate.default}
 \alias{PriorParametersUpdate.weibull}
-\title{Update the prior parameters of a mixing distribution}
+\title{Update Prior Parameters}
 \usage{
 \method{PriorParametersUpdate}{beta}(mdObj, clusterParameters, n = 1)
 
 PriorParametersUpdate(mdObj, clusterParameters, n = 1)
+
+\method{PriorParametersUpdate}{normal}(mdObj, clusterParameters, n = 1)
+
+\method{PriorParametersUpdate}{conjugate}(mdObj, clusterParameters, n = 1)
+
+\method{PriorParametersUpdate}{exponential}(mdObj, clusterParameters, n = 1)
+
+\method{PriorParametersUpdate}{default}(mdObj, clusterParameters, n = 1)
 
 \method{PriorParametersUpdate}{weibull}(mdObj, clusterParameters, n = 1)
 }
@@ -24,5 +36,5 @@ PriorParametersUpdate(mdObj, clusterParameters, n = 1)
 mdobj New Mixing Distribution object with updated cluster parameters
 }
 \description{
-Update the prior parameters of a mixing distribution
+Update Prior Parameters
 }

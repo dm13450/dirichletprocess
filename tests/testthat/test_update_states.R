@@ -1,5 +1,10 @@
 context("HMM Update States")
 
+# Access function from namespace if not available in global environment
+if (!exists("update_states")) {
+  update_states <- get("update_states", getNamespace("dirichletprocess"))
+}
+
 mdobj <- GaussianMixtureCreate()
 data <- c(rnorm(50, 1, sqrt(3)), rnorm(50, 3, sqrt(3)), rnorm(50, 5, sqrt(3)))
 states <- seq_along(data)

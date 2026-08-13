@@ -10,38 +10,64 @@
 \alias{PriorDraw.exponential}
 \alias{PriorDraw}
 \alias{PriorDraw.mvnormal}
+\alias{PriorDraw.mvnormal.E}
+\alias{PriorDraw.mvnormal.V}
+\alias{PriorDraw.mvnormal.EII}
+\alias{PriorDraw.mvnormal.VII}
+\alias{PriorDraw.mvnormal.EEI}
+\alias{PriorDraw.mvnormal.VEI}
+\alias{PriorDraw.mvnormal.EVI}
+\alias{PriorDraw.mvnormal.VVI}
 \alias{PriorDraw.mvnormal2}
 \alias{PriorDraw.normalFixedVariance}
 \alias{PriorDraw.normal}
 \alias{PriorDraw.weibull}
-\title{Draw from the prior distribution}
+\title{Prior Draw}
 \usage{
-\method{PriorDraw}{beta}(mdObj, n = 1)
+\method{PriorDraw}{beta}(mdObj, n = 1, ...)
 
-\method{PriorDraw}{beta2}(mdObj, n = 1)
+\method{PriorDraw}{beta2}(mdObj, n = 1, ...)
 
-\method{PriorDraw}{exponential}(mdObj, n)
+\method{PriorDraw}{exponential}(mdObj, n, ...)
 
-PriorDraw(mdObj, n)
+PriorDraw(mdObj, n, ...)
 
-\method{PriorDraw}{mvnormal}(mdObj, n = 1)
+\method{PriorDraw}{mvnormal}(mdObj, n = 1, ...)
 
-\method{PriorDraw}{mvnormal2}(mdObj, n = 1)
+\method{PriorDraw}{mvnormal.E}(mdObj, n = 1, ...)
 
-\method{PriorDraw}{normalFixedVariance}(mdObj, n = 1)
+\method{PriorDraw}{mvnormal.V}(mdObj, n = 1, ...)
 
-\method{PriorDraw}{normal}(mdObj, n = 1)
+\method{PriorDraw}{mvnormal.EII}(mdObj, n = 1, ...)
 
-\method{PriorDraw}{weibull}(mdObj, n = 1)
+\method{PriorDraw}{mvnormal.VII}(mdObj, n = 1, ...)
+
+\method{PriorDraw}{mvnormal.EEI}(mdObj, n = 1, ...)
+
+\method{PriorDraw}{mvnormal.VEI}(mdObj, n = 1, ...)
+
+\method{PriorDraw}{mvnormal.EVI}(mdObj, n = 1, ...)
+
+\method{PriorDraw}{mvnormal.VVI}(mdObj, n = 1, ...)
+
+\method{PriorDraw}{mvnormal2}(mdObj, n = 1, ...)
+
+\method{PriorDraw}{normalFixedVariance}(mdObj, n = 1, ...)
+
+\method{PriorDraw}{normal}(mdObj, n = 1, ...)
+
+\method{PriorDraw}{weibull}(mdObj, n = 1, ...)
 }
 \arguments{
 \item{mdObj}{Mixing Distribution}
 
 \item{n}{Number of draws.}
+
+\item{...}{Additional arguments (ignored)}
 }
 \value{
 A sample from the prior distribution
 }
 \description{
-Draw from the prior distribution
+Prior Draw
 }

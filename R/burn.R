@@ -1,4 +1,4 @@
-#' Add burn-in to a dirichletprocess object
+#' Burn-In
 #'
 #' @param dpobj A dirichletprocess object.
 #' @param niter Number of iterations to burn.

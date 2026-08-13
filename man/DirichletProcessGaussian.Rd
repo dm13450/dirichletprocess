@@ -2,9 +2,14 @@
 % Please edit documentation in R/dirichlet_process_gaussian.R
 \name{DirichletProcessGaussian}
 \alias{DirichletProcessGaussian}
-\title{Create a Dirichlet Mixture of Gaussians}
+\title{Gaussian Dirichlet Process Mixture}
 \usage{
-DirichletProcessGaussian(y, g0Priors = c(0, 1, 1, 1), alphaPriors = c(2, 4))
+DirichletProcessGaussian(
+  y,
+  g0Priors = c(0, 1, 1, 1),
+  alphaPriors = c(2, 4),
+  cpp = FALSE
+)
 }
 \arguments{
 \item{y}{Data}
@@ -12,6 +17,10 @@ DirichletProcessGaussian(y, g0Priors = c(0, 1, 1, 1), alphaPriors = c(2, 4))
 \item{g0Priors}{Base Distribution Priors \eqn{\gamma = (\mu _0, k_0 , \alpha _0 , \beta _0)}}
 
 \item{alphaPriors}{Alpha prior parameters. See \code{\link{UpdateAlpha}}.}
+
+\item{cpp}{Logical compatibility argument. Constructors no longer toggle the
+package-wide C++ implementation flag; `Fit()` now selects the validated C++
+path automatically when supported.}
 }
 \value{
 Dirichlet process object

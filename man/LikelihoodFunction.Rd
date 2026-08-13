@@ -2,7 +2,7 @@
 % Please edit documentation in R/likelihood_function.R
 \name{LikelihoodFunction}
 \alias{LikelihoodFunction}
-\title{The Likelihood function of a Dirichlet process object.}
+\title{Likelihood Function}
 \usage{
 LikelihoodFunction(dpobj, ind)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/hierarchical_beta.R
 \name{HierarchicalBetaCreate}
 \alias{HierarchicalBetaCreate}
-\title{Create a Mixing Object for a hierarchical Beta Dirichlet process object.}
+\title{Hierarchical Beta Mixing Distribution}
 \usage{
 HierarchicalBetaCreate(
   n,
@@ -36,5 +36,5 @@ HierarchicalBetaCreate(
 A mixing distribution object.
 }
 \description{
-Create a Mixing Object for a hierarchical Beta Dirichlet process object.
+Hierarchical Beta Mixing Distribution
 }

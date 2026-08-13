@@ -2,7 +2,7 @@
 % Please edit documentation in R/burn.R
 \name{Burn}
 \alias{Burn}
-\title{Add burn-in to a dirichletprocess object}
+\title{Burn-In}
 \usage{
 Burn(dpobj, niter)
 }
@@ -16,7 +16,7 @@ A dirichletprocess object where all chain objects have the first
   \code{niter} iterations are removed.
 }
 \description{
-Add burn-in to a dirichletprocess object
+Burn-In
 }
 \examples{
 dp <- Fit(DirichletProcessGaussian(rnorm(10)), 100)

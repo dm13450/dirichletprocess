@@ -1,14 +1,20 @@
+#' @useDynLib dirichletprocess, .registration = TRUE
+#' @importFrom Rcpp sourceCpp
+NULL
+
 #' @title A flexible package for fitting Bayesian non-parametric models.
-#' @name dirichletprocess
+#' @name dirichletprocess-package
+#' @aliases dirichletprocess
 #' @description Create, fit and take posterior samples from a Dirichlet process.
 #'
 #'
-#' @importFrom stats dbeta dbinom dgamma dnorm dt dunif dweibull dexp rWishart rbeta rgamma rnorm runif var quantile optim
+#' @importFrom stats dbeta dbinom dgamma dnorm dt dunif dweibull dexp rWishart rbeta rgamma rnorm runif var quantile optim cov
 #'
-#' @importFrom utils setTxtProgressBar txtProgressBar
+#' @importFrom utils setTxtProgressBar txtProgressBar modifyList tail
+#'
+#' @importFrom methods new
 #'
 #'
 #'
-#' @docType package
-#' @aliases dirichletprocess
-NULL
+#' @keywords internal
+"_PACKAGE"

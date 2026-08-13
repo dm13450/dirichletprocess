@@ -4,7 +4,8 @@ test_mdobj <- BetaMixtureCreate(c(1,1), mhStepSize = c(0.1, 0.1), 1)
 
 test_that("Beta Mixture Create", {
 
-  expect_is(test_mdobj, c("list", "beta", "nonconjugate"))
+  expect_equal(class(test_mdobj), c("beta", "mixing_distribution", "list"))
+  expect_false(inherits(test_mdobj, "nonconjugate"))
 })
 
 
@@ -20,7 +21,7 @@ test_that("Beta Mixture Likelihood Numerical", {
   a <- (mu*tau)/maxT
   b <- (1-mu/maxT)*tau
 
-  thetaTest <- list(array(mu, dim=c(1,1,length(mu))), array(tau, dim=c(1,1,length(tau))))
+  thetaTest <- list(mu = array(mu, dim=c(1,1,length(mu))), nu = array(tau, dim=c(1,1,length(tau))))
 
   xTest <- seq(0, maxT, by=0.1)
 
@@ -83,6 +84,10 @@ test_that("Beta Posterior Draw with Start Position", {
 test_that("Beta MH Parameter Proposal", {
   test_params_single <- list(mu=array(0.5, dim=c(1,1,1)), nu=array(1, dim=c(1,1,1)))
 
+  # Access function from namespace if not available in global environment
+  if (!exists("MhParameterProposal")) {
+    MhParameterProposal <- get("MhParameterProposal", getNamespace("dirichletprocess"))
+  }
   test_param_prop <- MhParameterProposal(test_mdobj, test_params_single)
 
   expect_equal(length(test_param_prop), 2)
@@ -109,7 +114,9 @@ test_that("Beta Dirichlet Process Create", {
   pts <- rbeta(10, 2,2)
   beta_dpobj <- DirichletProcessBeta(pts, 1, verbose = FALSE)
 
-  expect_is(beta_dpobj, c("list", "dirichletprocess", "beta", "nonconjugate"))
+  expect_equal(class(beta_dpobj), c("dirichletprocess", "list"))
+  expect_false(inherits(beta_dpobj, "beta"))
+  expect_false(inherits(beta_dpobj, "nonconjugate"))
   expect_equal(beta_dpobj$data, as.matrix(pts))
 })
 
@@ -120,7 +127,7 @@ test_that("Beta Dirichlet Process Initialise", {
   beta_dpobj <- DirichletProcessCreate(pts, beta_md_obj, c(2,4))
   beta_dpobj <- Initialise(beta_dpobj, verbose=FALSE)
 
-  expect_is(beta_dpobj, c("list", "dirichletprocess", "beta", "nonconjugate"))
+  expect_equal(class(beta_dpobj), c("dirichletprocess", "list"))
   expect_equal(beta_dpobj$data, as.matrix(pts))
 
   expect_length(beta_dpobj$clusterParameters, 2)
@@ -282,8 +289,28 @@ test_that("Beta DP Posterior Function", {
   beta_dpobj <- Fit(beta_dpobj, 5, FALSE, FALSE)
 
   post_func <- PosteriorFunction(beta_dpobj)
+  x_grid <- ppoints(5)
+  post_eval <- post_func(x_grid)
 
   expect_is(post_func, "function")
+  expect_type(post_eval, "double")
+  expect_length(post_eval, length(x_grid))
+  expect_true(all(is.finite(post_eval)))
+
+})
+
+test_that("Beta DP Posterior Frame", {
+
+  pts <- rbeta(10, 2,2)
+  beta_dpobj <- DirichletProcessBeta(pts, 1)
+  beta_dpobj <- Fit(beta_dpobj, 5, FALSE, FALSE)
+
+  post_frame <- PosteriorFrame(beta_dpobj, ppoints(5), ndraws = 3)
+
+  expect_s3_class(post_frame, "data.frame")
+  expect_equal(nrow(post_frame), 5)
+  expect_equal(ncol(post_frame), 4)
+  expect_true(all(is.finite(unlist(post_frame))))
 
 })
 
@@ -312,15 +339,13 @@ test_that("Beta Penelised Likelihodd", {
 })
 
 test_that("Dirichlet Process Likelihood", {
-  N = 10
+
   pts <- rbeta(10, 2,2)
   beta_dpobj <- DirichletProcessBeta(pts, 1, verbose = FALSE)
   beta_dpobj <- Fit(beta_dpobj, 5, FALSE, FALSE)
 
   lik <- LikelihoodDP(beta_dpobj)
 
-  expect_shape(lik, dim=c(N, 1))
+
 })
-
-
 

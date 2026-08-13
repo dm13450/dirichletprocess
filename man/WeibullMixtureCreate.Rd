@@ -2,7 +2,7 @@
 % Please edit documentation in R/weibull_uniform_gamma.R
 \name{WeibullMixtureCreate}
 \alias{WeibullMixtureCreate}
-\title{Create a Weibull mixing distribution.}
+\title{Weibull Mixing Distribution}
 \usage{
 WeibullMixtureCreate(
   priorParameters,

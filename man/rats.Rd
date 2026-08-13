@@ -11,12 +11,12 @@
 }
 }
 \source{
-\url{http://www.stat.columbia.edu/~gelman/book/data/rats.asc}
+Tarone (1982), as reproduced in Table 5.1 of Bayesian Data Analysis.
 }
 \usage{
 rats
 }
 \description{
-Rat tumour data from Tarone (1982). Data from Table 5.1 of Bayesian Data Analysis
+Rat tumour data from Tarone (1982). Data from Table 5.1 of Bayesian Data Analysis.
 }
 \keyword{datasets}

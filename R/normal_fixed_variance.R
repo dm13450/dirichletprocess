@@ -1,4 +1,4 @@
-#' Create a Gaussian Mixing Distribution with fixed variance.
+#' Gaussian Mixing Distribution With Fixed Variance
 #'
 #'
 #' @param priorParameters The prior parameters for the base measure.
@@ -22,11 +22,29 @@ Likelihood.normalFixedVariance <- function(mdObj, x, theta) {
 
 #' @export
 #' @rdname PriorDraw
-PriorDraw.normalFixedVariance <- function(mdObj, n = 1) {
+PriorDraw.normalFixedVariance <- function(mdObj, n = 1, ...) {
+
+  # Use C++ if enabled
+  if (can_use_cpp()) {
+    mu <- cpp_normal_fixed_variance_prior_draw(
+      mdObj$priorParameters[1],
+      mdObj$priorParameters[2],
+      mdObj$sigma,
+      n
+    )
+    return(list(array(mu, dim = c(1, 1, n))))
+  }
 
   priorParameters <- mdObj$priorParameters
 
+  # Draw normal values and handle potential NAs
   mu <- rnorm(n, priorParameters[1], mdObj$sigma)
+
+  # Handle NA values that can occur with extreme parameters
+  if (any(is.na(mu))) {
+    mu[is.na(mu)] <- priorParameters[1]  # Default to prior mean
+  }
+
   theta <- list(array(mu, dim = c(1, 1, n)))
   return(theta)
 }

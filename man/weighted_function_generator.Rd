@@ -19,3 +19,4 @@ weighted function
 \description{
 Generate a weighted function.
 }
+\keyword{internal}

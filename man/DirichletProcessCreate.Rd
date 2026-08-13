@@ -2,7 +2,7 @@
 % Please edit documentation in R/dirichlet_process_create.R
 \name{DirichletProcessCreate}
 \alias{DirichletProcessCreate}
-\title{Create a Dirichlet Process object}
+\title{Dirichlet Process Object}
 \usage{
 DirichletProcessCreate(
   x,

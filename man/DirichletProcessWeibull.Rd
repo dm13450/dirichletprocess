@@ -2,7 +2,7 @@
 % Please edit documentation in R/dirichlet_process_weibull.R
 \name{DirichletProcessWeibull}
 \alias{DirichletProcessWeibull}
-\title{Create a Dirichlet Mixture of the Weibull distribution}
+\title{Weibull Dirichlet Process Mixture}
 \usage{
 DirichletProcessWeibull(
   y,
@@ -11,7 +11,8 @@ DirichletProcessWeibull(
   mhStepSize = c(1, 1),
   hyperPriorParameters = c(6, 2, 1, 0.5),
   verbose = FALSE,
-  mhDraws = 250
+  mhDraws = 250,
+  cpp = FALSE
 )
 }
 \arguments{
@@ -28,17 +29,25 @@ DirichletProcessWeibull(
 \item{verbose}{Set the level of screen output.}
 
 \item{mhDraws}{Number of Metropolis-Hastings samples to perform for each cluster update.}
+
+\item{cpp}{Logical compatibility argument. Constructors no longer toggle the
+package-wide C++ implementation flag; `Fit()` now selects the validated
+C++ path automatically when supported.}
 }
 \value{
 Dirichlet process object
 }
 \description{
-The likelihood is parameterised as \eqn{\mathrm{Weibull} (y | a, b) = \frac{a}{b} y ^{a-1}  \exp \left( -  \frac{x^a}{b}  \right)}.
+The likelihood is parameterised as \eqn{\mathrm{Weibull} (y | a, b) = \frac{a}{b} y ^{a-1}  \exp \left( -  \frac{y^a}{b}  \right)}.
 The base measure is a Uniform Inverse Gamma Distribution.
 \eqn{G_0 (a, b | \phi, \alpha _0 , \beta _0) = U(a | 0, \phi ) \mathrm{Inv-Gamma} ( b | \alpha _0, \beta _0)}
 \eqn{\phi \sim \mathrm{Pareto}(x_m , k)}
 \eqn{\beta \sim \mathrm{Gamma} (\alpha _0 , \beta _0)}
-This is a semi-conjugate distribution. The cluster parameter a is updated using the Metropolis Hastings algorithm an analytical posterior exists for b.
+This is a semi-conjugate distribution. The cluster parameter \eqn{a} is
+updated using the Metropolis-Hastings algorithm and an analytical posterior
+exists for \eqn{b}. Invalid parameter proposals outside the support are
+handled by returning zero density cleanly rather than emitting numerical
+warning noise.
 }
 \references{
 Kottas, A. (2006). Nonparametric Bayesian survival analysis using mixtures of Weibull distributions. Journal of Statistical Planning and Inference, 136(3), 578-596.

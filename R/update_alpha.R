@@ -1,4 +1,4 @@
-#'Update the Dirichlet process concentration parameter.
+#' Update Concentration
 #'
 #'Using the procedure outlined in West (1992) we sample the concentration parameter of the Dirichlet process. See reference for further details.
 #'
@@ -32,4 +32,3 @@ UpdateAlpha.hierarchical <- function(dpobj) {
 
   return(dpobj)
 }
-

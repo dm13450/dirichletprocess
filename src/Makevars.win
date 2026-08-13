@@ -1,0 +1,8 @@
+# Standard compilation flags for CRAN compliance (Windows)
+# Note: Code has been validated with strict flags during development
+PKG_CXXFLAGS = $(SHLIB_OPENMP_CXXFLAGS)
+
+PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) $(SHLIB_OPENMP_CXXFLAGS)
+
+# Include directory
+PKG_CPPFLAGS = -I../inst/include

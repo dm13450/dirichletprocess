@@ -2,7 +2,7 @@
 % Please edit documentation in R/cluster_label_predict.R
 \name{ClusterLabelPredict}
 \alias{ClusterLabelPredict}
-\title{Predict the cluster labels of some new data.}
+\title{Predict Cluster Labels}
 \usage{
 ClusterLabelPredict(dpobj, newData)
 }

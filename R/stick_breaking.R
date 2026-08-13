@@ -1,4 +1,4 @@
-#' The Stick Breaking representation of the Dirichlet process.
+#' Stick-Breaking Weights
 #'
 #' A Dirichlet process can be represented using a stick breaking construction
 #' \deqn{G = \sum _{i=1} ^n pi _i \delta _{\theta _i}},
@@ -53,18 +53,7 @@ draw_gj <- function(alpha0, beta_k) {
     )
   pi_k <- piDirichlet(pi_prime)
   if(anyNA(pi_k)){
-    print("alpha")
-    print(alpha0)
-    print("beta")
-    print(beta_k)
-    print("Shape")
-    print(alpha0*beta_k)
-    print("scale")
-    print(vapply(seq_along(beta_k),
-                 function(i) alpha0*(1-sum(beta_k[1:i])),
-                 numeric(1)))
-    stop("Error")
+    stop("Invalid stick-breaking weights produced NA probabilities.", call. = FALSE)
     }
   return(pi_k)
 }
-

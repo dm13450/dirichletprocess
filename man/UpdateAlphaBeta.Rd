@@ -2,7 +2,7 @@
 % Please edit documentation in R/update_alpha_beta.R
 \name{UpdateAlphaBeta}
 \alias{UpdateAlphaBeta}
-\title{Update the \eqn{\alpha} and \eqn{\beta} parameter of a hidden Markov Dirichlet process model.}
+\title{Update HMM Concentration Parameters}
 \usage{
 UpdateAlphaBeta(dp)
 }
@@ -10,5 +10,5 @@ UpdateAlphaBeta(dp)
 \item{dp}{Dirichlet process object}
 }
 \description{
-Update the \eqn{\alpha} and \eqn{\beta} parameter of a hidden Markov Dirichlet process model.
+Update HMM Concentration Parameters
 }

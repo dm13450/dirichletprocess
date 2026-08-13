@@ -2,7 +2,7 @@
 % Please edit documentation in R/normal_fixed_variance.R
 \name{GaussianFixedVarianceMixtureCreate}
 \alias{GaussianFixedVarianceMixtureCreate}
-\title{Create a Gaussian Mixing Distribution with fixed variance.}
+\title{Gaussian Mixing Distribution With Fixed Variance}
 \usage{
 GaussianFixedVarianceMixtureCreate(priorParameters = c(0, 1), sigma)
 }
@@ -15,5 +15,5 @@ GaussianFixedVarianceMixtureCreate(priorParameters = c(0, 1), sigma)
 A mixing distribution object.
 }
 \description{
-Create a Gaussian Mixing Distribution with fixed variance.
+Gaussian Mixing Distribution With Fixed Variance
 }

@@ -1,5 +1,6 @@
 #' Identifies the correct clusters labels, in any dimension,
 #' when cluster parameters and global parameters are matched.
+#' @keywords internal
 #'
 #' @param array The array containing matching indexes.
 #' @param dpObj A hierarchical dirichletprocess object.

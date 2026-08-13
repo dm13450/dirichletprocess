@@ -1,119 +1,49 @@
-context("Update G0")
+context("HDP UpdateG0 Compatibility")
 
+test_that("UpdateG0 is a no-op compatibility shim for hierarchical beta", {
+  set.seed(41)
+  update_g0 <- getFromNamespace("UpdateG0", "dirichletprocess")
+  dp <- DirichletProcessHierarchicalBeta(list(rbeta(8, 2, 5), rbeta(8, 3, 4)), 1)
+  dp <- ClusterComponentUpdate(dp)
+  dp <- GlobalParameterUpdate(dp)
 
-test_that("2 Data, 1 Cluster", {
+  before <- dp
+  after <- update_g0(dp)
 
-  dataTest <- list(rbeta(100, 1, 3), rbeta(100, 1, 3))
-  dpobjlistTest <- DirichletProcessHierarchicalBeta(dataTest, 1)
-
-  preCP <- list()
-  preCP[[1]] <- array(1, dim=c(1,1,1))
-  preCP[[2]] <- array(10, dim=c(1,1,1))
-
-  preNumCluster <- 1
-  preLabels <- rep_len(1, 100)
-  prePointsPerCluster <- 100
-
-  dpobjlistTest$globalParameters <- preCP
-
-  for(i in seq_along(dpobjlistTest$indDP)){
-    dpobjlistTest$indDP[[i]]$numberClusters <- preNumCluster
-    dpobjlistTest$indDP[[i]]$clusterLabels <- preLabels
-    dpobjlistTest$indDP[[i]]$pointsPerCluster <- prePointsPerCluster
-    dpobjlistTest$indDP[[i]]$clusterParameters <- preCP
-
-  }
-
-  dpobjlistTest <- UpdateG0(dpobjlistTest)
-
-  for(i in seq_along(dpobjlistTest$indDP)){
-    expect_true(c(dpobjlistTest$indDP[[i]]$clusterParameters[[1]]) %in% c(dpobjlistTest$globalParameters[[1]]))
-  }
-
+  expect_identical(after$tableDishLabels, before$tableDishLabels)
+  expect_identical(after$dishTableCounts, before$dishTableCounts)
+  expect_identical(after$globalParameters, before$globalParameters)
+  expect_identical(after$indDP[[1]]$clusterParameters, before$indDP[[1]]$clusterParameters)
+  expect_identical(after$indDP[[2]]$clusterParameters, before$indDP[[2]]$clusterParameters)
 })
 
-test_that("2 Data, 1 Cluster, 2D", {
-  #require(mvtnorm)
-  dataTest <- list(mvtnorm::rmvnorm(100, c(0,0), diag(2)), mvtnorm::rmvnorm(100, c(1,1), diag(2)))
-  dpobjlistTest <- DirichletProcessHierarchicalMvnormal2(dataTest)
+test_that("Hierarchical beta Fit no longer depends on legacy UpdateG0 behavior", {
+  set.seed(42)
+  dp <- DirichletProcessHierarchicalBeta(list(rbeta(10, 2, 5), rbeta(10, 3, 4)), 1)
 
-  preCP <- list()
-  preCP[[1]] <- array(c(c(0,0)), dim=c(1,2,1))
-  preCP[[2]] <- array(c(diag(2)), dim=c(2,2,1))
+  expect_no_warning({
+    dp <- Fit(dp, 1, progressBar = FALSE)
+  })
 
-  preNumCluster <- 1
-  preLabels <- rep_len(1, 100)
-  prePointsPerCluster <- 100
-
-  dpobjlistTest$globalParameters <- preCP
-
-  for(i in seq_along(dpobjlistTest$indDP)){
-    dpobjlistTest$indDP[[i]]$numberClusters <- preNumCluster
-    dpobjlistTest$indDP[[i]]$clusterLabels <- preLabels
-    dpobjlistTest$indDP[[i]]$pointsPerCluster <- prePointsPerCluster
-    dpobjlistTest$indDP[[i]]$clusterParameters <- preCP
-
-  }
-
-  dpobjlistTest <- UpdateG0(dpobjlistTest)
-
-  for(i in seq_along(dpobjlistTest$indDP)){
-    expect_equal(dpobjlistTest$indDP[[i]]$clusterParameters[[1]][,,1], dpobjlistTest$globalParameters[[1]][,,1])
-  }
-
+  expect_true("tableDishLabels" %in% names(dp))
+  expect_true("dishTableCounts" %in% names(dp))
+  expect_equal(sum(dp$dishTableCounts),
+               sum(vapply(dp$indDP, function(x) x$numberClusters, numeric(1))))
 })
 
-test_that("5 Data Cluster Component then G0", {
+test_that("Hierarchical mvnormal2 Fit no longer depends on legacy UpdateG0 behavior", {
+  set.seed(43)
+  dp <- DirichletProcessHierarchicalMvnormal2(list(
+    mvtnorm::rmvnorm(10, c(0, 0), diag(2)),
+    mvtnorm::rmvnorm(10, c(1, -1), diag(2))
+  ))
 
-  dataTest <- list(rbeta(10, 2, 3), rbeta(10, 1, 3), rbeta(10, 5, 3), rbeta(10, 6, 2), rbeta(10, 9, 4))
-  dpobjlistTest <- DirichletProcessHierarchicalBeta(dataTest, 1)
+  expect_no_warning({
+    dp <- Fit(dp, 1, progressBar = FALSE)
+  })
 
-  dpobjlistTest <- ClusterComponentUpdate(dpobjlistTest)
-  dpobjlistTest <- UpdateG0(dpobjlistTest)
-
-  for(i in seq_along(dpobjlistTest$indDP)){
-    expect_true(all(c(dpobjlistTest$indDP[[i]]$clusterParameters[[1]]) %in% c(dpobjlistTest$globalParameters[[1]])))
-  }
+  expect_true("tableDishLabels" %in% names(dp))
+  expect_true("dishTableCounts" %in% names(dp))
+  expect_equal(sum(dp$dishTableCounts),
+               sum(vapply(dp$indDP, function(x) x$numberClusters, numeric(1))))
 })
-
-test_that("5 Data Cluster Component then G0, 2D", {
-
-  dataTest <- list(rmvnorm(100, c(0,0), diag(2)), rmvnorm(100, c(1,1), diag(2)), rmvnorm(100, c(-1,-1), diag(2)), rmvnorm(100, c(2,2), diag(2)), rmvnorm(100, c(-2,-2), diag(2)))
-  dpobjlistTest <- DirichletProcessHierarchicalMvnormal2(dataTest)
-
-  dpobjlistTest <- ClusterComponentUpdate(dpobjlistTest)
-  dpobjlistTest <- UpdateG0(dpobjlistTest)
-
-  for(i in seq_along(dpobjlistTest$indDP)){
-    expect_true(all(c(dpobjlistTest$indDP[[i]]$clusterParameters[[1]]) %in% c(dpobjlistTest$globalParameters[[1]])))
-  }
-})
-
-test_that("5 Data Cluster Component, Global Param then G0", {
-
-  dataTest <- list(rbeta(10, 2, 3), rbeta(10, 1, 3), rbeta(10, 5, 3), rbeta(10, 6, 2), rbeta(10, 9, 4))
-  dpobjlistTest <- DirichletProcessHierarchicalBeta(dataTest, 1)
-
-  dpobjlistTest <- ClusterComponentUpdate(dpobjlistTest)
-  dpobjlistTest <- GlobalParameterUpdate(dpobjlistTest)
-  dpobjlistTest <- UpdateG0(dpobjlistTest)
-
-  for(i in seq_along(dpobjlistTest$indDP)){
-    expect_true(all(c(dpobjlistTest$indDP[[i]]$clusterParameters[[1]]) %in% c(dpobjlistTest$globalParameters[[1]])))
-  }
-})
-
-test_that("5 Data Cluster Component, Global Param then G0, 2D", {
-  #require(mvtnorm)
-  dataTest <- list(mvtnorm::rmvnorm(100, c(0,0), diag(2)), mvtnorm::rmvnorm(100, c(1,1), diag(2)), rmvnorm(100, c(-1,-1), diag(2)), rmvnorm(100, c(2,2), diag(2)), rmvnorm(100, c(-2,-2), diag(2)))
-  dpobjlistTest <- DirichletProcessHierarchicalMvnormal2(dataTest)
-
-  dpobjlistTest <- ClusterComponentUpdate(dpobjlistTest)
-  dpobjlistTest <- GlobalParameterUpdate(dpobjlistTest)
-  dpobjlistTest <- UpdateG0(dpobjlistTest)
-
-  for(i in seq_along(dpobjlistTest$indDP)){
-    expect_true(all(c(dpobjlistTest$indDP[[i]]$clusterParameters[[1]]) %in% c(dpobjlistTest$globalParameters[[1]])))
-  }
-})
-

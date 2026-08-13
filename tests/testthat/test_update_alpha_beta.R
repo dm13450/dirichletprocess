@@ -1,5 +1,13 @@
 context("Update Alpha Beta HMM")
 
+# Access functions from namespace if not available in global environment
+if (!exists("alphabeta_log_posterior")) {
+  alphabeta_log_posterior <- get("alphabeta_log_posterior", getNamespace("dirichletprocess"))
+}
+if (!exists("update_alpha_beta")) {
+  update_alpha_beta <- get("update_alpha_beta", getNamespace("dirichletprocess"))
+}
+
 test_that("Log Posterior", {
 
   expect_is(alphabeta_log_posterior(2, 2, rep(1, 10)),

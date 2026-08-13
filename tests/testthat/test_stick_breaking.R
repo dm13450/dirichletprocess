@@ -16,6 +16,10 @@ test_that("Numeric and Length", {
 test_that("Draw Gj", {
 
   beta_k <- StickBreaking(2, 10)
+  # Access function from namespace if not available in global environment
+  if (!exists("draw_gj")) {
+    draw_gj <- get("draw_gj", getNamespace("dirichletprocess"))
+  }
   pi_k <- draw_gj(2, beta_k)
 
   expect_length(pi_k, 10)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/print.R
 \name{print.dirichletprocess}
 \alias{print.dirichletprocess}
-\title{Print the Dirichlet process object}
+\title{Print a Dirichlet Process}
 \usage{
 \method{print}{dirichletprocess}(x, param_summary = FALSE, digits = 2, ...)
 }

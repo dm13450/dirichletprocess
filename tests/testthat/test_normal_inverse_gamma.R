@@ -7,7 +7,9 @@ normal_object_test = MixingDistribution("normal", priorParameters_test, "conjuga
 
 test_that("Normal Class", {
 
-  expect_is(normal_object_test, c("list", "normal", "conjugate"))
+  expect_equal(class(normal_object_test),
+               c("normal", "mixing_distribution", "list"))
+  expect_false(inherits(normal_object_test, "conjugate"))
 
 })
 
@@ -43,5 +45,4 @@ test_that("Normal Predictive", {
 
   expect_equal(length(Predictive(normal_object_test, data_test)), length(data_test))
 })
-
 

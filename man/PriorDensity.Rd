@@ -6,7 +6,7 @@
 \alias{PriorDensity.beta2}
 \alias{PriorDensity}
 \alias{PriorDensity.weibull}
-\title{Calculate the prior density of a mixing distribution}
+\title{Prior Density}
 \usage{
 \method{PriorDensity}{beta}(mdObj, theta)
 
@@ -22,5 +22,5 @@ PriorDensity(mdObj, theta)
 \item{theta}{Prior parameters}
 }
 \description{
-Calculate the prior density of a mixing distribution
+Prior Density
 }

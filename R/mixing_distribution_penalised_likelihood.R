@@ -1,4 +1,4 @@
-#' Calculate the parameters that maximise the penalised likelihood.
+#' Penalised Likelihood
 #'
 #' Used to find suitable starting parameters for nonconjugate mixtures.
 #' For some mixing distributions this hasn't been implemented yet.

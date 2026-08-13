@@ -2,7 +2,7 @@
 % Please edit documentation in R/beta_uniform_gamma.R
 \name{BetaMixtureCreate}
 \alias{BetaMixtureCreate}
-\title{Create a Beta mixing distribution.}
+\title{Beta Mixing Distribution}
 \usage{
 BetaMixtureCreate(
   priorParameters = c(2, 8),
@@ -24,5 +24,7 @@ BetaMixtureCreate(
 A mixing distribution object.
 }
 \description{
-See \code{\link{DirichletProcessBeta}} for the default prior and hyper prior distributions.
+Creates a bounded Beta mixing distribution using the mean and precision
+parameterisation on \eqn{(0, maxT)}. See \code{\link{DirichletProcessBeta}}
+for the default prior and hyper-prior distributions.
 }

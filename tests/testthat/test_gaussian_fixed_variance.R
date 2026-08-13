@@ -4,7 +4,9 @@ test_sigma <- 2
 test_mdobj <- GaussianFixedVarianceMixtureCreate(c(0,1), test_sigma)
 
 test_that("Mixture Create", {
-  expect_is(test_mdobj, c("list", "normalFixedVariance", "conjugate"))
+  expect_equal(class(test_mdobj),
+               c("normalFixedVariance", "mixing_distribution", "list"))
+  expect_false(inherits(test_mdobj, "conjugate"))
 })
 
 test_that("Likelihood", {

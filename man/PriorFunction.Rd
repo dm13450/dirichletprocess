@@ -2,7 +2,7 @@
 % Please edit documentation in R/prior.R
 \name{PriorFunction}
 \alias{PriorFunction}
-\title{Generate the prior function of the Dirichlet process}
+\title{Prior Function}
 \usage{
 PriorFunction(dpobj)
 }
@@ -15,5 +15,5 @@ A function f(x) that represents a draw from the prior distrubtion of the Dirichl
  @export
 }
 \description{
-Generate the prior function of the Dirichlet process
+Prior Function
 }

@@ -5,7 +5,7 @@
 \alias{PenalisedLikelihood.beta}
 \alias{PenalisedLikelihood}
 \alias{PenalisedLikelihood.default}
-\title{Calculate the parameters that maximise the penalised likelihood.}
+\title{Penalised Likelihood}
 \usage{
 \method{PenalisedLikelihood}{beta}(mdObj, x)
 

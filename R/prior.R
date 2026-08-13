@@ -1,4 +1,4 @@
-#' Generate the prior function of the Dirichlet process
+#' Prior Function
 #'
 #' @param dpobj A Dirichlet process object
 #' @return A function f(x) that represents a draw from the prior distrubtion of the Dirichlet process.
